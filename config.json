@@ -1,0 +1,23 @@
+{
+    "name": "PlayDateSDK Lua Type Definitions",
+    "words": [ "import \"CoreLibs/"],
+    "settings": {
+        "Lua.runtime.nonstandardSymbol": [
+            "+=",
+            "-=",
+            "*=",
+            "/=",
+            "//=",
+            "%=",
+            "<<=",
+            ">>=",
+            "&=",
+            "|=",
+            "^="
+        ],
+        "Lua.diagnostics.globals": [
+            "playdate",
+            "json"
+        ]
+    }
+}
