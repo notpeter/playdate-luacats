@@ -1,6 +1,227 @@
 ---@meta
 -- This file contains function stubs for autocompletion. DO NOT include it in your game.
 
+---@class playdate
+---@field argv string[]
+---@field isSimulator boolean
+local playdate = {}
+
+---@class playdate.easingFunctions
+local playdate.easingFunctions = {}
+
+---@class playdate.file
+local playdate.file = {}
+
+---@class playdate.file.file
+local playdate.file.file = {}
+
+---@class playdate.geometry
+local playdate.geometry = {}
+
+---@class playdate.geometry.arc
+---@field x integer
+---@field y integer
+---@field radius integer
+---@field startAngle number
+---@field endAngle number
+---@field direction boolean
+local playdate.geometry.arc = {}
+
+---@class playdate.geometry.lineSegment
+---@field x1 integer
+---@field y1 integer
+---@field x2 integer
+---@field y2 integer
+local playdate.geometry.lineSegment = {}
+
+---@class playdate.geometry.point
+---@field x number
+---@field y number
+local playdate.geometry.point = {}
+
+---@class playdate.geometry.rect
+---@field x number
+---@field y number
+---@field width number
+---@field height number
+---@field top number
+---@field bottom number
+---@field left number
+---@field right number
+---@field size playdate.geometry.size
+local playdate.geometry.rect = {}
+
+---@class playdate.geometry.size
+---@field width number
+---@field height number
+local playdate.geometry.size = {}
+
+---@class playdate.geometry.vector2D
+---@field dx number
+---@field dy number
+local playdate.geometry.vector2D = {}
+
+---@class playdate.graphics
+local playdate.graphics = {}
+
+---@class playdate.graphics.animation.loop
+---@field delay number
+---@field startFrame integer
+---@field endFrame integer
+---@field frame integer
+---@field step integer
+---@field shouldLoop boolean
+---@field paused boolean
+local playdate.graphics.animation.loop = {}
+
+---@class playdate.graphics.animation.blinker
+---@field onDuration integer
+---@field offDuration integer
+---@field loop boolean
+---@field cycles integer
+---@field default boolean
+---@field counter integer
+---@field on boolean
+---@field running boolean
+local playdate.graphics.animation.blinker = {}
+
+---@class playdate.graphics.animator
+---@field repeatCount integer
+---@field reverses integer
+---@field easingAmplitude number
+---@field easingPeriod number
+---@field s number|nil
+---@field a number|nil
+---@field p number|nil
+local playdate.graphics.animator = {}
+
+---@class playdate.graphics.font
+local playdate.graphics.font = {}
+
+---@class playdate.graphics.image
+---@field x integer
+---@field y integer
+---@field width integer
+---@field height integer
+local playdate.graphics.image = {}
+
+---@class playdate.graphics.imagetable
+local playdate.graphics.imagetable = {}
+
+---@class playdate.graphics.nineSlice
+---@field innerRect playdate.geometry.rect
+---@field minWidth integer
+---@field minHeight integer
+local playdate.graphics.nineSlice = {}
+
+---@class playdate.graphics.sprite
+---@field x integer
+---@field y integer
+---@field width integer
+---@field height integer
+local playdate.graphics.sprite = {}
+
+---@class playdate.graphics.tilemap
+local playdate.graphics.tilemap = {}
+
+---@class playdate.graphics.video
+local playdate.graphics.video = {}
+
+---@class playdate.inputHandlers
+local playdate.inputHandlers = {}
+
+---@class playdate.keyboard
+---@field text string
+local playdate.keyboard = {}
+
+---@class playdate.metadata
+---@field name string
+---@field author string
+---@field description string
+---@field bundleID string
+---@field version string
+---@field buildNumber integer
+---@field imagePath string|nil
+---@field launchSoundPath string|nil
+---@field pdxversion integer
+---@field contentWarning string|nil
+---@field contentWarning2 string|nil
+local playdate.metadata = {}
+
+---@class playdate.menu
+local playdate.menu = {}
+
+---@class playdate.menu.item
+---@field title string
+---@field value integer|boolean|string
+local playdate.menu.item = {}
+
+---@class playdate.ui.crankIndicator
+---@field clockwise boolean
+local playdate.ui.crankIndicator = {}
+
+---@class playdate.systeminfo
+---@field buildtime string
+---@field commit string
+---@field pdxcompatversion integer
+---@field pdxversion integer
+local playdate.systeminfo = {}
+
+---@class PowerStatus
+---@field charging boolean
+---@field USB boolean
+---@field screws boolean
+local PowerStatus = {}
+
+---@class CollisionInfo
+---@field sprite playdate.graphics.sprite
+---@field entryPoint playdate.geometry.point
+---@field exitPoint playdate.geometry.point
+---@field t1 number
+---@field t2 number
+local CollisionInfo = {}
+
+---@class DateTime
+---@field year integer
+---@field month integer
+---@field day integer
+---@field weekday integer
+---@field hour integer
+---@field minute integer
+---@field second integer
+---@field millisecond integer
+local DateTime = {}
+
+---@class InputHandler
+---@field AButtonDown fun()|nil
+---@field AButtonHeld fun()|nil
+---@field AButtonUp fun()|nil
+---@field BButtonDown fun()|nil
+---@field BButtonHeld fun()|nil
+---@field BButtonUp fun()|nil
+---@field downButtonDown fun()|nil
+---@field downButtonUp fun()|nil
+---@field leftButtonDown fun()|nil
+---@field leftButtonUp fun()|nil
+---@field rightButtonDown fun()|nil
+---@field rightButtonUp fun()|nil
+---@field upButtonDown fun()|nil
+---@field upButtonUp fun()|nil
+---@field cranked fun(change:number, acceleratedChange:number)|nil
+local InputHandler = {}
+
+---@class Object
+local Object = {}
+
+---@class Time
+---@field year integer
+---@field month integer
+---@field day integer
+---@field hour integer
+---@field minute integer
+---@field second integer
+local Time = {}
+
 --- Returns the first index of element in the given array-style table. If the table does not contain element, the function returns nil.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.indexOfElement
