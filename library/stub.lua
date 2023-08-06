@@ -167,12 +167,6 @@ local playdate.ui.crankIndicator = {}
 ---@field pdxversion integer
 local playdate.systeminfo = {}
 
----@class PowerStatus
----@field charging boolean
----@field USB boolean
----@field screws boolean
-local PowerStatus = {}
-
 ---@class CollisionInfo
 ---@field sprite playdate.graphics.sprite
 ---@field entryPoint playdate.geometry.point
@@ -213,26 +207,41 @@ local InputHandler = {}
 ---@class Object
 local Object = {}
 
----@class Time
+---@class PowerStatus
+---@field charging boolean
+---@field USB boolean
+---@field screws boolean
+local PowerStatus = {}
+
+---@class SystemStats
+---@field  kernel number
+---@field  game number
+---@field  audio number
+local SystemStats = {}
+
+---@class ModTime
 ---@field year integer
 ---@field month integer
 ---@field day integer
 ---@field hour integer
 ---@field minute integer
 ---@field second integer
-local Time = {}
+local ModTime = {}
 
 --- Returns the first index of element in the given array-style table. If the table does not contain element, the function returns nil.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.indexOfElement
 ---@param table any
 ---@param element any
+---@return integer|nil index
 function table.indexOfElement(table, element) end
 
 --- Returns the size of the given table as multiple values (arrayCount, hashCount).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.getsize
 ---@param table any
+---@return integer arrayCount
+---@return integer hashCount
 function table.getsize(table) end
 
 --- Returns a new Lua table with the array and hash parts preallocated to accommodate arrayCount and hashCount elements respectively.
@@ -242,6 +251,7 @@ function table.getsize(table) end
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.create
 ---@param arrayCount any
 ---@param hashCount any
+---@return table
 function table.create(arrayCount, hashCount) end
 
 --- shallowCopy returns a shallow copy of the source table. If a destination table is provided, it copies the contents of source into destination and returns destination. The copy will contain references to any nested tables.
@@ -249,17 +259,21 @@ function table.create(arrayCount, hashCount) end
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.shallowcopy
 ---@param source any
 ---@param destination any
+---@return table
 function table.shallowcopy(source, destination) end
 
 --- deepCopy returns a deep copy of the source table. The copy will contain copies of any nested tables.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.deepcopy
 ---@param source any
+---@return table
 function table.deepcopy(source) end
 
 --- Returns two values, the current API version of the Playdate runtime and the minimum API version supported by the runtime.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-apiVersion
+---@return integer api_version
+---@return integer runtime_minimum_api_version
 function playdate.apiVersion() end
 
 --- Implement this callback and Playdate OS will call it once per frame. This is the place to put the main update-and-draw code for your game. Playdate will attempt to call this function by default 30 times per second; that value can be changed by calling playdate.display.setRefreshRate().
@@ -322,6 +336,7 @@ function playdate.gameWillResume() end
 --- Returns a playdate.menu object. Use this to add your custom menu items.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-menu.getSystemMenu
+---@return playdate.menu menu
 function playdate.getSystemMenu() end
 
 --- title will be the title displayed by the menu item.
@@ -371,6 +386,7 @@ function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 function playdate.menu:addOptionsMenuItem(title, options, initalValue, callback) end
 
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.getMenuItems
+---@return playdate.menu.item[] menuItems
 function playdate.menu:getMenuItems() end
 
 --- Removes the specified playdate.menu.item from the menu.
@@ -416,6 +432,7 @@ function playdate.menu.item:setTitle(newTitle) end
 --- Returns the title displayed for this menu item.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.getTitle
+---@return string title
 function playdate.menu.item:getTitle() end
 
 --- Sets the value for this menu item. The value is of a different type depending on the type of menu item:
@@ -435,16 +452,19 @@ function playdate.menu.item:setValue(newValue) end
 --- Returns the value for this menu item.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.getValue
+---@return integer|boolean|string value
 function playdate.menu.item:getValue() end
 
 --- Returns the current language of the system, which will be one of the constants playdate.graphics.font.kLanguageEnglish or playdate.graphics.font.kLanguageJapanese.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getSystemLanguage
+---@return integer language
 function playdate.getSystemLanguage() end
 
 --- Returns true if the user has checked the "Reduce Flashing" option in Playdate Settings; false otherwise. Games should read this value and, if true, avoid visuals that could be problematic for people with sensitivities to flashing lights or patterns.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.getReduceFlashing
+---@return boolean reduceFlashing
 function playdate.getReduceFlashing() end
 
 --- Returns true if the user has checked the "Upside Down" option in Playdate Settings; false otherwise. (Upside Down mode can be convenient for players wanting to hold Playdate upside-down so they can use their left hand to operate the crank.)
@@ -454,6 +474,7 @@ function playdate.getReduceFlashing() end
 --- Reported d-pad directions are flipped when in Upside Down mode&nbsp;—&nbsp;RIGHT will be reported as LEFT, UP as DOWN, etc.&nbsp;—&nbsp;so that the d-pad will make sense to a user holding Playdate upside-down. However, the A and B buttons —&nbsp;since they are still labeled as "A" and "B"&nbsp;—&nbsp;retain their normal meanings and will be reported as usual.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.getFlipped
+---@return boolean flipped
 function playdate.getFlipped() end
 
 --- The accelerometer is off by default, to save a bit of power. If you will be using the accelerometer in your game, you’ll first need to call playdate.startAccelerometer() then wait for the next update cycle before reading its values. If you won’t be using the accelerometer again for a while, calling playdate.stopAccelerometer() will put it back into a low-power idle state.
@@ -469,11 +490,15 @@ function playdate.stopAccelerometer() end
 --- If the accelerometer has been turned on with playdate.startAccelerometer(), returns the x, y, and z values from the accelerometer as a list. Positive x points right, positive y points to the bottom of the screen, and positive z points through the screen away from the viewer. For example, with the device held upright this function returns the values (0,1,0). With it flat on its back, it returns (0,0,1).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-readAccelerometer
+---@return number x
+---@return number y
+---@return number z
 function playdate.readAccelerometer() end
 
 --- Returns true if the accelerometer is currently running.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-accelerometerIsRunning
+---@return boolean
 function playdate.accelerometerIsRunning() end
 
 --- Returns true if button is currently being pressed.
@@ -491,6 +516,7 @@ function playdate.accelerometerIsRunning() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-buttonIsPressed
 ---@param button integer
+---@return boolean
 function playdate.buttonIsPressed(button) end
 
 --- Returns true for just one update cycle if button was pressed. buttonJustPressed will not return true again until the button is released and pressed again. This is useful for, say, a player "jump" action, so the jump action is taken only once and not on every single update.
@@ -499,6 +525,7 @@ function playdate.buttonIsPressed(button) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-buttonJustPressed
 ---@param button integer
+---@return boolean
 function playdate.buttonJustPressed(button) end
 
 --- Returns true for just one update cycle if button was released. buttonJustReleased will not return true again until the button is pressed and released again.
@@ -507,11 +534,15 @@ function playdate.buttonJustPressed(button) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-buttonJustReleased
 ---@param button integer
+---@return boolean
 function playdate.buttonJustReleased(button) end
 
 --- Returns the above data in one call, with multiple return values (current, pressed, released) containing bitmasks indicating which buttons are currently down, and which were pressed and released since the last update. For example, if the d-pad left button and the A button are both down, the current value will be (playdate.kButtonA|playdate.kButtonLeft).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getButtonState
+---@return integer current
+---@return integer pressed
+---@return integer released
 function playdate.getButtonState() end
 
 --- Called immediately after the player presses the A Button.
@@ -589,16 +620,19 @@ function playdate.upButtonUp() end
 --- If your game requires the crank and `:isCrankDocked()` is true, you can use a crank alert to notify the user that the crank should be extended.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-isCrankDocked
+---@return boolean
 function playdate.isCrankDocked() end
 
 --- Returns the absolute position of the crank (in degrees). Zero is pointing straight up parallel to the device. Turning the crank clockwise (when looking at the right edge of an upright device) increases the angle, up to a maximum value 359.9999. The value then resets back to zero as the crank continues its rotation.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getCrankPosition
+---@return number degrees
 function playdate.getCrankPosition() end
 
 --- Returns two values, change and acceleratedChange. change represents the angle change (in degrees) of the crank since the last time this function (or the playdate.cranked() callback) was called. Negative values are anti-clockwise. acceleratedChange is change multiplied by a value that increases as the crank moves faster, similar to the way mouse acceleration works.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getCrankChange
+---@return number degrees
 function playdate.getCrankChange() end
 
 --- Returns the number of "ticks" — whose frequency is defined by the value of ticksPerRevolution  — the crank has turned through since the last time this function was called. Tick boundaries are set at absolute positions along the crank’s rotation. Ticks can be positive or negative, depending upon the direction of rotation.
@@ -609,6 +643,7 @@ function playdate.getCrankChange() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getCrankTicks
 ---@param ticksPerRevolution any
+---@return number ticks
 function playdate.getCrankTicks(ticksPerRevolution) end
 
 --- For playdate.cranked(), change is the angle change in degrees. acceleratedChange is change multiplied by a value that increases as the crank moves faster, similar to the way mouse acceleration works. Negative values are anti-clockwise.
@@ -664,6 +699,7 @@ function playdate.setAutoLockDisabled(disable) end
 --- Returns the number of milliseconds the game has been active since launched.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getCurrentTimeMilliseconds
+---@return integer milliseconds_active
 function playdate.getCurrentTimeMilliseconds() end
 
 --- Resets the high-resolution timer.
@@ -674,11 +710,14 @@ function playdate.resetElapsedTime() end
 --- Returns the number of seconds since playdate.resetElapsedTime() was called. The value is a floating-point number with microsecond accuracy.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getElapsedTime
+---@return number seconds
 function playdate.getElapsedTime() end
 
 --- Returns the number of seconds and milliseconds elapsed since midnight (hour 0), January 1 2000 UTC, as a list: (seconds, milliseconds). This function is suitable for seeding the random number generator:
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getSecondsSinceEpoch
+---@return integer seconds
+---@return integer milliseconds
 function playdate.getSecondsSinceEpoch() end
 
 --- Returns a table with values for the local time, accessible via the following keys:
@@ -693,11 +732,13 @@ function playdate.getSecondsSinceEpoch() end
 --- * millisecond: 0 - 999
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getTime
+---@return table|DateTime dt_table
 function playdate.getTime() end
 
 --- Returns a table in the same format as playdate.getTime(), but in GMT rather than local time.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getGMTTime
+---@return table|DateTime dt_table
 function playdate.getGMTTime() end
 
 --- Returns the number of seconds and milliseconds between midnight (hour 0), January 1 2000 UTC and time, specified in local time, as a list: (seconds, milliseconds).
@@ -706,6 +747,8 @@ function playdate.getGMTTime() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-epochFromTime
 ---@param time any
+---@return integer seconds
+---@return integer milliseconds
 function playdate.epochFromTime(time) end
 
 --- Returns the number of seconds and milliseconds between midnight (hour 0), January 1 2000 UTC and time, specified in GMT time, as a list: (seconds, milliseconds).
@@ -714,6 +757,8 @@ function playdate.epochFromTime(time) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-epochFromGMTTime
 ---@param time any
+---@return integer seconds
+---@return integer milliseconds
 function playdate.epochFromGMTTime(time) end
 
 --- Converts the epoch to a local date and time table, in the same format as the table returned by playdate.getTime().
@@ -721,6 +766,7 @@ function playdate.epochFromGMTTime(time) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-timeFromEpoch
 ---@param seconds any
 ---@param milliseconds integer
+---@return table|DateTime dt_table
 function playdate.timeFromEpoch(seconds, milliseconds) end
 
 --- Converts the epoch to a GMT date and time table, in the same format as the table returned by playdate.getTime().
@@ -728,11 +774,13 @@ function playdate.timeFromEpoch(seconds, milliseconds) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-GMTTimeFromEpoch
 ---@param seconds any
 ---@param milliseconds integer
+---@return table|DateTime dt_table
 function playdate.GMTTimeFromEpoch(seconds, milliseconds) end
 
 --- Returns true if the user has set the 24-Hour Time preference in the Settings program.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-shouldDisplay24HourTime
+---@return boolean
 function playdate.shouldDisplay24HourTime() end
 
 --- Text output from print() will be displayed in the simulator’s console, in black if generated by a game running in the simulator or in blue if it’s coming from a plugged-in Playdate device. Printed text is also copied to stdout, which is helpful if you run the simulator from the command line.
@@ -769,6 +817,7 @@ function playdate.drawFPS(x, y) end
 --- Returns the effective refresh rate in frames per second. See also playdate.display.getRefreshRate().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getFPS
+---@return number fps
 function playdate.getFPS() end
 
 --- Returns a single-line stack trace as a string. For example:
@@ -798,6 +847,7 @@ function sample(name, _function) end
 --- `playdate.getStats()` only functions on a Playdate device. In the Simulator, this function returns `nil`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.getStats
+---@return table|SystemStats stats_table
 function playdate.getStats() end
 
 --- setStatsInterval() sets the length of time for each sample frame of runtime stats. Set seconds to zero to disable stats collection.
@@ -819,6 +869,7 @@ function playdate.display.setRefreshRate(rate) end
 --- Returns the nominal refresh rate in frames per second. See also playdate.getFPS().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getRefreshRate
+---@return integer fps
 function playdate.display.getRefreshRate() end
 
 --- Sends the contents of the frame buffer to the display immediately. Useful if you have called playdate.stop() to disable update callbacks in, say, the case where your app updates the display only in reaction to button presses.
@@ -831,6 +882,7 @@ function playdate.display.flush() end
 --- Equivalent to playdate->display->getHeight() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getHeight
+---@return integer pixels
 function playdate.display.getHeight() end
 
 --- Returns the width the Playdate display, taking the current display scale into account; e.g., if the scale is 2, the values returned will be based off of a 200 x 120-pixel screen rather than the native 400 x 240. (See playdate.display.setScale().)
@@ -838,16 +890,20 @@ function playdate.display.getHeight() end
 --- Equivalent to playdate->display->getWidth() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getWidth
+---@return integer pixels
 function playdate.display.getWidth() end
 
 --- Returns the values (width, height) describing the Playdate display size. Takes the current display scale into account; e.g., if the scale is 2, the values returned will be based off of a 200 x 120-pixel screen rather than the native 400 x 240. (See playdate.display.setScale().)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getSize
+---@return integer width
+---@return integer height
 function playdate.display.getSize() end
 
 --- Returns the values (x, y, width, height) describing the Playdate display size. Takes the current display scale into account; e.g., if the scale is 2, the values returned will be based off of a 200 x 120-pixel screen rather than the native 400 x 240. (See playdate.display.setScale().)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getRect
+---@return playdate.geometry.rect rect
 function playdate.display.getRect() end
 
 --- Sets the display scale factor. Valid values for scale are 1, 2, 4, and 8.
@@ -863,6 +919,7 @@ function playdate.display.setScale(scale) end
 --- Gets the display scale factor. Valid values for scale are 1, 2, 4, and 8.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getScale
+---@return integer scale
 function playdate.display.getScale() end
 
 --- If the argument passed to setInverted() is true, the frame buffer will be drawn inverted (everything onscreen that was black will now be white, etc.)
@@ -876,6 +933,7 @@ function playdate.display.setInverted(flag) end
 --- If getInverted() returns true, the frame buffer will be drawn inverted (everything onscreen that was black will now be white, etc.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getInverted
+---@return boolean inverted
 function playdate.display.getInverted() end
 
 --- Adds a mosaic effect to the display. Valid x and y values are between 0 and 3, inclusive.
@@ -890,6 +948,8 @@ function playdate.display.setMosaic(x, y) end
 --- Returns the current mosaic effect settings as multiple values (x, y).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getMosaic
+---@return integer x
+---@return integer y
 function playdate.display.getMosaic() end
 
 --- Offsets the entire display by x, y. Offset values can be negative. The "exposed" part of the display is black or white, according to the value set in playdate.graphics.setBackgroundColor(). This is an efficient way to make a "shake" effect without redrawing anything.
@@ -906,6 +966,8 @@ function playdate.display.setOffset(x, y) end
 --- getOffset() returns the current display offset as multiple values (x, y).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getOffset
+---@return integer x
+---@return integer y
 function playdate.display.getOffset() end
 
 --- Flips the display on the x or y axis, or both.
@@ -1566,12 +1628,14 @@ function playdate.datastore.write(table, filename, pretty) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.read
 ---@param filename string
+---@return table|nil
 function playdate.datastore.read(filename) end
 
 --- Deletes the specified datastore file. The default file name is "data". Returns false if the datastore file could not be deleted.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.delete
 ---@param filename string
+---@return boolean success
 function playdate.datastore.delete(filename) end
 
 --- Saves a playdate.graphics.image to a file. If path doesn’t contain a folder name, the image is stored in a folder named "images".
@@ -1591,6 +1655,7 @@ function playdate.datastore.writeImage(image, path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.readImage
 ---@param path string
+---@return playdate.graphics.image|nil
 function playdate.datastore.readImage(path) end
 
 --- Returns a playdate.file.file corresponding to the opened file. mode should be one of the following:
@@ -1608,6 +1673,8 @@ function playdate.datastore.readImage(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.open
 ---@param path string
 ---@param mode any
+---@return playdate.file.file|nil file
+---@return nil|string error
 function playdate.file.open(path, mode) end
 
 --- Closes the file.
@@ -1621,6 +1688,8 @@ function playdate.file.file:close() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.write
 ---@param string any
+---@return integer bytes_written
+---@return nil|string error
 function playdate.file.file:write(string) end
 
 --- Flushes any buffered data written to the file to the disk.
@@ -1633,6 +1702,7 @@ function playdate.file.file:flush() end
 --- Returns the next line of the file, delimited by either \n or \r\n. The returned string does not include newline characters.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.readLine
+---@return string line
 function playdate.file.file:readline() end
 
 --- Returns a buffer containing up to numberOfBytes bytes from the file, and the number of bytes read. If the read failed, the function returns nil and a second value describing the error.
@@ -1641,6 +1711,8 @@ function playdate.file.file:readline() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.read
 ---@param numberOfBytes any
+---@return integer|nil numberOfBytes
+---@return string error
 function playdate.file.file:read(numberOfBytes) end
 
 --- Sets the file read/write position to the given byte offset.
@@ -1656,6 +1728,7 @@ function playdate.file.file:seek(offset) end
 --- Equivalent to playdate->file->tell() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.tell
+---@return integer offset
 function playdate.file.file:tell() end
 
 --- Returns an array containing the file names in the given directory path as strings. Folders are indicated by a slash / at the end of the filename. If showhidden is set, files beginning with a period will be included; otherwise, they are skipped.
@@ -1669,18 +1742,21 @@ function playdate.file.file:tell() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.listFiles
 ---@param path string
 ---@param showhidden any
+---@return string[] files
 function playdate.file.listFiles(path, showhidden) end
 
 --- Returns true if a file exists at the given path.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.exists
 ---@param path string
+---@return boolean
 function playdate.file.exists(path) end
 
 --- Returns true if a directory exists at the given path.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.isdir
 ---@param path string
+---@return boolean
 function playdate.file.isdir(path) end
 
 --- Creates a directory at the given path, under the /Data/<bundleid> folder. See About the Playdate Filesystem for details.
@@ -1700,18 +1776,21 @@ function playdate.file.mkdir(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.delete
 ---@param path string
 ---@param recursive any
+---@return boolean success
 function playdate.file.delete(path, recursive) end
 
 --- Returns the size of the file at the given path.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.getSize
 ---@param path string
+---@return integer bytes
 function playdate.file.getSize(path) end
 
 --- Returns the type of the file at the given path.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.getType
 ---@param path string
+---@return string
 function playdate.file.getType(path) end
 
 --- Returns the modification date/time of the file at the given path, as a table with keys:
@@ -1725,6 +1804,7 @@ function playdate.file.getType(path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.modtime
 ---@param path string
+---@return ModTime|table
 function playdate.file.modtime(path) end
 
 --- Renames the file at path, if it exists, to the value of newPath. This can result in the file being moved to a new directory, but directories will not be created. Returns true if the operation was successful.
@@ -1734,6 +1814,7 @@ function playdate.file.modtime(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.rename
 ---@param path string
 ---@param newPath any
+---@return boolean success
 function playdate.file.rename(path, newPath) end
 
 --- Loads the compiled .pdz file at the given location and returns the contents as a function. The .pdz extension on path is optional.
@@ -1743,6 +1824,7 @@ function playdate.file.rename(path, newPath) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.load
 ---@param path string
 ---@param env any
+---@return function
 function playdate.file.load(path, env) end
 
 --- Runs the pdz file at the given location. Equivalent to playdate.file.load(path, env)().
@@ -1765,6 +1847,7 @@ function playdate.file.run(path, env) end
 ---@param m22 any
 ---@param tx any
 ---@param ty any
+---@return playdate.geometry.affineTransform transform
 function playdate.geometry.affineTransform.new(m11, m12, m21, m22, tx, ty) end
 
 --- Returns a new playdate.geometry.affineTransform that is the identity transform.
@@ -1775,6 +1858,7 @@ function playdate.geometry.affineTransform.new() end
 --- Returns a new copy of the affine transform.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.copy
+---@return playdate.geometry.affineTransform transform
 function playdate.geometry.affineTransform:copy() end
 
 --- Mutates the caller so that it is an affine transformation matrix constructed by inverting itself.
@@ -1811,6 +1895,7 @@ function playdate.geometry.affineTransform:translate(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.translatedBy
 ---@param dx integer
 ---@param dy integer
+---@return playdate.geometry.affineTransform affineTransform
 function playdate.geometry.affineTransform:translatedBy(dx, dy) end
 
 --- Mutates the caller by applying a scaling transformation.
@@ -1833,6 +1918,7 @@ function playdate.geometry.affineTransform:scale(sx, sy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.scaledBy
 ---@param sx number
 ---@param sy number
+---@return playdate.geometry.affineTransform affineTransform
 function playdate.geometry.affineTransform:scaledBy(sx, sy) end
 
 --- Mutates the caller by applying a rotation transformation.
@@ -1862,6 +1948,7 @@ function playdate.geometry.affineTransform:rotate(angle, point) end
 ---@param angle number
 ---@param x integer
 ---@param y integer
+---@return playdate.geometry.affineTransform affineTransform
 function playdate.geometry.affineTransform:rotatedBy(angle, x, y) end
 
 --- Returns a copy of the calling affine transform with a rotate transformation appended.
@@ -1871,6 +1958,7 @@ function playdate.geometry.affineTransform:rotatedBy(angle, x, y) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform:rotatedBy-point
 ---@param angle number
 ---@param point playdate.geometry.point
+---@return playdate.geometry.affineTransform affineTransform
 function playdate.geometry.affineTransform:rotatedBy(angle, point) end
 
 --- Mutates the caller, appending a skew transformation.  sx is the value by which to skew the x axis, and sy the value for the y axis. Values are in degrees.
@@ -1885,6 +1973,7 @@ function playdate.geometry.affineTransform:skew(sx, sy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.skewedBy
 ---@param sx number
 ---@param sy number
+---@return playdate.geometry.affineTransform affineTransform
 function playdate.geometry.affineTransform:skewedBy(sx, sy) end
 
 --- Modifies the point p by applying the affine transform.
@@ -1897,6 +1986,7 @@ function playdate.geometry.affineTransform:transformPoint(p) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedPoint
 ---@param p any
+---@return playdate.geometry.point point
 function playdate.geometry.affineTransform:transformedPoint(p) end
 
 --- Returns two values calculated by applying the affine transform to the point (x, y)
@@ -1904,6 +1994,8 @@ function playdate.geometry.affineTransform:transformedPoint(p) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformXY
 ---@param x integer
 ---@param y integer
+---@return number x
+---@return number y
 function playdate.geometry.affineTransform:transformXY(x, y) end
 
 --- Modifies the line segment ls by applying the affine transform.
@@ -1916,6 +2008,7 @@ function playdate.geometry.affineTransform:transformLineSegment(ls) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedLineSegment
 ---@param ls playdate.geometry.lineSegment
+---@return playdate.geometry.lineSegment lineSegment
 function playdate.geometry.affineTransform:transformedLineSegment(ls) end
 
 --- Modifies the axis aligned bounding box r (a rect) by applying the affine transform.
@@ -1928,6 +2021,7 @@ function playdate.geometry.affineTransform:transformAABB(r) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedAABB
 ---@param r playdate.geometry.rect
+---@return playdate.geometry.rect rect
 function playdate.geometry.affineTransform:transformedAABB(r) end
 
 --- Modifies the polygon p by applying the affine transform.
@@ -1940,6 +2034,7 @@ function playdate.geometry.affineTransform:transformPolygon(p) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedPolygon
 ---@param p any
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.affineTransform:transformedPolygon(p) end
 
 --- Returns the transform created by multiplying transform t1 by transform t2
@@ -1971,21 +2066,25 @@ function playdate.geometry.affineTransform:__mul(p) end
 ---@param startAngle number
 ---@param endAngle number
 ---@param direction boolean
+---@return playdate.geometry.arc arc
 function playdate.geometry.arc.new(x, y, radius, startAngle, endAngle, direction) end
 
 --- Returns a new copy of the arc.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.copy
+---@return playdate.geometry.arc arc
 function playdate.geometry.arc:copy() end
 
 --- Returns the length of the arc.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.length
+---@return number
 function playdate.geometry.arc:length() end
 
 --- Returns true if the direction of the arc is clockwise.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.isClockwise
+---@return boolean
 function playdate.geometry.arc:isClockwise() end
 
 --- Sets the direction of the arc.
@@ -1999,6 +2098,7 @@ function playdate.geometry.arc:setIsClockwise(flag) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.pointOnArc
 ---@param distance integer
 ---@param extend any
+---@return playdate.geometry.point
 function playdate.geometry.arc:pointOnArc(distance, extend) end
 
 --- Returns a new playdate.geometry.lineSegment.
@@ -2008,21 +2108,28 @@ function playdate.geometry.arc:pointOnArc(distance, extend) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return playdate.geometry.lineSegment lineSegment
 function playdate.geometry.lineSegment.new(x1, y1, x2, y2) end
 
 --- Returns a new copy of the line segment.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.copy
+---@return playdate.geometry.lineSegment lineSegment
 function playdate.geometry.lineSegment:copy() end
 
 --- Returns the values x1, y1, x2, y2.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.unpack
+---@return number x1
+---@return number y1
+---@return number x2
+---@return number y2
 function playdate.geometry.lineSegment:unpack() end
 
 --- Returns the length of the line segment.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.length
+---@return number length
 function playdate.geometry.lineSegment:length() end
 
 --- Modifies the line segment, offsetting its values by dx, dy.
@@ -2037,11 +2144,13 @@ function playdate.geometry.lineSegment:offset(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.offsetBy
 ---@param dx integer
 ---@param dy integer
+---@return playdate.geometry.lineSegment lineSegment
 function playdate.geometry.lineSegment:offsetBy(dx, dy) end
 
 --- Returns a playdate.geometry.point representing the mid point of the line segment.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.midPoint
+---@return playdate.geometry.point point
 function playdate.geometry.lineSegment:midPoint() end
 
 --- Returns a playdate.geometry.point on the line segment, distance pixels from the start of the line. If extend is true, the returned point is allowed to project past the segment’s endpoints; otherwise, it is constrained to the line segment’s initial point if distance is negative, or the end point if distance is greater than the segment’s length.
@@ -2049,17 +2158,20 @@ function playdate.geometry.lineSegment:midPoint() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.pointOnLine
 ---@param distance integer
 ---@param extend any
+---@return playdate.geometry.point point
 function playdate.geometry.lineSegment:pointOnLine(distance, extend) end
 
 --- Returns a playdate.geometry.vector2D representation of the line segment.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.segmentVector
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.lineSegment:segmentVector() end
 
 --- Returns a playdate.geometry.point that is the closest point to point p that is on the line segment.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.closestPointOnLineToPoint
 ---@param p any
+---@return playdate.geometry.point point
 function playdate.geometry.lineSegment:closestPointOnLineToPoint(p) end
 
 --- Returns true if there is an intersection between the caller and the line segment ls.
@@ -2068,6 +2180,8 @@ function playdate.geometry.lineSegment:closestPointOnLineToPoint(p) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsLineSegment
 ---@param ls playdate.geometry.lineSegment
+---@return boolean intersects
+---@return playdate.geometry.point? intersection
 function playdate.geometry.lineSegment:intersectsLineSegment(ls) end
 
 --- For use in inner loops where speed is the priority.
@@ -2083,6 +2197,9 @@ function playdate.geometry.lineSegment:intersectsLineSegment(ls) end
 ---@param y3 any
 ---@param x4 any
 ---@param y4 any
+---@return boolean intersects
+---@return number? x
+---@return number? y
 function playdate.geometry.lineSegment.fast_intersection(x1, y1, x2, y2, x3, y3, x4, y4) end
 
 --- Returns the values (intersects, intersectionPoints).
@@ -2093,6 +2210,8 @@ function playdate.geometry.lineSegment.fast_intersection(x1, y1, x2, y2, x3, y3,
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsPolygon
 ---@param poly any
+---@return boolean intersects
+---@return playdate.geometry.point[]? intersectionPoints
 function playdate.geometry.lineSegment:intersectsPolygon(poly) end
 
 --- Returns the values (intersects, intersectionPoints).
@@ -2103,6 +2222,8 @@ function playdate.geometry.lineSegment:intersectsPolygon(poly) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsRect
 ---@param rect playdate.geometry.rect
+---@return boolean intersects
+---@return playdate.geometry.point[]? intersectionPoints
 function playdate.geometry.lineSegment:intersectsRect(rect) end
 
 --- Returns a new playdate.geometry.point.
@@ -2469,7 +2590,7 @@ function playdate.geometry.rect:centerPoint() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.flipRelativeToRect
 ---@param r2 playdate.geometry.rect
----@param flip integer
+---@param flip integer|string
 function playdate.geometry.rect:flipRelativeToRect(r2, flip) end
 
 --- Returns a new playdate.geometry.size.
@@ -2498,6 +2619,7 @@ function playdate.geometry.size:unpack() end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return number distanceSquared
 function playdate.geometry.squaredDistanceToPoint(x1, y1, x2, y2) end
 
 --- Returns the the distance from point (x1, y1) to point (x2, y2).
@@ -2509,6 +2631,7 @@ function playdate.geometry.squaredDistanceToPoint(x1, y1, x2, y2) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return number distance
 function playdate.geometry.distanceToPoint(x1, y1, x2, y2) end
 
 --- Returns a new playdate.geometry.vector2D.
@@ -2681,12 +2804,15 @@ function playdate.graphics.clear(color) end
 ---@param width integer
 ---@param height integer
 ---@param bgcolor integer
+---@return playdate.graphics.image image
 function playdate.graphics.image.new(width, height, bgcolor) end
 
 --- Returns a playdate.graphics.image object from the data at path. If there is no file at path, the function returns nil and a second value describing the error.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new-path
 ---@param path string
+---@return playdate.graphics.image|nil image
+---@return string? error
 function playdate.graphics.image.new(path) end
 
 --- Loads a new image from the data at path into an already-existing image, without allocating additional memory. The image at path must be of the same dimensions as the original.
@@ -2695,22 +2821,29 @@ function playdate.graphics.image.new(path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.load
 ---@param path string
+---@return boolean success
+---@return string? error
 function playdate.graphics.image:load(path) end
 
 --- Returns a new playdate.graphics.image that is an exact copy of the original.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.copy
+---@return playdate.graphics.image image
 function playdate.graphics.image:copy() end
 
 --- Returns the pair (width, height)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.getSize
+---@return integer width
+---@return integer height
 function playdate.graphics.image:getSize() end
 
 --- Returns the pair (width, height) for the image at path without actually loading the image.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.imageSizeAtPath
 ---@param path string
+---@return integer width
+---@return integer height
 function playdate.graphics.imageSizeAtPath(path) end
 
 --- Draws the image with its upper-left corner at location (x, y) or playdate.geometry.point p.
@@ -2729,7 +2862,7 @@ function playdate.graphics.imageSizeAtPath(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imgDraw
 ---@param x integer
 ---@param y integer
----@param flip integer
+---@param flip integer|string
 ---@param sourceRect playdate.geometry.rect
 function playdate.graphics.image:draw(x, y, flip, sourceRect) end
 
@@ -2748,7 +2881,7 @@ function playdate.graphics.image:draw(x, y, flip, sourceRect) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imgDraw
 ---@param p any
----@param flip integer
+---@param flip integer|string
 ---@param sourceRect playdate.geometry.rect
 function playdate.graphics.image:draw(p, flip, sourceRect) end
 
@@ -2763,7 +2896,7 @@ function playdate.graphics.image:draw(p, flip, sourceRect) end
 ---@param y integer
 ---@param ax number
 ---@param ay number
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.image:drawAnchored(x, y, ax, ay, flip) end
 
 --- Draws the image centered at location (x, y).
@@ -2775,7 +2908,7 @@ function playdate.graphics.image:drawAnchored(x, y, ax, ay, flip) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawCentered
 ---@param x integer
 ---@param y integer
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.image:drawCentered(x, y, flip) end
 
 --- Draws the image ignoring the currently-set drawOffset.
@@ -2783,14 +2916,14 @@ function playdate.graphics.image:drawCentered(x, y, flip) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset
 ---@param x integer
 ---@param y integer
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.image:drawIgnoringOffset(x, y, flip) end
 
 --- Draws the image ignoring the currently-set drawOffset.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset
 ---@param p any
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.image:drawIgnoringOffset(p, flip) end
 
 --- Erases the contents of the image, setting all pixels to white if color is playdate.graphics.kColorWhite, black if it’s playdate.graphics.kColorBlack, or clear if it’s playdate.graphics.kColorClear. If the image is cleared to black or white, the mask (if it exists) is set to fully opaque. If the image is cleared to kColorClear and the image doesn’t have a mask, a mask is added to it.
@@ -2806,6 +2939,7 @@ function playdate.graphics.image:clear(color) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.sample
 ---@param x integer
 ---@param y integer
+---@return integer color
 function playdate.graphics.image:sample(x, y) end
 
 --- Draws this image centered at point (x,y) at (clockwise) angle degrees, scaled by optional argument scale, with an optional separate scaling for the y axis.
@@ -2826,6 +2960,7 @@ function playdate.graphics.image:drawRotated(x, y, angle, scale, yscale) end
 ---@param angle number
 ---@param scale integer
 ---@param yscale integer
+---@return playdate.graphics.image image
 function playdate.graphics.image:rotatedImage(angle, scale, yscale) end
 
 --- Draws this image with its upper-left corner at  point (x,y), scaled by amount scale, with an optional separate scaling for the y axis.
@@ -2842,6 +2977,7 @@ function playdate.graphics.image:drawScaled(x, y, scale, yscale) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.scaledImage
 ---@param scale integer
 ---@param yscale integer
+---@return playdate.graphics.image image
 function playdate.graphics.image:scaledImage(scale, yscale) end
 
 --- Draws this image centered at point (x,y) with the transform xform applied.
@@ -2856,6 +2992,7 @@ function playdate.graphics.image:drawWithTransform(xform, x, y) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.transformedImage
 ---@param xform playdate.geometry.affineTransform
+---@return playdate.graphics.image image
 function playdate.graphics.image:transformedImage(xform) end
 
 --- Draws the image as if it’s mapped onto a tilted plane, transforming the target coordinates to image coordinates using an affine transform:
@@ -2898,6 +3035,7 @@ function playdate.graphics.image:setMaskImage(maskImage) end
 --- The returned image references the original’s data, so drawing into this image alters the original image’s mask.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.getMaskImage
+---@return playdate.graphics.image image
 function playdate.graphics.image:getMaskImage() end
 
 --- Adds a mask to the image if it doesn’t already have one. If opaque is true, the image will be set to entirely opaque. Otherwise, or if not specified, the image will be completely transparent.
@@ -2914,6 +3052,7 @@ function playdate.graphics.image:removeMask() end
 --- Returns true if the image has a mask.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.hasMask
+---@return boolean
 function playdate.graphics.image:hasMask() end
 
 --- Erases the contents of the image’s mask, so that the image is entirely opaque if opaque is 1, transparent otherwise. This function has no effect if the image doesn’t have a mask.
@@ -2929,14 +3068,14 @@ function playdate.graphics.image:clearMask(opaque) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.image:drawTiled(x, y, width, height, flip) end
 
 --- Tiles the image into the given rectangle, using either listed dimensions or a playdate.geometry.rect object, and the optional flip style.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawTiled
 ---@param rect playdate.geometry.rect
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.image:drawTiled(rect, flip) end
 
 --- Draws a blurred version of the image at (x, y).
@@ -2953,7 +3092,7 @@ function playdate.graphics.image:drawTiled(rect, flip) end
 ---@param radius number
 ---@param numPasses integer
 ---@param ditherType integer
----@param flip integer
+---@param flip integer|string
 ---@param xPhase integer
 ---@param yPhase integer
 function playdate.graphics.image:drawBlurred(x, y, radius, numPasses, ditherType, flip, xPhase, yPhase) end
@@ -2979,6 +3118,7 @@ function playdate.graphics.image:setInverted(flag) end
 --- Returns a color-inverted copy of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.invertedImage
+---@return playdate.graphics.image image
 function playdate.graphics.image:invertedImage() end
 
 --- Returns an image that is a blend between the caller and image.
@@ -2991,6 +3131,7 @@ function playdate.graphics.image:invertedImage() end
 ---@param image playdate.graphics.image
 ---@param alpha number
 ---@param ditherType integer
+---@return playdate.graphics.image image
 function playdate.graphics.image:blendWithImage(image, alpha, ditherType) end
 
 --- Returns a blurred copy of the caller.
@@ -3030,6 +3171,7 @@ function playdate.graphics.image:blendWithImage(image, alpha, ditherType) end
 ---@param padEdges boolean
 ---@param xPhase integer
 ---@param yPhase integer
+---@return playdate.graphics.image image
 function playdate.graphics.image:blurredImage(radius, numPasses, ditherType, padEdges, xPhase, yPhase) end
 
 --- Returns a faded version of the caller.
@@ -3040,11 +3182,13 @@ function playdate.graphics.image:blurredImage(radius, numPasses, ditherType, pad
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.fadedImage
 ---@param alpha number
 ---@param ditherType integer
+---@return playdate.graphics.image image
 function playdate.graphics.image:fadedImage(alpha, ditherType) end
 
 --- Returns an image created by applying a VCR pause effect to the calling image.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.vcrPauseFilterImage
+---@return playdate.graphics.image image
 function playdate.graphics.image:vcrPauseFilterImage() end
 
 --- Returns true if the non-alpha-masked portions of image1 and image2 overlap if they were drawn at positions (x1, y1) and (x2, y2) and flipped according to flip1 and flip2, which should each be one of the values listed in playdate.graphics.image:draw().
@@ -3770,7 +3914,7 @@ function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.draw
 ---@param x integer
 ---@param y integer
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.animation.loop:draw(x, y, flip) end
 
 --- Returns a playdate.graphics.image from the caller’s imageTable if it exists. The image returned will be at the imageTable’s index that matches the caller’s frame.
@@ -3805,6 +3949,7 @@ function playdate.graphics.animation.loop:setImageTable(imageTable) end
 ---@param endValue any
 ---@param easingFunction any
 ---@param startTimeOffset any
+---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, startValue, endValue, easingFunction, startTimeOffset) end
 
 --- Creates a new Animator that will animate along the provided playdate.geometry.lineSegment
@@ -3814,6 +3959,7 @@ function playdate.graphics.animator.new(duration, startValue, endValue, easingFu
 ---@param lineSegment any
 ---@param easingFunction any
 ---@param startTimeOffset any
+---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, lineSegment, easingFunction, startTimeOffset) end
 
 --- Creates a new Animator that will animate along the provided playdate.geometry.arc
@@ -3823,6 +3969,7 @@ function playdate.graphics.animator.new(duration, lineSegment, easingFunction, s
 ---@param arc any
 ---@param easingFunction any
 ---@param startTimeOffset any
+---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, arc, easingFunction, startTimeOffset) end
 
 --- Creates a new Animator that will animate along the provided playdate.geometry.polygon
@@ -3832,6 +3979,7 @@ function playdate.graphics.animator.new(duration, arc, easingFunction, startTime
 ---@param polygon any
 ---@param easingFunction any
 ---@param startTimeOffset any
+---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, polygon, easingFunction, startTimeOffset) end
 
 --- Creates a new Animator that will animate along each of the items in the parts array in order, which should be comprised of playdate.geometry.lineSegment, playdate.geometry.arc, or playdate.geometry.polygon objects.
@@ -3847,22 +3995,26 @@ function playdate.graphics.animator.new(duration, polygon, easingFunction, start
 ---@param parts any
 ---@param easingFunctions any
 ---@param startTimeOffset any
+---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(durations, parts, easingFunctions, startTimeOffset) end
 
 --- Returns the current value of the animation, which will be either a number or a playdate.geometry.point, depending on the type of animator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.currentValue
+---@return number|playdate.geometry.point
 function playdate.graphics.animator:currentValue() end
 
 --- Returns the value of the animation at the given number of seconds after the start time. The value will be either a number or a playdate.geometry.point, depending on the type of animator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.valueAtTime
 ---@param time any
+---@return number|playdate.geometry.point
 function playdate.graphics.animator:valueAtTime(time) end
 
 --- Returns the current progress of the animation as a value from 0 to 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.progress
+---@return number progress
 function playdate.graphics.animator:progress() end
 
 --- Resets the animation, setting its start time to the current time, and changes the animation’s duration if a new duration is given.
@@ -3874,6 +4026,7 @@ function playdate.graphics.animator:reset(duration) end
 --- Returns true if the animation is completed. Only returns true if this function or currentValue() has been called since the animation ended in order to allow animations to fully finish before true is returned.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.ended
+---@return boolean
 function playdate.graphics.animator:ended() end
 
 --- Creates a new blinker object. Check the object’s on property to determine whether the blinker is on (true) or off (false). The default properties are:
@@ -4036,7 +4189,7 @@ function playdate.graphics.imagetable:getSize() end
 ---@param n any
 ---@param x integer
 ---@param y integer
----@param flip integer
+---@param flip integer|string
 function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 
 --- Equivalent to imagetable:getImage(n).
@@ -4185,7 +4338,7 @@ function playdate.graphics.sprite.update() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImage
 ---@param image playdate.graphics.image
----@param flip integer
+---@param flip integer|string
 ---@param scale integer
 ---@param yscale integer
 function playdate.graphics.sprite:setImage(image, flip, scale, yscale) end
@@ -4356,7 +4509,7 @@ function playdate.graphics.sprite:setImageDrawMode(mode) end
 --- Calling setImage() will reset the sprite to its default, non-flipped orientation.  So, if you call both setImage() and setImageFlip(), call setImage() first.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageFlip
----@param flip integer
+---@param flip integer|string
 ---@param flipCollideRect any
 function playdate.graphics.sprite:setImageFlip(flip, flipCollideRect) end
 
