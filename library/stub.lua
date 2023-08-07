@@ -2332,7 +2332,7 @@ function playdate.geometry.arc:setIsClockwise(flag) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.pointOnArc
 ---@param distance integer
----@param extend any
+---@param extend boolean
 ---@return playdate.geometry.point
 function playdate.geometry.arc:pointOnArc(distance, extend) end
 
@@ -2393,7 +2393,7 @@ function playdate.geometry.lineSegment:midPoint() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.pointOnLine
 ---@param distance integer
----@param extend any
+---@param extend boolean
 ---@return playdate.geometry.point point
 function playdate.geometry.lineSegment:pointOnLine(distance, extend) end
 
@@ -2653,7 +2653,7 @@ function playdate.geometry.polygon:intersects(p) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.pointOnPolygon
 ---@param distance integer
----@param extend any
+---@param extend boolean
 function playdate.geometry.polygon:pointOnPolygon(distance, extend) end
 
 --- Translates each point on the polygon by dx, dy pixels.
@@ -3244,6 +3244,8 @@ function playdate.graphics.image:transformedImage(xform) end
 
 --- Draws the image as if it’s mapped onto a tilted plane, transforming the target coordinates to image coordinates using an affine transform:
 ---
+--- `x' = dxx * x + dyx * y + dx y' = dxy * x + dyy * y + dy`
+---
 --- * x, y, width, height: The rectangle to fill
 --- * centerx, centery: The point in the above rectangle [in (0,1)x(0,1) coordinates] for the center of the transform
 --- * dxx, dyx, dxy, dyy, dx, dy: Defines an affine transform from geometry coordinates to image coordinates
@@ -3454,11 +3456,11 @@ function playdate.graphics.image:vcrPauseFilterImage() end
 ---@param image1 playdate.graphics.image
 ---@param x1 integer
 ---@param y1 integer
----@param flip1 any
+---@param flip1 integer
 ---@param image2 playdate.graphics.image
 ---@param x2 integer
 ---@param y2 integer
----@param flip2 any
+---@param flip2 integer
 ---@return boolean
 function playdate.graphics.checkAlphaCollision(image1, x1, y1, flip1, image2, x2, y2, flip2) end
 
@@ -3672,7 +3674,7 @@ function playdate.graphics.fillRoundRect(r, radius) end
 --- Angles are specified in degrees, not radians.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawArc
----@param arc any
+---@param arc playdate.geometry.arc
 ---@return nil
 function playdate.graphics.drawArc(arc) end
 
@@ -3863,7 +3865,7 @@ function playdate.graphics.fillPolygon(p) end
 --- See https://en.wikipedia.org/wiki/Nonzero-rule for an explanation of the winding rule.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPolygonFillRule
----@param rule any
+---@param rule integer
 ---@return nil
 function playdate.graphics.setPolygonFillRule(rule) end
 
@@ -3897,10 +3899,10 @@ function playdate.graphics.fillTriangle(x1, y1, x2, y2, x3, y3) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.nineSlice.new
 ---@param imagePath string
----@param innerX any
----@param innerY any
----@param innerWidth any
----@param innerHeight any
+---@param innerX integer
+---@param innerY integer
+---@param innerWidth integer
+---@param innerHeight integer
 function playdate.graphics.nineSlice.new(imagePath, innerX, innerY, innerWidth, innerHeight) end
 
 --- Returns the size of the 9 slice image as a pair (width, height).
@@ -3955,7 +3957,7 @@ function playdate.graphics.perlin(x, y, z, _repeat, octaves, persistence) end
 --- dx, dy, and dz are how far to step along the x, y, and z axes in each iteration.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.perlinArray
----@param count any
+---@param count integer
 ---@param x integer
 ---@param dx integer
 ---@param y integer
@@ -3999,10 +4001,10 @@ function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, 
 --- * phaseShift: If provided, specifies the wave’s offset, in pixels.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawSineWave
----@param startX any
----@param startY any
----@param endX any
----@param endY any
+---@param startX integer
+---@param startY integer
+---@param endX integer
+---@param endY integer
 ---@param startAmplitude any
 ---@param endAmplitude any
 ---@param period any
@@ -4296,7 +4298,7 @@ function playdate.graphics.animator.new(duration, lineSegment, easingFunction, s
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new3
 ---@param duration any
----@param arc any
+---@param arc playdate.geometry.arc
 ---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
 ---@param startTimeOffset integer
 ---@return playdate.graphics.animator animator
@@ -4476,7 +4478,7 @@ function playdate.graphics.imagetable.new(path) end
 --- Returns an empty image table for loading images into via imagetable:load() or setting already-loaded images into with imagetable:setImage(). If set, cellsWide is used to locate images by x,y position. The optional cellSize argument gives the allocation size for the images, if load() will be used. (This is a weird technical detail, so ask us if you need guidance here.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new-alloc
----@param count any
+---@param count integer
 ---@param cellsWide any
 ---@param cellSize any
 function playdate.graphics.imagetable.new(count, cellsWide, cellSize) end
@@ -4582,7 +4584,7 @@ function playdate.graphics.tilemap:drawIgnoringOffset(x, y, sourceRect) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setTileAtPosition
 ---@param x integer
 ---@param y integer
----@param index any
+---@param index integer
 function playdate.graphics.tilemap:setTileAtPosition(x, y, index) end
 
 --- Returns the image index of the tile at the given x and y coordinate. If x or y is out of bounds, returns nil.
@@ -4652,14 +4654,14 @@ function playdate.graphics.sprite.new(image_or_tilemap) end
 --- textWasTruncated indicates if the text was truncated to fit within the specified width and height.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.spriteWithText
----@param text any
----@param maxWidth any
+---@param text string
+---@param maxWidth integer
 ---@param maxHeight any
 ---@param backgroundColor any
 ---@param leadingAdjustment integer
 ---@param truncationString string
 ---@param alignment integer
----@param font any
+---@param font playdate.graphics.font
 ---@return playdate.graphics.sprite
 function playdate.graphics.sprite.spriteWithText(text, maxWidth, maxHeight, backgroundColor, leadingAdjustment, truncationString, alignment, font) end
 
@@ -4960,7 +4962,7 @@ function playdate.graphics.sprite:isOpaque() end
 --- Some implementation details: `setBackgroundDrawingCallback()` creates a screen-sized sprite with a z-index set to the lowest possible value so it will draw behind other sprites, and adds the sprite to the display list so that it is drawn in the current scene. The background sprite ignores the drawOffset, and will not be automatically redrawn when the draw offset changes; use playdate.graphics.sprite.redrawBackground() if necessary in this case. *drawCallback* will be called from the newly-created background sprite’s playdate.graphics.sprite:draw() callback function and is where you should do your background drawing. This function returns the newly created playdate.graphics.sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback
----@param drawCallback any
+---@param drawCallback fun(x: integer, y: integer, width: integer, height: integer): nil
 ---@return nil
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 
@@ -5032,8 +5034,8 @@ function playdate.graphics.sprite:clearClipRect() end
 ---@param y integer
 ---@param width integer
 ---@param height integer
----@param startz any
----@param endz any
+---@param startz integer
+---@param endz integer
 ---@return nil
 function playdate.graphics.sprite.setClipRectsInRange(x, y, width, height, startz, endz) end
 
@@ -5041,16 +5043,16 @@ function playdate.graphics.sprite.setClipRectsInRange(x, y, width, height, start
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setClipRectsInRange-rect
 ---@param rect playdate.geometry.rect
----@param startz any
----@param endz any
+---@param startz integer
+---@param endz integer
 ---@return nil
 function playdate.graphics.sprite.setClipRectsInRange(rect, startz, endz) end
 
 --- Clears sprite clip rects in the given z-index range.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.clearClipRectsInRange
----@param startz any
----@param endz any
+---@param startz integer
+---@param endz integer
 ---@return nil
 function playdate.graphics.sprite.clearClipRectsInRange(startz, endz) end
 
@@ -5149,7 +5151,7 @@ function playdate.graphics.sprite.removeAll() end
 --- Removes all sprites in spriteArray from the global sprite list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeSprites
----@param spriteArray any
+---@param spriteArray playdate.graphics.sprite[]
 ---@return nil
 function playdate.graphics.sprite.removeSprites(spriteArray) end
 
@@ -5332,8 +5334,8 @@ function playdate.graphics.sprite:resetCollidesWithGroupsMask() end
 --- See also checkCollisions() to check for collisions without actually moving the sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveWithCollisions
----@param goalX any
----@param goalY any
+---@param goalX integer
+---@param goalY integer
 ---@return integer actualX
 ---@return integer actualY
 ---@return table|CollisionData[] collisions
@@ -5530,10 +5532,12 @@ function playdate.graphics.font.new(path) end
 
 --- Returns a font family table from the font files specified in fontPaths. fontPaths should be a table with the following format:
 ---
+--- `local fontPaths = {  [playdate.graphics.font.kVariantNormal] = "path/to/normalFont",     [playdate.graphics.font.kVariantBold] = "path/to/boldFont",     [playdate.graphics.font.kVariantItalic] = "path/to/italicFont" }`
+---
 --- The table returned is of the same format with font objects in place of the paths, and is appropriate to pass to the functions setFontFamily() and getTextSize().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.font.newFamily
----@param fontPaths any
+---@param fontPaths table<integer, string>
 function playdate.graphics.font.newFamily(fontPaths) end
 
 --- Sets the current font, a playdate.graphics.font.
@@ -5549,24 +5553,26 @@ function playdate.graphics.font.newFamily(fontPaths) end
 --- Equivalent to playdate->graphics->setFont() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFont
----@param font any
----@param variant any
+---@param font playdate.graphics.font
+---@param variant integer|string
 ---@return nil
 function playdate.graphics.setFont(font, variant) end
 
 --- Returns the current font, a playdate.graphics.font.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFont
----@param variant any
+---@param variant integer|string
 ---@return playdate.graphics.font
 function playdate.graphics.getFont(variant) end
 
 --- Sets multiple font variants at once. fontFamily should be a table using the following format:
 ---
+--- `local fontFamily = {  [playdate.graphics.font.kVariantNormal] = normal_font,     [playdate.graphics.font.kVariantBold] = bold_font,     [playdate.graphics.font.kVariantItalic] = italic_font }`
+---
 --- All fonts and font variants need not be present in the table.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontFamily
----@param fontFamily any
+---@param fontFamily table<integer, playdate.graphics.font>
 ---@return nil
 function playdate.graphics.setFontFamily(fontFamily) end
 
@@ -5596,7 +5602,7 @@ function playdate.graphics.getFontTracking() end
 --- * playdate.graphics.font.kVariantItalic
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getSystemFont
----@param variant any
+---@param variant integer|string
 ---@return playdate.graphics.font
 function playdate.graphics.getSystemFont(variant) end
 
@@ -5609,7 +5615,7 @@ function playdate.graphics.getSystemFont(variant) end
 --- `font:drawText()` does not support inline styles like bold and italics. Instead use playdate.graphics.drawText().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawText
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
 ---@param leadingAdjustment integer
@@ -5620,7 +5626,7 @@ function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
 --- Draws the string text aligned to the left, right, or centered on the x coordinate. Pass one of kTextAlignment.left, kTextAlignment.center, kTextAlignment.right for the alignment parameter. (Compare to playdate.graphics.drawTextAligned(text, x, y, alignment), which draws the string with the "current font", as defined by playdate.graphics.setFont(font)).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawTextAligned
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
 ---@param alignment integer
@@ -5635,7 +5641,7 @@ function playdate.graphics.font:getHeight() end
 --- Returns the pixel width of the text when rendered with this font.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getTextWidth
----@param text any
+---@param text string
 function playdate.graphics.font:getTextWidth(text) end
 
 --- Sets the tracking of this font (spacing between letters), in pixels.
@@ -5682,6 +5688,8 @@ function playdate.graphics.font:getGlyph(character) end
 ---
 --- To draw bold text, surround the bold portion of text with asterisks. To draw italic text, surround the italic portion of text with underscores. For example:
 ---
+--- `playdate.graphics.drawText("normal *bold* _italic_", x, y)`
+---
 --- which will output: "normal bold italic". Bold and italic font variations must be set using setFont() with the appropriate variant argument, otherwise the default Playdate fonts will be used.
 ---
 --- Escaping styling characters
@@ -5701,10 +5709,10 @@ function playdate.graphics.font:getGlyph(character) end
 --- Equivalent to playdate->graphics->drawText() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawText
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
----@param fontFamily any
+---@param fontFamily table<integer, playdate.graphics.font>
 ---@param leadingAdjustment integer
 ---@return nil
 function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) end
@@ -5748,7 +5756,7 @@ function playdate.graphics.getLocalizedText(key, language) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSize
 ---@param str any
----@param fontFamily any
+---@param fontFamily table<integer, playdate.graphics.font>
 ---@param leadingAdjustment integer
 ---@return integer width
 ---@return integer height
@@ -5763,7 +5771,7 @@ function playdate.graphics.getTextSize(str, fontFamily, leadingAdjustment) end
 --- To draw unstyled text using a single font, see playdate.graphics.font:drawTextAligned()
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextAligned
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
 ---@param alignment integer
@@ -5790,7 +5798,7 @@ function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustm
 --- textWasTruncated indicates if the text was truncated to fit within the specified rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -5798,7 +5806,7 @@ function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustm
 ---@param leadingAdjustment integer
 ---@param truncationString string
 ---@param alignment integer
----@param font any
+---@param font playdate.graphics.font
 ---@return nil
 function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font) end
 
@@ -5821,12 +5829,12 @@ function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdju
 --- textWasTruncated indicates if the text was truncated to fit within the specified rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect
----@param text any
+---@param text string
 ---@param rect playdate.geometry.rect
 ---@param leadingAdjustment integer
 ---@param truncationString string
 ---@param alignment integer
----@param font any
+---@param font playdate.graphics.font
 ---@return nil
 function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font) end
 
@@ -5835,7 +5843,7 @@ function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncat
 --- Same as drawTextAligned() except localized text is drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextAligned
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
 ---@param alignment integer
@@ -5849,7 +5857,7 @@ function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, langu
 --- Same as drawTextInRect() except localized text is drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect
----@param text any
+---@param text string
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -5857,7 +5865,7 @@ function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, langu
 ---@param leadingAdjustment integer
 ---@param truncationString string
 ---@param alignment integer
----@param font any
+---@param font playdate.graphics.font
 ---@param language any
 ---@return nil
 function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font, language) end
@@ -5867,12 +5875,12 @@ function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, le
 --- Same as drawTextInRect() except localized text is drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect
----@param text any
+---@param text string
 ---@param rect playdate.geometry.rect
 ---@param leadingAdjustment integer
 ---@param truncationString string
 ---@param alignment integer
----@param font any
+---@param font playdate.graphics.font
 ---@param language any
 ---@return nil
 function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font, language) end
@@ -5884,10 +5892,10 @@ function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment
 --- font, if provided, will cause the text size to be calculated without bold or italic styling using the specified font.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSizeForMaxWidth
----@param text any
----@param maxWidth any
+---@param text string
+---@param maxWidth integer
 ---@param leadingAdjustment integer
----@param font any
+---@param font playdate.graphics.font
 ---@return integer width
 ---@return integer height
 function playdate.graphics.getTextSizeForMaxWidth(text, maxWidth, leadingAdjustment, font) end
@@ -5911,14 +5919,14 @@ function playdate.graphics.getTextSizeForMaxWidth(text, maxWidth, leadingAdjustm
 --- textWasTruncated indicates if the text was truncated to fit within the specified width and height.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imageWithText
----@param text any
----@param maxWidth any
+---@param text string
+---@param maxWidth integer
 ---@param maxHeight any
 ---@param backgroundColor any
 ---@param leadingAdjustment integer
 ---@param truncationString string
 ---@param alignment integer
----@param font any
+---@param font playdate.graphics.font
 ---@return playdate.graphics.image image
 ---@return boolean textWasTruncated
 function playdate.graphics.imageWithText(text, maxWidth, maxHeight, backgroundColor, leadingAdjustment, truncationString, alignment, font) end
@@ -6039,7 +6047,7 @@ function json.encodeToFile(path, pretty, table) end
 --- text, if provided, will be used to set the initial text value of the keyboard.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.show
----@param text any
+---@param text string
 ---@return nil
 function playdate.keyboard.show(text) end
 
@@ -6163,7 +6171,7 @@ function playdate.pathfinder.graph:addNewNode(id, x, y, connectedNodes, weights,
 --- This method is useful to improve performance if many nodes need to be allocated at once rather than one at a time, for example when creating a new graph.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNodes
----@param count any
+---@param count integer
 ---@return nil
 function playdate.pathfinder.graph:addNewNodes(count) end
 
@@ -6550,7 +6558,7 @@ function playdate.sound.sampleplayer:stop() end
 --- Sets a function to be called when playback has completed. The sample object is passed to this function as the first argument, and the optional arg argument is passed as the second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setFinishCallback
----@param func any
+---@param func function
 ---@param arg any
 ---@return nil
 function playdate.sound.sampleplayer:setFinishCallback(func, arg) end
@@ -6672,7 +6680,7 @@ function playdate.sound.fileplayer:getLength() end
 --- Sets a function to be called when playback has completed. The fileplayer is passed as the first argument to func. The optional argument arg is passed as the second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setFinishCallback
----@param func any
+---@param func function
 ---@param arg any
 ---@return nil
 function playdate.sound.fileplayer:setFinishCallback(func, arg) end
@@ -6701,7 +6709,7 @@ function playdate.sound.fileplayer:setStopOnUnderrun(flag) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopRange
 ---@param start any
 ---@param _end any
----@param loopCallback any
+---@param loopCallback fun(arg: any|nil): nil
 ---@param arg any
 ---@return nil
 function playdate.sound.fileplayer:setLoopRange(start, _end, loopCallback, arg) end
@@ -7662,7 +7670,7 @@ function playdate.sound.sequence.new(midi_path) end
 --- Starts playing the sequence. finishCallback is an optional function to be called when the sequence finishes playing or is stopped. The sequence is passed to the callback as its single argument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.play
----@param finishCallback any
+---@param finishCallback fun(self: playdate.sound.sequence): nil
 ---@return nil
 function playdate.sound.sequence:play(finishCallback) end
 
@@ -7996,7 +8004,7 @@ function playdate.sound.controlsignal:getControllerType() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.recordToSample
 ---@param buffer any
----@param completionCallback any
+---@param completionCallback fun(sample: playdate.sound.sample): nil
 ---@return nil
 function playdate.sound.micinput.recordToSample(buffer, completionCallback) end
 
@@ -8035,9 +8043,9 @@ function playdate.sound.micinput.getSource() end
 --- Equivalent to playdate->sound->getHeadphoneState() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getHeadphoneState
----@param changeCallback any
+---@param changeCallback function
 ---@return boolean headphone
----@return boolean mic
+---@return boolean|nil mic
 function playdate.sound.getHeadphoneState(changeCallback) end
 
 --- Forces sound to be played on the headphones or on the speaker, regardless of whether headphones are plugged in or not. (With the caveat that it is not actually possible to play on the headphones if they’re not plugged in.) This function has no effect in the Simulator.
@@ -8045,8 +8053,8 @@ function playdate.sound.getHeadphoneState(changeCallback) end
 --- Equivalent to playdate->sound->setOutputsActive() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.setOutputsActive
----@param headphones any
----@param speaker any
+---@param headphones boolean
+---@param speaker boolean
 ---@return nil
 function playdate.sound.setOutputsActive(headphones, speaker) end
 
@@ -8570,9 +8578,9 @@ function playdate.ui.gridview:getSelectedRow() end
 --- If wrapSelection is true, the selection will wrap around to the opposite end of the grid. If scrollToSelection is true (or not provided), the newly-selected cell will be scrolled to. If animate is true (or not provided), the scroll will be animated.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.selectNextRow
----@param wrapSelection any
----@param scrollToSelection any
----@param animate any
+---@param wrapSelection boolean
+---@param scrollToSelection boolean
+---@param animate boolean
 ---@return nil
 function playdate.ui.gridview:selectNextRow(wrapSelection, scrollToSelection, animate) end
 
@@ -8581,9 +8589,9 @@ function playdate.ui.gridview:selectNextRow(wrapSelection, scrollToSelection, an
 --- If wrapSelection is true, the selection will wrap around to the opposite end of the grid. If scrollToSelection is true (or not provided), the newly-selected cell will be scrolled to. If animate is true (or not provided), the scroll will be animated.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.selectPreviousRow
----@param wrapSelection any
----@param scrollToSelection any
----@param animate any
+---@param wrapSelection boolean
+---@param scrollToSelection boolean
+---@param animate boolean
 ---@return nil
 function playdate.ui.gridview:selectPreviousRow(wrapSelection, scrollToSelection, animate) end
 
@@ -8594,9 +8602,9 @@ function playdate.ui.gridview:selectPreviousRow(wrapSelection, scrollToSelection
 --- If scrollToSelection is true (or not provided), the newly-selected cell will be scrolled to. If animate is true (or not provided), the scroll will be animated.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.selectNextColumn
----@param wrapSelection any
----@param scrollToSelection any
----@param animate any
+---@param wrapSelection boolean
+---@param scrollToSelection boolean
+---@param animate boolean
 ---@return nil
 function playdate.ui.gridview:selectNextColumn(wrapSelection, scrollToSelection, animate) end
 
@@ -8607,9 +8615,9 @@ function playdate.ui.gridview:selectNextColumn(wrapSelection, scrollToSelection,
 --- If scrollToSelection is true (or not provided), the newly-selected cell will be scrolled to. If animate is true (or not provided), the scroll will be animated.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.selectPreviousColumn
----@param wrapSelection any
----@param scrollToSelection any
----@param animate any
+---@param wrapSelection boolean
+---@param scrollToSelection boolean
+---@param animate boolean
 ---@return nil
 function playdate.ui.gridview:selectPreviousColumn(wrapSelection, scrollToSelection, animate) end
 
