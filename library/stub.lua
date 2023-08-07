@@ -3963,7 +3963,7 @@ function playdate.graphics.perlin(x, y, z, _repeat, octaves, persistence) end
 ---@param y integer
 ---@param dy integer
 ---@param z integer
----@param dz any
+---@param dz integer
 ---@param _repeat any
 ---@param octaves any
 ---@param persistence any
@@ -3985,8 +3985,8 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 --- If you know ahead of time what data you plan to encode, it is much faster to pre-generate the QR code, store it as a .png file in your game, and draw the .png at runtime. You can use `playdate.simulator.writeToFile()` to create this .png file.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode
----@param stringToEncode any
----@param desiredEdgeDimension any
+---@param stringToEncode string
+---@param desiredEdgeDimension integer
 ---@param callback function
 ---@return nil
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
@@ -4005,10 +4005,10 @@ function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, 
 ---@param startY integer
 ---@param endX integer
 ---@param endY integer
----@param startAmplitude any
+---@param startAmplitude integer
 ---@param endAmplitude any
----@param period any
----@param phaseShift any
+---@param period integer
+---@param phaseShift integer
 ---@return nil
 function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitude, endAmplitude, period, phaseShift) end
 
@@ -4096,14 +4096,14 @@ function playdate.graphics.setStencilPattern(pattern) end
 --- Sets a pattern to use for stenciled drawing, as an alternative to creating an image, drawing a pattern into the image, then using that in setStencilImage().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#
----@param row1 any
----@param row2 any
----@param row3 any
----@param row4 any
----@param row5 any
----@param row6 any
----@param row7 any
----@param row8 any
+---@param row1 integer
+---@param row2 integer
+---@param row3 integer
+---@param row4 integer
+---@param row5 integer
+---@param row6 integer
+---@param row7 integer
+---@param row8 integer
 ---@return nil
 function playdate.graphics.setStencilPattern(row1, row2, row3, row4, row5, row6, row7, row8) end
 
