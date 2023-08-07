@@ -6,6 +6,9 @@
 ---@field isSimulator boolean
 playdate = {}
 
+---@class playdate.datastore
+playdate.datastore = {}
+
 ---@class playdate.display
 playdate.display = {}
 
@@ -139,7 +142,7 @@ playdate.graphics.nineSlice = {}
 ---@field width integer
 ---@field height integer
 ---@field collisionResponse integer|fun(self: playdate.graphics.sprite, other: playdate.graphics.sprite): integer|nil
----@field update fun()|nil
+---@field update fun()
 playdate.graphics.sprite = {}
 
 ---@class playdate.graphics.tilemap
@@ -396,7 +399,7 @@ ControlSignalEvent = {}
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.indexOfElement
 ---@param table table
 ---@param element any
----@return integer|nil index
+---@return integer? index
 function table.indexOfElement(table, element) end
 
 --- Returns the size of the given table as multiple values (arrayCount, hashCount).
@@ -1858,7 +1861,7 @@ function playdate.datastore.write(table, filename, pretty) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.read
 ---@param filename string
----@return table|nil
+---@return table?
 function playdate.datastore.read(filename) end
 
 --- Deletes the specified datastore file. The default file name is "data". Returns false if the datastore file could not be deleted.
@@ -1886,7 +1889,7 @@ function playdate.datastore.writeImage(image, path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.readImage
 ---@param path string
----@return playdate.graphics.image|nil
+---@return playdate.graphics.image?
 function playdate.datastore.readImage(path) end
 
 --- Returns a playdate.file.file corresponding to the opened file. mode should be one of the following:
@@ -1904,8 +1907,8 @@ function playdate.datastore.readImage(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.open
 ---@param path string
 ---@param mode any
----@return playdate.file.file|nil file
----@return nil|string error
+---@return playdate.file.file? file
+---@return string? error
 function playdate.file.open(path, mode) end
 
 --- Closes the file.
@@ -1921,7 +1924,7 @@ function playdate.file.file:close() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.write
 ---@param string string
 ---@return integer bytes_written
----@return nil|string error
+---@return string? error
 function playdate.file.file:write(string) end
 
 --- Flushes any buffered data written to the file to the disk.
@@ -1944,7 +1947,7 @@ function playdate.file.file:readline() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.read
 ---@param numberOfBytes integer
----@return integer|nil numberOfBytes
+---@return integer numberOfBytes
 ---@return string error
 function playdate.file.file:read(numberOfBytes) end
 
@@ -3062,7 +3065,7 @@ function playdate.graphics.image.new(width, height, bgcolor) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new-path
 ---@param path string
----@return playdate.graphics.image|nil image
+---@return playdate.graphics.image? image
 ---@return string? error
 function playdate.graphics.image.new(path) end
 
@@ -4491,6 +4494,7 @@ function playdate.graphics.getWorkingImage() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new
 ---@param path string
+---@return playdate.graphics.imagetable
 function playdate.graphics.imagetable.new(path) end
 
 --- Returns an empty image table for loading images into via imagetable:load() or setting already-loaded images into with imagetable:setImage(). If set, cellsWide is used to locate images by x,y position. The optional cellSize argument gives the allocation size for the images, if load() will be used. (This is a weird technical detail, so ask us if you need guidance here.)
@@ -4499,12 +4503,14 @@ function playdate.graphics.imagetable.new(path) end
 ---@param count integer
 ---@param cellsWide any
 ---@param cellSize any
+---@return playdate.graphics.imagetable
 function playdate.graphics.imagetable.new(count, cellsWide, cellSize) end
 
 --- Returns the n-th playdate.graphics.image in the table (ordering left-to-right, top-to-bottom). The first image is at index 1. If .n_ or (x,y) is out of bounds, the function returns nil. See also imagetable[n].
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-n
 ---@param n any
+---@return playdate.graphics.image image
 function playdate.graphics.imagetable:getImage(n) end
 
 --- Returns the image in cell (x,y) in the original bitmap. The first image is at index 1. If n or (x,y) is out of bounds, the function returns nil. See also imagetable[n].
@@ -4512,6 +4518,7 @@ function playdate.graphics.imagetable:getImage(n) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-xy
 ---@param x integer
 ---@param y integer
+---@return playdate.graphics.image image
 function playdate.graphics.imagetable:getImage(x, y) end
 
 --- Sets the image at slot n in the image table by creating a reference to the data in image.
@@ -4519,6 +4526,7 @@ function playdate.graphics.imagetable:getImage(x, y) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.setImage
 ---@param n any
 ---@param image playdate.graphics.image
+---@return nil
 function playdate.graphics.imagetable:setImage(n, image) end
 
 --- Loads a new image from the data at path into an already-existing image table, without allocating additional memory. The image table at path must contain images of the same dimensions as the previous.
@@ -4527,16 +4535,21 @@ function playdate.graphics.imagetable:setImage(n, image) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.load
 ---@param path string
+---@return boolean success
+---@return string? error
 function playdate.graphics.imagetable:load(path) end
 
 --- Returns the number of images in the table. See also #imagetable.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getLength
+---@return integer
 function playdate.graphics.imagetable:getLength() end
 
 --- Returns the pair (cellsWide, cellsHigh).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getSize
+---@return integer cellsWide
+---@return integer cellsHigh
 function playdate.graphics.imagetable:getSize() end
 
 --- Equivalent to graphics.imagetable:getImage(n):draw(x,y,[flip]).
@@ -4546,12 +4559,14 @@ function playdate.graphics.imagetable:getSize() end
 ---@param x integer
 ---@param y integer
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 
 --- Equivalent to imagetable:getImage(n).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__index
 ---@param n any
+---@return nil
 function playdate.graphics.imagetable:__index(n) end
 
 --- Creates a new tilemap object.
@@ -6256,7 +6271,7 @@ function playdate.pathfinder.graph:removeNodeWithID(id) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithID
 ---@param id any
----@return playdate.pathfinder.node|nil node
+---@return playdate.pathfinder.node? node
 function playdate.pathfinder.graph:nodeWithID(id) end
 
 --- Returns the first node found in the graph with matching x and y values, or nil if no such node is found.
@@ -6264,7 +6279,7 @@ function playdate.pathfinder.graph:nodeWithID(id) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithXY
 ---@param x integer
 ---@param y integer
----@return playdate.pathfinder.node|nil node
+---@return playdate.pathfinder.node? node
 function playdate.pathfinder.graph:nodeWithXY(x, y) end
 
 --- connections should be a table of array-style tables. The keys of the outer table should correspond to node IDs, while the inner array should be a series if connecting node ID and weight combinations that will be assigned to that node. For example, {[1]={2, 10, 3, 12}, [2]={1, 20}, [3]={1, 20, 2, 10}} will create a connection from node ID 1 to node ID 2 with a weight of 10, and a connection to node ID 3 with a weight of 12, and so on for the other entries.
@@ -6544,7 +6559,7 @@ function playdate.sound.sampleplayer:setVolume(left, right) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getVolume
 ---@return number left_or_mono
----@return number|nil right
+---@return number? right
 function playdate.sound.sampleplayer:getVolume() end
 
 --- Sets a function to be called every time the sample loops. The sample object is passed to this function as the first argument, and the optional arg argument is passed as the second.
@@ -6677,7 +6692,7 @@ function playdate.sound.fileplayer:load(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.play
 ---@param repeatCount integer
 ---@return boolean success
----@return string|nil error
+---@return string? error
 function playdate.sound.fileplayer:play(repeatCount) end
 
 --- Stops playing the file, resets the playback offset to zero, and calls the finish callback.
@@ -6798,7 +6813,7 @@ function playdate.sound.fileplayer:setVolume(left, right, fadeSeconds, fadeCallb
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getVolume
 ---@return number left_or_mono
----@return number|nil right
+---@return number? right
 function playdate.sound.fileplayer:getVolume() end
 
 --- Sets the current offset of the fileplayer, in seconds. This value is not adjusted for rate.
@@ -6837,7 +6852,7 @@ function playdate.sound.sample:getSubsample(startOffset, endOffset) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.load
 ---@param path string
----@return boolean|nil
+---@return boolean
 function playdate.sound.sample:load(path) end
 
 --- Returns the sample rate as an integer, such as 44100 or 22050.
@@ -7154,7 +7169,7 @@ function playdate.sound.synth:setVolume(left, right) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getVolume
 ---@return number left_or_mono
----@return number|nil right
+---@return number? right
 function playdate.sound.synth:getVolume() end
 
 --- Sets the waveform or Sample the synth plays. If a sample is given, its data must be uncompressed PCM, not ADPCM. Otherwise waveform should be one of the following constants:
@@ -7986,7 +8001,7 @@ function playdate.sound.instrument:setVolume(left, right) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.getVolume
 ---@return number left_or_mono
----@return number|nil right
+---@return number? right
 function playdate.sound.instrument:getVolume() end
 
 --- Creates a new control signal object, for automating effect parameters, channel pan and level, etc.
@@ -8080,7 +8095,7 @@ function playdate.sound.micinput.getSource() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getHeadphoneState
 ---@param changeCallback function
 ---@return boolean headphone
----@return boolean|nil mic
+---@return boolean? mic
 function playdate.sound.getHeadphoneState(changeCallback) end
 
 --- Forces sound to be played on the headphones or on the speaker, regardless of whether headphones are plugged in or not. (With the caveat that it is not actually possible to play on the headphones if they’re not plugged in.) This function has no effect in the Simulator.
