@@ -921,6 +921,9 @@ function playdate.getElapsedTime() end
 
 --- Returns the number of seconds and milliseconds elapsed since midnight (hour 0), January 1 2000 UTC, as a list: (seconds, milliseconds). This function is suitable for seeding the random number generator:
 ---
+--- ```
+--- math.randomseed(playdate.getSecondsSinceEpoch())
+--- ```
 --- https://sdk.play.date/Inside%20Playdate.html#f-getSecondsSinceEpoch
 ---@return integer seconds
 ---@return integer milliseconds
@@ -1029,6 +1032,9 @@ function playdate.getFPS() end
 
 --- Returns a single-line stack trace as a string. For example:
 ---
+--- ```
+--- main.lua:10 foo() < main.lua:18 (from C)
+--- ```
 --- Use print(where()) to see this trace written to the console.
 ---
 --- You must import *CoreLibs/utilities/where* to use this function.
@@ -1038,6 +1044,11 @@ function where() end
 
 --- Suspect some code is running hot? Wrap it in an anonymous function and pass it to sample() like so:
 ---
+--- ```
+--- sample("name of this sample", function()
+---         -- nested for loops, lots of table creation, member access...
+--- end)
+--- ```
 --- By moving around where you start and end the anonymous function in your code, you can get a better idea of where the problem lies.
 ---
 --- Multiple code paths can be sampled at once by using different names for each sample.
@@ -1051,6 +1062,9 @@ function sample(name, _function) end
 
 --- Returns a table containing percentages for each system task, such as:
 ---
+--- ```
+--- { "kernel"=0.23, "game"=0.62, "audio"=0.15 }
+--- ```
 --- `playdate.getStats()` only functions on a Playdate device. In the Simulator, this function returns `nil`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.getStats
@@ -4273,6 +4287,10 @@ function playdate.graphics.animation.loop:setImageTable(imageTable) end
 ---
 --- easingFunction, if supplied, should be a value from playdate.easingFunctions. If your easing function requires additional variables s, a, or p, set them on the animator directly after creation. For example:
 ---
+--- ```
+--- local a = playdate.graphics.animator.new(1000, 0, 100, playdate.easingFunctions.inBack)
+--- a.s = 1.9
+--- ```
 --- startTimeOffset, if supplied, will shift the start time of the animation by the specified number of milliseconds. (If positive, the animation will be delayed. If negative, the animation will effectively have started before the moment the animator is instantiated.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new1
@@ -5237,6 +5255,15 @@ function playdate.graphics.sprite:overlappingSprites() end
 
 --- Returns an array of array-style tables, each containing two sprites that have overlapping collide rects. All sprite pairs that are have overlapping collide rects (taking the sprites' group and collides-with masks into consideration) are returned.
 ---
+--- ```
+--- local collisions = gfx.sprite.allOverlappingSprites()
+--- for i = 1, #collisions do
+---         local collisionPair = collisions[i]
+---         local sprite1 = collisionPair[1]
+---         local sprite2 = collisionPair[2]
+---         -- do something with the colliding sprites
+--- end
+--- ```
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.allOverlappingSprites
 ---@return playdate.graphics.sprite[][]
 function playdate.graphics.sprite.allOverlappingSprites() end
@@ -6700,6 +6727,11 @@ function playdate.sound.fileplayer:setStopOnUnderrun(flag) end
 
 --- Provides a way to loop a portion of an audio file. In the following code:
 ---
+--- ```
+--- local fp = playdate.sound.fileplayer.new( "myaudiofile" )
+--- fp:setLoopRange( 10, 20 )
+--- fp:play( 3 )
+--- ```
 --- …the fileplayer will start playing from the beginning of the audio file, loop the 10-20 second range three times, and then stop playing.
 ---
 --- start and end are specified in seconds. If end is omitted, the end of the file is used. If the function loopCallback is provided, it is called every time the player loops, with the fileplayer as the first argument and the optional arg argument as the second.
@@ -8000,6 +8032,9 @@ function playdate.sound.controlsignal:getControllerType() end
 
 --- buffer should be a Sample created with the following code, with secondsToRecord replaced by a number specifying the record duration:
 ---
+--- ```
+--- local buffer = playdate.sound.sample.new(_secondsToRecord_, playdate.sound.kFormat16bitMono)
+--- ```
 --- completionCallback is a function called at the end of recording, when the buffer is full. It has one argument, the recorded sample.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.recordToSample
