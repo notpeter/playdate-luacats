@@ -119,6 +119,8 @@ local playdate.graphics.nineSlice = {}
 ---@field y integer
 ---@field width integer
 ---@field height integer
+---@field collisionResponse integer|collisionType|fun(other: playdate.graphics.sprite): collisionType|nil
+---@field update fun()|nil
 local playdate.graphics.sprite = {}
 
 ---@class playdate.graphics.tilemap
@@ -166,6 +168,21 @@ local playdate.ui.crankIndicator = {}
 ---@field pdxcompatversion integer
 ---@field pdxversion integer
 local playdate.systeminfo = {}
+
+---@class CollisionData
+---@field sprite playdtae.graphics.sprite
+---@field other playdate.graphics.sprite
+---@field type integer|CollisionType
+---@field overlaps boolean
+---@field ti number
+---@field move playdate.geometry.vector2D
+---@field normal playdate.geometry.vector2D
+---@field touch playdate.geometry.point
+---@field spriteRect playdate.geometry.rect
+---@field otherRect playdate.geometry.rect
+---@field bounce playdate.geometry.point|nil
+---@field slide playdate.geometry.point|nil
+local CollisionData = {}
 
 ---@class CollisionInfo
 ---@field sprite playdate.graphics.sprite
@@ -3202,6 +3219,7 @@ function playdate.graphics.image:vcrPauseFilterImage() end
 ---@param x2 integer
 ---@param y2 integer
 ---@param flip2 any
+---@return boolean
 function playdate.graphics.checkAlphaCollision(image1, x1, y1, flip1, image2, x2, y2, flip2) end
 
 --- Sets and gets the current drawing color for primitives.
@@ -3222,6 +3240,7 @@ function playdate.graphics.setColor(color) end
 --- Gets the current drawing color for primitives.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getColor
+---@return integer color
 function playdate.graphics.getColor() end
 
 --- Sets the color used for drawing the background, if necessary, before playdate.graphics.sprites are drawn on top.
@@ -3243,6 +3262,7 @@ function playdate.graphics.setBackgroundColor(color) end
 --- Gets the color used for drawing the background, if necessary, before playdate.graphics.sprites are drawn on top.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getBackgroundColor
+---@return integer color
 function playdate.graphics.getBackgroundColor() end
 
 --- Sets the 8x8 pattern used for drawing. The pattern argument is an array of 8 numbers describing the bitmap for each row; for example, { 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55 } specifies a checkerboard pattern. An additional 8 numbers can be specified for an alpha mask bitmap.
@@ -3649,6 +3669,7 @@ function playdate.graphics.nineSlice:drawInRect(rect) end
 ---@param _repeat any
 ---@param octaves any
 ---@param persistence any
+---@return number perlin_value
 function playdate.graphics.perlin(x, y, z, _repeat, octaves, persistence) end
 
 --- Returns an array of Perlin values at once, avoiding the performance penalty of calling perlin() multiple times in a loop.
@@ -3670,6 +3691,7 @@ function playdate.graphics.perlin(x, y, z, _repeat, octaves, persistence) end
 ---@param _repeat any
 ---@param octaves any
 ---@param persistence any
+---@return number[] perlin_values
 function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octaves, persistence) end
 
 --- You must import *CoreLibs/qrcode* to use this function.
@@ -3732,6 +3754,10 @@ function playdate.graphics.setClipRect(rect) end
 --- getClipRect() returns multiple values (x, y, width, height) giving the current clipping rectangle.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getClipRect
+---@return integer x
+---@return integer y
+---@return integer width
+---@return integer height
 function playdate.graphics.getClipRect() end
 
 --- Sets the clip rectangle as above, but uses screen coordinates instead of world coordinates—​that is, it ignores the current drawing offset.
@@ -3754,6 +3780,10 @@ function playdate.graphics.setScreenClipRect(rect) end
 --- Gets the clip rectangle as above, but uses screen coordinates instead of world coordinates—​that is, it ignores the current drawing offset.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getScreenClipRect
+---@return integer x
+---@return integer y
+---@return integer width
+---@return integer height
 function playdate.graphics.getScreenClipRect() end
 
 --- Clears the current clipping rectangle, set with setClipRect().
@@ -3836,6 +3866,7 @@ function playdate.graphics.setImageDrawMode(mode) end
 --- Gets the current drawing mode for images.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getImageDrawMode
+---@return integer|DrawMode mode
 function playdate.graphics.getImageDrawMode() end
 
 --- Sets the width of the line for drawLine, drawRect, drawPolygon, and drawArc when a playdate.geometry.arc is passed as the argument.
@@ -3847,6 +3878,7 @@ function playdate.graphics.setLineWidth(width) end
 --- Gets the width of the line for drawLine, drawRect, drawPolygon, and drawArc when a playdate.geometry.arc is passed as the argument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLineWidth
+---@return integer width
 function playdate.graphics.getLineWidth() end
 
 --- Specifies where the stroke is placed relative to the rectangle passed into drawRect.
@@ -3870,6 +3902,7 @@ function playdate.graphics.setStrokeLocation(location) end
 --- * playdate.graphics.kStrokeInside
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getStrokeLocation
+---@return integer|StrokeLocation strokeLocation
 function playdate.graphics.getStrokeLocation() end
 
 --- lockFocus() routes all drawing to the given playdate.graphics.image. playdate.graphics.unlockFocus() returns drawing to the frame buffer.
@@ -3905,6 +3938,7 @@ function playdate.graphics.unlockFocus() end
 ---@param delay any
 ---@param imageTable any
 ---@param shouldLoop any
+---@return playdate.graphics.animation.loop
 function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
 
 --- Draw’s the loop’s current image at x, y.
@@ -3920,11 +3954,13 @@ function playdate.graphics.animation.loop:draw(x, y, flip) end
 --- Returns a playdate.graphics.image from the caller’s imageTable if it exists. The image returned will be at the imageTable’s index that matches the caller’s frame.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.image
+---@return playdate.graphics.image image
 function playdate.graphics.animation.loop:image() end
 
 --- Returns false if the loop has passed its last frame and does not loop.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.isValid
+---@return boolean
 function playdate.graphics.animation.loop:isValid() end
 
 --- Sets the playdate.graphics.imagetable to be used for this animation loop, and sets the loop’s endFrame property to #imageTable.
@@ -3949,7 +3985,7 @@ function playdate.graphics.animation.loop:setImageTable(imageTable) end
 ---@param endValue any
 ---@param easingFunction any
 ---@param startTimeOffset any
----@return playdate.graphics.animator animator
+---@return playdate.graphics.animator
 function playdate.graphics.animator.new(duration, startValue, endValue, easingFunction, startTimeOffset) end
 
 --- Creates a new Animator that will animate along the provided playdate.geometry.lineSegment
@@ -4111,6 +4147,8 @@ function playdate.graphics.setDrawOffset(x, y) end
 --- getDrawOffset() returns multiple values (x, y) giving the current draw offset.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getDrawOffset
+---@return integer x
+---@return integer y
 function playdate.graphics.getDrawOffset() end
 
 --- Returns a copy the contents of the last completed frame, i.e., a "screenshot", as a playdate.graphics.image.
@@ -4118,6 +4156,7 @@ function playdate.graphics.getDrawOffset() end
 --- Display functions like setMosaic(), setInverted(), setScale(), and setOffset() do not affect the returned image.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getDisplayImage
+---@return playdate.graphics.image image
 function playdate.graphics.getDisplayImage() end
 
 --- Returns a copy the contents of the working frame buffer — the current frame, in-progress — as a playdate.graphics.image.
@@ -4125,6 +4164,7 @@ function playdate.graphics.getDisplayImage() end
 --- Display functions like setMosaic(), setInverted(), setScale(), and setOffset() do not affect the returned image.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getWorkingImage
+---@return playdate.graphics.image image
 function playdate.graphics.getWorkingImage() end
 
 --- Returns a playdate.graphics.imagetable object from the data at path. If there is no file at path, the function returns nil and a second value describing the error. If the file at path is an animated GIF, successive frames of the GIF will be loaded as consecutive bitmaps in the imagetable. Any timing data in the animated GIF will be ignored.
@@ -4196,7 +4236,7 @@ function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__index
 ---@param n any
-function playdate.graphics.imagetable.__index(n) end
+function playdate.graphics.imagetable:__index(n) end
 
 --- Creates a new tilemap object.
 ---
@@ -4300,6 +4340,7 @@ function playdate.graphics.tilemap:getCollisionRects(emptyIDs) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.new
 ---@param image_or_tilemap any
+---@return playdate.graphics.sprite
 function playdate.graphics.sprite.new(image_or_tilemap) end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -4323,6 +4364,7 @@ function playdate.graphics.sprite.new(image_or_tilemap) end
 ---@param truncationString any
 ---@param alignment any
 ---@param font any
+---@return playdate.graphics.sprite
 function playdate.graphics.sprite.spriteWithText(text, maxWidth, maxHeight, backgroundColor, leadingAdjustment, truncationString, alignment, font) end
 
 --- This class method (note the "." syntax rather than ":") calls the update() function on every sprite in the global sprite list and redraws all of the dirty rects.
@@ -4346,6 +4388,7 @@ function playdate.graphics.sprite:setImage(image, flip, scale, yscale) end
 --- Returns the playdate.graphics.image object that was set with setImage().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImage
+---@return playdate.graphics.image
 function playdate.graphics.sprite:getImage() end
 
 --- Adds the given sprite to the display list, so that it is drawn in the current scene.
@@ -4384,6 +4427,8 @@ function playdate.graphics.sprite:moveTo(x, y) end
 --- See also .x, .y, .width, .height,  for direct access to these properties.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getPosition
+---@return integer x
+---@return integer y
 function playdate.graphics.sprite:getPosition() end
 
 --- Moves the sprite by x, y pixels relative to its current position.
@@ -4402,6 +4447,7 @@ function playdate.graphics.sprite:setZIndex(z) end
 --- Returns the Z-index of the given sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getZIndex
+---@return integer
 function playdate.graphics.sprite:getZIndex() end
 
 --- Sprites that aren’t visible don’t get their draw() method called.
@@ -4413,6 +4459,7 @@ function playdate.graphics.sprite:setVisible(flag) end
 --- Sprites that aren’t visible don’t get their draw() method called.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.isVisible
+---@return boolean
 function playdate.graphics.sprite:isVisible() end
 
 --- Sets the sprite’s drawing center as a fraction (ranging from 0.0 to 1.0) of the height and width. Default is 0.5, 0.5 (the center of the sprite). This means that when you call :moveTo(x, y), the center of your sprite will be positioned at x, y. If you want x and y to represent the upper left corner of your sprite, specify the center as 0, 0.
@@ -4425,11 +4472,14 @@ function playdate.graphics.sprite:setCenter(x, y) end
 --- Returns multiple values (x, y) representing the sprite’s drawing center as a fraction (ranging from 0.0 to 1.0) of the height and width.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenter
+---@return number x
+---@return number y
 function playdate.graphics.sprite:getCenter() end
 
 --- Returns a playdate.geometry.point representing the sprite’s drawing center as a fraction (ranging from 0.0 to 1.0) of the height and width.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenterPoint
+---@return playdate.graphics.point
 function playdate.graphics.sprite:getCenterPoint() end
 
 --- Sets the sprite’s size. The method has no effect if the sprite has an image set.
@@ -4442,6 +4492,8 @@ function playdate.graphics.sprite:setSize(width, height) end
 --- Returns multiple values (width, height), the current size of the sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getSize
+---@return integer width
+---@return integer height
 function playdate.graphics.sprite:getSize() end
 
 --- Sets the scaling factor for the sprite, with an optional separate scaling for the y axis. If setImage() is called after this, the scale factor is applied to the new image. Only affects sprites that have an image set.
@@ -4454,6 +4506,8 @@ function playdate.graphics.sprite:setScale(scale, yScale) end
 --- Returns multiple values (xScale, yScale), the current scaling of the sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getScale
+---@return integer xScale
+---@return integer yScale
 function playdate.graphics.sprite:getScale() end
 
 --- Sets the rotation for the sprite, in degrees clockwise, with an optional scaling factor. If setImage() is called after this, the rotation and scale is applied to the new image. Only affects sprites that have an image set. This function should be used with discretion, as it’s likely to be slow on the hardware. Consider pre-rendering rotated images for your sprites instead.
@@ -4467,11 +4521,13 @@ function playdate.graphics.sprite:setRotation(angle, scale, yScale) end
 --- Returns the current rotation of the sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getRotation
+---@return number degrees
 function playdate.graphics.sprite:getRotation() end
 
 --- Returns a copy of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.copy
+---@return playdate.graphics.sprite
 function playdate.graphics.sprite:copy() end
 
 --- The sprite’s updatesEnabled flag (defaults to true) determines whether a sprite’s update() method will be called. By default, a sprite’s update method does nothing; however, you may choose to have your sprite do something on every frame by implementing an update method on your sprite instance, or implementing it in your sprite subclass.
@@ -4483,6 +4539,7 @@ function playdate.graphics.sprite:setUpdatesEnabled(flag) end
 --- The sprite’s updatesEnabled flag (defaults to true) determines whether a sprite’s update() method will be called. By default, a sprite’s update method does nothing; however, you may choose to have your sprite do something on every frame by implementing an update method on your sprite instance, or implementing it in your sprite subclass.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.updatesEnabled
+---@return boolean
 function playdate.graphics.sprite:updatesEnabled() end
 
 --- Sets the sprite’s tag, an integer value in the range of 0 to 255, useful for identifying sprites later, particularly when working with collisions.
@@ -4494,6 +4551,7 @@ function playdate.graphics.sprite:setTag(tag) end
 --- Returns the sprite’s tag, an integer value.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getTag
+---@return integer tag
 function playdate.graphics.sprite:getTag() end
 
 --- Sets the mode for drawing the bitmap. See playdate.graphics.setImageDrawMode(mode) for valid modes.
@@ -4516,6 +4574,7 @@ function playdate.graphics.sprite:setImageFlip(flip, flipCollideRect) end
 --- Returns one of the values listed at playdate.graphics.image:draw().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImageFlip
+---@return integer|Flip flip
 function playdate.graphics.sprite:getImageFlip() end
 
 --- When set to true, the sprite will draw in screen coordinates, ignoring the currently-set drawOffset.
@@ -4546,11 +4605,16 @@ function playdate.graphics.sprite:setBounds(rect) end
 --- getBounds() returns multiple values (x, y, width, height).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBounds
+---@return integer x
+---@return integer y
+---@return integer width
+---@return integer height
 function playdate.graphics.sprite:getBounds() end
 
 --- getBoundsRect() returns the sprite bounds as a playdate.geometry.rect object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBoundsRect
+---@return playdate.graphics.rect r
 function playdate.graphics.sprite:getBoundsRect() end
 
 --- Marking a sprite opaque tells the sprite system that it doesn’t need to draw anything underneath the sprite, since it will be overdrawn anyway. If you set an image without a mask/alpha channel on the sprite, it automatically sets the opaque flag.
@@ -4566,6 +4630,7 @@ function playdate.graphics.sprite:setOpaque(flag) end
 --- Setting a sprite to opaque can have performance benefits.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.isOpaque
+---@return boolean
 function playdate.graphics.sprite:isOpaque() end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -4694,6 +4759,7 @@ function playdate.graphics.sprite.setAlwaysRedraw(flag) end
 --- If set to true, causes all sprites to draw each frame, whether or not they have been marked dirty. This may speed up the performance of your game if the system’s dirty rect tracking is taking up too much time - for example if there are many sprites moving around on screen at once.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.getAlwaysRedraw
+---@return boolean
 function playdate.graphics.sprite.getAlwaysRedraw() end
 
 --- Marks the rect defined by the sprite’s current bounds as needing a redraw.
@@ -4719,6 +4785,7 @@ function playdate.graphics.sprite:setRedrawsOnImageChange(flag) end
 --- Returns an array of all sprites in the display list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.getAllSprites
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.getAllSprites() end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -4732,6 +4799,7 @@ function playdate.graphics.sprite.performOnAllSprites(f) end
 --- Returns the number of sprites in the display list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.spriteCount
+---@return integer
 function playdate.graphics.sprite.spriteCount() end
 
 --- Removes all sprites from the global sprite list.
@@ -4795,6 +4863,7 @@ function playdate.graphics.sprite:setCollideRect(rect) end
 --- This function return coordinates relative to the sprite itself; the sprite’s position has no bearing on these values.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideRect
+---@return playdate.graphics.rect r
 function playdate.graphics.sprite:getCollideRect() end
 
 --- Returns the sprite’s collide rect as multiple values, (x, y, width, height).
@@ -4802,6 +4871,10 @@ function playdate.graphics.sprite:getCollideRect() end
 --- This function return coordinates relative to the sprite itself; the sprite’s position has no bearing on these values.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideBounds
+---@return integer x
+---@return integer y
+---@return integer width
+---@return integer height
 function playdate.graphics.sprite:getCollideBounds() end
 
 --- Clears the sprite’s collide rect set with setCollideRect().
@@ -4812,11 +4885,13 @@ function playdate.graphics.sprite:clearCollideRect() end
 --- Returns an array of sprites that have collide rects that are currently overlapping the calling sprite’s collide rect, taking the sprites' groups and collides-with masks into consideration.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.overlappingSprites
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite:overlappingSprites() end
 
 --- Returns an array of array-style tables, each containing two sprites that have overlapping collide rects. All sprite pairs that are have overlapping collide rects (taking the sprites' group and collides-with masks into consideration) are returned.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.allOverlappingSprites
+---@return playdate.graphics.sprite[][]
 function playdate.graphics.sprite.allOverlappingSprites() end
 
 --- Returns a boolean value set to true if a pixel-by-pixel comparison of the sprite images shows that non-transparent pixels are overlapping, based on the current bounds of the sprites.
@@ -4825,6 +4900,7 @@ function playdate.graphics.sprite.allOverlappingSprites() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.alphaCollision
 ---@param anotherSprite any
+---@return boolean
 function playdate.graphics.sprite:alphaCollision(anotherSprite) end
 
 --- The sprite’s collisionsEnabled flag (defaults to true) can be set to false in order to temporarily keep a sprite from colliding with any other sprite.
@@ -4836,6 +4912,7 @@ function playdate.graphics.sprite:setCollisionsEnabled(flag) end
 --- The sprite’s collisionsEnabled flag (defaults to true) can be set to false in order to temporarily keep a sprite from colliding with any other sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.collisionsEnabled
+---@return boolean
 function playdate.graphics.sprite:collisionsEnabled() end
 
 --- Adds the sprite to one or more collision groups. A group is a collection of sprites that exhibit similar collision behavior. (An example: in Atari’s Asteroids, asteroid sprites would all be added to the same group, while the player’s spaceship might be in a different group.) Use setCollidesWithGroups() to define which groups a sprite should collide with.
@@ -4867,6 +4944,7 @@ function playdate.graphics.sprite:setGroupMask(mask) end
 --- getGroupMask() returns the integer value of the sprite’s group bitmask.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getGroupMask
+---@return integer bitmask
 function playdate.graphics.sprite:getGroupMask() end
 
 --- Sets the sprite’s collides-with-groups bitmask, which is 32 bits. The mask specifies which other sprite groups this sprite can collide with. Sprites only collide if the moving sprite’s collidesWithGroupsMask matches at least one group of a potential collision sprite (i.e. a bitwise AND (&) between the moving sprite’s collidesWithGroupsMask and a potential collision sprite’s groupMask != zero) or if the moving sprite’s collidesWithGroupsMask and the other sprite’s groupMask are both set to 0x00000000 (the default values).
@@ -4880,6 +4958,7 @@ function playdate.graphics.sprite:setCollidesWithGroupsMask(mask) end
 --- Returns the integer value of the sprite’s collision bitmask.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollidesWithGroupsMask
+---@return integer bitmask
 function playdate.graphics.sprite:getCollidesWithGroupsMask() end
 
 --- Resets the sprite’s group mask to 0x00000000.
@@ -4903,6 +4982,10 @@ function playdate.graphics.sprite:resetCollidesWithGroupsMask() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveWithCollisions
 ---@param goalX any
 ---@param goalY any
+---@return integer actualX
+---@return integer actualY
+---@return table|CollisionData[] collisions
+---@return integer length
 function playdate.graphics.sprite:moveWithCollisions(goalX, goalY) end
 
 --- Moves the sprite towards goalPoint taking collisions into account, which means the sprite’s final position may not be the same as goalPoint.
@@ -4915,6 +4998,10 @@ function playdate.graphics.sprite:moveWithCollisions(goalX, goalY) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#
 ---@param goalPoint any
+---@return integer actualX
+---@return integer actualY
+---@return table|CollisionData[] collisions
+---@return integer length
 function playdate.graphics.sprite:moveWithCollisions(goalPoint) end
 
 --- Returns the same values as moveWithCollisions() but does not actually move the sprite.
@@ -4922,12 +5009,20 @@ function playdate.graphics.sprite:moveWithCollisions(goalPoint) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.checkCollisions
 ---@param x integer
 ---@param y integer
+---@return integer actualX
+---@return integer actualY
+---@return table|CollisionData[] collisions
+---@return integer length
 function playdate.graphics.sprite:checkCollisions(x, y) end
 
 --- Returns the same values as moveWithCollisions() but does not actually move the sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.checkCollisions
 ---@param point playdate.geometry.point
+---@return integer actualX
+---@return integer actualY
+---@return table|CollisionData[] collisions
+---@return integer length
 function playdate.graphics.sprite:checkCollisions(point) end
 
 --- A callback that can be defined on a sprite to control the type of collision response that should happen when a collision with other occurs. This callback should return one of the following four values:
@@ -4949,6 +5044,7 @@ function playdate.graphics.sprite:checkCollisions(point) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.collisionResponse
 ---@param other any
+---@return integer|CollisionType
 function playdate.graphics.sprite:collisionResponse(other) end
 
 --- Returns all sprites with collision rects containing the point.
@@ -4956,12 +5052,14 @@ function playdate.graphics.sprite:collisionResponse(other) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAtPoint
 ---@param x integer
 ---@param y integer
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.querySpritesAtPoint(x, y) end
 
 --- Returns all sprites with collision rects containing the point.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAtPoint
 ---@param p any
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.querySpritesAtPoint(p) end
 
 --- Returns all sprites with collision rects overlapping the rect.
@@ -4971,12 +5069,14 @@ function playdate.graphics.sprite.querySpritesAtPoint(p) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.querySpritesInRect(x, y, width, height) end
 
 --- Returns all sprites with collision rects overlapping the rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesInRect
 ---@param rect playdate.geometry.rect
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.querySpritesInRect(rect) end
 
 --- Returns all sprites with collision rects intersecting the line segment.
@@ -4986,12 +5086,14 @@ function playdate.graphics.sprite.querySpritesInRect(rect) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.querySpritesAlongLine(x1, y1, x2, y2) end
 
 --- Returns all sprites with collision rects intersecting the line segment.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAlongLine
 ---@param lineSegment any
+---@return playdate.graphics.sprite[]
 function playdate.graphics.sprite.querySpritesAlongLine(lineSegment) end
 
 --- Similar to querySpritesAlongLine(), but instead of sprites returns an array of collisionInfo tables containing information about sprites intersecting the line segment, and len, which is the number of collisions found. If you don’t need this information, use querySpritesAlongLine() as it will be faster.
@@ -5008,6 +5110,7 @@ function playdate.graphics.sprite.querySpritesAlongLine(lineSegment) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return CollisionInfo[]
 function playdate.graphics.sprite.querySpriteInfoAlongLine(x1, y1, x2, y2) end
 
 --- Similar to querySpritesAlongLine(), but instead of sprites returns an array of collisionInfo tables containing information about sprites intersecting the line segment, and len, which is the number of collisions found. If you don’t need this information, use querySpritesAlongLine() as it will be faster.
@@ -5021,6 +5124,7 @@ function playdate.graphics.sprite.querySpriteInfoAlongLine(x1, y1, x2, y2) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine
 ---@param lineSegment any
+---@return CollisionInfo[]
 function playdate.graphics.sprite.querySpriteInfoAlongLine(lineSegment) end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -5098,6 +5202,7 @@ function playdate.graphics.setFont(font, variant) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFont
 ---@param variant any
+---@return playdate.graphics.font
 function playdate.graphics.getFont(variant) end
 
 --- Sets multiple font variants at once. fontFamily should be a table using the following format:
@@ -5121,6 +5226,7 @@ function playdate.graphics.setFontTracking(pixels) end
 --- See playdate.graphics.font:setTracking to adjust tracking on a specific font.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFontTracking
+---@return integer
 function playdate.graphics.getFontTracking() end
 
 --- Like getFont() but returns the system font rather than the currently set font.
@@ -5133,6 +5239,7 @@ function playdate.graphics.getFontTracking() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getSystemFont
 ---@param variant any
+---@return playdate.graphics.font
 function playdate.graphics.getSystemFont(variant) end
 
 --- Draws a string at the specified x, y coordinate using this particular font instance. (Compare to playdate.graphics.drawText(text, x, y), which draws the string with whatever the "current font", as defined by playdate.graphics.setFont(font)).
@@ -5272,6 +5379,7 @@ function playdate.graphics.drawLocalizedText(key, x, y, language, leadingAdjustm
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLocalizedText
 ---@param key any
 ---@param language any
+---@return string
 function playdate.graphics.getLocalizedText(key, language) end
 
 --- Returns multiple values (width, height) giving the dimensions required to draw the text str using drawText(). Newline characters (\n) are respected.
@@ -5282,6 +5390,8 @@ function playdate.graphics.getLocalizedText(key, language) end
 ---@param str any
 ---@param fontFamily any
 ---@param leadingAdjustment any
+---@return integer width
+---@return integer height
 function playdate.graphics.getTextSize(str, fontFamily, leadingAdjustment) end
 
 --- You must import *CoreLibs/graphics* to use this function.
@@ -5412,6 +5522,8 @@ function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment
 ---@param maxWidth any
 ---@param leadingAdjustment any
 ---@param font any
+---@return integer width
+---@return integer height
 function playdate.graphics.getTextSizeForMaxWidth(text, maxWidth, leadingAdjustment, font) end
 
 --- You must import *CoreLibs/graphics* to use this function.
@@ -5441,27 +5553,34 @@ function playdate.graphics.getTextSizeForMaxWidth(text, maxWidth, leadingAdjustm
 ---@param truncationString any
 ---@param alignment any
 ---@param font any
+---@return playdate.graphics.image image
+---@return boolean textWasTruncated
 function playdate.graphics.imageWithText(text, maxWidth, maxHeight, backgroundColor, leadingAdjustment, truncationString, alignment, font) end
 
 --- Returns a playdate.graphics.video object from the pdv file at path. If the file at path can’t be opened, the function returns nil.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.video.new
 ---@param path string
+---@return playdate.graphics.video
 function playdate.graphics.video.new(path) end
 
 --- Returns the width and height of the video as multiple vlaues (width, height).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getSize
+---@return integer x
+---@return integer y
 function playdate.graphics.video:getSize() end
 
 --- Returns the number of frames in the video.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getFrameCount
+---@return integer
 function playdate.graphics.video:getFrameCount() end
 
 --- Returns the number of frames per second of the video source. This number is simply for record-keeping, it is not used internally—​the game code is responsible for figuring out which frame to show when.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getFrameRate
+---@return number
 function playdate.graphics.video:getFrameRate() end
 
 --- Sets the given image to the video render context. Future video:renderFrame() calls will draw into this image.
@@ -5473,6 +5592,7 @@ function playdate.graphics.video:setContext(image) end
 --- Returns the image into which the video will be rendered, creating it if needed.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getContext
+---@return playdate.graphics.image
 function playdate.graphics.video:getContext() end
 
 --- Sets the display framebuffer as the video’s render context.
@@ -5492,30 +5612,35 @@ function playdate.graphics.video:renderFrame(number) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.decode
 ---@param string any
+---@return table json_object
 function json.decode(string) end
 
 --- Reads the given playdate.file.file object and converts it to a Lua table.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.decodeFile-file
 ---@param file any
+---@return table json_object
 function json.decodeFile(file) end
 
 --- Reads the file at the given path and converts it to a Lua table.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.decodeFile-path
 ---@param path string
+---@return table json_object
 function json.decodeFile(path) end
 
 --- Returns a string containing the JSON representation of the passed-in Lua table.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.encode
 ---@param table any
+---@return string json_string
 function json.encode(table) end
 
 --- Returns a string containing the JSON representation of a Lua table, with human-readable formatting.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.encodePretty
 ---@param table any
+---@return string json_string
 function json.encodePretty(table) end
 
 --- Encodes the Lua table table to JSON and writes it to the given playdate.file.file object. If pretty is true, the output is formatted to make it human-readable. Otherwise, no additional whitespace is added.
@@ -5573,6 +5698,32 @@ function playdate.keyboard.width() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.isVisible
 function playdate.keyboard.isVisible() end
+
+--- If set, this function will be called when the keyboard is finished the opening animation.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardDidShowCallback
+function playdate.keyboard.keyboardDidShowCallback() end
+
+--- If set, this function will be called when the keyboard has finished the hide animation.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardDidHideCallback
+function playdate.keyboard.keyboardDidHideCallback() end
+
+--- If set, this function will be called when the keyboard starts to close. A Boolean argument will be passed to the callback, true if the user selected "OK" close the keyboard, false otherwise.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardWillHideCallback
+function playdate.keyboard.keyboardWillHideCallback() end
+
+--- If set, this function is called as the keyboard animates open or closed. Provided as a way to sync animations with the keyboard movement.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardAnimatingCallback
+function playdate.keyboard.keyboardAnimatingCallback() end
+
+--- If set, this function will be called every time a character is entered or deleted.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.textChangedCallback
+---@param ok any
+function playdate.keyboard.textChangedCallback(ok) end
 
 --- Returns a number that is the linear interpolation between min and max based on t, where t = 0.0 will return min and t = 1.0 will return max.
 ---
@@ -7391,6 +7542,18 @@ function playdate.timer:reset() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.allTimers
 function playdate.timer.allTimers() end
 
+--- A Function of the form function(timer) or function(...) where "..." corresponds to the values in the table assigned to timerEndedArgs. Called when the timer has completed.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-timer.timerEndedCallback
+---@param ... any
+function playdate.timer.timerEndedCallback(...) end
+
+--- A callback function that will be called on every frame (every time timer.updateAll() is called). If the timer was created with arguments, those will be passed as arguments to the function provided. Otherwise, the timer is passed as the single argument.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-timer.updateCallback
+---@param ... any
+function playdate.timer.updateCallback(...) end
+
 --- This should be called from the main playdate.update() loop to drive the frame timers.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.updateTimers
@@ -7453,6 +7616,18 @@ function playdate.frameTimer:reset() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.allTimers
 function playdate.frameTimer.allTimers() end
+
+--- A Function of the form function(timer) or function(...) where "..." corresponds to the values in the table assigned to timerEndedArgs. Called when the timer has completed.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.timerEndedCallback
+---@param ... any
+function playdate.frameTimer.timerEndedCallback(...) end
+
+--- A function to be called on every frame update. If the frame timer was created with arguments, those will be passed as arguments to the function provided. Otherwise, the timer is passed as the single argument.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.updateCallback
+---@param ... any
+function playdate.frameTimer.updateCallback(...) end
 
 --- Initializes or resets the crankIndicator. Should be called before showing the alert.
 ---
