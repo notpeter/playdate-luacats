@@ -298,6 +298,7 @@ function playdate.apiVersion() end
 --- If your `update()` function takes too long to execute, Playdate OS may not be able to call it as often as specified by the current refresh rate. In this case, Playdate OS will simply try and call it as often as it can, with a not-to-exceed rate of playdate.display.getRefreshRate() frames per second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-update
+---@return nil
 function playdate.update() end
 
 --- Suspends callbacks to playdate.update() for the specified number of milliseconds.
@@ -308,46 +309,55 @@ function playdate.update() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-wait
 ---@param milliseconds integer
+---@return nil
 function playdate.wait(milliseconds) end
 
 --- Stops per-frame callbacks to playdate.update(). Useful in conjunction with playdate.display.flush() if your program only does things in response to button presses.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-stop
+---@return nil
 function playdate.stop() end
 
 --- Resumes per-frame callbacks to playdate.update().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-start
+---@return nil
 function playdate.start() end
 
 --- Called when the player chooses to exit the game via the System Menu or Menu button.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-gameWillTerminate
+---@return nil
 function playdate.gameWillTerminate() end
 
 --- Called before the device goes to low-power sleep mode because of a low battery.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-deviceWillSleep
+---@return nil
 function playdate.deviceWillSleep() end
 
 --- If your game is running on the Playdate when the device is locked, this function will be called. Implementing this function allows your game to take special action when the Playdate is locked, e.g., saving state.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-deviceWillLock
+---@return nil
 function playdate.deviceWillLock() end
 
 --- If your game is running on the Playdate when the device is unlocked, this function will be called.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-deviceDidUnlock
+---@return nil
 function playdate.deviceDidUnlock() end
 
 --- Called before the system pauses the game. (In the current version of Playdate OS, this only happens when the device’s Menu button is pushed.) Implementing these functions allows your game to take special action when it is paused, e.g., updating the menu image.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-gameWillPause
+---@return nil
 function playdate.gameWillPause() end
 
 --- Called before the system resumes the game.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-gameWillResume
+---@return nil
 function playdate.gameWillResume() end
 
 --- Returns a playdate.menu object. Use this to add your custom menu items.
@@ -361,6 +371,7 @@ function playdate.getSystemMenu() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.addMenuItem
 ---@param title any
 ---@param callback any
+---@return nil
 function playdate.menu:addMenuItem(title, callback) end
 
 --- Creates a new menu item that can be checked or unchecked by the player.
@@ -379,6 +390,7 @@ function playdate.menu:addMenuItem(title, callback) end
 ---@param title any
 ---@param initialValue any
 ---@param callback any
+---@return nil
 function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 
 --- Creates a menu item that allows the player to cycle through a set of options.
@@ -400,6 +412,7 @@ function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 ---@param options any
 ---@param initalValue any
 ---@param callback any
+---@return nil
 function playdate.menu:addOptionsMenuItem(title, options, initalValue, callback) end
 
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.getMenuItems
@@ -410,6 +423,7 @@ function playdate.menu:getMenuItems() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.removeMenuItem
 ---@param menuItem any
+---@return nil
 function playdate.menu:removeMenuItem(menuItem) end
 
 --- Removes from the referenced menu object all playdate.menu.items added by your game.
@@ -417,6 +431,7 @@ function playdate.menu:removeMenuItem(menuItem) end
 --- Items that were added to the System Menu by the operating system cannot be removed by this operation, or any other.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.removeAllMenuItems
+---@return nil
 function playdate.menu:removeAllMenuItems() end
 
 --- While the game is paused it can optionally provide an image to be displayed alongside the System Menu. Use this function to set that image.
@@ -430,12 +445,14 @@ function playdate.menu:removeAllMenuItems() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-setMenuImage
 ---@param image playdate.graphics.image
 ---@param xOffset integer
+---@return nil
 function playdate.setMenuImage(image, xOffset) end
 
 --- Sets the callback function for this menu item.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setCallback
 ---@param callback any
+---@return nil
 function playdate.menu.item:setCallback(callback) end
 
 --- Sets the title displayed for this menu item.
@@ -444,6 +461,7 @@ function playdate.menu.item:setCallback(callback) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setTitle
 ---@param newTitle any
+---@return nil
 function playdate.menu.item:setTitle(newTitle) end
 
 --- Returns the title displayed for this menu item.
@@ -464,6 +482,7 @@ function playdate.menu.item:getTitle() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setValue
 ---@param newValue any
+---@return nil
 function playdate.menu.item:setValue(newValue) end
 
 --- Returns the value for this menu item.
@@ -497,11 +516,13 @@ function playdate.getFlipped() end
 --- The accelerometer is off by default, to save a bit of power. If you will be using the accelerometer in your game, you’ll first need to call playdate.startAccelerometer() then wait for the next update cycle before reading its values. If you won’t be using the accelerometer again for a while, calling playdate.stopAccelerometer() will put it back into a low-power idle state.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-startAccelerometer
+---@return nil
 function playdate.startAccelerometer() end
 
 --- The accelerometer is off by default, to save a bit of power. If you will be using the accelerometer in your game, you’ll first need to call playdate.startAccelerometer() then wait for the next update cycle before reading its values. If you won’t be using the accelerometer again for a while, calling playdate.stopAccelerometer() will put it back into a low-power idle state.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-stopAccelerometer
+---@return nil
 function playdate.stopAccelerometer() end
 
 --- If the accelerometer has been turned on with playdate.startAccelerometer(), returns the x, y, and z values from the accelerometer as a list. Positive x points right, positive y points to the bottom of the screen, and positive z points through the screen away from the viewer. For example, with the device held upright this function returns the values (0,1,0). With it flat on its back, it returns (0,0,1).
@@ -565,71 +586,85 @@ function playdate.getButtonState() end
 --- Called immediately after the player presses the A Button.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-AButtonDown
+---@return nil
 function playdate.AButtonDown() end
 
 --- Called after the A Button is held down for one second. This can be used for secondary actions (e.g., displaying a game world map, changing weapons).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-AButtonHeld
+---@return nil
 function playdate.AButtonHeld() end
 
 --- Called immediately after the player releases the A Button.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-AButtonUp
+---@return nil
 function playdate.AButtonUp() end
 
 --- Called immediately after the player presses the B Button.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-BButtonDown
+---@return nil
 function playdate.BButtonDown() end
 
 --- Called after the B Button is held down for one second. This can be used for secondary actions (e.g., displaying a game world map, changing weapons).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-BButtonHeld
+---@return nil
 function playdate.BButtonHeld() end
 
 --- Called immediately after the player releases the B Button.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-BButtonUp
+---@return nil
 function playdate.BButtonUp() end
 
 --- Called immediately after the player presses the down direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-downButtonDown
+---@return nil
 function playdate.downButtonDown() end
 
 --- Called immediately after the player releases the down direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-downButtonUp
+---@return nil
 function playdate.downButtonUp() end
 
 --- Called immediately after the player presses the left direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-leftButtonDown
+---@return nil
 function playdate.leftButtonDown() end
 
 --- Called immediately after the player releases the left direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-leftButtonUp
+---@return nil
 function playdate.leftButtonUp() end
 
 --- Called immediately after the player presses the right direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-rightButtonDown
+---@return nil
 function playdate.rightButtonDown() end
 
 --- Called immediately after the player releases the right direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-rightButtonUp
+---@return nil
 function playdate.rightButtonUp() end
 
 --- Called immediately after the player presses the up direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-upButtonDown
+---@return nil
 function playdate.upButtonDown() end
 
 --- Called immediately after the player releases the up direction on the d-pad.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-upButtonUp
+---@return nil
 function playdate.upButtonUp() end
 
 --- Returns a boolean indicating whether or not the crank is folded into the unit.
@@ -668,16 +703,19 @@ function playdate.getCrankTicks(ticksPerRevolution) end
 --- https://sdk.play.date/Inside%20Playdate.html#c-cranked
 ---@param change any
 ---@param acceleratedChange any
+---@return nil
 function playdate.cranked(change, acceleratedChange) end
 
 --- This function, if defined, is called when the crank is docked.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-crankDocked
+---@return nil
 function playdate.crankDocked() end
 
 --- This function, if defined, is called when the crank is undocked.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-crankUndocked
+---@return nil
 function playdate.crankUndocked() end
 
 --- True disables the default crank docking/undocking sound effects. False re-enables them. Useful if the crank sounds seem out-of-place in your game.
@@ -686,6 +724,7 @@ function playdate.crankUndocked() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.setCrankSoundsDisabled
 ---@param disable any
+---@return nil
 function playdate.setCrankSoundsDisabled(disable) end
 
 --- Pushes a new input handler onto the stack.
@@ -696,11 +735,13 @@ function playdate.setCrankSoundsDisabled(disable) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.push
 ---@param handler any
 ---@param masksPreviousHandlers any
+---@return nil
 function playdate.inputHandlers.push(handler, masksPreviousHandlers) end
 
 --- Pops the last input handler off of the stack.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.pop
+---@return nil
 function playdate.inputHandlers.pop() end
 
 --- True disables the 60-second auto-lock feature. False re-enables it and resets the timer back to 60 seconds.
@@ -711,6 +752,7 @@ function playdate.inputHandlers.pop() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.setAutoLockDisabled
 ---@param disable any
+---@return nil
 function playdate.setAutoLockDisabled(disable) end
 
 --- Returns the number of milliseconds the game has been active since launched.
@@ -722,6 +764,7 @@ function playdate.getCurrentTimeMilliseconds() end
 --- Resets the high-resolution timer.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-resetElapsedTime
+---@return nil
 function playdate.resetElapsedTime() end
 
 --- Returns the number of seconds since playdate.resetElapsedTime() was called. The value is a floating-point number with microsecond accuracy.
@@ -822,6 +865,7 @@ function printTable(table) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-setNewlinePrinted
 ---@param flag boolean
+---@return nil
 function playdate.setNewlinePrinted(flag) end
 
 --- Calculates the current frames per second and draws that value at x, y.
@@ -829,6 +873,7 @@ function playdate.setNewlinePrinted(flag) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-drawFPS
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.drawFPS(x, y) end
 
 --- Returns the effective refresh rate in frames per second. See also playdate.display.getRefreshRate().
@@ -871,6 +916,7 @@ function playdate.getStats() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.setStatsInterval
 ---@param seconds any
+---@return nil
 function playdate.setStatsInterval(seconds) end
 
 --- Sets the nominal refresh rate in frames per second. The default is 30 fps, which is a recommended figure that balances animation smoothness with performance and power considerations. Maximum is 50 fps.
@@ -881,6 +927,7 @@ function playdate.setStatsInterval(seconds) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setRefreshRate
 ---@param rate any
+---@return nil
 function playdate.display.setRefreshRate(rate) end
 
 --- Returns the nominal refresh rate in frames per second. See also playdate.getFPS().
@@ -892,6 +939,7 @@ function playdate.display.getRefreshRate() end
 --- Sends the contents of the frame buffer to the display immediately. Useful if you have called playdate.stop() to disable update callbacks in, say, the case where your app updates the display only in reaction to button presses.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.flush
+---@return nil
 function playdate.display.flush() end
 
 --- Returns the height the Playdate display, taking the current display scale into account; e.g., if the scale is 2, the values returned will be based off of a 200 x 120-pixel screen rather than the native 400 x 240. (See playdate.display.setScale().)
@@ -931,6 +979,7 @@ function playdate.display.getRect() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setScale
 ---@param scale integer
+---@return nil
 function playdate.display.setScale(scale) end
 
 --- Gets the display scale factor. Valid values for scale are 1, 2, 4, and 8.
@@ -945,6 +994,7 @@ function playdate.display.getScale() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setInverted
 ---@param flag boolean
+---@return nil
 function playdate.display.setInverted(flag) end
 
 --- If getInverted() returns true, the frame buffer will be drawn inverted (everything onscreen that was black will now be white, etc.)
@@ -960,6 +1010,7 @@ function playdate.display.getInverted() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setMosaic
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.display.setMosaic(x, y) end
 
 --- Returns the current mosaic effect settings as multiple values (x, y).
@@ -978,6 +1029,7 @@ function playdate.display.getMosaic() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setOffset
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.display.setOffset(x, y) end
 
 --- getOffset() returns the current display offset as multiple values (x, y).
@@ -996,6 +1048,7 @@ function playdate.display.getOffset() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setFlipped
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.display.setFlipped(x, y) end
 
 --- The simplest method for putting an image on the display. Copies the contents of the image at path directly to the frame buffer. The image must be 400x240 pixels with no transparency.
@@ -1004,6 +1057,7 @@ function playdate.display.setFlipped(x, y) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.loadImage
 ---@param path string
+---@return nil
 function playdate.display.loadImage(path) end
 
 --- * t is elapsed time
@@ -1664,6 +1718,7 @@ function playdate.datastore.delete(filename) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.writeImage
 ---@param image playdate.graphics.image
 ---@param path string
+---@return nil
 function playdate.datastore.writeImage(image, path) end
 
 --- Reads a playdate.graphics.image from a file in the data folder. If path doesn’t contain a folder name, the image is searched for in a folder named "images".
@@ -1699,6 +1754,7 @@ function playdate.file.open(path, mode) end
 --- Equivalent to playdate->file->close() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.close
+---@return nil
 function playdate.file.file:close() end
 
 --- Writes the given string to the file and returns the number of bytes written if successful, or 0 and a second return value describing the error. If you wish to include line termination characters (\n, \r), please include them in the string.
@@ -1714,6 +1770,7 @@ function playdate.file.file:write(string) end
 --- Equivalent to playdate->file->flush() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.flush
+---@return nil
 function playdate.file.file:flush() end
 
 --- Returns the next line of the file, delimited by either \n or \r\n. The returned string does not include newline characters.
@@ -1738,6 +1795,7 @@ function playdate.file.file:read(numberOfBytes) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.seek
 ---@param offset any
+---@return nil
 function playdate.file.file:seek(offset) end
 
 --- Returns the current byte offset of the read/write position in the file.
@@ -1784,6 +1842,7 @@ function playdate.file.isdir(path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.mkdir
 ---@param path string
+---@return nil
 function playdate.file.mkdir(path) end
 
 --- Deletes the file at the given path. Returns true if successful, else false.
@@ -1853,6 +1912,7 @@ function playdate.file.load(path, env) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.run
 ---@param path string
 ---@param env any
+---@return nil
 function playdate.file.run(path, env) end
 
 --- Returns a new playdate.geometry.affineTransform. Use new() instead to get a new copy of the identity transform.
@@ -1883,11 +1943,13 @@ function playdate.geometry.affineTransform:copy() end
 --- Inversion is generally used to provide reverse transformation of points within transformed objects. Given the coordinates (x, y), which have been transformed by a given matrix to new coordinates (x’, y’), transforming the coordinates (x’, y’) by the inverse matrix produces the original coordinates (x, y).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.invert
+---@return nil
 function playdate.geometry.affineTransform:invert() end
 
 --- Mutates the the caller, changing it to an identity transform matrix.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.reset
+---@return nil
 function playdate.geometry.affineTransform:reset() end
 
 --- Mutates the the caller. The affine transform af is concatenated to the caller.
@@ -1898,6 +1960,7 @@ function playdate.geometry.affineTransform:reset() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.concat
 ---@param af any
+---@return nil
 function playdate.geometry.affineTransform:concat(af) end
 
 --- Mutates the caller by applying a translate transformation.  x values are moved by dx, y values by dy.
@@ -1905,6 +1968,7 @@ function playdate.geometry.affineTransform:concat(af) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.translate
 ---@param dx integer
 ---@param dy integer
+---@return nil
 function playdate.geometry.affineTransform:translate(dx, dy) end
 
 --- Returns a copy of the calling affine transform with a translate transformation appended.
@@ -1924,6 +1988,7 @@ function playdate.geometry.affineTransform:translatedBy(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.scale
 ---@param sx number
 ---@param sy number
+---@return nil
 function playdate.geometry.affineTransform:scale(sx, sy) end
 
 --- Returns a copy of the calling affine transform with a scaling transformation appended.
@@ -1946,6 +2011,7 @@ function playdate.geometry.affineTransform:scaledBy(sx, sy) end
 ---@param angle number
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.geometry.affineTransform:rotate(angle, x, y) end
 
 --- Mutates the caller by applying a rotation transformation.
@@ -1955,6 +2021,7 @@ function playdate.geometry.affineTransform:rotate(angle, x, y) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform:rotate-point
 ---@param angle number
 ---@param point playdate.geometry.point
+---@return nil
 function playdate.geometry.affineTransform:rotate(angle, point) end
 
 --- Returns a copy of the calling affine transform with a rotate transformation appended.
@@ -1983,6 +2050,7 @@ function playdate.geometry.affineTransform:rotatedBy(angle, point) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.skew
 ---@param sx number
 ---@param sy number
+---@return nil
 function playdate.geometry.affineTransform:skew(sx, sy) end
 
 --- Returns the given transform with a skew transformation appended.  sx is the value by which to skew the x axis, and sy the value for the y axis. Values are in degrees.
@@ -1997,6 +2065,7 @@ function playdate.geometry.affineTransform:skewedBy(sx, sy) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformPoint
 ---@param p any
+---@return nil
 function playdate.geometry.affineTransform:transformPoint(p) end
 
 --- As above, but returns a new point rather than modifying p.
@@ -2019,6 +2088,7 @@ function playdate.geometry.affineTransform:transformXY(x, y) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformLineSegment
 ---@param ls playdate.geometry.lineSegment
+---@return nil
 function playdate.geometry.affineTransform:transformLineSegment(ls) end
 
 --- As above, but returns a new line segment rather than modifying ls.
@@ -2032,6 +2102,7 @@ function playdate.geometry.affineTransform:transformedLineSegment(ls) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformAABB
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.geometry.affineTransform:transformAABB(r) end
 
 --- As above, but returns a new rect rather than modifying r.
@@ -2045,6 +2116,7 @@ function playdate.geometry.affineTransform:transformedAABB(r) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformPolygon
 ---@param p any
+---@return nil
 function playdate.geometry.affineTransform:transformPolygon(p) end
 
 --- As above, but returns a new polygon rather than modifying p.
@@ -2108,6 +2180,7 @@ function playdate.geometry.arc:isClockwise() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.setIsClockwise
 ---@param flag boolean
+---@return nil
 function playdate.geometry.arc:setIsClockwise(flag) end
 
 --- Returns a new point on the arc, distance pixels from the arc’s start angle. If extend is true, the returned point is allowed to project past the arc’s endpoints; otherwise, it is constrained to the arc’s initial point if distance is negative, or the end point if distance is greater than the arc’s length.
@@ -2154,6 +2227,7 @@ function playdate.geometry.lineSegment:length() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.offset
 ---@param dx integer
 ---@param dy integer
+---@return nil
 function playdate.geometry.lineSegment:offset(dx, dy) end
 
 --- Returns a new line segment, the given segment offset by dx, dy.
@@ -2798,6 +2872,7 @@ function playdate.geometry.vector2D:__div(s) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.pushContext
 ---@param image playdate.graphics.image
+---@return nil
 function playdate.graphics.pushContext(image) end
 
 --- Pops a graphics context off the context stack and restores its state.
@@ -2805,6 +2880,7 @@ function playdate.graphics.pushContext(image) end
 --- Equivalent to playdate->graphics->popContext() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.popContext
+---@return nil
 function playdate.graphics.popContext() end
 
 --- Clears the entire display, setting the color to either the given color argument, or the current background color set in setBackgroundColor(color) if no argument is given.
@@ -2813,6 +2889,7 @@ function playdate.graphics.popContext() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clear
 ---@param color integer
+---@return nil
 function playdate.graphics.clear(color) end
 
 --- Creates a new blank image of the given width and height. The image can be drawn on using playdate.graphics.pushContext() or playdate.graphics.lockFocus(). The optional bgcolor argument is one of the color constants as used in playdate.graphics.setColor(), defaulting to kColorClear.
@@ -2881,6 +2958,7 @@ function playdate.graphics.imageSizeAtPath(path) end
 ---@param y integer
 ---@param flip integer|string
 ---@param sourceRect playdate.geometry.rect
+---@return nil
 function playdate.graphics.image:draw(x, y, flip, sourceRect) end
 
 --- Draws the image with its upper-left corner at location (x, y) or playdate.geometry.point p.
@@ -2900,6 +2978,7 @@ function playdate.graphics.image:draw(x, y, flip, sourceRect) end
 ---@param p any
 ---@param flip integer|string
 ---@param sourceRect playdate.geometry.rect
+---@return nil
 function playdate.graphics.image:draw(p, flip, sourceRect) end
 
 --- Draws the image at location (x, y) centered at the point within the image represented by (ax, ay) in unit coordinate space. For example, values of ax = 0.0, ay = 0.0 represent the image’s top-left corner, ax = 1.0, ay = 1.0 represent the bottom-right, and ax = 0.5, ay = 0.5 represent the center of the image.
@@ -2914,6 +2993,7 @@ function playdate.graphics.image:draw(p, flip, sourceRect) end
 ---@param ax number
 ---@param ay number
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.image:drawAnchored(x, y, ax, ay, flip) end
 
 --- Draws the image centered at location (x, y).
@@ -2926,6 +3006,7 @@ function playdate.graphics.image:drawAnchored(x, y, ax, ay, flip) end
 ---@param x integer
 ---@param y integer
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.image:drawCentered(x, y, flip) end
 
 --- Draws the image ignoring the currently-set drawOffset.
@@ -2934,6 +3015,7 @@ function playdate.graphics.image:drawCentered(x, y, flip) end
 ---@param x integer
 ---@param y integer
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.image:drawIgnoringOffset(x, y, flip) end
 
 --- Draws the image ignoring the currently-set drawOffset.
@@ -2941,12 +3023,14 @@ function playdate.graphics.image:drawIgnoringOffset(x, y, flip) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset
 ---@param p any
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.image:drawIgnoringOffset(p, flip) end
 
 --- Erases the contents of the image, setting all pixels to white if color is playdate.graphics.kColorWhite, black if it’s playdate.graphics.kColorBlack, or clear if it’s playdate.graphics.kColorClear. If the image is cleared to black or white, the mask (if it exists) is set to fully opaque. If the image is cleared to kColorClear and the image doesn’t have a mask, a mask is added to it.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.clear
 ---@param color integer
+---@return nil
 function playdate.graphics.image:clear(color) end
 
 --- Returns playdate.graphics.kColorWhite if the image is white at (x, y), playdate.graphics.kColorBlack if it’s black, or playdate.graphics.kColorClear if it’s transparent.
@@ -2967,6 +3051,7 @@ function playdate.graphics.image:sample(x, y) end
 ---@param angle number
 ---@param scale integer
 ---@param yscale integer
+---@return nil
 function playdate.graphics.image:drawRotated(x, y, angle, scale, yscale) end
 
 --- Returns a new image containing this image rotated by (clockwise) angle degrees, scaled by optional argument scale, with an optional separate scaling for the y axis.
@@ -2987,6 +3072,7 @@ function playdate.graphics.image:rotatedImage(angle, scale, yscale) end
 ---@param y integer
 ---@param scale integer
 ---@param yscale integer
+---@return nil
 function playdate.graphics.image:drawScaled(x, y, scale, yscale) end
 
 --- Returns a new image containing this image scaled by amount scale, with an optional separate scaling for the y axis.
@@ -3003,6 +3089,7 @@ function playdate.graphics.image:scaledImage(scale, yscale) end
 ---@param xform playdate.geometry.affineTransform
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.graphics.image:drawWithTransform(xform, x, y) end
 
 --- Returns a new image containing the image with the transform xform applied.
@@ -3039,12 +3126,14 @@ function playdate.graphics.image:transformedImage(xform) end
 ---@param z integer
 ---@param tiltAngle number
 ---@param tile any
+---@return nil
 function playdate.graphics.image:drawSampled(x, y, width, height, centerx, centery, dxx, dyx, dxy, dyy, dx, dy, z, tiltAngle, tile) end
 
 --- Sets the image’s mask to a copy of maskImage.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.setMaskImage
 ---@param maskImage playdate.graphics.image
+---@return nil
 function playdate.graphics.image:setMaskImage(maskImage) end
 
 --- If the image has a mask, returns the mask as a separate image. Otherwise, returns nil.
@@ -3059,11 +3148,13 @@ function playdate.graphics.image:getMaskImage() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.addMask
 ---@param opaque boolean
+---@return nil
 function playdate.graphics.image:addMask(opaque) end
 
 --- Removes the mask from the image if it has one.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.removeMask
+---@return nil
 function playdate.graphics.image:removeMask() end
 
 --- Returns true if the image has a mask.
@@ -3076,6 +3167,7 @@ function playdate.graphics.image:hasMask() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.clearMask
 ---@param opaque boolean
+---@return nil
 function playdate.graphics.image:clearMask(opaque) end
 
 --- Tiles the image into the given rectangle, using either listed dimensions or a playdate.geometry.rect object, and the optional flip style.
@@ -3086,6 +3178,7 @@ function playdate.graphics.image:clearMask(opaque) end
 ---@param width integer
 ---@param height integer
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.image:drawTiled(x, y, width, height, flip) end
 
 --- Tiles the image into the given rectangle, using either listed dimensions or a playdate.geometry.rect object, and the optional flip style.
@@ -3093,6 +3186,7 @@ function playdate.graphics.image:drawTiled(x, y, width, height, flip) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawTiled
 ---@param rect playdate.geometry.rect
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.image:drawTiled(rect, flip) end
 
 --- Draws a blurred version of the image at (x, y).
@@ -3112,6 +3206,7 @@ function playdate.graphics.image:drawTiled(rect, flip) end
 ---@param flip integer|string
 ---@param xPhase integer
 ---@param yPhase integer
+---@return nil
 function playdate.graphics.image:drawBlurred(x, y, radius, numPasses, ditherType, flip, xPhase, yPhase) end
 
 --- Draws a partially transparent image with its upper-left corner at location (x, y)
@@ -3124,12 +3219,14 @@ function playdate.graphics.image:drawBlurred(x, y, radius, numPasses, ditherType
 ---@param y integer
 ---@param alpha number
 ---@param ditherType integer
+---@return nil
 function playdate.graphics.image:drawFaded(x, y, alpha, ditherType) end
 
 --- If flag is true, the image will be drawn with its colors inverted. If the image is being used as a stencil, its behavior is reversed: pixels are drawn where the stencil is black, nothing is drawn where the stencil is white.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.setInverted
 ---@param flag boolean
+---@return nil
 function playdate.graphics.image:setInverted(flag) end
 
 --- Returns a color-inverted copy of the caller.
@@ -3235,6 +3332,7 @@ function playdate.graphics.checkAlphaCollision(image1, x1, y1, flip1, image2, x2
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setColor
 ---@param color integer
+---@return nil
 function playdate.graphics.setColor(color) end
 
 --- Gets the current drawing color for primitives.
@@ -3257,6 +3355,7 @@ function playdate.graphics.getColor() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setBackgroundColor
 ---@param color integer
+---@return nil
 function playdate.graphics.setBackgroundColor(color) end
 
 --- Gets the color used for drawing the background, if necessary, before playdate.graphics.sprites are drawn on top.
@@ -3275,6 +3374,7 @@ function playdate.graphics.getBackgroundColor() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPattern
 ---@param pattern any
+---@return nil
 function playdate.graphics.setPattern(pattern) end
 
 --- Sets the pattern used for drawing to a dithered pattern. If the current drawing color is white, the pattern is white pixels on a transparent background and (due to a bug) the alpha value is inverted: 1.0 is transparent and 0 is opaque. Otherwise, the pattern is black pixels on a transparent background and alpha 0 is transparent while 1.0 is opaque.
@@ -3286,6 +3386,7 @@ function playdate.graphics.setPattern(pattern) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDitherPattern
 ---@param alpha number
 ---@param ditherType integer
+---@return nil
 function playdate.graphics.setDitherPattern(alpha, ditherType) end
 
 --- playdate.graphics.drawLine(ls)
@@ -3301,6 +3402,7 @@ function playdate.graphics.setDitherPattern(alpha, ditherType) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return nil
 function playdate.graphics.drawLine(x1, y1, x2, y2) end
 
 --- Specifies the shape of the endpoints drawn by drawLine.
@@ -3315,6 +3417,7 @@ function playdate.graphics.drawLine(x1, y1, x2, y2) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineCapStyle
 ---@param style any
+---@return nil
 function playdate.graphics.setLineCapStyle(style) end
 
 --- Draw a single pixel in the current color at (x, y).
@@ -3326,6 +3429,7 @@ function playdate.graphics.setLineCapStyle(style) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPixel
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.graphics.drawPixel(x, y) end
 
 --- Draws the rect r or the rect with origin (x, y) with a size of (w, h).
@@ -3339,6 +3443,7 @@ function playdate.graphics.drawPixel(x, y) end
 ---@param y integer
 ---@param w any
 ---@param h any
+---@return nil
 function playdate.graphics.drawRect(x, y, w, h) end
 
 --- Draws the rect r or the rect with origin (x, y) with a size of (w, h).
@@ -3349,6 +3454,7 @@ function playdate.graphics.drawRect(x, y, w, h) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.graphics.drawRect(r) end
 
 --- Draws the filled rectangle r or the rect at (x, y) of the given width and height.
@@ -3360,6 +3466,7 @@ function playdate.graphics.drawRect(r) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.fillRect(x, y, width, height) end
 
 --- Draws the filled rectangle r or the rect at (x, y) of the given width and height.
@@ -3368,6 +3475,7 @@ function playdate.graphics.fillRect(x, y, width, height) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.graphics.fillRect(r) end
 
 --- Draws a rectangle with rounded corners in the rect r or the rect with origin (x, y) and size (w, h).
@@ -3380,6 +3488,7 @@ function playdate.graphics.fillRect(r) end
 ---@param w any
 ---@param h any
 ---@param radius number
+---@return nil
 function playdate.graphics.drawRoundRect(x, y, w, h, radius) end
 
 --- Draws a rectangle with rounded corners in the rect r or the rect with origin (x, y) and size (w, h).
@@ -3389,6 +3498,7 @@ function playdate.graphics.drawRoundRect(x, y, w, h, radius) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRoundRect
 ---@param r playdate.geometry.rect
 ---@param radius number
+---@return nil
 function playdate.graphics.drawRoundRect(r, radius) end
 
 --- Draws a filled rectangle with rounded corners in the rect r or the rect with origin (x, y) and size (w, h).
@@ -3401,6 +3511,7 @@ function playdate.graphics.drawRoundRect(r, radius) end
 ---@param w any
 ---@param h any
 ---@param radius number
+---@return nil
 function playdate.graphics.fillRoundRect(x, y, w, h, radius) end
 
 --- Draws a filled rectangle with rounded corners in the rect r or the rect with origin (x, y) and size (w, h).
@@ -3410,6 +3521,7 @@ function playdate.graphics.fillRoundRect(x, y, w, h, radius) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRoundRect
 ---@param r playdate.geometry.rect
 ---@param radius number
+---@return nil
 function playdate.graphics.fillRoundRect(r, radius) end
 
 --- Draws an arc using the current color.
@@ -3418,6 +3530,7 @@ function playdate.graphics.fillRoundRect(r, radius) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawArc
 ---@param arc any
+---@return nil
 function playdate.graphics.drawArc(arc) end
 
 --- Draws an arc using the current color.
@@ -3430,6 +3543,7 @@ function playdate.graphics.drawArc(arc) end
 ---@param radius number
 ---@param startAngle number
 ---@param endAngle number
+---@return nil
 function playdate.graphics.drawArc(x, y, radius, startAngle, endAngle) end
 
 --- Draws a circle at the point (x, y) (or p) with radius radius.
@@ -3438,6 +3552,7 @@ function playdate.graphics.drawArc(x, y, radius, startAngle, endAngle) end
 ---@param x integer
 ---@param y integer
 ---@param radius number
+---@return nil
 function playdate.graphics.drawCircleAtPoint(x, y, radius) end
 
 --- Draws a circle at the point (x, y) (or p) with radius radius.
@@ -3445,6 +3560,7 @@ function playdate.graphics.drawCircleAtPoint(x, y, radius) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleAtPoint
 ---@param p any
 ---@param radius number
+---@return nil
 function playdate.graphics.drawCircleAtPoint(p, radius) end
 
 --- Draws a circle in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3456,6 +3572,7 @@ function playdate.graphics.drawCircleAtPoint(p, radius) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.drawCircleInRect(x, y, width, height) end
 
 --- Draws a circle in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3464,6 +3581,7 @@ function playdate.graphics.drawCircleInRect(x, y, width, height) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleInRect
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.graphics.drawCircleInRect(r) end
 
 --- Draws a filled circle at the point (x, y) (or p) with radius radius.
@@ -3472,6 +3590,7 @@ function playdate.graphics.drawCircleInRect(r) end
 ---@param x integer
 ---@param y integer
 ---@param radius number
+---@return nil
 function playdate.graphics.fillCircleAtPoint(x, y, radius) end
 
 --- Draws a filled circle at the point (x, y) (or p) with radius radius.
@@ -3479,6 +3598,7 @@ function playdate.graphics.fillCircleAtPoint(x, y, radius) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleAtPoint
 ---@param p any
 ---@param radius number
+---@return nil
 function playdate.graphics.fillCircleAtPoint(p, radius) end
 
 --- Draws a filled circle in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3490,6 +3610,7 @@ function playdate.graphics.fillCircleAtPoint(p, radius) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.fillCircleInRect(x, y, width, height) end
 
 --- Draws a filled circle in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3498,6 +3619,7 @@ function playdate.graphics.fillCircleInRect(x, y, width, height) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleInRect
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.graphics.fillCircleInRect(r) end
 
 --- Draws an ellipse in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3511,6 +3633,7 @@ function playdate.graphics.fillCircleInRect(r) end
 ---@param height integer
 ---@param startAngle number
 ---@param endAngle number
+---@return nil
 function playdate.graphics.drawEllipseInRect(x, y, width, height, startAngle, endAngle) end
 
 --- Draws an ellipse in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3521,6 +3644,7 @@ function playdate.graphics.drawEllipseInRect(x, y, width, height, startAngle, en
 ---@param rect playdate.geometry.rect
 ---@param startAngle number
 ---@param endAngle number
+---@return nil
 function playdate.graphics.drawEllipseInRect(rect, startAngle, endAngle) end
 
 --- Draws a filled ellipse in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3534,6 +3658,7 @@ function playdate.graphics.drawEllipseInRect(rect, startAngle, endAngle) end
 ---@param height integer
 ---@param startAngle number
 ---@param endAngle number
+---@return nil
 function playdate.graphics.fillEllipseInRect(x, y, width, height, startAngle, endAngle) end
 
 --- Draws a filled ellipse in the rect r or the rect with origin (x, y) and size (width, height).
@@ -3544,6 +3669,7 @@ function playdate.graphics.fillEllipseInRect(x, y, width, height, startAngle, en
 ---@param rect playdate.geometry.rect
 ---@param startAngle number
 ---@param endAngle number
+---@return nil
 function playdate.graphics.fillEllipseInRect(rect, startAngle, endAngle) end
 
 --- Draw the playdate.geometry.polygon p.
@@ -3552,6 +3678,7 @@ function playdate.graphics.fillEllipseInRect(rect, startAngle, endAngle) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPolygon
 ---@param p any
+---@return nil
 function playdate.graphics.drawPolygon(p) end
 
 --- Draw the polygon specified by the given sequence of x,y coordinates.  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -3564,6 +3691,7 @@ function playdate.graphics.drawPolygon(p) end
 ---@param x2 integer
 ---@param y2 integer
 ---@param ... any
+---@return nil
 function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 
 --- Fills the polygon specified by a list of x,y coordinates.
@@ -3576,12 +3704,14 @@ function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 ---@param x2 integer
 ---@param y2 integer
 ---@param ... any
+---@return nil
 function playdate.graphics.fillPolygon(x1, y1, x2, y2, ...) end
 
 --- Fills the polygon specified by the playdate.geometry.polygon p with the currently selected color or pattern.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#
 ---@param p any
+---@return nil
 function playdate.graphics.fillPolygon(p) end
 
 --- Sets the winding rule for filling polygons, one of:
@@ -3593,6 +3723,7 @@ function playdate.graphics.fillPolygon(p) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPolygonFillRule
 ---@param rule any
+---@return nil
 function playdate.graphics.setPolygonFillRule(rule) end
 
 --- Draws a triangle with vertices (x1, y1), (x2, y2), and (x3, y3).
@@ -3604,6 +3735,7 @@ function playdate.graphics.setPolygonFillRule(rule) end
 ---@param y2 integer
 ---@param x3 any
 ---@param y3 any
+---@return nil
 function playdate.graphics.drawTriangle(x1, y1, x2, y2, x3, y3) end
 
 --- Draws a filled triangle with vertices (x1, y1), (x2, y2), and (x3, y3).
@@ -3617,6 +3749,7 @@ function playdate.graphics.drawTriangle(x1, y1, x2, y2, x3, y3) end
 ---@param y2 integer
 ---@param x3 any
 ---@param y3 any
+---@return nil
 function playdate.graphics.fillTriangle(x1, y1, x2, y2, x3, y3) end
 
 --- Returns a new 9 slice image from the image at imagePath with the stretchable region defined by other parameters. The arguments represent the origin and dimensions of the innermost ("center") slice.
@@ -3712,6 +3845,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 ---@param stringToEncode any
 ---@param desiredEdgeDimension any
 ---@param callback any
+---@return nil
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
 
 --- You must import *CoreLibs/graphics* to use this function.
@@ -3732,6 +3866,7 @@ function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, 
 ---@param endAmplitude any
 ---@param period any
 ---@param phaseShift any
+---@return nil
 function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitude, endAmplitude, period, phaseShift) end
 
 --- setClipRect() sets the clipping rectangle for all subsequent graphics drawing, including bitmaps. The argument can either be separate dimensions or a playdate.geometry.rect object. The clip rect is automatically cleared at the beginning of the playdate.update() callback. The function uses world coordinates; that is, the given rectangle will be translated by the current drawing offset. To use screen coordinates instead, use setScreenClipRect()
@@ -3743,12 +3878,14 @@ function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitu
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.setClipRect(x, y, width, height) end
 
 --- setClipRect() sets the clipping rectangle for all subsequent graphics drawing, including bitmaps. The argument can either be separate dimensions or a playdate.geometry.rect object. The clip rect is automatically cleared at the beginning of the playdate.update() callback. The function uses world coordinates; that is, the given rectangle will be translated by the current drawing offset. To use screen coordinates instead, use setScreenClipRect()
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect-rect
 ---@param rect playdate.geometry.rect
+---@return nil
 function playdate.graphics.setClipRect(rect) end
 
 --- getClipRect() returns multiple values (x, y, width, height) giving the current clipping rectangle.
@@ -3769,12 +3906,14 @@ function playdate.graphics.getClipRect() end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.setScreenClipRect(x, y, width, height) end
 
 --- Sets the clip rectangle as above, but uses screen coordinates instead of world coordinates—​that is, it ignores the current drawing offset.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setScreenClipRect-rect
 ---@param rect playdate.geometry.rect
+---@return nil
 function playdate.graphics.setScreenClipRect(rect) end
 
 --- Gets the clip rectangle as above, but uses screen coordinates instead of world coordinates—​that is, it ignores the current drawing offset.
@@ -3791,6 +3930,7 @@ function playdate.graphics.getScreenClipRect() end
 --- Equivalent to playdate->graphics->clearClipRect() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearClipRect
+---@return nil
 function playdate.graphics.clearClipRect() end
 
 --- Sets the current stencil to the given image. If tile is set, the the stencil will be tiled; in this case, the image width must be a multiple of 32 pixels.
@@ -3800,12 +3940,14 @@ function playdate.graphics.clearClipRect() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilImage
 ---@param image playdate.graphics.image
 ---@param tile any
+---@return nil
 function playdate.graphics.setStencilImage(image, tile) end
 
 --- Sets a pattern to use for stenciled drawing, as an alternative to creating an image, drawing a pattern into the image, then using that in setStencilImage().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern
 ---@param pattern any
+---@return nil
 function playdate.graphics.setStencilPattern(pattern) end
 
 --- Sets a pattern to use for stenciled drawing, as an alternative to creating an image, drawing a pattern into the image, then using that in setStencilImage().
@@ -3819,6 +3961,7 @@ function playdate.graphics.setStencilPattern(pattern) end
 ---@param row6 any
 ---@param row7 any
 ---@param row8 any
+---@return nil
 function playdate.graphics.setStencilPattern(row1, row2, row3, row4, row5, row6, row7, row8) end
 
 --- Sets the stencil to a dither pattern specified by level and optional ditherType (defaults to playdate.graphics.image.kDitherTypeBayer8x8).
@@ -3826,11 +3969,13 @@ function playdate.graphics.setStencilPattern(row1, row2, row3, row4, row5, row6,
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern-dither
 ---@param level any
 ---@param ditherType integer
+---@return nil
 function playdate.graphics.setStencilPattern(level, ditherType) end
 
 --- Clears the stencil buffer.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearStencil
+---@return nil
 function playdate.graphics.clearStencil() end
 
 --- *Deprecated.*
@@ -3838,6 +3983,7 @@ function playdate.graphics.clearStencil() end
 --- Clears the stencil buffer.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearStencilImage
+---@return nil
 function playdate.graphics.clearStencilImage() end
 
 --- Sets the current drawing mode for images.
@@ -3861,6 +4007,7 @@ function playdate.graphics.clearStencilImage() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setImageDrawMode
 ---@param mode any
+---@return nil
 function playdate.graphics.setImageDrawMode(mode) end
 
 --- Gets the current drawing mode for images.
@@ -3873,6 +4020,7 @@ function playdate.graphics.getImageDrawMode() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineWidth
 ---@param width integer
+---@return nil
 function playdate.graphics.setLineWidth(width) end
 
 --- Gets the width of the line for drawLine, drawRect, drawPolygon, and drawArc when a playdate.geometry.arc is passed as the argument.
@@ -3891,6 +4039,7 @@ function playdate.graphics.getLineWidth() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStrokeLocation
 ---@param location any
+---@return nil
 function playdate.graphics.setStrokeLocation(location) end
 
 --- Gets stroke position relative to the rectangle passed into drawRect.
@@ -3913,11 +4062,13 @@ function playdate.graphics.getStrokeLocation() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.lockFocus
 ---@param image playdate.graphics.image
+---@return nil
 function playdate.graphics.lockFocus(image) end
 
 --- After calling unlockFocus(), drawing is routed to the frame buffer.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.unlockFocus
+---@return nil
 function playdate.graphics.unlockFocus() end
 
 --- Creates a new animation object.
@@ -3949,6 +4100,7 @@ function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
 ---@param x integer
 ---@param y integer
 ---@param flip integer|string
+---@return nil
 function playdate.graphics.animation.loop:draw(x, y, flip) end
 
 --- Returns a playdate.graphics.image from the caller’s imageTable if it exists. The image returned will be at the imageTable’s index that matches the caller’s frame.
@@ -3967,6 +4119,7 @@ function playdate.graphics.animation.loop:isValid() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.setImageTable
 ---@param imageTable any
+---@return nil
 function playdate.graphics.animation.loop:setImageTable(imageTable) end
 
 --- Animates between two number or playdate.geometry.point values.
@@ -4057,6 +4210,7 @@ function playdate.graphics.animator:progress() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.reset
 ---@param duration any
+---@return nil
 function playdate.graphics.animator:reset(duration) end
 
 --- Returns true if the animation is completed. Only returns true if this function or currentValue() has been called since the animation ended in order to allow animations to fully finish before true is returned.
@@ -4142,6 +4296,7 @@ function playdate.graphics.animation.blinker:remove() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDrawOffset
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.graphics.setDrawOffset(x, y) end
 
 --- getDrawOffset() returns multiple values (x, y) giving the current draw offset.
@@ -4374,6 +4529,7 @@ function playdate.graphics.sprite.spriteWithText(text, maxWidth, maxHeight, back
 --- Be careful not confuse `sprite.update()` with `sprite:update()`: the former updates all sprites; the latter updates just the sprite being invoked.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.update
+---@return nil
 function playdate.graphics.sprite.update() end
 
 --- Sets the sprite’s image to image, which should be an instance of playdate.graphics.image. The .flip_ argument is optional; see playdate.graphics.image:draw() for valid values. Optional scale arguments are also accepted. Unless disabled with playdate.graphics.sprite:setRedrawOnImageChange(), the sprite is automatically marked for redraw if the image isn’t the previous image.
@@ -4383,6 +4539,7 @@ function playdate.graphics.sprite.update() end
 ---@param flip integer|string
 ---@param scale integer
 ---@param yscale integer
+---@return nil
 function playdate.graphics.sprite:setImage(image, flip, scale, yscale) end
 
 --- Returns the playdate.graphics.image object that was set with setImage().
@@ -4394,23 +4551,27 @@ function playdate.graphics.sprite:getImage() end
 --- Adds the given sprite to the display list, so that it is drawn in the current scene.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.add
+---@return nil
 function playdate.graphics.sprite:add() end
 
 --- Adds the given sprite to the display list, so that it is drawn in the current scene.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addSprite
 ---@param sprite playdate.graphics.sprite
+---@return nil
 function playdate.graphics.sprite.addSprite(sprite) end
 
 --- Removes the given sprite from the display list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.remove
+---@return nil
 function playdate.graphics.sprite:remove() end
 
 --- Removes the given sprite from the display list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.removeSprite
 ---@param sprite playdate.graphics.sprite
+---@return nil
 function playdate.graphics.sprite.removeSprite(sprite) end
 
 --- Moves the sprite and resets the bounds based on the image dimensions and center.
@@ -4420,6 +4581,7 @@ function playdate.graphics.sprite.removeSprite(sprite) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveTo
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.graphics.sprite:moveTo(x, y) end
 
 --- Returns the sprite’s current x, y position as multiple values (x, y).
@@ -4436,12 +4598,14 @@ function playdate.graphics.sprite:getPosition() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveBy
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.graphics.sprite:moveBy(x, y) end
 
 --- Sets the Z-index of the given sprite. Sprites with higher Z-indexes are drawn on top of those with lower Z-indexes. Valid values for z are in the range (-32768, 32767).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setZIndex
 ---@param z integer
+---@return nil
 function playdate.graphics.sprite:setZIndex(z) end
 
 --- Returns the Z-index of the given sprite.
@@ -4454,6 +4618,7 @@ function playdate.graphics.sprite:getZIndex() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setVisible
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite:setVisible(flag) end
 
 --- Sprites that aren’t visible don’t get their draw() method called.
@@ -4467,6 +4632,7 @@ function playdate.graphics.sprite:isVisible() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCenter
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.graphics.sprite:setCenter(x, y) end
 
 --- Returns multiple values (x, y) representing the sprite’s drawing center as a fraction (ranging from 0.0 to 1.0) of the height and width.
@@ -4487,6 +4653,7 @@ function playdate.graphics.sprite:getCenterPoint() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setSize
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.sprite:setSize(width, height) end
 
 --- Returns multiple values (width, height), the current size of the sprite.
@@ -4501,6 +4668,7 @@ function playdate.graphics.sprite:getSize() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setScale
 ---@param scale integer
 ---@param yScale integer
+---@return nil
 function playdate.graphics.sprite:setScale(scale, yScale) end
 
 --- Returns multiple values (xScale, yScale), the current scaling of the sprite.
@@ -4516,6 +4684,7 @@ function playdate.graphics.sprite:getScale() end
 ---@param angle number
 ---@param scale integer
 ---@param yScale integer
+---@return nil
 function playdate.graphics.sprite:setRotation(angle, scale, yScale) end
 
 --- Returns the current rotation of the sprite.
@@ -4534,6 +4703,7 @@ function playdate.graphics.sprite:copy() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setUpdatesEnabled
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite:setUpdatesEnabled(flag) end
 
 --- The sprite’s updatesEnabled flag (defaults to true) determines whether a sprite’s update() method will be called. By default, a sprite’s update method does nothing; however, you may choose to have your sprite do something on every frame by implementing an update method on your sprite instance, or implementing it in your sprite subclass.
@@ -4546,6 +4716,7 @@ function playdate.graphics.sprite:updatesEnabled() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setTag
 ---@param tag any
+---@return nil
 function playdate.graphics.sprite:setTag(tag) end
 
 --- Returns the sprite’s tag, an integer value.
@@ -4558,6 +4729,7 @@ function playdate.graphics.sprite:getTag() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageDrawMode
 ---@param mode any
+---@return nil
 function playdate.graphics.sprite:setImageDrawMode(mode) end
 
 --- Flips the bitmap. See playdate.graphics.image:draw() for valid flip values.
@@ -4569,6 +4741,7 @@ function playdate.graphics.sprite:setImageDrawMode(mode) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageFlip
 ---@param flip integer|string
 ---@param flipCollideRect any
+---@return nil
 function playdate.graphics.sprite:setImageFlip(flip, flipCollideRect) end
 
 --- Returns one of the values listed at playdate.graphics.image:draw().
@@ -4583,6 +4756,7 @@ function playdate.graphics.sprite:getImageFlip() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setIgnoresDrawOffset
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite:setIgnoresDrawOffset(flag) end
 
 --- setBounds() positions and sizes the sprite, used for drawing and for calculating dirty rects. upper-left-x and upper-left-y are relative to the overall display coordinate system. (If an image is attached to the sprite, the size will be defined by that image, and not by the width and height parameters passed in to setBounds().)
@@ -4594,12 +4768,14 @@ function playdate.graphics.sprite:setIgnoresDrawOffset(flag) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.sprite:setBounds(x, y, width, height) end
 
 --- setBounds(rect) sets the bounds of the sprite with a playdate.geometry.rect object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setBounds-rect
 ---@param rect playdate.geometry.rect
+---@return nil
 function playdate.graphics.sprite:setBounds(rect) end
 
 --- getBounds() returns multiple values (x, y, width, height).
@@ -4623,6 +4799,7 @@ function playdate.graphics.sprite:getBoundsRect() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setOpaque
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite:setOpaque(flag) end
 
 --- Marking a sprite opaque tells the sprite system that it doesn’t need to draw anything underneath the sprite, since it will be overdrawn anyway. If you set an image without a mask/alpha channel on the sprite, it automatically sets the opaque flag.
@@ -4643,6 +4820,7 @@ function playdate.graphics.sprite:isOpaque() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback
 ---@param drawCallback any
+---@return nil
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -4650,12 +4828,14 @@ function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 --- Marks the background sprite dirty, forcing the drawing callback to be run when playdate.graphics.sprite.update() is called.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.redrawBackground
+---@return nil
 function playdate.graphics.sprite.redrawBackground() end
 
 --- Sets the sprite’s contents to the given tilemap. Useful if you want to automate drawing of your tilemap, especially if interleaved by depth with other sprites being drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setTilemap
 ---@param tilemap any
+---@return nil
 function playdate.graphics.sprite:setTilemap(tilemap) end
 
 --- You must import *CoreLibs/sprites* to use the `setAnimator` method.
@@ -4672,11 +4852,13 @@ function playdate.graphics.sprite:setTilemap(tilemap) end
 ---@param animator any
 ---@param moveWithCollisions any
 ---@param removeOnCollision any
+---@return nil
 function playdate.graphics.sprite:setAnimator(animator, moveWithCollisions, removeOnCollision) end
 
 --- Removes a playdate.graphics.animator assigned to the sprite
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeAnimator
+---@return nil
 function playdate.graphics.sprite:removeAnimator() end
 
 --- Sets the clipping rectangle for the sprite, using separate parameters or a playdate.geometry.rect object. Only areas within the rect will be drawn.
@@ -4686,17 +4868,20 @@ function playdate.graphics.sprite:removeAnimator() end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.sprite:setClipRect(x, y, width, height) end
 
 --- Sets the clipping rectangle for the sprite, using separate parameters or a playdate.geometry.rect object. Only areas within the rect will be drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setClipRect-rect
 ---@param rect playdate.geometry.rect
+---@return nil
 function playdate.graphics.sprite:setClipRect(rect) end
 
 --- Clears the sprite’s current clipping rectangle.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearClipRect
+---@return nil
 function playdate.graphics.sprite:clearClipRect() end
 
 --- Sets the clip rect for sprites in the given z-index range.
@@ -4708,6 +4893,7 @@ function playdate.graphics.sprite:clearClipRect() end
 ---@param height integer
 ---@param startz any
 ---@param endz any
+---@return nil
 function playdate.graphics.sprite.setClipRectsInRange(x, y, width, height, startz, endz) end
 
 --- Sets the clip rect for sprites in the given z-index range.
@@ -4716,6 +4902,7 @@ function playdate.graphics.sprite.setClipRectsInRange(x, y, width, height, start
 ---@param rect playdate.geometry.rect
 ---@param startz any
 ---@param endz any
+---@return nil
 function playdate.graphics.sprite.setClipRectsInRange(rect, startz, endz) end
 
 --- Clears sprite clip rects in the given z-index range.
@@ -4723,6 +4910,7 @@ function playdate.graphics.sprite.setClipRectsInRange(rect, startz, endz) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.clearClipRectsInRange
 ---@param startz any
 ---@param endz any
+---@return nil
 function playdate.graphics.sprite.clearClipRectsInRange(startz, endz) end
 
 --- Specifies a stencil image to be set on the frame buffer before the sprite is drawn. If tile is set, the the stencil will be tiled; in this case, the image width must be a multiple of 32 pixels.
@@ -4730,12 +4918,14 @@ function playdate.graphics.sprite.clearClipRectsInRange(startz, endz) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilImage
 ---@param stencil any
 ---@param tile any
+---@return nil
 function playdate.graphics.sprite:setStencilImage(stencil, tile) end
 
 --- Sets the sprite’s stencil to the given pattern, tiled across the screen.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern
 ---@param pattern any
+---@return nil
 function playdate.graphics.sprite:setStencilPattern(pattern) end
 
 --- Sets the sprite’s stencil to a dither pattern specified by level and optional ditherType (defaults to playdate.graphics.image.kDitherTypeBayer8x8).
@@ -4743,17 +4933,20 @@ function playdate.graphics.sprite:setStencilPattern(pattern) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern-dither
 ---@param level any
 ---@param ditherType integer
+---@return nil
 function playdate.graphics.sprite:setStencilPattern(level, ditherType) end
 
 --- Clears the sprite’s stencil.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearStencil
+---@return nil
 function playdate.graphics.sprite:clearStencil() end
 
 --- If set to true, causes all sprites to draw each frame, whether or not they have been marked dirty. This may speed up the performance of your game if the system’s dirty rect tracking is taking up too much time - for example if there are many sprites moving around on screen at once.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setAlwaysRedraw
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite.setAlwaysRedraw(flag) end
 
 --- If set to true, causes all sprites to draw each frame, whether or not they have been marked dirty. This may speed up the performance of your game if the system’s dirty rect tracking is taking up too much time - for example if there are many sprites moving around on screen at once.
@@ -4765,6 +4958,7 @@ function playdate.graphics.sprite.getAlwaysRedraw() end
 --- Marks the rect defined by the sprite’s current bounds as needing a redraw.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.markDirty
+---@return nil
 function playdate.graphics.sprite:markDirty() end
 
 --- Marks the given rectangle (in screen coordinates) as needing a redraw. playdate.graphics drawing functions now call this automatically, adding their drawn areas to the sprite’s dirty list, so there’s likely no need to call this manually any more. This behavior may change in the future, though.
@@ -4774,12 +4968,14 @@ function playdate.graphics.sprite:markDirty() end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.sprite.addDirtyRect(x, y, width, height) end
 
 --- By default, sprites are automatically marked for redraw when their image is changed via playdate.graphics.sprite:setImage(). If disabled by calling this function with a false argument, playdate.graphics.sprite.addDirtyRect() can be used to mark the (potentially smaller) area of the screen that needs to be redrawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setRedrawsOnImageChange
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite:setRedrawsOnImageChange(flag) end
 
 --- Returns an array of all sprites in the display list.
@@ -4794,6 +4990,7 @@ function playdate.graphics.sprite.getAllSprites() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.performOnAllSprites
 ---@param f any
+---@return nil
 function playdate.graphics.sprite.performOnAllSprites(f) end
 
 --- Returns the number of sprites in the display list.
@@ -4805,12 +5002,14 @@ function playdate.graphics.sprite.spriteCount() end
 --- Removes all sprites from the global sprite list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.removeAll
+---@return nil
 function playdate.graphics.sprite.removeAll() end
 
 --- Removes all sprites in spriteArray from the global sprite list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeSprites
 ---@param spriteArray any
+---@return nil
 function playdate.graphics.sprite.removeSprites(spriteArray) end
 
 --- If the sprite doesn’t have an image, the sprite’s draw function is called as needed to update the display. The rect passed in is the current dirty rect being updated by the display list.
@@ -4820,6 +5019,7 @@ function playdate.graphics.sprite.removeSprites(spriteArray) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.sprite:draw(x, y, width, height) end
 
 --- Called by playdate.graphics.sprite.update() (note the syntactic difference between the period and the colon) before sprites are drawn. Implementing :update() gives you the opportunity to perform some code upon every frame.
@@ -4829,6 +5029,7 @@ function playdate.graphics.sprite:draw(x, y, width, height) end
 --- Be careful not confuse `sprite:update()` with `sprite.update()`: the latter updates all sprites; the former updates just the sprite being invoked.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.update
+---@return nil
 function playdate.graphics.sprite:update() end
 
 --- setCollideRect() marks the area of the sprite, relative to its own internal coordinate system, to be checked for collisions with other sprites' collide rects. Note that the coordinate space is relative to the top-left corner of the bounds, regardless of where the sprite’s center/anchor is located.
@@ -4844,6 +5045,7 @@ function playdate.graphics.sprite:update() end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.graphics.sprite:setCollideRect(x, y, width, height) end
 
 --- setCollideRect() marks the area of the sprite, relative to its own internal coordinate system, to be checked for collisions with other sprites' collide rects. Note that the coordinate space is relative to the top-left corner of the bounds, regardless of where the sprite’s center/anchor is located.
@@ -4856,6 +5058,7 @@ function playdate.graphics.sprite:setCollideRect(x, y, width, height) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollideRect
 ---@param rect playdate.geometry.rect
+---@return nil
 function playdate.graphics.sprite:setCollideRect(rect) end
 
 --- Returns the sprite’s collide rect set with setCollideRect(). Return value is a playdate.geometry.rect.
@@ -4880,6 +5083,7 @@ function playdate.graphics.sprite:getCollideBounds() end
 --- Clears the sprite’s collide rect set with setCollideRect().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearCollideRect
+---@return nil
 function playdate.graphics.sprite:clearCollideRect() end
 
 --- Returns an array of sprites that have collide rects that are currently overlapping the calling sprite’s collide rect, taking the sprites' groups and collides-with masks into consideration.
@@ -4907,6 +5111,7 @@ function playdate.graphics.sprite:alphaCollision(anotherSprite) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollisionsEnabled
 ---@param flag boolean
+---@return nil
 function playdate.graphics.sprite:setCollisionsEnabled(flag) end
 
 --- The sprite’s collisionsEnabled flag (defaults to true) can be set to false in order to temporarily keep a sprite from colliding with any other sprite.
@@ -4923,6 +5128,7 @@ function playdate.graphics.sprite:collisionsEnabled() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroups
 ---@param groups any
+---@return nil
 function playdate.graphics.sprite:setGroups(groups) end
 
 --- Pass in a group number or an array of group numbers to specify which groups this sprite can collide with. Groups are numbered 1 through 32. Use setGroups() to specify which groups a sprite belongs to.
@@ -4931,6 +5137,7 @@ function playdate.graphics.sprite:setGroups(groups) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroups
 ---@param groups any
+---@return nil
 function playdate.graphics.sprite:setCollidesWithGroups(groups) end
 
 --- setGroupMask() sets the sprite’s group bitmask, which is 32 bits. In conjunction with the setCollidesWithGroupsMask() method, this controls which sprites can collide with each other.
@@ -4939,6 +5146,7 @@ function playdate.graphics.sprite:setCollidesWithGroups(groups) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroupMask
 ---@param mask any
+---@return nil
 function playdate.graphics.sprite:setGroupMask(mask) end
 
 --- getGroupMask() returns the integer value of the sprite’s group bitmask.
@@ -4953,6 +5161,7 @@ function playdate.graphics.sprite:getGroupMask() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroupsMask
 ---@param mask any
+---@return nil
 function playdate.graphics.sprite:setCollidesWithGroupsMask(mask) end
 
 --- Returns the integer value of the sprite’s collision bitmask.
@@ -4964,11 +5173,13 @@ function playdate.graphics.sprite:getCollidesWithGroupsMask() end
 --- Resets the sprite’s group mask to 0x00000000.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.resetGroupMask
+---@return nil
 function playdate.graphics.sprite:resetGroupMask() end
 
 --- Resets the sprite’s collides-with-groups mask to 0x00000000.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.resetCollidesWithGroupsMask
+---@return nil
 function playdate.graphics.sprite:resetCollidesWithGroupsMask() end
 
 --- Moves the sprite towards goalX, goalY taking collisions into account, which means the sprite’s final position may not be the same as goalX, goalY.
@@ -5133,6 +5344,7 @@ function playdate.graphics.sprite.querySpriteInfoAlongLine(lineSegment) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addEmptyCollisionSprite
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.graphics.sprite.addEmptyCollisionSprite(r) end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -5144,6 +5356,7 @@ function playdate.graphics.sprite.addEmptyCollisionSprite(r) end
 ---@param y integer
 ---@param w any
 ---@param h any
+---@return nil
 function playdate.graphics.sprite.addEmptyCollisionSprite(x, y, w, h) end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -5165,6 +5378,7 @@ function playdate.graphics.sprite.addEmptyCollisionSprite(x, y, w, h) end
 ---@param emptyIDs any
 ---@param xOffset integer
 ---@param yOffset any
+---@return nil
 function playdate.graphics.sprite.addWallSprites(tilemap, emptyIDs, xOffset, yOffset) end
 
 --- Returns a playdate.graphics.font object from the data at path. If there is no file at path, the function returns nil.
@@ -5196,6 +5410,7 @@ function playdate.graphics.font.newFamily(fontPaths) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFont
 ---@param font any
 ---@param variant any
+---@return nil
 function playdate.graphics.setFont(font, variant) end
 
 --- Returns the current font, a playdate.graphics.font.
@@ -5211,6 +5426,7 @@ function playdate.graphics.getFont(variant) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontFamily
 ---@param fontFamily any
+---@return nil
 function playdate.graphics.setFontFamily(fontFamily) end
 
 --- Sets the global font tracking (spacing between letters) in pixels. This value is added to the font’s own tracking value as specified in its .fnt file.
@@ -5219,6 +5435,7 @@ function playdate.graphics.setFontFamily(fontFamily) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontTracking
 ---@param pixels any
+---@return nil
 function playdate.graphics.setFontTracking(pixels) end
 
 --- Gets the global font tracking (spacing between letters) in pixels.
@@ -5348,6 +5565,7 @@ function playdate.graphics.font:getGlyph(character) end
 ---@param y integer
 ---@param fontFamily any
 ---@param leadingAdjustment any
+---@return nil
 function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) end
 
 --- Draws the text found by doing a lookup of key in the .strings file corresponding to the current system language, or language, if specified.
@@ -5365,6 +5583,7 @@ function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) e
 ---@param y integer
 ---@param language any
 ---@param leadingAdjustment any
+---@return nil
 function playdate.graphics.drawLocalizedText(key, x, y, language, leadingAdjustment) end
 
 --- Returns a string found by doing a lookup of key in the .strings file corresponding to the current system language, or language, if specified.
@@ -5408,6 +5627,7 @@ function playdate.graphics.getTextSize(str, fontFamily, leadingAdjustment) end
 ---@param y integer
 ---@param alignment any
 ---@param leadingAdjustment any
+---@return nil
 function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustment) end
 
 --- You must import *CoreLibs/graphics* to use these functions.
@@ -5438,6 +5658,7 @@ function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustm
 ---@param truncationString any
 ---@param alignment any
 ---@param font any
+---@return nil
 function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font) end
 
 --- You must import *CoreLibs/graphics* to use these functions.
@@ -5465,6 +5686,7 @@ function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdju
 ---@param truncationString any
 ---@param alignment any
 ---@param font any
+---@return nil
 function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font) end
 
 --- You must import *CoreLibs/graphics* to use this function.
@@ -5478,6 +5700,7 @@ function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncat
 ---@param alignment any
 ---@param language any
 ---@param leadingAdjustment any
+---@return nil
 function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, language, leadingAdjustment) end
 
 --- You must import *CoreLibs/graphics* to use these functions.
@@ -5495,6 +5718,7 @@ function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, langu
 ---@param alignment any
 ---@param font any
 ---@param language any
+---@return nil
 function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font, language) end
 
 --- You must import *CoreLibs/graphics* to use these functions.
@@ -5509,6 +5733,7 @@ function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, le
 ---@param alignment any
 ---@param font any
 ---@param language any
+---@return nil
 function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font, language) end
 
 --- You must import *CoreLibs/graphics* to use this function.
@@ -5587,6 +5812,7 @@ function playdate.graphics.video:getFrameRate() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.setContext
 ---@param image playdate.graphics.image
+---@return nil
 function playdate.graphics.video:setContext(image) end
 
 --- Returns the image into which the video will be rendered, creating it if needed.
@@ -5598,12 +5824,14 @@ function playdate.graphics.video:getContext() end
 --- Sets the display framebuffer as the video’s render context.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.useScreenContext
+---@return nil
 function playdate.graphics.video:useScreenContext() end
 
 --- Draws the given frame into the video’s render context.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.renderFrame
 ---@param number any
+---@return nil
 function playdate.graphics.video:renderFrame(number) end
 
 --- Takes the JSON encoded string and converts it to a Lua table.
@@ -5651,6 +5879,7 @@ function json.encodePretty(table) end
 ---@param file any
 ---@param pretty boolean
 ---@param table any
+---@return nil
 function json.encodeToFile(file, pretty, table) end
 
 --- Encodes the Lua table table to JSON and writes it to the file at path. If pretty is true, the output is formatted to make it human-readable. Otherwise, no additional whitespace is added.
@@ -5661,6 +5890,7 @@ function json.encodeToFile(file, pretty, table) end
 ---@param path string
 ---@param pretty boolean
 ---@param table any
+---@return nil
 function json.encodeToFile(path, pretty, table) end
 
 --- Opens the keyboard, taking over input focus.
@@ -5669,11 +5899,13 @@ function json.encodeToFile(path, pretty, table) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.show
 ---@param text any
+---@return nil
 function playdate.keyboard.show(text) end
 
 --- Hides the keyboard.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-keyboard.hide
+---@return nil
 function playdate.keyboard.hide() end
 
 --- behavior should be one of the constants playdate.keyboard.kCapitalizationNormal, playdate.keyboard.kCapitalizationWords, or playdate.keyboard.kCapitalizationSentences.
@@ -5682,21 +5914,25 @@ function playdate.keyboard.hide() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.setCapitalizationBehavior
 ---@param behavior any
+---@return nil
 function playdate.keyboard.setCapitalizationBehavior(behavior) end
 
 --- Returns the current x location of the left edge of the keyboard.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.left
+---@return nil
 function playdate.keyboard.left() end
 
 --- Returns the pixel width of the keyboard.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.width
+---@return nil
 function playdate.keyboard.width() end
 
 --- Returns true if the keyboard is currently being shown.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.isVisible
+---@return nil
 function playdate.keyboard.isVisible() end
 
 --- If set, this function will be called when the keyboard is finished the opening animation.
@@ -5971,16 +6207,19 @@ function playdate.pathfinder.node:setXY(x, y) end
 --- * screws: There is 5V being applied to the corner screws (via the dock, for example)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getPowerStatus
+---@return table|PowerStatus status_table
 function playdate.getPowerStatus() end
 
 --- Returns a value from 0-100 denoting the current level of battery charge. 0 = empty; 100 = full.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getBatteryPercentage
+---@return integer percent
 function playdate.getBatteryPercentage() end
 
 --- Returns the battery’s current voltage level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getBatteryVoltage
+---@return number volts
 function playdate.getBatteryVoltage() end
 
 --- Writes an image to a PNG file at the path specified. Only available on the Simulator.
@@ -5990,22 +6229,26 @@ function playdate.getBatteryVoltage() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-simulator.writeToFile
 ---@param image playdate.graphics.image
 ---@param path string
+---@return nil
 function playdate.simulator.writeToFile(image, path) end
 
 --- Quits the Playdate Simulator app.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-simulator.exit
+---@return nil
 function playdate.simulator.exit() end
 
 --- Returns the contents of the URL url as a string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-simulator.getURL
 ---@param url any
+---@return string url_contents
 function playdate.simulator.getURL(url) end
 
 --- Clears the simulator console.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-clearConsole
+---@return nil
 function playdate.clearConsole() end
 
 --- Sets the color of the playdate.debugDraw() overlay image.
@@ -6015,6 +6258,7 @@ function playdate.clearConsole() end
 ---@param g any
 ---@param b any
 ---@param a any
+---@return nil
 function playdate.setDebugDrawColor(r, g, b, a) end
 
 --- Lets you act on keyboard keypresses when running in the Simulator ONLY. These can be useful for adding debugging functions that can be enabled via your keyboard.
@@ -6029,12 +6273,14 @@ function playdate.setDebugDrawColor(r, g, b, a) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-keyPressed
 ---@param key any
+---@return nil
 function playdate.keyPressed(key) end
 
 --- Lets you act on keyboard key releases when running in the Simulator ONLY. These can be useful for adding debugging functions that can be enabled via your keyboard.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-keyReleased
 ---@param key any
+---@return nil
 function playdate.keyReleased(key) end
 
 --- Called immediately after playdate.update(), any drawing performed during this callback is overlaid on the display in 50% transparent red (or another color selected with playdate.setDebugDrawColor()).
@@ -6042,11 +6288,13 @@ function playdate.keyReleased(key) end
 --- White pixels are drawn in the debugDrawColor. Black pixels are transparent.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-debugDraw
+---@return nil
 function playdate.debugDraw() end
 
 --- Returns the sample rate of the audio system (44100). The sample rate is determined by the hardware, and is not currently mutable.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getSampleRate
+---@return integer sampleRate
 function playdate.sound.getSampleRate() end
 
 --- Returns a new playdate.sound.sampleplayer object, with the sound data loaded in memory. If the sample can’t be loaded, the function returns nil and a second value containing the error.
@@ -6452,6 +6700,7 @@ function playdate.sound.channel:setVolumeMod(signal) end
 --- Returns a list of all sources currently playing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.playingSources
+---@return playdate.sound.source[] sources
 function playdate.sound.playingSources() end
 
 --- Returns a new synth object to play a waveform. See playdate.sound.synth:setWaveform for waveform types.
@@ -6808,12 +7057,14 @@ function playdate.sound.envelope:setGlobal(flag) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.addEffect
 ---@param effect any
+---@return nil
 function playdate.sound.addEffect(effect) end
 
 --- Removes the given effect from the default sound channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.removeEffect
 ---@param effect any
+---@return nil
 function playdate.sound.removeEffect(effect) end
 
 --- Creates a new bitcrusher filter.
@@ -7414,6 +7665,8 @@ function playdate.sound.micinput.getSource() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getHeadphoneState
 ---@param changeCallback any
+---@return boolean headphone
+---@return boolean mic
 function playdate.sound.getHeadphoneState(changeCallback) end
 
 --- Forces sound to be played on the headphones or on the speaker, regardless of whether headphones are plugged in or not. (With the caveat that it is not actually possible to play on the headphones if they’re not plugged in.) This function has no effect in the Simulator.
@@ -7423,6 +7676,7 @@ function playdate.sound.getHeadphoneState(changeCallback) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.setOutputsActive
 ---@param headphones any
 ---@param speaker any
+---@return nil
 function playdate.sound.setOutputsActive(headphones, speaker) end
 
 --- Returns the current time, in seconds, as measured by the audio device. The audio device uses its own time base in order to provide accurate timing.
@@ -7430,11 +7684,13 @@ function playdate.sound.setOutputsActive(headphones, speaker) end
 --- Equivalent to playdate->sound->getCurrentTime() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getCurrentTime
+---@return number seconds
 function playdate.sound.getCurrentTime() end
 
 --- Resets the audio output device time counter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.resetTime
+---@return nil
 function playdate.sound.resetTime() end
 
 --- Generates a random string of uppercase letters
@@ -7933,6 +8189,7 @@ function playdate.ui.gridview:selectPreviousColumn(wrapSelection, scrollToSelect
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-setCollectsGarbage
 ---@param flag boolean
+---@return nil
 function playdate.setCollectsGarbage(flag) end
 
 --- Force the Lua garbage collector to run for at least ms milliseconds every frame, so that garbage doesn’t pile up and cause the game to run out of memory and stall in emergency garbage collection. The default value is 1 millisecond.
@@ -7941,6 +8198,7 @@ function playdate.setCollectsGarbage(flag) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-setMinimumGCTime
 ---@param ms any
+---@return nil
 function playdate.setMinimumGCTime(ms) end
 
 --- When the amount of used memory is less than min (scaled from 0-1, as a percentage of total system memory), the system will only run the collector for the minimum GC time, as set by playdate.setGCScaling(), every frame. If the used memory is more than max, the system will spend all free time running the collector. Between the two, the time used by the garbage collector is scaled proportionally.
@@ -7952,6 +8210,7 @@ function playdate.setMinimumGCTime(ms) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-setGCScaling
 ---@param min any
 ---@param max any
+---@return nil
 function playdate.setGCScaling(min, max) end
 
 --- End of LuaCATS stubs.
