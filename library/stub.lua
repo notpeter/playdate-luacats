@@ -15,6 +15,16 @@ local playdate.file = {}
 ---@class playdate.file.file
 local playdate.file.file = {}
 
+---@class playdate.frameTimer
+---@field delay integer
+---@field discardOnCompletion boolean
+---@field duration integer
+---@field frame integer
+---@field repeats boolean
+---@field reverses boolean
+---@field timerEndedArgs any[]
+local playdate.frameTimer = {}
+
 ---@class playdate.geometry
 local playdate.geometry = {}
 
@@ -158,9 +168,75 @@ local playdate.menu = {}
 ---@field value integer|boolean|string
 local playdate.menu.item = {}
 
----@class playdate.ui.crankIndicator
----@field clockwise boolean
-local playdate.ui.crankIndicator = {}
+---@class playdate.pathfinder
+local playdate.pathfinder = {}
+
+---@class playdate.pathfinder.graph
+local playdate.pathfinder.graph = {}
+
+---@class playdate.pathfinder.node
+local playdate.pathfinder.node = {}
+
+---@class playdate.simulator
+local playdate.simulator = {}
+
+---@class playdate.sound.fileplayer: playdate.sound.source
+local playdate.sound.fileplayer: playdate.sound.source = {}
+
+---@class playdate.sound.source
+local playdate.sound.source = {}
+
+---@class playdate.sound.sample
+local playdate.sound.sample = {}
+
+---@class playdate.sound.sampleplayer: playdate.sound.source
+local playdate.sound.sampleplayer: playdate.sound.source = {}
+
+---@class playdate.sound.synth: playdate.sound.source
+local playdate.sound.synth: playdate.sound.source = {}
+
+---@class playdate.sound.instrument: playdate.sound.source
+local playdate.sound.instrument: playdate.sound.source = {}
+
+---@class playdate.sound.effect
+local playdate.sound.effect = {}
+
+---@class playdate.sound.bitcrusher: playdate.sound.effect
+local playdate.sound.bitcrusher: playdate.sound.effect = {}
+
+---@class playdate.sound.twopolefilter: playdate.sound.effect
+local playdate.sound.twopolefilter: playdate.sound.effect = {}
+
+---@class playdate.sound.onepolefilter: playdate.sound.effect
+local playdate.sound.onepolefilter: playdate.sound.effect = {}
+
+---@class playdate.sound.ringmod: playdate.sound.effect
+local playdate.sound.ringmod: playdate.sound.effect = {}
+
+---@class playdate.sound.overdrive: playdate.sound.effect
+local playdate.sound.overdrive: playdate.sound.effect = {}
+
+---@class playdate.sound.delayline: playdate.sound.effect
+local playdate.sound.delayline: playdate.sound.effect = {}
+
+---@class playdate.sound.delaylinetap: playdate.sound.source
+local playdate.sound.delaylinetap: playdate.sound.source = {}
+
+---@class playdate.sound.track
+local playdate.sound.track = {}
+
+---@class playdate.sound.instrument
+local playdate.sound.instrument = {}
+
+---@class playdate.sound.conrolsignal
+---@field events ControlSignalEvent[]
+local playdate.sound.conrolsignal = {}
+
+---@class playdate.sound.micinput
+local playdate.sound.micinput = {}
+
+---@class playdate.string
+local playdate.string = {}
 
 ---@class playdate.systeminfo
 ---@field buildtime string
@@ -168,6 +244,32 @@ local playdate.ui.crankIndicator = {}
 ---@field pdxcompatversion integer
 ---@field pdxversion integer
 local playdate.systeminfo = {}
+
+---@class playdate.timer
+---@field currentTime integer
+---@field delay integer
+---@field discardOnCompletion boolean
+---@field duration integer
+---@field timeLeft integer
+---@field repeats boolean
+---@field reverses boolean
+---@field timerEndedArgs any[]
+local playdate.timer = {}
+
+---@class playdate.ui.crankIndicator
+---@field clockwise boolean
+local playdate.ui.crankIndicator = {}
+
+---@class playdate.ui.gridview
+---@field needsDisplay boolean
+---@field backgroundImage playdate.graphics.image|playdate.graphics.nineSlice
+---@field isScrolling boolean
+---@field scrollEasingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
+---@field easingAmplitude number|nil
+---@field easingPeriod number|nil
+---@field changeRowOnColumnWrap boolean
+---@field scrollCellsToCenter boolean
+local playdate.ui.gridview = {}
 
 ---@class CollisionData
 ---@field sprite playdtae.graphics.sprite
@@ -244,6 +346,26 @@ local SystemStats = {}
 ---@field minute integer
 ---@field second integer
 local ModTime = {}
+
+---@class SoundTrackNoteIn
+---@field step integer
+---@field note number|string
+---@field length integer
+---@field velocity number
+local SoundTrackNoteIn = {}
+
+---@class SoundTrackNoteOut
+---@field step integer
+---@field note number
+---@field length integer
+---@field velocity number
+local SoundTrackNoteOut = {}
+
+---@class ControlSignalEvent
+---@field step integer
+---@field value number
+---@field interpolate boolean|nil
+local ControlSignalEvent = {}
 
 --- Returns the first index of element in the given array-style table. If the table does not contain element, the function returns nil.
 ---
@@ -5980,6 +6102,7 @@ function playdate.math.lerp(min, max, t) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new
 ---@param nodeCount any
 ---@param coordinates any
+---@return playdate.pathfinder.graph
 function playdate.pathfinder.graph.new(nodeCount, coordinates) end
 
 --- Convenience function that returns a new playdate.pathfinder.graph object containing nodes for for each grid position, even if not connected to any other nodes. This allows for easier graph modification once the graph is generated. Weights for connections between nodes are set to 10 for horizontal and vertical connections and 14 for diagonal connections (if included), as this tends to produce nicer paths than using uniform weights. Nodes have their indexes set from 1 to width * height, and have their x, y values set appropriately for the node’s position.
@@ -5994,6 +6117,7 @@ function playdate.pathfinder.graph.new(nodeCount, coordinates) end
 ---@param height integer
 ---@param allowDiagonals any
 ---@param includedNodes any
+---@return playdate.pathfinder.graph
 function playdate.pathfinder.graph.new2DGrid(width, height, allowDiagonals, includedNodes) end
 
 --- Creates a new playdate.pathfinder.node and adds it to the graph.
@@ -6012,6 +6136,7 @@ function playdate.pathfinder.graph.new2DGrid(width, height, allowDiagonals, incl
 ---@param connectedNodes any
 ---@param weights any
 ---@param addReciprocalConnections any
+---@return nil
 function playdate.pathfinder.graph:addNewNode(id, x, y, connectedNodes, weights, addReciprocalConnections) end
 
 --- Creates count new nodes, adding them to the graph, and returns them in an array-style table. The new node’s id_s will be assigned values 1 through _count-1.
@@ -6020,6 +6145,7 @@ function playdate.pathfinder.graph:addNewNode(id, x, y, connectedNodes, weights,
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNodes
 ---@param count any
+---@return nil
 function playdate.pathfinder.graph:addNewNodes(count) end
 
 --- Adds an already-existing node to the graph. The node must have originally belonged to the same graph.
@@ -6034,23 +6160,27 @@ function playdate.pathfinder.graph:addNewNodes(count) end
 ---@param connectedNodes any
 ---@param weights any
 ---@param addReciprocalConnections any
+---@return nil
 function playdate.pathfinder.graph:addNode(node, connectedNodes, weights, addReciprocalConnections) end
 
 --- Adds an array of already-existing nodes to the graph.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNodes
 ---@param nodes any
+---@return nil
 function playdate.pathfinder.graph:addNodes(nodes) end
 
 --- Returns an array containing all nodes in the graph.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.allNodes
+---@return playdate.pathfinder.node[] nodes
 function playdate.pathfinder.graph:allNodes() end
 
 --- Removes node from the graph. Also removes all connections to and from the node.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNode
 ---@param node any
+---@return nil
 function playdate.pathfinder.graph:removeNode(node) end
 
 --- Returns the first node found with coordinates matching x, y, after removing it from the graph and removing all connections to and from the node.
@@ -6058,18 +6188,21 @@ function playdate.pathfinder.graph:removeNode(node) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNodeWithXY
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.pathfinder.graph:removeNodeWithXY(x, y) end
 
 --- Returns the first node found with a matching id, after removing it from the graph and removing all connections to and from the node.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNodeWithID
 ---@param id any
+---@return nil
 function playdate.pathfinder.graph:removeNodeWithID(id) end
 
 --- Returns the first node found in the graph with a matching id, or nil if no such node is found.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithID
 ---@param id any
+---@return playdate.pathfinder.node|nil node
 function playdate.pathfinder.graph:nodeWithID(id) end
 
 --- Returns the first node found in the graph with matching x and y values, or nil if no such node is found.
@@ -6077,12 +6210,14 @@ function playdate.pathfinder.graph:nodeWithID(id) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithXY
 ---@param x integer
 ---@param y integer
+---@return playdate.pathfinder.node|nil node
 function playdate.pathfinder.graph:nodeWithXY(x, y) end
 
 --- connections should be a table of array-style tables. The keys of the outer table should correspond to node IDs, while the inner array should be a series if connecting node ID and weight combinations that will be assigned to that node. For example, {[1]={2, 10, 3, 12}, [2]={1, 20}, [3]={1, 20, 2, 10}} will create a connection from node ID 1 to node ID 2 with a weight of 10, and a connection to node ID 3 with a weight of 12, and so on for the other entries.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-playdate.pathfinder.graph.addConnections
 ---@param connections any
+---@return nil
 function playdate.pathfinder.graph:addConnections(connections) end
 
 --- Adds a connection from the node with id fromNodeID to the node with id toNodeID with a weight value of weight. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available. If addReciprocalConnection is true, the reverse connection will also be added.
@@ -6092,11 +6227,13 @@ function playdate.pathfinder.graph:addConnections(connections) end
 ---@param toNodeID any
 ---@param weight any
 ---@param addReciprocalConnection any
+---@return nil
 function playdate.pathfinder.graph:addConnectionToNodeWithID(fromNodeID, toNodeID, weight, addReciprocalConnection) end
 
 --- Removes all connections from all nodes in the graph.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-playdate.pathfinder.graph.removeAllConnections
+---@return nil
 function playdate.pathfinder.graph:removeAllConnections() end
 
 --- Removes all connections from the matching node.
@@ -6106,6 +6243,7 @@ function playdate.pathfinder.graph:removeAllConnections() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-playdate.pathfinder.graph.removeAllConnectionsFromNodeWithID
 ---@param id any
 ---@param removeIncoming any
+---@return nil
 function playdate.pathfinder.graph:removeAllConnectionsFromNodeWithID(id, removeIncoming) end
 
 --- Returns an array of nodes representing the path from startNode to goalNode, or nil if no path can be found.
@@ -6118,6 +6256,7 @@ function playdate.pathfinder.graph:removeAllConnectionsFromNodeWithID(id, remove
 ---@param goalNode any
 ---@param heuristicFunction any
 ---@param findPathToGoalAdjacentNodes any
+---@return playdate.pathfinder.node[] nodes
 function playdate.pathfinder.graph:findPath(startNode, goalNode, heuristicFunction, findPathToGoalAdjacentNodes) end
 
 --- Works the same as findPath, but looks up nodes to find a path between using startNodeID and goalNodeID and returns a list of nodeIDs rather than the nodes themselves.
@@ -6127,6 +6266,7 @@ function playdate.pathfinder.graph:findPath(startNode, goalNode, heuristicFuncti
 ---@param goalNodeID any
 ---@param heuristicFunction any
 ---@param findPathToGoalAdjacentNodes any
+---@return integer[] node_ids
 function playdate.pathfinder.graph:findPathWithIDs(startNodeID, goalNodeID, heuristicFunction, findPathToGoalAdjacentNodes) end
 
 --- Sets the matching node’s x and y values.
@@ -6135,6 +6275,7 @@ function playdate.pathfinder.graph:findPathWithIDs(startNodeID, goalNodeID, heur
 ---@param id any
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.pathfinder.graph:setXYForNodeWithID(id, x, y) end
 
 --- Adds a new connection between nodes.
@@ -6301,17 +6442,20 @@ function playdate.sound.getSampleRate() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.sampleplayer.new
 ---@param path string
+---@return playdate.sound.sampleplayer
 function playdate.sound.sampleplayer.new(path) end
 
 --- Returns a new playdate.sound.sampleplayer object for playing the given sample.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.sampleplayer.new-1
 ---@param sample any
+---@return playdate.sound.sampleplayer
 function playdate.sound.sampleplayer.new(sample) end
 
 --- Returns a new playdate.sound.sampleplayer with the same sample, volume, and rate as the given sampleplayer.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.copy
+---@return playdate.sound.sampleplayer
 function playdate.sound.sampleplayer:copy() end
 
 --- Starts playing the sample. If repeatCount is greater than one, it loops the given number of times. If zero, it loops endlessly until it is stopped with playdate.sound.sampleplayer:stop(). If rate is set, the sample will be played at the given rate instead of the rate previous set with playdate.sound.sampleplayer.setRate().
@@ -6319,6 +6463,7 @@ function playdate.sound.sampleplayer:copy() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.play
 ---@param repeatCount any
 ---@param rate any
+---@return nil
 function playdate.sound.sampleplayer:play(repeatCount, rate) end
 
 --- Schedules the sound for playing at device time when. If vol is specified, the sample will be played at level vol (with optional separate right channel volume rightvol). If when is less than the current device time, the sample is played immediately. If rate is set, the sample will be played at the given rate instead of the rate previous set with playdate.sound.sampleplayer.setRate().
@@ -6330,6 +6475,7 @@ function playdate.sound.sampleplayer:play(repeatCount, rate) end
 ---@param vol any
 ---@param rightvol any
 ---@param rate any
+---@return nil
 function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 
 --- Sets the playback volume (0.0 - 1.0) for left and right channels. If the optional right argument is omitted, it is the same as left.
@@ -6337,11 +6483,14 @@ function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setVolume
 ---@param left any
 ---@param right any
+---@return nil
 function playdate.sound.sampleplayer:setVolume(left, right) end
 
 --- Returns the playback volume for the sampleplayer, a single value for mono sources or a pair of values (left, right) for stereo sources.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getVolume
+---@return number left_or_mono
+---@return number|nil right
 function playdate.sound.sampleplayer:getVolume() end
 
 --- Sets a function to be called every time the sample loops. The sample object is passed to this function as the first argument, and the optional arg argument is passed as the second.
@@ -6349,6 +6498,7 @@ function playdate.sound.sampleplayer:getVolume() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setLoopCallback
 ---@param callback any
 ---@param arg any
+---@return nil
 function playdate.sound.sampleplayer:setLoopCallback(callback, arg) end
 
 --- Sets the range of the sample to play. start and end are frame offsets from the beginning of the sample.
@@ -6356,22 +6506,26 @@ function playdate.sound.sampleplayer:setLoopCallback(callback, arg) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setPlayRange
 ---@param start any
 ---@param _end any
+---@return nil
 function playdate.sound.sampleplayer:setPlayRange(start, _end) end
 
 --- Pauses or resumes playback.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setPaused
 ---@param flag boolean
+---@return nil
 function playdate.sound.sampleplayer:setPaused(flag) end
 
 --- Returns a boolean indicating whether the sample is playing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.isPlaying
+---@return boolean
 function playdate.sound.sampleplayer:isPlaying() end
 
 --- Stops playing the sample.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.stop
+---@return nil
 function playdate.sound.sampleplayer:stop() end
 
 --- Sets a function to be called when playback has completed. The sample object is passed to this function as the first argument, and the optional arg argument is passed as the second.
@@ -6379,50 +6533,59 @@ function playdate.sound.sampleplayer:stop() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setFinishCallback
 ---@param func any
 ---@param arg any
+---@return nil
 function playdate.sound.sampleplayer:setFinishCallback(func, arg) end
 
 --- Sets the sample to be played.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setSample
 ---@param sample any
+---@return nil
 function playdate.sound.sampleplayer:setSample(sample) end
 
 --- Gets the sample to be played.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getSample
+---@return playdate.sound.sample
 function playdate.sound.sampleplayer:getSample() end
 
 --- Returns the length of the sampleplayer’s sample, in seconds. Length is not scaled by playback rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getLength
+---@return number seconds
 function playdate.sound.sampleplayer:getLength() end
 
 --- Sets the playback rate for the sample. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an octave, etc. Sampleplayers can also play samples backwards, by setting a negative rate; however, this does not work with ADPCM-encoded files.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRate
 ---@param rate any
+---@return nil
 function playdate.sound.sampleplayer:setRate(rate) end
 
 --- Gets the playback rate for the sample. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an octave, etc. Sampleplayers can also play samples backwards, by setting a negative rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getRate
+---@return number rate
 function playdate.sound.sampleplayer:getRate() end
 
 --- Sets the signal to use as a rate modulator, added to the rate set with playdate.sound.sampleplayer:setRate().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRateMod
 ---@param signal any
+---@return nil
 function playdate.sound.sampleplayer:setRateMod(signal) end
 
 --- Sets the current offset of the sampleplayer, in seconds. This value is not adjusted for rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setOffset
 ---@param seconds any
+---@return nil
 function playdate.sound.sampleplayer:setOffset(seconds) end
 
 --- Gets the current offset of the sampleplayer, in seconds. This value is not adjusted for rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getOffset
+---@return number seconds
 function playdate.sound.sampleplayer:getOffset() end
 
 --- Returns a fileplayer object, which can stream samples from disk. The file to play is set with the playdate.sound.fileplayer:load() function.
@@ -6431,6 +6594,7 @@ function playdate.sound.sampleplayer:getOffset() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.fileplayer.new-empty
 ---@param buffersize any
+---@return playdate.sound.fileplayer
 function playdate.sound.fileplayer.new(buffersize) end
 
 --- Returns a fileplayer object for streaming samples from the file at path. Note that the file isn’t loaded until playdate.sound.fileplayer:play() or playdate.sound.fileplayer:setBufferSize() is called, in order to reduce initialization overhead.
@@ -6440,12 +6604,14 @@ function playdate.sound.fileplayer.new(buffersize) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.fileplayer.new
 ---@param path string
 ---@param buffersize any
+---@return playdate.sound.fileplayer
 function playdate.sound.fileplayer.new(path, buffersize) end
 
 --- Instructs the fileplayer to load the file at path when play() is called on it. The fileplayer must not be playing when this function is called. The fileplayer’s play offset is reset to the beginning of the file, and its loop range is cleared.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.load
 ---@param path string
+---@return nil
 function playdate.sound.fileplayer:load(path) end
 
 --- Opens and starts playing the file, first creating and filling a 1/4 second playback buffer if a buffer size hasn’t been set yet.
@@ -6456,26 +6622,32 @@ function playdate.sound.fileplayer:load(path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.play
 ---@param repeatCount any
+---@return boolean success
+---@return string|nil error
 function playdate.sound.fileplayer:play(repeatCount) end
 
 --- Stops playing the file, resets the playback offset to zero, and calls the finish callback.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.stop
+---@return nil
 function playdate.sound.fileplayer:stop() end
 
 --- Stops playing the file. A subsequent play() call resumes playback from where it was paused.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.pause
+---@return nil
 function playdate.sound.fileplayer:pause() end
 
 --- Returns a boolean indicating whether the fileplayer is playing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.isPlaying
+---@return boolean
 function playdate.sound.fileplayer:isPlaying() end
 
 --- Returns the length, in seconds, of the audio file.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getLength
+---@return number seconds
 function playdate.sound.fileplayer:getLength() end
 
 --- Sets a function to be called when playback has completed. The fileplayer is passed as the first argument to func. The optional argument arg is passed as the second.
@@ -6483,17 +6655,20 @@ function playdate.sound.fileplayer:getLength() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setFinishCallback
 ---@param func any
 ---@param arg any
+---@return nil
 function playdate.sound.fileplayer:setFinishCallback(func, arg) end
 
 --- Returns the fileplayer’s underrun flag, indicating that the player ran out of data. This can be checked in the finish callback function to check for an underrun error.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.didUnderrun
+---@return boolean
 function playdate.sound.fileplayer:didUnderrun() end
 
 --- By default, the fileplayer stops playback if it can’t provide data fast enough. Setting the flag to false tells the fileplayer to restart playback (after an audible stutter) as soon as data is available.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setStopOnUnderrun
 ---@param flag boolean
+---@return nil
 function playdate.sound.fileplayer:setStopOnUnderrun(flag) end
 
 --- Provides a way to loop a portion of an audio file. In the following code:
@@ -6509,6 +6684,7 @@ function playdate.sound.fileplayer:setStopOnUnderrun(flag) end
 ---@param _end any
 ---@param loopCallback any
 ---@param arg any
+---@return nil
 function playdate.sound.fileplayer:setLoopRange(start, _end, loopCallback, arg) end
 
 --- Sets a function to be called every time the fileplayer loops. The fileplayer object is passed to this function as the first argument, and arg as the second.
@@ -6518,29 +6694,34 @@ function playdate.sound.fileplayer:setLoopRange(start, _end, loopCallback, arg) 
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopCallback
 ---@param callback any
 ---@param arg any
+---@return nil
 function playdate.sound.fileplayer:setLoopCallback(callback, arg) end
 
 --- Sets the buffer size for the fileplayer, in seconds. Larger buffers protect against buffer underruns, but consume more memory. Calling this function also fills the output buffer if a source file has been set. On success, the function returns true; otherwise it returns false and a string describing the error.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setBufferSize
 ---@param seconds any
+---@return nil
 function playdate.sound.fileplayer:setBufferSize(seconds) end
 
 --- Sets the playback rate for the file. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRate
 ---@param rate any
+---@return nil
 function playdate.sound.fileplayer:setRate(rate) end
 
 --- Gets the playback rate for the file. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getRate
+---@return number rate
 function playdate.sound.fileplayer:getRate() end
 
 --- Sets the signal to use as a rate modulator, added to the rate set with playdate.sound.fileplayer:setRate().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRateMod
 ---@param signal any
+---@return nil
 function playdate.sound.fileplayer:setRateMod(signal) end
 
 --- Sets the playback volume (0.0 - 1.0). If a single value is passed in, both left side and right side volume are set to the given value. If two values are given, volumes are set separately. The optional fadeSeconds specifies the time it takes to fade from the current volume to the specified volume, in seconds. If the function fadeCallback is given, it is called when the volume fade has completed. The fileplayer object is passed as the first argument to the callback, and the optional arg argument is passed as the second.
@@ -6551,22 +6732,27 @@ function playdate.sound.fileplayer:setRateMod(signal) end
 ---@param fadeSeconds any
 ---@param fadeCallback any
 ---@param arg any
+---@return nil
 function playdate.sound.fileplayer:setVolume(left, right, fadeSeconds, fadeCallback, arg) end
 
 --- Returns the current volume for the fileplayer, a single value for mono sources or a pair of values (left, right) for stereo sources.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getVolume
+---@return number left_or_mono
+---@return number|nil right
 function playdate.sound.fileplayer:getVolume() end
 
 --- Sets the current offset of the fileplayer, in seconds. This value is not adjusted for rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setOffset
 ---@param seconds any
+---@return nil
 function playdate.sound.fileplayer:setOffset(seconds) end
 
 --- Gets the current offset of the fileplayer, in seconds. This value is not adjusted for rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getOffset
+---@return number seconds
 function playdate.sound.fileplayer:getOffset() end
 
 --- Returns a new playdate.sound.sample object, with the sound data loaded in memory. If the sample can’t be loaded, the function returns nil and a second value containing the error.
@@ -6577,6 +6763,7 @@ function playdate.sound.fileplayer:getOffset() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.sample.new
 ---@param path string
+---@return playdate.sound.sample
 function playdate.sound.sample.new(path) end
 
 --- Returns a new subsample containing a subrange of the given sample. Offset values are in frames, not bytes.
@@ -6584,17 +6771,20 @@ function playdate.sound.sample.new(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSubsample
 ---@param startOffset any
 ---@param endOffset any
+---@return playdate.sound.sample
 function playdate.sound.sample:getSubsample(startOffset, endOffset) end
 
 --- Loads the sound data from the file at path into an existing sample buffer. If there is no file at path, the function returns nil.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.load
 ---@param path string
+---@return boolean|nil
 function playdate.sound.sample:load(path) end
 
 --- Returns the sample rate as an integer, such as 44100 or 22050.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSampleRate
+---@return integer
 function playdate.sound.sample:getSampleRate() end
 
 --- Returns the format of the sample, one of
@@ -6605,11 +6795,14 @@ function playdate.sound.sample:getSampleRate() end
 --- * playdate.sound.kFormat16bitStereo
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getFormat
+---@return integer|SoundFormat
 function playdate.sound.sample:getFormat() end
 
 --- Returns two values, the length of the available sample data and the size of the allocated buffer. Both values are measured in seconds. For a sample loaded from disk, these will be the same; for a sample used for recording, the available data may be less than the allocated size.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getLength
+---@return number sample_seconds
+---@return number buffer_size_seconds
 function playdate.sound.sample:getLength() end
 
 --- Convenience function: Creates a new sampleplayer for the sample and passes the function arguments to its play function.
@@ -6617,6 +6810,7 @@ function playdate.sound.sample:getLength() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.play
 ---@param repeatCount any
 ---@param rate any
+---@return nil
 function playdate.sound.sample:play(repeatCount, rate) end
 
 --- Convenience function: Creates a new sampleplayer for the sample and passes the function arguments to its playAt function.
@@ -6626,75 +6820,88 @@ function playdate.sound.sample:play(repeatCount, rate) end
 ---@param vol any
 ---@param rightvol any
 ---@param rate any
+---@return nil
 function playdate.sound.sample:playAt(when, vol, rightvol, rate) end
 
 --- Saves the sample to the given file. If filename has a .wav extension it will be saved in WAV format (and be unreadable by the Playdate sound functions), otherwise it will be saved in the Playdate pda format.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.save
 ---@param filename string
+---@return nil
 function playdate.sound.sample:save(filename) end
 
 --- Returns a new channel object and adds it to the global list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.channel.new
+---@return playdate.sound.channel
 function playdate.sound.channel.new() end
 
 --- Removes the channel from the global list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.remove
+---@return nil
 function playdate.sound.channel:remove() end
 
 --- Adds an effect to the channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addeffect
 ---@param effect any
+---@return nil
 function playdate.sound.channel:addEffect(effect) end
 
 --- Removes an effect from the channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeeffect
 ---@param effect any
+---@return nil
 function playdate.sound.channel:removeEffect(effect) end
 
 --- Adds a source to the channel. If a source is not assigned to a channel, it plays on the default global channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addsource
 ---@param source any
+---@return nil
 function playdate.sound.channel:addSource(source) end
 
 --- Removes a source from the channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removesource
 ---@param source any
+---@return nil
 function playdate.sound.channel:removeSource(source) end
 
 --- Sets the volume (0.0 - 1.0) for the channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolume
 ---@param volume any
+---@return nil
 function playdate.sound.channel:setVolume(volume) end
 
 --- Gets the volume (0.0 - 1.0) for the channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getVolume
+---@return number volume
 function playdate.sound.channel:getVolume() end
 
 --- Sets the pan parameter for the channel. -1 is left, 0 is center, and 1 is right.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setPan
 ---@param pan any
+---@return number pan
 function playdate.sound.channel:setPan(pan) end
 
 --- Sets a signal to automate the pan parameter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setPanMod
 ---@param signal any
+---@return nil
 function playdate.sound.channel:setPanMod(signal) end
 
 --- Sets a signal to automate the volume parameter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolumeMod
 ---@param signal any
+---@return nil
 function playdate.sound.channel:setVolumeMod(signal) end
 
 --- Returns a list of all sources currently playing.
@@ -6707,6 +6914,7 @@ function playdate.sound.playingSources() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new.waveform
 ---@param waveform any
+---@return playdate.sound.synth
 function playdate.sound.synth.new(waveform) end
 
 --- Returns a new synth object to play a Sample. An optional sustain region defines a loop to play while the note is on. Sample data must be uncompressed PCM, not ADPCM.
@@ -6715,11 +6923,13 @@ function playdate.sound.synth.new(waveform) end
 ---@param sample any
 ---@param sustainStart any
 ---@param sustainEnd any
+---@return playdate.sound.synth
 function playdate.sound.synth.new(sample, sustainStart, sustainEnd) end
 
 --- Returns a copy of the given synth.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.copy
+---@return playdate.sound.synth
 function playdate.sound.synth:copy() end
 
 --- Plays a note with the current waveform or sample.
@@ -6742,6 +6952,7 @@ function playdate.sound.synth:copy() end
 ---@param volume any
 ---@param length number
 ---@param when any
+---@return boolean success
 function playdate.sound.synth:playNote(pitch, volume, length, when) end
 
 --- Identical to playNote but uses a note name like "C4", or MIDI note number (60=C4, 61=C#4, etc.). In the latter case, fractional values are allowed.
@@ -6751,27 +6962,32 @@ function playdate.sound.synth:playNote(pitch, volume, length, when) end
 ---@param volume any
 ---@param length number
 ---@param when any
+---@return boolean success
 function playdate.sound.synth:playMIDINote(note, volume, length, when) end
 
 --- Releases the note, if one is playing. The note will continue to be voiced through the release section of the synth’s envelope.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.noteOff
+---@return nil
 function playdate.sound.synth:noteOff() end
 
 --- Stops the synth immediately, without playing the release part of the envelope.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.stop
+---@return nil
 function playdate.sound.synth:stop() end
 
 --- Returns true if the synth is still playing, including the release phase of the envelope.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.isPlaying
+---@return boolean
 function playdate.sound.synth:isPlaying() end
 
 --- Sets the signal to use as the amplitude modulator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setAmplitudeMod
 ---@param signal any
+---@return nil
 function playdate.sound.synth:setAmplitudeMod(signal) end
 
 --- Sets the attack time, decay time, sustain level, and release time for the sound envelope, and optionally the curvature.
@@ -6782,59 +6998,69 @@ function playdate.sound.synth:setAmplitudeMod(signal) end
 ---@param sustain any
 ---@param release any
 ---@param curvature any
+---@return nil
 function playdate.sound.synth:setADSR(attack, decay, sustain, release, curvature) end
 
 --- Sets the attack time, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setAttack
 ---@param time any
+---@return nil
 function playdate.sound.synth:setAttack(time) end
 
 --- Sets the decay time, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setDecay
 ---@param time any
+---@return nil
 function playdate.sound.synth:setDecay(time) end
 
 --- Sets the sustain level, as a proportion of the total level (0.0 to 1.0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setSustain
 ---@param level any
+---@return nil
 function playdate.sound.synth:setSustain(level) end
 
 --- Sets the release time, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setRelease
 ---@param time any
+---@return nil
 function playdate.sound.synth:setRelease(time) end
 
 --- Smoothly changes the envelope’s shape from linear (amount=0) to exponential (amount=1).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setEnvelopeCurvature
 ---@param amount any
+---@return nil
 function playdate.sound.synth:setEnvelopeCurvature(amount) end
 
 --- Returns the synth’s envelope as a playdate.sound.envelope object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getEnvelope
+---@return playdate.sound.envelope
 function playdate.sound.synth:getEnvelope() end
 
 --- Sets a function to be called when the synth stops playing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFinishCallback
 ---@param _function any
+---@return nil
 function playdate.sound.synth:setFinishCallback(_function) end
 
 --- Sets the signal to use as the frequency modulator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFrequencyMod
 ---@param signal any
+---@return nil
 function playdate.sound.synth:setFrequencyMod(signal) end
 
 --- Sets whether to use legato phrasing for the synth. If the legato flag is set and a new note starts while a previous note is still playing, the synth’s envelope remains in the sustain phase instead of starting a new attack.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setLegato
 ---@param flag boolean
+---@return nil
 function playdate.sound.synth:setLegato(flag) end
 
 --- Some synth types have extra parameters: The square wave’s one parameter is its duty cycle; the TE synths each have two parameters that change some quality of the sound. Parameter numbers start at 1. value ranges from 0 to 1.
@@ -6842,6 +7068,7 @@ function playdate.sound.synth:setLegato(flag) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setParameter
 ---@param parameter any
 ---@param value any
+---@return nil
 function playdate.sound.synth:setParameter(parameter, value) end
 
 --- Sets the signal to modulate the parameter.
@@ -6849,6 +7076,7 @@ function playdate.sound.synth:setParameter(parameter, value) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setParameterMod
 ---@param parameter any
 ---@param signal any
+---@return nil
 function playdate.sound.synth:setParameterMod(parameter, signal) end
 
 --- Sets the synth volume. If a single value is passed in, sets both left side and right side volume to the given value. If two values are given, volumes are set separately.
@@ -6858,6 +7086,7 @@ function playdate.sound.synth:setParameterMod(parameter, signal) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setVolume
 ---@param left any
 ---@param right any
+---@return nil
 function playdate.sound.synth:setVolume(left, right) end
 
 --- Returns the current volume for the synth, a single value for mono sources or a pair of values (left, right) for stereo sources.
@@ -6865,6 +7094,8 @@ function playdate.sound.synth:setVolume(left, right) end
 --- Volume values are between 0.0 and 1.0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getVolume
+---@return number left_or_mono
+---@return number|nil right
 function playdate.sound.synth:getVolume() end
 
 --- Sets the waveform or Sample the synth plays. If a sample is given, its data must be uncompressed PCM, not ADPCM. Otherwise waveform should be one of the following constants:
@@ -6880,6 +7111,7 @@ function playdate.sound.synth:getVolume() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setWaveform
 ---@param waveform any
+---@return nil
 function playdate.sound.synth:setWaveform(waveform) end
 
 --- Adds a constant offset to the signal (lfo, envelope, etc.).
@@ -6898,6 +7130,7 @@ function playdate.sound.signal:setScale(scale) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.lfo.new
 ---@param type any
+---@return playdate.sound.lfo
 function playdate.sound.lfo.new(type) end
 
 --- Sets the waveform of the LFO. Valid values are
@@ -6911,6 +7144,7 @@ function playdate.sound.lfo.new(type) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setType
 ---@param type any
+---@return nil
 function playdate.sound.lfo:setType(type) end
 
 --- Sets the LFO type to arpeggio, where the given values are in half-steps from the center note. For example, the sequence (0, 4, 7, 12) plays the notes of a major chord.
@@ -6918,42 +7152,49 @@ function playdate.sound.lfo:setType(type) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setArpeggio
 ---@param note1 any
 ---@param ... any
+---@return nil
 function playdate.sound.lfo:setArpeggio(note1, ...) end
 
 --- Sets the center value of the LFO.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setCenter
 ---@param center any
+---@return nil
 function playdate.sound.lfo:setCenter(center) end
 
 --- Sets the depth of the LFO’s modulation.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDepth
 ---@param depth any
+---@return nil
 function playdate.sound.lfo:setDepth(depth) end
 
 --- Sets the rate of the LFO, in cycles per second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRate
 ---@param rate any
+---@return nil
 function playdate.sound.lfo:setRate(rate) end
 
 --- Sets the current phase of the LFO, from 0 to 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setPhase
 ---@param phase any
+---@return nil
 function playdate.sound.lfo:setPhase(phase) end
 
 --- If an LFO is marked global, it is continuously updated whether or not it’s attached to any source.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setGlobal
 ---@param flag boolean
+---@return nil
 function playdate.sound.lfo:setGlobal(flag) end
 
 --- If retrigger is on, the LFO’s phase is reset to 0 when a synth using the LFO starts playing a note.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRetrigger
 ---@param flag boolean
+---@return nil
 function playdate.sound.lfo:setRetrigger(flag) end
 
 --- Sets an initial holdoff time for the LFO where the LFO remains at its center value, and a ramp time where the value increases linearly to its maximum depth. Values are in seconds.
@@ -6961,6 +7202,7 @@ function playdate.sound.lfo:setRetrigger(flag) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDelay
 ---@param holdoff any
 ---@param ramp any
+---@return nil
 function playdate.sound.lfo:setDelay(holdoff, ramp) end
 
 --- Creates a new envelope with the given (optional) parameters.
@@ -6970,42 +7212,49 @@ function playdate.sound.lfo:setDelay(holdoff, ramp) end
 ---@param decay any
 ---@param sustain any
 ---@param release any
+---@return playdate.sound.envelope
 function playdate.sound.envelope.new(attack, decay, sustain, release) end
 
 --- Sets the envelope attack time to attack, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setAttack
 ---@param attack any
+---@return nil
 function playdate.sound.envelope:setAttack(attack) end
 
 --- Sets the envelope decay time to decay, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setDecay
 ---@param decay any
+---@return nil
 function playdate.sound.envelope:setDecay(decay) end
 
 --- Sets the envelope sustain level to sustain, as a proportion of the maximum. For example, if the sustain level is 0.5, the signal value rises to its full value over the attack phase of the envelope, then drops to half its maximum over the decay phase, and remains there while the envelope is active.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setSustain
 ---@param sustain any
+---@return nil
 function playdate.sound.envelope:setSustain(sustain) end
 
 --- Sets the envelope release time to attack, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRelease
 ---@param release any
+---@return nil
 function playdate.sound.envelope:setRelease(release) end
 
 --- Smoothly changes the envelope’s shape from linear (amount=0) to exponential (amount=1).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setCurvature
 ---@param amount any
+---@return nil
 function playdate.sound.envelope:setCurvature(amount) end
 
 --- Changes the amount by which note velocity scales output level. At the default value of 1, output is proportional to velocity; at 0 velocity has no effect on output level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setVelocitySensitivity
 ---@param amount any
+---@return nil
 function playdate.sound.envelope:setVelocitySensitivity(amount) end
 
 --- Scales the envelope rate according to the played note. For notes below start, the envelope’s set rate is used; for notes above end envelope rates are scaled by the scaling parameter. Between the two notes the scaling factor is interpolated from 1.0 to scaling. start and end are either MIDI note numbers or names like "C4". If omitted, the default range is C1 (36) to C5 (84).
@@ -7014,30 +7263,35 @@ function playdate.sound.envelope:setVelocitySensitivity(amount) end
 ---@param scaling any
 ---@param start any
 ---@param _end any
+---@return nil
 function playdate.sound.envelope:setRateScaling(scaling, start, _end) end
 
 --- Sets scale values to the envelope. The transformed envelope has an initial value of offset and a maximum (minimum if scale is negative) of offset + scale.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setScale
 ---@param scale integer
+---@return nil
 function playdate.sound.envelope:setScale(scale) end
 
 --- Sets scale and offset values to the envelope. The transformed envelope has an initial value of offset and a maximum (minimum if scale is negative) of offset + scale.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setOffset
 ---@param offset any
+---@return nil
 function playdate.sound.envelope:setOffset(offset) end
 
 --- Sets whether to use legato phrasing for the envelope. If the legato flag is set, when the envelope is re-triggered before it’s released, it remains in the sustain phase instead of jumping back to the attack phase.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setLegato
 ---@param flag boolean
+---@return nil
 function playdate.sound.envelope:setLegato(flag) end
 
 --- If retrigger is on, the envelope always starts from 0 when a note starts playing, instead of the current value if it’s active.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRetrigger
 ---@param flag boolean
+---@return nil
 function playdate.sound.envelope:setRetrigger(flag) end
 
 --- Triggers the envelope at the given velocity. If a length parameter is given, the envelope moves to the release phase after the given time. Otherwise, the envelope is held in the sustain phase until the trigger function is called again with velocity equal to zero.
@@ -7045,12 +7299,14 @@ function playdate.sound.envelope:setRetrigger(flag) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.trigger
 ---@param velocity any
 ---@param length number
+---@return nil
 function playdate.sound.envelope:trigger(velocity, length) end
 
 --- If an envelope is marked global, it is continuously updated whether or not it’s attached to any source.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setGlobal
 ---@param flag boolean
+---@return nil
 function playdate.sound.envelope:setGlobal(flag) end
 
 --- Adds the given playdate.sound.effect to the default sound channel.
@@ -7070,100 +7326,117 @@ function playdate.sound.removeEffect(effect) end
 --- Creates a new bitcrusher filter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.bitcrusher.new
+---@return playdate.sound.bitcrusher
 function playdate.sound.bitcrusher.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect output; 0 leaves the effect out of the mix.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setMix
 ---@param level any
+---@return nil
 function playdate.sound.bitcrusher:setMix(level) end
 
 --- Sets a signal to modulate the mix level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setMixMod
 ---@param signal any
+---@return nil
 function playdate.sound.bitcrusher:setMixMod(signal) end
 
 --- Sets the amount of crushing to amt. Valid values are 0 (no effect) to 1 (quantizing output to 1-bit).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setAmount
 ---@param amt any
+---@return nil
 function playdate.sound.bitcrusher:setAmount(amt) end
 
 --- Sets a signal to modulate the filter level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setAmountMod
 ---@param signal any
+---@return nil
 function playdate.sound.bitcrusher:setAmountMod(signal) end
 
 --- Sets the number of samples to repeat; 0 is no undersampling, 1 effectively halves the sample rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setUndersampling
 ---@param amt any
+---@return nil
 function playdate.sound.bitcrusher:setUndersampling(amt) end
 
 --- Sets a signal to modulate the filter level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setUndersamplingMod
 ---@param signal any
+---@return nil
 function playdate.sound.bitcrusher:setUndersamplingMod(signal) end
 
 --- Creates a new ring modulator filter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.ringmod.new
+---@return playdate.sound.ringmod
 function playdate.sound.ringmod.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect output; 0 leaves the effect out of the mix.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setMix
 ---@param level any
+---@return nil
 function playdate.sound.ringmod:setMix(level) end
 
 --- Sets a signal to modulate the mix level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setMixMod
 ---@param signal any
+---@return nil
 function playdate.sound.ringmod:setMixMod(signal) end
 
 --- Sets the ringmod frequency to f.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setFrequency
 ---@param f any
+---@return nil
 function playdate.sound.ringmod:setFrequency(f) end
 
 --- Sets a signal to modulate the ringmod frequency.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setFrequencyMod
 ---@param signal any
+---@return nil
 function playdate.sound.ringmod:setFrequencyMod(signal) end
 
 --- Returns a new one pole filter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.onepolefilter.new
+---@return playdate.sound.onepolefilter
 function playdate.sound.onepolefilter.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect output; 0 leaves the effect out of the mix.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setMix
 ---@param level any
+---@return nil
 function playdate.sound.onepolefilter:setMix(level) end
 
 --- Sets a signal to modulate the mix level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setMixMod
 ---@param signal any
+---@return nil
 function playdate.sound.onepolefilter:setMixMod(signal) end
 
 --- Sets the filter’s single parameter (cutoff frequency) to p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setParameter
 ---@param p any
+---@return nil
 function playdate.sound.onepolefilter:setParameter(p) end
 
 --- Sets a modulator for the filter’s parameter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setParameterMod
 ---@param m any
+---@return nil
 function playdate.sound.onepolefilter:setParameterMod(m) end
 
 --- Creates a new two pole IIR filter of the given type:
@@ -7178,187 +7451,219 @@ function playdate.sound.onepolefilter:setParameterMod(m) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.twopolefilter.new
 ---@param type any
+---@return playdate.sound.twopolefilter
 function playdate.sound.twopolefilter.new(type) end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect output; 0 leaves the effect out of the mix.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setMix
 ---@param level any
+---@return nil
 function playdate.sound.twopolefilter:setMix(level) end
 
 --- Sets a signal to modulate the mix level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setMixMod
 ---@param signal any
+---@return nil
 function playdate.sound.twopolefilter:setMixMod(signal) end
 
 --- Sets the center frequency (in Hz) of the filter to f.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setFrequency
 ---@param f any
+---@return nil
 function playdate.sound.twopolefilter:setFrequency(f) end
 
 --- Sets a signal to modulate the filter frequency.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setFrequencyMod
 ---@param signal any
+---@return nil
 function playdate.sound.twopolefilter:setFrequencyMod(signal) end
 
 --- Sets the resonance of the filter to r. Valid values are in the range 0-1. This parameter has no effect on shelf type filters.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonance
 ---@param r playdate.geometry.rect
+---@return nil
 function playdate.sound.twopolefilter:setResonance(r) end
 
 --- Sets a signal to modulate the filter resonance.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonanceMod
 ---@param signal any
+---@return nil
 function playdate.sound.twopolefilter:setResonanceMod(signal) end
 
 --- Sets the gain of the filter to g. Gain is only used in PEQ and shelf type filters.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setGain
 ---@param g any
+---@return nil
 function playdate.sound.twopolefilter:setGain(g) end
 
 --- Sets the type of the filter to type.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setType
 ---@param type any
+---@return nil
 function playdate.sound.twopolefilter:setType(type) end
 
 --- Creates a new overdrive effect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.overdrive.new
+---@return playdate.sound.overdrive
 function playdate.sound.overdrive.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect output; 0 leaves the effect out of the mix.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setMix
 ---@param level any
+---@return nil
 function playdate.sound.overdrive:setMix(level) end
 
 --- Sets a signal to modulate the mix level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setMixMod
 ---@param signal any
+---@return nil
 function playdate.sound.overdrive:setMixMod(signal) end
 
 --- Sets the gain of the filter.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setGain
 ---@param level any
+---@return nil
 function playdate.sound.overdrive:setGain(level) end
 
 --- Sets the level where the amplified input clips.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setLimit
 ---@param level any
+---@return nil
 function playdate.sound.overdrive:setLimit(level) end
 
 --- Sets a signal to modulate the limit level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setLimitMod
 ---@param signal any
+---@return nil
 function playdate.sound.overdrive:setLimitMod(signal) end
 
 --- Adds an offset to the upper and lower limits to create an asymmetric clipping.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setOffset
 ---@param level any
+---@return nil
 function playdate.sound.overdrive:setOffset(level) end
 
 --- Sets a signal to modulate the offset value.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setOffsetMod
 ---@param signal any
+---@return nil
 function playdate.sound.overdrive:setOffsetMod(signal) end
 
 --- Creates a new delay line effect, with the given length (in seconds).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.delayline.new
 ---@param length number
+---@return playdate.sound.delayline
 function playdate.sound.delayline.new(length) end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect output; 0 leaves the effect out of the mix, which is useful if you’re using taps for varying delays.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setMix
 ---@param level any
+---@return nil
 function playdate.sound.delayline:setMix(level) end
 
 --- Sets a signal to modulate the mix level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setMixMod
 ---@param signal any
+---@return nil
 function playdate.sound.delayline:setMixMod(signal) end
 
 --- Returns a new playdate.sound.delaylinetap on the delay line, at the given delay (which must be less than or equal to the delay line’s length).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.addTap(delay)
 ---@param delay any
+---@return nil
 function playdate.sound.delayline:addTap(delay) end
 
 --- Sets the feedback level of the delay line.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setFeedback(level)
 ---@param level any
+---@return nil
 function playdate.sound.delayline:setFeedback(level) end
 
 --- Sets the position of the tap on the delay line, up to the delay line’s length.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setDelay
 ---@param time any
+---@return nil
 function playdate.sound.delaylinetap:setDelay(time) end
 
 --- Sets a signal to modulate the tap delay. If the signal is continuous (e.g. an envelope or a triangle LFO, but not a square LFO) playback is sped up or slowed down to compress or expand time.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setDelayMod
 ---@param signal any
+---@return nil
 function playdate.sound.delaylinetap:setDelayMod(signal) end
 
 --- Sets the tap’s volume.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setVolume
 ---@param level any
+---@return nil
 function playdate.sound.delaylinetap:setVolume(level) end
 
 --- Returns the tap’s volume.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.getVolume
+---@return number volume
 function playdate.sound.delaylinetap:getVolume() end
 
 --- If set and the delay line is stereo, the tap outputs the delay line’s left channel to its right output and vice versa.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setFlipChannels(flag)
 ---@param flag boolean
+---@return nil
 function playdate.sound.delaylinetap:setFlipChannels(flag) end
 
 --- Creates a new sound sequence. If path.mid is given, it attempts to load data from the midi file into the sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.sequence.new
 ---@param midi_path any
+---@return playdate.sound.sequence
 function playdate.sound.sequence.new(midi_path) end
 
 --- Starts playing the sequence. finishCallback is an optional function to be called when the sequence finishes playing or is stopped. The sequence is passed to the callback as its single argument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.play
 ---@param finishCallback any
+---@return nil
 function playdate.sound.sequence:play(finishCallback) end
 
 --- Stops playing the sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.stop
+---@return nil
 function playdate.sound.sequence:stop() end
 
 --- Returns true if the sequence is currently playing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.isPlaying
+---@return boolean
 function playdate.sound.sequence:isPlaying() end
 
 --- Returns the length of the longest track in the sequence, in steps. See also playdate.sound.track.getLength().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getLength
+---@return number steps
 function playdate.sound.sequence:getLength() end
 
 --- Moves the play position for the sequence to step number step. If play is set, triggers the notes at that step.
@@ -7366,22 +7671,26 @@ function playdate.sound.sequence:getLength() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.goToStep
 ---@param step any
 ---@param play any
+---@return nil
 function playdate.sound.sequence:goToStep(step, play) end
 
 --- Returns the step number the sequence is currently at.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getCurrentStep
+---@return number step
 function playdate.sound.sequence:getCurrentStep() end
 
 --- Sets the tempo of the sequence, in steps per second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setTempo
 ---@param stepsPerSecond any
+---@return nil
 function playdate.sound.sequence:setTempo(stepsPerSecond) end
 
 --- Gets the tempo of the sequence, in steps per second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTempo
+---@return number steps_per_second
 function playdate.sound.sequence:getTempo() end
 
 --- Sets the looping range of the sequence. If loops is 0 or unset, the loop repeats endlessly.
@@ -7390,23 +7699,27 @@ function playdate.sound.sequence:getTempo() end
 ---@param startStep any
 ---@param endStep any
 ---@param loopCount any
+---@return nil
 function playdate.sound.sequence:setLoops(startStep, endStep, loopCount) end
 
 --- Same as above, with startStep set to 0 and endStep set to sequence:getLength().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops-2
 ---@param loopCount any
+---@return nil
 function playdate.sound.sequence:setLoops(loopCount) end
 
 --- Returns the number of tracks in the sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTrackCount
+---@return integer tracks
 function playdate.sound.sequence:getTrackCount() end
 
 --- Adds the given playdate.sound.track to the sequence. If track omitted, the function creates and returns a new track.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.addTrack
 ---@param track any
+---@return nil
 function playdate.sound.sequence:addTrack(track) end
 
 --- Sets the given playdate.sound.track object at position n in the sequence.
@@ -7414,22 +7727,26 @@ function playdate.sound.sequence:addTrack(track) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setTrackAtIndex
 ---@param n any
 ---@param track any
+---@return nil
 function playdate.sound.sequence:setTrackAtIndex(n, track) end
 
 --- Gets the given playdate.sound.track object at position n in the sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTrackAtIndex
 ---@param n any
+---@return playdate.sound.track
 function playdate.sound.sequence:getTrackAtIndex(n) end
 
 --- Sends an allNotesOff() message to each track’s instrument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.allNotesOff
+---@return nil
 function playdate.sound.sequence:allNotesOff() end
 
 --- Creates a new playdate.sound.track object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.track.new
+---@return playdate.sound.track
 function playdate.sound.track.new() end
 
 --- Adds a single note event to the track, letting you specify step, note, length, and velocity directly. The second format allows you to pack them into a table, using the format returned by getNotes(). The note argument can be a MIDI note number or a note name like "Db3". length is the length of the note in steps, not time—​that is, it follows the sequence’s tempo. The default velocity is 1.0.
@@ -7441,6 +7758,7 @@ function playdate.sound.track.new() end
 ---@param note any
 ---@param length number
 ---@param velocity any
+---@return nil
 function playdate.sound.track:addNote(step, note, length, velocity) end
 
 --- Adds a single note event to the track. Specify step, note, length, and velocity in a table, using the format returned by getNotes(). The note argument can be a MIDI note number or a note name like "Db3". length is the length of the note in steps, not time—​that is, it follows the sequence’s tempo. The default velocity is 1.0.
@@ -7449,6 +7767,7 @@ function playdate.sound.track:addNote(step, note, length, velocity) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote
 ---@param table any
+---@return nil
 function playdate.sound.track:addNote(table) end
 
 --- Set multiple notes at once, each array element should be a table containing values for the keys The tables contain values for keys step, note, length, and velocity.
@@ -7457,6 +7776,7 @@ function playdate.sound.track:addNote(table) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setNotes
 ---@param list any
+---@return nil
 function playdate.sound.track:setNotes(list) end
 
 --- Returns an array of tables representing the note events in the track.
@@ -7466,6 +7786,7 @@ function playdate.sound.track:setNotes(list) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotes
 ---@param step any
 ---@param endstep any
+---@return SoundTrackNoteOut[] notes
 function playdate.sound.track:getNotes(step, endstep) end
 
 --- Removes the note event at step playing note.
@@ -7473,60 +7794,71 @@ function playdate.sound.track:getNotes(step, endstep) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.removeNote
 ---@param step any
 ---@param note any
+---@return nil
 function playdate.sound.track:removeNote(step, note) end
 
 --- Clears all notes from the track.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.clearNotes
+---@return nil
 function playdate.sound.track:clearNotes() end
 
 --- Returns the length, in steps, of the track—​that is, the step where the last note in the track ends.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getLength
+---@return integer steps
 function playdate.sound.track:getLength() end
 
 --- Returns the current number of notes active in the track.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotesActive
+---@return integer active_notes
 function playdate.sound.track:getNotesActive() end
 
 --- Returns the maximum number of notes simultaneously active in the track. (Known bug: this currently only works for midi files)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getPolyphony
+---@return integer max_active_notes
 function playdate.sound.track:getPolyphony() end
 
 --- Sets the playdate.sound.instrument that this track plays. If inst is a playdate.sound.synth, the function creates an instrument for the synth.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setInstrument
 ---@param inst any
+---@return nil
 function playdate.sound.track:setInstrument(inst) end
 
 --- Gets the playdate.sound.instrument that this track plays.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getInstrument
+---@return playdate.sound.instrument
 function playdate.sound.track:getInstrument() end
 
 --- Mutes or unmutes the track.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setMuted
 ---@param flag boolean
+---@return nil
 function playdate.sound.track:setMuted(flag) end
 
 --- Adds a playdate.sound.controlsignal object to the track. Note that the signal must be assigned to a modulation input for it to have any audible effect. The input can be anywhere in the sound engine—​it’s not required to belong to the track in any way.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addControlSignal
 ---@param s any
+---@return nil
 function playdate.sound.track:addControlSignal(s) end
 
 --- Returns an array of playdate.sound.controlsignal objects assigned to this track.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getControlSignals
+---@return playdate.sound.controlsignal[]
 function playdate.sound.track:getControlSignals() end
 
 --- Creates a new playdate.sound.instrument object. If synth is given, adds it as a voice for the instrument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.new
 ---@param synth any
+---@return playdate.sound.instrument
 function playdate.sound.instrument.new(synth) end
 
 --- Adds the given playdate.sound.synth to the instrument. If only the note argument is given, the voice is only used for that note, and is transposed to play at normal speed (i.e. rate=1.0 for samples, or C4 for synths). If rangeend is given, the voice is assigned to the range note to rangeend, inclusive, with the first note in the range transposed to rate=1.0/C4. The note and rangeend arguments can be MIDI note numbers or note names like "Db3". The final transpose argument transposes the note played, in half-tone units.
@@ -7536,12 +7868,14 @@ function playdate.sound.instrument.new(synth) end
 ---@param note any
 ---@param rangeend any
 ---@param transpose any
+---@return nil
 function playdate.sound.instrument:addVoice(v, note, rangeend, transpose) end
 
 --- Transposes all voices in the instrument. halfsteps can be a fractional value.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setTranspose
 ---@param halfsteps any
+---@return nil
 function playdate.sound.instrument:setTranspose(halfsteps) end
 
 --- Plays the given note on the instrument. A string like Db3 can be used instead of a pitch/note number. Fractional values are allowed. vel defaults to 1.0, fully on. If length isn’t specified, the note stays on until instrument.noteOff(note) is called. when is the number of seconds in the future to start playing the note, default is immediately.
@@ -7551,6 +7885,7 @@ function playdate.sound.instrument:setTranspose(halfsteps) end
 ---@param vel any
 ---@param length number
 ---@param when any
+---@return nil
 function playdate.sound.instrument:playNote(frequency, vel, length, when) end
 
 --- Plays the given note on the instrument, where note is a MIDI note number: 60=C4, 61=C#4, etc. A string like Db3 can be used instead of a pitch/note number. Fractional values are allowed. vel defaults to 1.0, fully on. If length isn’t specified, the note stays on until instrument.noteOff(note) is called. when is the number of seconds in the future to start playing the note, default is immediately.
@@ -7560,6 +7895,7 @@ function playdate.sound.instrument:playNote(frequency, vel, length, when) end
 ---@param vel any
 ---@param length number
 ---@param when any
+---@return nil
 function playdate.sound.instrument:playMIDINote(note, vel, length, when) end
 
 --- Stops the instrument voice playing note note. If when is given, the note is stopped when seconds in the future, otherwise it’s stopped immediately.
@@ -7567,11 +7903,13 @@ function playdate.sound.instrument:playMIDINote(note, vel, length, when) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.noteOff
 ---@param note any
 ---@param when any
+---@return nil
 function playdate.sound.instrument:noteOff(note, when) end
 
 --- Sends a stop signal to all playing notes.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.allNotesOff
+---@return nil
 function playdate.sound.instrument:allNotesOff() end
 
 --- Sets the instrument volume. If a single value is passed in, sets both left side and right side volume to the given value. If two values are given, volumes are set separately.
@@ -7581,6 +7919,7 @@ function playdate.sound.instrument:allNotesOff() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setVolume
 ---@param left any
 ---@param right any
+---@return nil
 function playdate.sound.instrument:setVolume(left, right) end
 
 --- Returns the current volume for the synth, a single value for mono sources or a pair of values (left, right) for stereo sources.
@@ -7588,6 +7927,8 @@ function playdate.sound.instrument:setVolume(left, right) end
 --- Volume values are between 0.0 and 1.0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.getVolume
+---@return number left_or_mono
+---@return number|nil right
 function playdate.sound.instrument:getVolume() end
 
 --- Creates a new control signal object, for automating effect parameters, channel pan and level, etc.
@@ -7632,31 +7973,37 @@ function playdate.sound.controlsignal:getControllerType() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.recordToSample
 ---@param buffer any
 ---@param completionCallback any
+---@return nil
 function playdate.sound.micinput.recordToSample(buffer, completionCallback) end
 
 --- Stops a sample recording started with recordToSample, if it hasn’t already reached the end of the buffer. The recording’s completion callback is called immediately.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.stopRecording
+---@return nil
 function playdate.sound.micinput.stopRecording() end
 
 --- Starts monitoring the microphone input level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.startListening
+---@return nil
 function playdate.sound.micinput.startListening() end
 
 --- Stops monitoring the microphone input level.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.stopListening
+---@return nil
 function playdate.sound.micinput.stopListening() end
 
 --- Returns the current microphone input level, a value from 0.0 (quietest) to 1.0 (loudest).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.getLevel
+---@return number
 function playdate.sound.micinput.getLevel() end
 
 --- Returns the current microphone input source, either "headset" or "device".
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.getSource
+---@return string headset_or_device
 function playdate.sound.micinput.getSource() end
 
 --- Returns a pair of booleans (headphone, mic) indicating whether headphones are plugged in, and if so whether they have a microphone attached. If changeCallback is a function, it will be called every time the headphone state changes, until it is cleared by calling playdate.sound.getHeadphoneState(nil). If a change callback is set, the audio does not automatically switch from speaker to headphones when headphones are plugged in (and vice versa), so the callback should use playdate.sound.setOutputsActive() to change the output if needed.
@@ -7697,29 +8044,34 @@ function playdate.sound.resetTime() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.UUID
 ---@param length number
+---@return string uppercase_letters
 function playdate.string.UUID(length) end
 
 --- Returns a string with the whitespace removed from the beginning and ending of string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.trimWhitespace
 ---@param string any
+---@return string
 function playdate.string.trimWhitespace(string) end
 
 --- Returns a string with the whitespace removed from the beginning of string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.trimLeadingWhitespace
 ---@param string any
+---@return string
 function playdate.string.trimLeadingWhitespace(string) end
 
 --- Returns a string with the whitespace removed from the ending of string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.trimTrailingWhitespace
 ---@param string any
+---@return string
 function playdate.string.trimTrailingWhitespace(string) end
 
 --- This should be called from the main playdate.update() loop to drive the timers.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.updateTimers
+---@return nil
 function playdate.timer.updateTimers() end
 
 --- Returns a new playdate.timer that will run for duration milliseconds. callback is a function closure that will be called when the timer is complete.
@@ -7732,6 +8084,7 @@ function playdate.timer.updateTimers() end
 ---@param duration any
 ---@param callback any
 ---@param ... any
+---@return playdate.timer
 function playdate.timer.new(duration, callback, ...) end
 
 --- Performs the function callback after delay milliseconds. Accepts a variable number of arguments that will be passed to the callback function when it is called. If arguments are not provided, the timer itself will be passed to the callback instead.
@@ -7740,6 +8093,7 @@ function playdate.timer.new(duration, callback, ...) end
 ---@param delay any
 ---@param callback any
 ---@param ... any
+---@return nil
 function playdate.timer.performAfterDelay(delay, callback, ...) end
 
 --- Returns a new playdate.timer that will run for duration milliseconds. If not specified, startValue and endValue will be 0, and a linear easing function will be used.
@@ -7751,6 +8105,7 @@ function playdate.timer.performAfterDelay(delay, callback, ...) end
 ---@param startValue any
 ---@param endValue any
 ---@param easingFunction any
+---@return nil
 function playdate.timer.new(duration, startValue, endValue, easingFunction) end
 
 --- keyRepeatTimer() returns a timer that fires at key-repeat intervals. The function callback will be called immediately, then again after 300 milliseconds, then repeatedly at 100 millisecond intervals. If you wish to customize these millisecond intervals, use keyRepeatTimerWithDelay().
@@ -7758,6 +8113,7 @@ function playdate.timer.new(duration, startValue, endValue, easingFunction) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimer
 ---@param callback any
 ---@param ... any
+---@return nil
 function playdate.timer.keyRepeatTimer(callback, ...) end
 
 --- keyRepeatTimer() returns a timer that fires at key-repeat intervals. The function callback will be called immediately, then again after 300 milliseconds, then repeatedly at 100 millisecond intervals. If you wish to customize these millisecond intervals, use keyRepeatTimerWithDelay().
@@ -7767,16 +8123,19 @@ function playdate.timer.keyRepeatTimer(callback, ...) end
 ---@param delayAfterSecondFiring any
 ---@param callback any
 ---@param ... any
+---@return nil
 function playdate.timer.keyRepeatTimerWithDelay(delayAfterInitialFiring, delayAfterSecondFiring, callback, ...) end
 
 --- Pauses a timer. (There is no need to call :start() on a newly-instantiated timer: timers start automatically.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-timer.pause
+---@return nil
 function playdate.timer:pause() end
 
 --- Resumes a previously paused timer. (There is no need to call :start() on a newly-instantiated timer: timers start automatically.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-timer.start
+---@return nil
 function playdate.timer:start() end
 
 --- Removes this timer from the list of timers. This happens automatically when a non-repeating timer reaches its end, but you can use this method to dispose of timers manually.
@@ -7784,11 +8143,13 @@ function playdate.timer:start() end
 --- Note that timers do not actually get removed until the next invocation of playdate.timer.updateTimers().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-timer.remove
+---@return nil
 function playdate.timer:remove() end
 
 --- Resets a timer to its initial values.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-timer.reset
+---@return nil
 function playdate.timer:reset() end
 
 --- Returns an array listing all running timers.
@@ -7796,6 +8157,7 @@ function playdate.timer:reset() end
 --- Note the "." syntax rather than ":". This is a class method, not an instance method.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.allTimers
+---@return nil
 function playdate.timer.allTimers() end
 
 --- A Function of the form function(timer) or function(...) where "..." corresponds to the values in the table assigned to timerEndedArgs. Called when the timer has completed.
@@ -7813,6 +8175,7 @@ function playdate.timer.updateCallback(...) end
 --- This should be called from the main playdate.update() loop to drive the frame timers.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.updateTimers
+---@return nil
 function playdate.frameTimer.updateTimers() end
 
 --- Returns a new playdate.frameTimer that will run for duration frames. callback is a function closure that will be called when the timer is complete.
@@ -7825,6 +8188,7 @@ function playdate.frameTimer.updateTimers() end
 ---@param duration any
 ---@param callback any
 ---@param ... any
+---@return playdate.frameTimer
 function playdate.frameTimer.new(duration, callback, ...) end
 
 --- Performs the function callback after the delay number of frames. Accepts a variable number of arguments that will be passed to the callback function when it is called. If arguments are not provided, the timer itself will be passed to the callback instead.
@@ -7833,6 +8197,7 @@ function playdate.frameTimer.new(duration, callback, ...) end
 ---@param delay any
 ---@param callback any
 ---@param ... any
+---@return nil
 function playdate.frameTimer.performAfterDelay(delay, callback, ...) end
 
 --- Returns a new playdate.frameTimer that will run for duration number of frames. If not specified, startValue and endValue will be 0, and a linear easing function will be used.
@@ -7844,26 +8209,31 @@ function playdate.frameTimer.performAfterDelay(delay, callback, ...) end
 ---@param startValue any
 ---@param endValue any
 ---@param easingFunction any
+---@return playdate.frameTimer
 function playdate.frameTimer.new(duration, startValue, endValue, easingFunction) end
 
 --- Pauses a timer. (There is no need to call :start() on a newly-instantiated frame timer: frame timers start automatically.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.pause
+---@return nil
 function playdate.frameTimer:pause() end
 
 --- Resumes a timer. (There is no need to call :start() on a newly-instantiated frame timer: frame timers start automatically.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.start
+---@return nil
 function playdate.frameTimer:start() end
 
 --- Removes this timer from the list of timers. This happens automatically when a non-repeating timer reaches it’s end, but you can use this method to dispose of timers manually.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.remove
+---@return nil
 function playdate.frameTimer:remove() end
 
 --- Resets a timer to its initial values.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.reset
+---@return nil
 function playdate.frameTimer:reset() end
 
 --- Returns an array listing all running frameTimers.
@@ -7871,6 +8241,7 @@ function playdate.frameTimer:reset() end
 --- Note the "." syntax rather than ":". This is a class method, not an instance method.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.allTimers
+---@return playdate.frameTimer[]
 function playdate.frameTimer.allTimers() end
 
 --- A Function of the form function(timer) or function(...) where "..." corresponds to the values in the table assigned to timerEndedArgs. Called when the timer has completed.
@@ -7902,6 +8273,7 @@ function playdate.ui.crankIndicator:update() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-gridview.new
 ---@param cellWidth any
 ---@param cellHeight any
+---@return playdate.ui.gridview
 function playdate.ui.gridview.new(cellWidth, cellHeight) end
 
 --- Override this method to draw the cells in the gridview. selected is a boolean, true if the cell being drawn is the currently-selected cell.
@@ -7915,6 +8287,7 @@ function playdate.ui.gridview.new(cellWidth, cellHeight) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.ui.gridview:drawCell(section, row, column, selected, x, y, width, height) end
 
 --- Override this method to draw section headers. This function will only be called if the header height has been set to a value greater than zero (0).
@@ -7925,6 +8298,7 @@ function playdate.ui.gridview:drawCell(section, row, column, selected, x, y, wid
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.ui.gridview:drawSectionHeader(section, x, y, width, height) end
 
 --- Override this method to customize the drawing of horizontal dividers. This function will only be called if the horizontal divider height is greater than zero (0) and at least one divider has been added.
@@ -7934,6 +8308,7 @@ function playdate.ui.gridview:drawSectionHeader(section, x, y, width, height) en
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.ui.gridview:drawHorizontalDivider(x, y, width, height) end
 
 --- Draws the gridview in the specified rect. Ideally this should be called on every playdate.update() to accommodate scrolling.
@@ -7943,17 +8318,20 @@ function playdate.ui.gridview:drawHorizontalDivider(x, y, width, height) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return nil
 function playdate.ui.gridview:drawInRect(x, y, width, height) end
 
 --- Sets the number of sections in the grid view. Each section contains at least one row, and row numbering starts at 1 in each section.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfSections
 ---@param num any
+---@return nil
 function playdate.ui.gridview:setNumberOfSections(num) end
 
 --- Gets the number of sections in the grid view.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getNumberOfSections
+---@return integer sections
 function playdate.ui.gridview:getNumberOfSections() end
 
 --- Sets the number of rows in section.
@@ -7961,29 +8339,34 @@ function playdate.ui.gridview:getNumberOfSections() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfRowsInSection
 ---@param section any
 ---@param num any
+---@return nil
 function playdate.ui.gridview:setNumberOfRowsInSection(section, num) end
 
 --- Gets the number of rows in section.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getNumberOfRowsInSection
 ---@param section any
+---@return integer rows
 function playdate.ui.gridview:getNumberOfRowsInSection(section) end
 
 --- Sets the number of columns in the gridview. 1 by default.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfColumns
 ---@param num any
+---@return nil
 function playdate.ui.gridview:setNumberOfColumns(num) end
 
 --- Gets the number of columns in the gridview. 1 by default.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getNumberOfColumns
+---@return integer columns
 function playdate.ui.gridview:getNumberOfColumns() end
 
 --- Convenience method for list-style gridviews, or for setting the number of rows for multiple sections at a time. Pass in a list of numbers of rows for sections starting from section 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfRows
 ---@param ... any
+---@return nil
 function playdate.ui.gridview:setNumberOfRows(...) end
 
 --- Sets the size of the cells in the gridview. If cells should span the entire width of the grid (as in a list view), pass zero (0) for cellWidth.
@@ -7991,6 +8374,7 @@ function playdate.ui.gridview:setNumberOfRows(...) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setCellSize
 ---@param cellWidth any
 ---@param cellHeight any
+---@return nil
 function playdate.ui.gridview:setCellSize(cellWidth, cellHeight) end
 
 --- Sets the amount of padding around cells.
@@ -8000,6 +8384,7 @@ function playdate.ui.gridview:setCellSize(cellWidth, cellHeight) end
 ---@param right any
 ---@param top any
 ---@param bottom any
+---@return nil
 function playdate.ui.gridview:setCellPadding(left, right, top, bottom) end
 
 --- Sets the amount of space the content is inset from the edges of the gridview. Useful if a background image is being used as a border.
@@ -8009,6 +8394,7 @@ function playdate.ui.gridview:setCellPadding(left, right, top, bottom) end
 ---@param right any
 ---@param top any
 ---@param bottom any
+---@return nil
 function playdate.ui.gridview:setContentInset(left, right, top, bottom) end
 
 --- Returns multiple values (x, y, width, height) representing the bounds of the cell, not including padding, relative to the top-right corner of the grid view.
@@ -8020,18 +8406,24 @@ function playdate.ui.gridview:setContentInset(left, right, top, bottom) end
 ---@param row any
 ---@param column any
 ---@param gridWidth any
+---@return integer x
+---@return integer y
+---@return integer width
+---@return integer height
 function playdate.ui.gridview:getCellBounds(section, row, column, gridWidth) end
 
 --- Sets the height of the section headers. 0 by default, which causes section headers not to be drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setSectionHeaderHeight
 ---@param height integer
+---@return nil
 function playdate.ui.gridview:setSectionHeaderHeight(height) end
 
 --- Gets the height of the section headers. 0 by default, which causes section headers not to be drawn.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getSectionHeaderHeight
-function playdate.ui.gridview.getSectionHeaderHeight() end
+---@return integer
+function playdate.ui.gridview:getSectionHeaderHeight() end
 
 --- Sets the amount of padding around section headers.
 ---
@@ -8040,17 +8432,20 @@ function playdate.ui.gridview.getSectionHeaderHeight() end
 ---@param right any
 ---@param top any
 ---@param bottom any
+---@return nil
 function playdate.ui.gridview:setSectionHeaderPadding(left, right, top, bottom) end
 
 --- Sets the height of the horizontal dividers. The default height is half the cell height specified when creating the grid view.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setHorizontalDividerHeight
 ---@param height integer
+---@return nil
 function playdate.ui.gridview:setHorizontalDividerHeight(height) end
 
 --- Gets the height of the horizontal dividers. The default height is half the cell height specified when creating the grid view.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getHorizontalDividerHeight
+---@return integer height
 function playdate.ui.gridview:getHorizontalDividerHeight() end
 
 --- Causes a horizontal divider to be drawn above the specified row. Drawing can be customized by overriding  playdate.ui.gridview:drawHorizontalDivider.
@@ -8058,17 +8453,20 @@ function playdate.ui.gridview:getHorizontalDividerHeight() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.addHorizontalDividerAbove
 ---@param section any
 ---@param row any
+---@return nil
 function playdate.ui.gridview:addHorizontalDividerAbove(section, row) end
 
 --- Removes all horizontal dividers from the grid view.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.removeHorizontalDividers
+---@return nil
 function playdate.ui.gridview:removeHorizontalDividers() end
 
 --- Controls the duration of scroll animations. 250ms by default.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setScrollDuration
 ---@param ms any
+---@return nil
 function playdate.ui.gridview:setScrollDuration(ms) end
 
 --- 'set' scrolls to the coordinate x, y.
@@ -8079,11 +8477,14 @@ function playdate.ui.gridview:setScrollDuration(ms) end
 ---@param x integer
 ---@param y integer
 ---@param animated any
+---@return nil
 function playdate.ui.gridview:setScrollPosition(x, y, animated) end
 
 --- Returns the current scroll location x, y.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getScrollPosition
+---@return integer x
+---@return integer y
 function playdate.ui.gridview:getScrollPosition() end
 
 --- Scrolls to the specified cell, just enough so the cell is visible.
@@ -8093,6 +8494,7 @@ function playdate.ui.gridview:getScrollPosition() end
 ---@param row any
 ---@param column any
 ---@param animated any
+---@return nil
 function playdate.ui.gridview:scrollToCell(section, row, column, animated) end
 
 --- Scrolls to the specified cell, so the cell is centered in the gridview, if possible.
@@ -8102,6 +8504,7 @@ function playdate.ui.gridview:scrollToCell(section, row, column, animated) end
 ---@param row any
 ---@param column any
 ---@param animated any
+---@return nil
 function playdate.ui.gridview:scrollCellToCenter(section, row, column, animated) end
 
 --- Convenience function for list-style gridviews. Scrolls to the specified row in the list.
@@ -8109,12 +8512,14 @@ function playdate.ui.gridview:scrollCellToCenter(section, row, column, animated)
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.scrollToRow
 ---@param row any
 ---@param animated any
+---@return nil
 function playdate.ui.gridview:scrollToRow(row, animated) end
 
 --- Scrolls to the top of the gridview.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.scrollToTop
 ---@param animated any
+---@return nil
 function playdate.ui.gridview:scrollToTop(animated) end
 
 --- Selects the cell at the given position.
@@ -8123,22 +8528,28 @@ function playdate.ui.gridview:scrollToTop(animated) end
 ---@param section any
 ---@param row any
 ---@param column any
+---@return nil
 function playdate.ui.gridview:setSelection(section, row, column) end
 
 --- Returns the currently-selected cell as section, row, column
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getSelection
+---@return integer section
+---@return integer row
+---@return integer column
 function playdate.ui.gridview:getSelection() end
 
 --- Convenience method for list-style gridviews. Selects the cell at row in section 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setSelectedRow
 ---@param row any
+---@return nil
 function playdate.ui.gridview:setSelectedRow(row) end
 
 --- Convenience method for list-style gridviews. Returns the selected cell at row in section 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getSelectedRow
+---@return integer row
 function playdate.ui.gridview:getSelectedRow() end
 
 --- Selects the cell directly below the currently-selected cell.
@@ -8149,6 +8560,7 @@ function playdate.ui.gridview:getSelectedRow() end
 ---@param wrapSelection any
 ---@param scrollToSelection any
 ---@param animate any
+---@return nil
 function playdate.ui.gridview:selectNextRow(wrapSelection, scrollToSelection, animate) end
 
 --- Selects the cell directly above the currently-selected cell.
@@ -8159,6 +8571,7 @@ function playdate.ui.gridview:selectNextRow(wrapSelection, scrollToSelection, an
 ---@param wrapSelection any
 ---@param scrollToSelection any
 ---@param animate any
+---@return nil
 function playdate.ui.gridview:selectPreviousRow(wrapSelection, scrollToSelection, animate) end
 
 --- Selects the cell directly to the right of the currently-selected cell.
@@ -8171,6 +8584,7 @@ function playdate.ui.gridview:selectPreviousRow(wrapSelection, scrollToSelection
 ---@param wrapSelection any
 ---@param scrollToSelection any
 ---@param animate any
+---@return nil
 function playdate.ui.gridview:selectNextColumn(wrapSelection, scrollToSelection, animate) end
 
 --- Selects the cell directly to the left of the currently-selected cell.
@@ -8183,6 +8597,7 @@ function playdate.ui.gridview:selectNextColumn(wrapSelection, scrollToSelection,
 ---@param wrapSelection any
 ---@param scrollToSelection any
 ---@param animate any
+---@return nil
 function playdate.ui.gridview:selectPreviousColumn(wrapSelection, scrollToSelection, animate) end
 
 --- If flag is false, automatic garbage collection is disabled and the game should manually collect garbage with Lua’s collectgarbage() function.
