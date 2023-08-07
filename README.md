@@ -1,6 +1,10 @@
 # LuaCATS for Panic PlaydateSDK
 
-Definitions for the Panic Playdate Lua SDK.
+Unofficial Definitions for the Panic Playdate Lua SDK.
+
+Text Copyright (c) Panic Inc, [PlaydateSDK License 1.0](https://play.date/dev/sdk-license/)
+
+Everything else Copyright (c) Peter Tripp, [Apache 2.0 License](LICENSE)
 
 ## LuaCATS? What's that.
 
@@ -8,31 +12,62 @@ LuaCATS stands for "Lua Comment And Type System", which is the system used by [S
 [Lua Language Server](https://github.com/LuaLS/lua-language-server) for the 
 [sumneko.lua VSCode extension](https://marketplace.visualstudio.com/items?itemName=sumneko.lua).
 
-
-LuaCATS is a standard (still under development) for
-[Lua Annotations](https://github.com/LuaLS/lua-language-server/wiki/Annotations#deprecated)
-including Type definitions.  This enables inline autocompletion and linting
-suggestions within your IDE. Super nifty!
+LuaCATS is method to provide machine readable
+[Lua Type Annotations](https://github.com/LuaLS/lua-language-server/wiki/Annotations#deprecated)
+and comments enabling inline autocompletion and linting suggestions within your IDE. Super nifty!
 
 ## What does it look like
 
-TBD
-
+<img width="850" alt="Screenshot 2023-08-07 at 12 17 10" src="https://github.com/notpeter/playdate-luacats/assets/145113/55524a57-ea39-44b3-b792-edca2ce582c2">
 
 ## How do I use it?
 
-TBD
+1. Add [sumneko.lua VSCode extension](https://marketplace.visualstudio.com/items?itemName=sumneko.lua).
 
+  cmd+shift+p "install extensions", "sumneko.lua"
+
+2. Clone this repo somewhere:
+```
+cd ~/code/
+git clone https://github.com/notpeter/playdate-luacats
+```
+
+3. Add the following to `.vscode/settings.json` in your workspace and
+(edit `Lua.workspace.library` to reflect where you cloned playdate-luacats.
+```
+{
+    "Lua.runtime.nonstandardSymbol": [
+        "+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="
+    ],
+    "Lua.diagnostics.globals": [
+        "import",
+        "playdate",
+        "json",
+    ],
+    "Lua.workspace.library": [
+        "/Users/peter/code/playdate-luacats"
+    ]
+}
+```
+
+4. Close and reopen your VSCode window. Wait 5-10 secs and ta-da!
+5. Hover or start typing `playdate.` and you'll get suggestions.
 
 ## How does this get generated
 
-See the companion project
-[notpeter/playdate-docdef](https://github.com/notpeter/playdate-docdef/)
-which is Rust application that takes the
-[Lua PlayDateSDK "Inside Playdate" HTML Documentation](https://sdk.play.date/)
-scrapes all the function signatures and associated documentation and
-generates a stub file which includes LuaCATS comments including
-function documentation.
+1. Companion project
+[notpeter/playdate-docdef](https://github.com/notpeter/playdate-docdef/) scrapes
+[Lua PlayDateSDK "Inside Playdate" HTML Documentation](https://sdk.play.date/).
+
+2. Scraped data is augmented with additional data:
+ - [x] [Fixes for Typos](https://github.com/notpeter/playdate-docdef/blob/main/data/Typo.toml)
+ - [x] [Classes and class instance fields](https://github.com/notpeter/playdate-docdef/blob/main/data/Class.toml)
+ - [x] [Replace paramter names which are reserved Lua keywords](https://github.com/notpeter/playdate-docdef/blob/main/data/Invalid.toml)
+ - [x] [Add Types to Paramters](https://github.com/notpeter/playdate-docdef/blob/main/data/Type.toml)
+ - [x] [Add Return Types](https://github.com/notpeter/playdate-docdef/blob/main/data/Return.toml)
+ - [ ] Type Aliases for constants (WIP)
+
+3. Generate one massive [stub.lua](library/stub.lua) file.
 
 ## But what about the types
 
@@ -54,54 +89,25 @@ Yep. For 1000+ provided interfaces signatures I needed to determine:
 * return types: some functions have different return types on error
 * some parameters accepted multiple types: `---@param flip int|str -- Accepts playdate.graphics.kImageFlippedX or 'flipx'. 
 
-## Improvements
-
-Since these were done manually there's gonna be errors.
-Please open issues as you find them.
-
-## Version system
-
-Past versions are tagged: Github
+## Version tags
 
 These types were initially built against PlayDateSDK v2.0.1.
 
-Because these generated annotations and comments need to be 
-edited and refined as we go along, we cannot directly match
-the version tags for this repository to the PlaydateSDK version.
-As we are likely to have multiple releases for each PlayDateSDK version
-as we iterate on type I can't tag a release `2.0.1`.
-
-With [Semantic Versioning](https://semver.org/) if we are willing
-to categorize all our releases as "pre-release" versions we can
-include optional characters after a hyphen.  Valid characters
-are [0-9A-Za-z-]+, must not be empty and numeric identifiers
-must not have leading zeros.
-
-And so I've settled on a simple versioning scheme which
-complies with prerelease versions as specified in
-[semver item 9](https://semver.org/#spec-item-9):
+We use [Semantic Versioning](https://semver.org/) but add a suffix
+for each update for a given SDK release. This technically makes them
+[pre-release]((https://semver.org/#spec-item-9)) versions
+but as long as we always use the suffix it'll be fine.
 
 ```
 v2.0.1-luacats1
+v2.0.1-luacats2
+v2.0.2-luacats1
+etc
 ```
-
-When Panic releases a new version of the SDK we will
-match their versions in the semver version and reset
-back to `luacats1`.  Multiple releases under the same
-SDK version will increment the final digit:
-`2.0.1-luacats2`, `2.0.1-luacats3`, etc.  Should
-Panic have beta or pre-release SDKs versions like they
-did with `2.0.0-beta.2` and `2.0.0-beta.4` before 
-`2.0.0` was released, our version will match the semver
-version, ignore the beta designations and increment
-the `luacatsN` suffix if required for changes in the final
-release.
-
 
 ## Meta notes
 
 * As of 2023-08-05 None of the other [LuaCATS Definitions](https://github.com/LuaCATS)
-have a single tagged releases.
-Over engineering is definitely on-brand for this project.
+have a single tagged releases. Over engineering is definitely on-brand for this project.
 * As of 2023-08-05 [Google q=luacats1](https://www.google.com/search?q=luacats1)
 yields zero results.
