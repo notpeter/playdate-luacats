@@ -4,16 +4,19 @@
 ---@class playdate
 ---@field argv string[]
 ---@field isSimulator boolean
-local playdate = {}
+playdate = {}
+
+---@class playdate.display
+playdate.display = {}
 
 ---@class playdate.easingFunctions
-local playdate.easingFunctions = {}
+playdate.easingFunctions = {}
 
 ---@class playdate.file
-local playdate.file = {}
+playdate.file = {}
 
 ---@class playdate.file.file
-local playdate.file.file = {}
+playdate.file.file = {}
 
 ---@class playdate.frameTimer
 ---@field delay integer
@@ -23,10 +26,10 @@ local playdate.file.file = {}
 ---@field repeats boolean
 ---@field reverses boolean
 ---@field timerEndedArgs any[]
-local playdate.frameTimer = {}
+playdate.frameTimer = {}
 
 ---@class playdate.geometry
-local playdate.geometry = {}
+playdate.geometry = {}
 
 ---@class playdate.geometry.arc
 ---@field x integer
@@ -35,19 +38,25 @@ local playdate.geometry = {}
 ---@field startAngle number
 ---@field endAngle number
 ---@field direction boolean
-local playdate.geometry.arc = {}
+playdate.geometry.arc = {}
+
+---@class playdate.geometry.affineTransform
+playdate.geometry.affineTransform = {}
 
 ---@class playdate.geometry.lineSegment
 ---@field x1 integer
 ---@field y1 integer
 ---@field x2 integer
 ---@field y2 integer
-local playdate.geometry.lineSegment = {}
+playdate.geometry.lineSegment = {}
 
 ---@class playdate.geometry.point
 ---@field x number
 ---@field y number
-local playdate.geometry.point = {}
+playdate.geometry.point = {}
+
+---@class playdate.geometry.polygon
+playdate.geometry.polygon = {}
 
 ---@class playdate.geometry.rect
 ---@field x number
@@ -59,20 +68,20 @@ local playdate.geometry.point = {}
 ---@field left number
 ---@field right number
 ---@field size playdate.geometry.size
-local playdate.geometry.rect = {}
+playdate.geometry.rect = {}
 
 ---@class playdate.geometry.size
 ---@field width number
 ---@field height number
-local playdate.geometry.size = {}
+playdate.geometry.size = {}
 
 ---@class playdate.geometry.vector2D
 ---@field dx number
 ---@field dy number
-local playdate.geometry.vector2D = {}
+playdate.geometry.vector2D = {}
 
 ---@class playdate.graphics
-local playdate.graphics = {}
+playdate.graphics = {}
 
 ---@class playdate.graphics.animation.loop
 ---@field delay number
@@ -82,7 +91,7 @@ local playdate.graphics = {}
 ---@field step integer
 ---@field shouldLoop boolean
 ---@field paused boolean
-local playdate.graphics.animation.loop = {}
+playdate.graphics.animation.loop = {}
 
 ---@class playdate.graphics.animation.blinker
 ---@field onDuration integer
@@ -93,7 +102,7 @@ local playdate.graphics.animation.loop = {}
 ---@field counter integer
 ---@field on boolean
 ---@field running boolean
-local playdate.graphics.animation.blinker = {}
+playdate.graphics.animation.blinker = {}
 
 ---@class playdate.graphics.animator
 ---@field repeatCount integer
@@ -103,48 +112,48 @@ local playdate.graphics.animation.blinker = {}
 ---@field s number|nil
 ---@field a number|nil
 ---@field p number|nil
-local playdate.graphics.animator = {}
+playdate.graphics.animator = {}
 
 ---@class playdate.graphics.font
-local playdate.graphics.font = {}
+playdate.graphics.font = {}
 
 ---@class playdate.graphics.image
 ---@field x integer
 ---@field y integer
 ---@field width integer
 ---@field height integer
-local playdate.graphics.image = {}
+playdate.graphics.image = {}
 
 ---@class playdate.graphics.imagetable
-local playdate.graphics.imagetable = {}
+playdate.graphics.imagetable = {}
 
 ---@class playdate.graphics.nineSlice
 ---@field innerRect playdate.geometry.rect
 ---@field minWidth integer
 ---@field minHeight integer
-local playdate.graphics.nineSlice = {}
+playdate.graphics.nineSlice = {}
 
 ---@class playdate.graphics.sprite
 ---@field x integer
 ---@field y integer
 ---@field width integer
 ---@field height integer
----@field collisionResponse integer|collisionType|fun(other: playdate.graphics.sprite): collisionType|nil
+---@field collisionResponse integer|fun(self: playdate.graphics.sprite, other: playdate.graphics.sprite): integer|nil
 ---@field update fun()|nil
-local playdate.graphics.sprite = {}
+playdate.graphics.sprite = {}
 
 ---@class playdate.graphics.tilemap
-local playdate.graphics.tilemap = {}
+playdate.graphics.tilemap = {}
 
 ---@class playdate.graphics.video
-local playdate.graphics.video = {}
+playdate.graphics.video = {}
 
 ---@class playdate.inputHandlers
-local playdate.inputHandlers = {}
+playdate.inputHandlers = {}
 
 ---@class playdate.keyboard
 ---@field text string
-local playdate.keyboard = {}
+playdate.keyboard = {}
 
 ---@class playdate.metadata
 ---@field name string
@@ -158,92 +167,104 @@ local playdate.keyboard = {}
 ---@field pdxversion integer
 ---@field contentWarning string|nil
 ---@field contentWarning2 string|nil
-local playdate.metadata = {}
+playdate.metadata = {}
 
 ---@class playdate.menu
-local playdate.menu = {}
+playdate.menu = {}
 
 ---@class playdate.menu.item
 ---@field title string
 ---@field value integer|boolean|string
-local playdate.menu.item = {}
+playdate.menu.item = {}
 
 ---@class playdate.pathfinder
-local playdate.pathfinder = {}
+playdate.pathfinder = {}
 
 ---@class playdate.pathfinder.graph
-local playdate.pathfinder.graph = {}
+playdate.pathfinder.graph = {}
 
 ---@class playdate.pathfinder.node
-local playdate.pathfinder.node = {}
+playdate.pathfinder.node = {}
 
 ---@class playdate.simulator
-local playdate.simulator = {}
+playdate.simulator = {}
 
----@class playdate.sound.fileplayer: playdate.sound.source
-local playdate.sound.fileplayer: playdate.sound.source = {}
-
----@class playdate.sound.source
-local playdate.sound.source = {}
-
----@class playdate.sound.sample
-local playdate.sound.sample = {}
-
----@class playdate.sound.sampleplayer: playdate.sound.source
-local playdate.sound.sampleplayer: playdate.sound.source = {}
-
----@class playdate.sound.synth: playdate.sound.source
-local playdate.sound.synth: playdate.sound.source = {}
-
----@class playdate.sound.instrument: playdate.sound.source
-local playdate.sound.instrument: playdate.sound.source = {}
-
----@class playdate.sound.effect
-local playdate.sound.effect = {}
+---@class playdate.sound
+playdate.sound = {}
 
 ---@class playdate.sound.bitcrusher: playdate.sound.effect
-local playdate.sound.bitcrusher: playdate.sound.effect = {}
+playdate.sound.bitcrusher = {}
 
----@class playdate.sound.twopolefilter: playdate.sound.effect
-local playdate.sound.twopolefilter: playdate.sound.effect = {}
+---@class playdate.sound.channel
+playdate.sound.channel = {}
 
----@class playdate.sound.onepolefilter: playdate.sound.effect
-local playdate.sound.onepolefilter: playdate.sound.effect = {}
-
----@class playdate.sound.ringmod: playdate.sound.effect
-local playdate.sound.ringmod: playdate.sound.effect = {}
-
----@class playdate.sound.overdrive: playdate.sound.effect
-local playdate.sound.overdrive: playdate.sound.effect = {}
+---@class playdate.sound.controlsignal
+---@field events ControlSignalEvent[]
+playdate.sound.controlsignal = {}
 
 ---@class playdate.sound.delayline: playdate.sound.effect
-local playdate.sound.delayline: playdate.sound.effect = {}
+playdate.sound.delayline = {}
 
 ---@class playdate.sound.delaylinetap: playdate.sound.source
-local playdate.sound.delaylinetap: playdate.sound.source = {}
+playdate.sound.delaylinetap = {}
+
+---@class playdate.sound.effect
+playdate.sound.effect = {}
+
+---@class playdate.sound.envelope
+playdate.sound.envelope = {}
+
+---@class playdate.sound.fileplayer: playdate.sound.source
+playdate.sound.fileplayer = {}
+
+---@class playdate.sound.instrument: playdate.sound.source
+playdate.sound.instrument = {}
+
+---@class playdate.sound.lfo
+playdate.sound.lfo = {}
+
+---@class playdate.sound.onepolefilter: playdate.sound.effect
+playdate.sound.onepolefilter = {}
+
+---@class playdate.sound.overdrive: playdate.sound.effect
+playdate.sound.overdrive = {}
+
+---@class playdate.sound.ringmod: playdate.sound.effect
+playdate.sound.ringmod = {}
+
+---@class playdate.sound.sample
+playdate.sound.sample = {}
+
+---@class playdate.sound.sampleplayer: playdate.sound.source
+playdate.sound.sampleplayer = {}
+
+---@class playdate.sound.sequence
+playdate.sound.sequence = {}
+
+---@class playdate.sound.source
+playdate.sound.source = {}
+
+---@class playdate.sound.synth: playdate.sound.source
+playdate.sound.synth = {}
 
 ---@class playdate.sound.track
-local playdate.sound.track = {}
+playdate.sound.track = {}
 
----@class playdate.sound.instrument
-local playdate.sound.instrument = {}
-
----@class playdate.sound.conrolsignal
----@field events ControlSignalEvent[]
-local playdate.sound.conrolsignal = {}
+---@class playdate.sound.twopolefilter: playdate.sound.effect
+playdate.sound.twopolefilter = {}
 
 ---@class playdate.sound.micinput
-local playdate.sound.micinput = {}
+playdate.sound.micinput = {}
 
 ---@class playdate.string
-local playdate.string = {}
+playdate.string = {}
 
 ---@class playdate.systeminfo
 ---@field buildtime string
 ---@field commit string
 ---@field pdxcompatversion integer
 ---@field pdxversion integer
-local playdate.systeminfo = {}
+playdate.systeminfo = {}
 
 ---@class playdate.timer
 ---@field currentTime integer
@@ -254,11 +275,14 @@ local playdate.systeminfo = {}
 ---@field repeats boolean
 ---@field reverses boolean
 ---@field timerEndedArgs any[]
-local playdate.timer = {}
+playdate.timer = {}
+
+---@class playdate.ui
+playdate.ui = {}
 
 ---@class playdate.ui.crankIndicator
 ---@field clockwise boolean
-local playdate.ui.crankIndicator = {}
+playdate.ui.crankIndicator = {}
 
 ---@class playdate.ui.gridview
 ---@field needsDisplay boolean
@@ -269,12 +293,12 @@ local playdate.ui.crankIndicator = {}
 ---@field easingPeriod number|nil
 ---@field changeRowOnColumnWrap boolean
 ---@field scrollCellsToCenter boolean
-local playdate.ui.gridview = {}
+playdate.ui.gridview = {}
 
 ---@class CollisionData
----@field sprite playdtae.graphics.sprite
+---@field sprite playdate.graphics.sprite
 ---@field other playdate.graphics.sprite
----@field type integer|CollisionType
+---@field type integer
 ---@field overlaps boolean
 ---@field ti number
 ---@field move playdate.geometry.vector2D
@@ -284,7 +308,7 @@ local playdate.ui.gridview = {}
 ---@field otherRect playdate.geometry.rect
 ---@field bounce playdate.geometry.point|nil
 ---@field slide playdate.geometry.point|nil
-local CollisionData = {}
+CollisionData = {}
 
 ---@class CollisionInfo
 ---@field sprite playdate.graphics.sprite
@@ -292,7 +316,7 @@ local CollisionData = {}
 ---@field exitPoint playdate.geometry.point
 ---@field t1 number
 ---@field t2 number
-local CollisionInfo = {}
+CollisionInfo = {}
 
 ---@class DateTime
 ---@field year integer
@@ -303,7 +327,7 @@ local CollisionInfo = {}
 ---@field minute integer
 ---@field second integer
 ---@field millisecond integer
-local DateTime = {}
+DateTime = {}
 
 ---@class InputHandler
 ---@field AButtonDown fun()|nil
@@ -321,22 +345,22 @@ local DateTime = {}
 ---@field upButtonDown fun()|nil
 ---@field upButtonUp fun()|nil
 ---@field cranked fun(change:number, acceleratedChange:number)|nil
-local InputHandler = {}
+InputHandler = {}
 
 ---@class Object
-local Object = {}
+Object = {}
 
 ---@class PowerStatus
 ---@field charging boolean
 ---@field USB boolean
 ---@field screws boolean
-local PowerStatus = {}
+PowerStatus = {}
 
 ---@class SystemStats
 ---@field  kernel number
 ---@field  game number
 ---@field  audio number
-local SystemStats = {}
+SystemStats = {}
 
 ---@class ModTime
 ---@field year integer
@@ -345,27 +369,27 @@ local SystemStats = {}
 ---@field hour integer
 ---@field minute integer
 ---@field second integer
-local ModTime = {}
+ModTime = {}
 
 ---@class SoundTrackNoteIn
 ---@field step integer
 ---@field note number|string
 ---@field length integer
 ---@field velocity number
-local SoundTrackNoteIn = {}
+SoundTrackNoteIn = {}
 
 ---@class SoundTrackNoteOut
 ---@field step integer
 ---@field note number
 ---@field length integer
 ---@field velocity number
-local SoundTrackNoteOut = {}
+SoundTrackNoteOut = {}
 
 ---@class ControlSignalEvent
 ---@field step integer
 ---@field value number
 ---@field interpolate boolean|nil
-local ControlSignalEvent = {}
+ControlSignalEvent = {}
 
 --- Returns the first index of element in the given array-style table. If the table does not contain element, the function returns nil.
 ---
@@ -4135,7 +4159,7 @@ function playdate.graphics.setImageDrawMode(mode) end
 --- Gets the current drawing mode for images.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getImageDrawMode
----@return integer|DrawMode mode
+---@return integer draw_mode
 function playdate.graphics.getImageDrawMode() end
 
 --- Sets the width of the line for drawLine, drawRect, drawPolygon, and drawArc when a playdate.geometry.arc is passed as the argument.
@@ -4173,7 +4197,7 @@ function playdate.graphics.setStrokeLocation(location) end
 --- * playdate.graphics.kStrokeInside
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getStrokeLocation
----@return integer|StrokeLocation strokeLocation
+---@return integer strokeLocation
 function playdate.graphics.getStrokeLocation() end
 
 --- lockFocus() routes all drawing to the given playdate.graphics.image. playdate.graphics.unlockFocus() returns drawing to the frame buffer.
@@ -4767,7 +4791,7 @@ function playdate.graphics.sprite:getCenter() end
 --- Returns a playdate.geometry.point representing the sprite’s drawing center as a fraction (ranging from 0.0 to 1.0) of the height and width.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenterPoint
----@return playdate.graphics.point
+---@return playdate.geometry.point
 function playdate.graphics.sprite:getCenterPoint() end
 
 --- Sets the sprite’s size. The method has no effect if the sprite has an image set.
@@ -4869,7 +4893,7 @@ function playdate.graphics.sprite:setImageFlip(flip, flipCollideRect) end
 --- Returns one of the values listed at playdate.graphics.image:draw().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImageFlip
----@return integer|Flip flip
+---@return integer flip
 function playdate.graphics.sprite:getImageFlip() end
 
 --- When set to true, the sprite will draw in screen coordinates, ignoring the currently-set drawOffset.
@@ -4912,7 +4936,7 @@ function playdate.graphics.sprite:getBounds() end
 --- getBoundsRect() returns the sprite bounds as a playdate.geometry.rect object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBoundsRect
----@return playdate.graphics.rect r
+---@return playdate.geometry.rect r
 function playdate.graphics.sprite:getBoundsRect() end
 
 --- Marking a sprite opaque tells the sprite system that it doesn’t need to draw anything underneath the sprite, since it will be overdrawn anyway. If you set an image without a mask/alpha channel on the sprite, it automatically sets the opaque flag.
@@ -5188,7 +5212,7 @@ function playdate.graphics.sprite:setCollideRect(rect) end
 --- This function return coordinates relative to the sprite itself; the sprite’s position has no bearing on these values.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideRect
----@return playdate.graphics.rect r
+---@return playdate.geometry.rect r
 function playdate.graphics.sprite:getCollideRect() end
 
 --- Returns the sprite’s collide rect as multiple values, (x, y, width, height).
@@ -5377,7 +5401,7 @@ function playdate.graphics.sprite:checkCollisions(point) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.collisionResponse
 ---@param other any
----@return integer|CollisionType
+---@return integer collision_type
 function playdate.graphics.sprite:collisionResponse(other) end
 
 --- Returns all sprites with collision rects containing the point.
@@ -6795,7 +6819,7 @@ function playdate.sound.sample:getSampleRate() end
 --- * playdate.sound.kFormat16bitStereo
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getFormat
----@return integer|SoundFormat
+---@return integer
 function playdate.sound.sample:getFormat() end
 
 --- Returns two values, the length of the available sample data and the size of the allocated buffer. Both values are measured in seconds. For a sample loaded from disk, these will be the same; for a sample used for recording, the available data may be less than the allocated size.
@@ -7934,6 +7958,7 @@ function playdate.sound.instrument:getVolume() end
 --- Creates a new control signal object, for automating effect parameters, channel pan and level, etc.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.controlsignal.new
+---@return playdate.sound.controlsignal
 function playdate.sound.controlsignal.new() end
 
 --- addEvent is a simpler way of adding events one at a time than setting the entire events table. Arguments are either the values themselves in the given order, or a table containing values for step, value, and optionally interpolate.
@@ -7942,28 +7967,33 @@ function playdate.sound.controlsignal.new() end
 ---@param step any
 ---@param value any
 ---@param interpolate any
+---@return nil
 function playdate.sound.controlsignal:addEvent(step, value, interpolate) end
 
 --- addEvent is a simpler way of adding events one at a time than setting the entire events table. Arguments are either the values themselves in the given order, or a table containing values for step, value, and optionally interpolate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent
 ---@param event any
+---@return nil
 function playdate.sound.controlsignal:addEvent(event) end
 
 --- Clears all events from the control signal.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.clearEvents
+---@return nil
 function playdate.sound.controlsignal:clearEvents() end
 
 --- Sets the midi controller number for the control signal, if that’s something you want to do. The value has no effect on playback.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.setControllerType
 ---@param number any
+---@return nil
 function playdate.sound.controlsignal:setControllerType(number) end
 
 --- Control signals in midi files are assigned a controller number, which describes the intent of the control. This function returns the controller number.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.getControllerType
+---@return integer controller_type
 function playdate.sound.controlsignal:getControllerType() end
 
 --- buffer should be a Sample created with the following code, with secondsToRecord replaced by a number specifying the record duration:
