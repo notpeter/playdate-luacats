@@ -394,7 +394,7 @@ ControlSignalEvent = {}
 --- Returns the first index of element in the given array-style table. If the table does not contain element, the function returns nil.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.indexOfElement
----@param table any
+---@param table table
 ---@param element any
 ---@return integer|nil index
 function table.indexOfElement(table, element) end
@@ -402,7 +402,7 @@ function table.indexOfElement(table, element) end
 --- Returns the size of the given table as multiple values (arrayCount, hashCount).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.getsize
----@param table any
+---@param table table
 ---@return integer arrayCount
 ---@return integer hashCount
 function table.getsize(table) end
@@ -412,8 +412,8 @@ function table.getsize(table) end
 --- If you can make a decent estimation of how big your table will need to be, `table.create()` can be much more efficient than the alternative, especially in loops. For example, if you know your array is always going to contain approximately ten elements, say `myArray = table.create( 10, 0 )` instead of `myArray = {}`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.create
----@param arrayCount any
----@param hashCount any
+---@param arrayCount integer
+---@param hashCount integer
 ---@return table
 function table.create(arrayCount, hashCount) end
 
@@ -515,8 +515,8 @@ function playdate.getSystemMenu() end
 --- title will be the title displayed by the menu item.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.addMenuItem
----@param title any
----@param callback any
+---@param title string
+---@param callback function
 ---@return nil
 function playdate.menu:addMenuItem(title, callback) end
 
@@ -533,9 +533,9 @@ function playdate.menu:addMenuItem(title, callback) end
 --- Playdate OS allows a maximum of **three** custom menu items to be added to the System Menu.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.addCheckmarkMenuItem
----@param title any
+---@param title string
 ---@param initialValue any
----@param callback any
+---@param callback function
 ---@return nil
 function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 
@@ -554,10 +554,10 @@ function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 --- Playdate OS allows a maximum of **three** custom menu items to be added to the System Menu.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.addOptionsMenuItem
----@param title any
----@param options any
+---@param title string
+---@param options string[]
 ---@param initalValue any
----@param callback any
+---@param callback function
 ---@return nil
 function playdate.menu:addOptionsMenuItem(title, options, initalValue, callback) end
 
@@ -568,7 +568,7 @@ function playdate.menu:getMenuItems() end
 --- Removes the specified playdate.menu.item from the menu.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.removeMenuItem
----@param menuItem any
+---@param menuItem playdate.menu.item
 ---@return nil
 function playdate.menu:removeMenuItem(menuItem) end
 
@@ -597,7 +597,7 @@ function playdate.setMenuImage(image, xOffset) end
 --- Sets the callback function for this menu item.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setCallback
----@param callback any
+---@param callback function
 ---@return nil
 function playdate.menu.item:setCallback(callback) end
 
@@ -606,7 +606,7 @@ function playdate.menu.item:setCallback(callback) end
 --- The title for a menu item can also be set using dot syntax.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setTitle
----@param newTitle any
+---@param newTitle string
 ---@return nil
 function playdate.menu.item:setTitle(newTitle) end
 
@@ -627,7 +627,7 @@ function playdate.menu.item:getTitle() end
 --- The value for a menu item can also be set using dot syntax.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setValue
----@param newValue any
+---@param newValue integer|boolean|string
 ---@return nil
 function playdate.menu.item:setValue(newValue) end
 
@@ -840,14 +840,14 @@ function playdate.getCrankChange() end
 --- You must import *CoreLibs/crank* to use `getCrankTicks()`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getCrankTicks
----@param ticksPerRevolution any
+---@param ticksPerRevolution number
 ---@return number ticks
 function playdate.getCrankTicks(ticksPerRevolution) end
 
 --- For playdate.cranked(), change is the angle change in degrees. acceleratedChange is change multiplied by a value that increases as the crank moves faster, similar to the way mouse acceleration works. Negative values are anti-clockwise.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-cranked
----@param change any
+---@param change number
 ---@param acceleratedChange any
 ---@return nil
 function playdate.cranked(change, acceleratedChange) end
@@ -869,7 +869,7 @@ function playdate.crankUndocked() end
 --- When your game terminates, crank sounds will automatically be re-enabled.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.setCrankSoundsDisabled
----@param disable any
+---@param disable boolean
 ---@return nil
 function playdate.setCrankSoundsDisabled(disable) end
 
@@ -880,7 +880,7 @@ function playdate.setCrankSoundsDisabled(disable) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.push
 ---@param handler any
----@param masksPreviousHandlers any
+---@param masksPreviousHandlers boolean
 ---@return nil
 function playdate.inputHandlers.push(handler, masksPreviousHandlers) end
 
@@ -897,7 +897,7 @@ function playdate.inputHandlers.pop() end
 --- If disabling auto-lock, developers should look for opportunities to re-enable auto-lock when appropriate. (For example, if your game is an MP3 audio player, auto-lock could be re-enabled when the user pauses the audio.)
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-playdate.setAutoLockDisabled
----@param disable any
+---@param disable boolean
 ---@return nil
 function playdate.setAutoLockDisabled(disable) end
 
@@ -994,7 +994,6 @@ function playdate.shouldDisplay24HourTime() end
 --- You should ideally remove debugging print statements from your final games to improve performance.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-print
----@param ... any
 function print(...) end
 
 --- Text output from printTable() will be displayed in the simulator’s console, in black if generated by a game running in the simulator or in blue if it’s coming from a plugged-in Playdate device. Printed text is also copied to stdout, which is helpful if you run the simulator from the command line.
@@ -1004,7 +1003,7 @@ function print(...) end
 --- You should ideally remove debugging print statements from your final games to improve performance.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-printTable
----@param table any
+---@param table table
 function printTable(table) end
 
 --- flag determines whether or not the print() function adds a newline to the end of the printed text.  Default is true.
@@ -1046,8 +1045,8 @@ function where() end
 --- You must import *CoreLibs/utilities/sampler* to use this function.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#lua-sample
----@param name any
----@param _function any
+---@param name string
+---@param _function function
 function sample(name, _function) end
 
 --- Returns a table containing percentages for each system task, such as:
@@ -1836,7 +1835,7 @@ function playdate.easingFunctions.outInBounce(t, b, c, d) end
 --- Encodes the given table into the named file. (The .json extension should be omitted from the file name.) The default file name is "data". If pretty-print is true, the JSON will be nicely formatted.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.write
----@param table any
+---@param table table
 ---@param filename string
 ---@param pretty boolean
 function playdate.datastore.write(table, filename, pretty) end
@@ -1906,7 +1905,7 @@ function playdate.file.file:close() end
 --- Writes the given string to the file and returns the number of bytes written if successful, or 0 and a second return value describing the error. If you wish to include line termination characters (\n, \r), please include them in the string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.write
----@param string any
+---@param string string
 ---@return integer bytes_written
 ---@return nil|string error
 function playdate.file.file:write(string) end
@@ -1930,7 +1929,7 @@ function playdate.file.file:readline() end
 --- Equivalent to playdate->file->read() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.read
----@param numberOfBytes any
+---@param numberOfBytes integer
 ---@return integer|nil numberOfBytes
 ---@return string error
 function playdate.file.file:read(numberOfBytes) end
@@ -2045,7 +2044,7 @@ function playdate.file.rename(path, newPath) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.load
 ---@param path string
----@param env any
+---@param env table
 ---@return function
 function playdate.file.load(path, env) end
 
@@ -2057,19 +2056,19 @@ function playdate.file.load(path, env) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.run
 ---@param path string
----@param env any
+---@param env table
 ---@return nil
 function playdate.file.run(path, env) end
 
 --- Returns a new playdate.geometry.affineTransform. Use new() instead to get a new copy of the identity transform.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.affineTransform.new
----@param m11 any
----@param m12 any
----@param m21 any
----@param m22 any
----@param tx any
----@param ty any
+---@param m11 number
+---@param m12 number
+---@param m21 number
+---@param m22 number
+---@param tx number
+---@param ty number
 ---@return playdate.geometry.affineTransform transform
 function playdate.geometry.affineTransform.new(m11, m12, m21, m22, tx, ty) end
 
@@ -2430,10 +2429,10 @@ function playdate.geometry.lineSegment:intersectsLineSegment(ls) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@param x3 any
----@param y3 any
----@param x4 any
----@param y4 any
+---@param x3 integer
+---@param y3 integer
+---@param x4 integer
+---@param y4 integer
 ---@return boolean intersects
 ---@return number? x
 ---@return number? y
@@ -2446,7 +2445,7 @@ function playdate.geometry.lineSegment.fast_intersection(x1, y1, x2, y2, x3, y3,
 --- intersectionPoints is an array of playdate.geometry.points containing all intersection points between the caller and poly.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsPolygon
----@param poly any
+---@param poly playdate.geometry.polygon
 ---@return boolean intersects
 ---@return playdate.geometry.point[]? intersectionPoints
 function playdate.geometry.lineSegment:intersectsPolygon(poly) end
@@ -2515,7 +2514,7 @@ function playdate.geometry.point:__add(v) end
 --- Returns the vector constructed by subtracting p2 from p1. By this construction, p2 + (p1 - p2) == p1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.sub
----@param p2 any
+---@param p2 playdate.geometry.point
 function playdate.geometry.point:__sub(p2) end
 
 --- Returns a new point by applying the transform t to point p.
@@ -2527,7 +2526,7 @@ function playdate.geometry.point:__mul(t) end
 --- Returns a new lineSegment connecting points p1 and p2.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.concat
----@param p2 any
+---@param p2 playdate.geometry.point
 function playdate.geometry.point:__concat(p2) end
 
 --- new(x1, y1, x2, y2, ..., xn, yn) returns a new playdate.geometry.polygon with vertices (x1, y1) through (xn, yn).  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -2545,7 +2544,6 @@ function playdate.geometry.point:__concat(p2) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@param ... any
 function playdate.geometry.polygon.new(x1, y1, x2, y2, ...) end
 
 --- new(x1, y1, x2, y2, ..., xn, yn) returns a new playdate.geometry.polygon with vertices (x1, y1) through (xn, yn).  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -2559,9 +2557,8 @@ function playdate.geometry.polygon.new(x1, y1, x2, y2, ...) end
 --- To draw a polygon, use `playdate.graphics.drawPolygon()`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
----@param p1 any
----@param p2 any
----@param ... any
+---@param p1 playdate.geometry.point
+---@param p2 playdate.geometry.point
 function playdate.geometry.polygon.new(p1, p2, ...) end
 
 --- new(x1, y1, x2, y2, ..., xn, yn) returns a new playdate.geometry.polygon with vertices (x1, y1) through (xn, yn).  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -2575,7 +2572,7 @@ function playdate.geometry.polygon.new(p1, p2, ...) end
 --- To draw a polygon, use `playdate.graphics.drawPolygon()`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
----@param numberOfVertices any
+---@param numberOfVertices integer
 function playdate.geometry.polygon.new(numberOfVertices) end
 
 --- Returns a copy of a polygon.
@@ -2599,7 +2596,7 @@ function playdate.geometry.polygon:isClosed() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint
 ---@param p any
----@param fillRule any
+---@param fillRule integer
 function playdate.geometry.polygon:containsPoint(p, fillRule) end
 
 --- Returns a boolean value, true if the point p or the point at (x, y) is contained within the caller polygon.
@@ -2609,7 +2606,7 @@ function playdate.geometry.polygon:containsPoint(p, fillRule) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint
 ---@param x integer
 ---@param y integer
----@param fillRule any
+---@param fillRule integer
 function playdate.geometry.polygon:containsPoint(x, y, fillRule) end
 
 --- Returns multiple values (x, y, width, height) giving the axis-aligned bounding box for the polygon.
@@ -3261,17 +3258,17 @@ function playdate.graphics.image:transformedImage(xform) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
----@param centerx any
----@param centery any
----@param dxx any
----@param dyx any
----@param dxy any
----@param dyy any
+---@param centerx number
+---@param centery number
+---@param dxx number
+---@param dyx number
+---@param dxy number
+---@param dyy number
 ---@param dx integer
 ---@param dy integer
 ---@param z integer
 ---@param tiltAngle number
----@param tile any
+---@param tile boolean
 ---@return nil
 function playdate.graphics.image:drawSampled(x, y, width, height, centerx, centery, dxx, dyx, dxy, dyy, dx, dy, z, tiltAngle, tile) end
 
@@ -3836,7 +3833,6 @@ function playdate.graphics.drawPolygon(p) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@param ... any
 ---@return nil
 function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 
@@ -3849,7 +3845,6 @@ function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@param ... any
 ---@return nil
 function playdate.graphics.fillPolygon(x1, y1, x2, y2, ...) end
 
@@ -3879,8 +3874,8 @@ function playdate.graphics.setPolygonFillRule(rule) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@param x3 any
----@param y3 any
+---@param x3 integer
+---@param y3 integer
 ---@return nil
 function playdate.graphics.drawTriangle(x1, y1, x2, y2, x3, y3) end
 
@@ -3893,15 +3888,15 @@ function playdate.graphics.drawTriangle(x1, y1, x2, y2, x3, y3) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@param x3 any
----@param y3 any
+---@param x3 integer
+---@param y3 integer
 ---@return nil
 function playdate.graphics.fillTriangle(x1, y1, x2, y2, x3, y3) end
 
 --- Returns a new 9 slice image from the image at imagePath with the stretchable region defined by other parameters. The arguments represent the origin and dimensions of the innermost ("center") slice.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.nineSlice.new
----@param imagePath any
+---@param imagePath string
 ---@param innerX any
 ---@param innerY any
 ---@param innerWidth any
@@ -3990,7 +3985,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode
 ---@param stringToEncode any
 ---@param desiredEdgeDimension any
----@param callback any
+---@param callback function
 ---@return nil
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
 
@@ -4085,7 +4080,7 @@ function playdate.graphics.clearClipRect() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilImage
 ---@param image playdate.graphics.image
----@param tile any
+---@param tile boolean
 ---@return nil
 function playdate.graphics.setStencilImage(image, tile) end
 
@@ -4234,7 +4229,7 @@ function playdate.graphics.unlockFocus() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new
 ---@param delay any
 ---@param imageTable any
----@param shouldLoop any
+---@param shouldLoop boolean
 ---@return playdate.graphics.animation.loop
 function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
 
@@ -4282,8 +4277,8 @@ function playdate.graphics.animation.loop:setImageTable(imageTable) end
 ---@param duration any
 ---@param startValue any
 ---@param endValue any
----@param easingFunction any
----@param startTimeOffset any
+---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
+---@param startTimeOffset integer
 ---@return playdate.graphics.animator
 function playdate.graphics.animator.new(duration, startValue, endValue, easingFunction, startTimeOffset) end
 
@@ -4292,8 +4287,8 @@ function playdate.graphics.animator.new(duration, startValue, endValue, easingFu
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new2
 ---@param duration any
 ---@param lineSegment any
----@param easingFunction any
----@param startTimeOffset any
+---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
+---@param startTimeOffset integer
 ---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, lineSegment, easingFunction, startTimeOffset) end
 
@@ -4302,8 +4297,8 @@ function playdate.graphics.animator.new(duration, lineSegment, easingFunction, s
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new3
 ---@param duration any
 ---@param arc any
----@param easingFunction any
----@param startTimeOffset any
+---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
+---@param startTimeOffset integer
 ---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, arc, easingFunction, startTimeOffset) end
 
@@ -4311,9 +4306,9 @@ function playdate.graphics.animator.new(duration, arc, easingFunction, startTime
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new4
 ---@param duration any
----@param polygon any
----@param easingFunction any
----@param startTimeOffset any
+---@param polygon playdate.geometry.polygon
+---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
+---@param startTimeOffset integer
 ---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(duration, polygon, easingFunction, startTimeOffset) end
 
@@ -4329,7 +4324,7 @@ function playdate.graphics.animator.new(duration, polygon, easingFunction, start
 ---@param durations any
 ---@param parts any
 ---@param easingFunctions any
----@param startTimeOffset any
+---@param startTimeOffset integer
 ---@return playdate.graphics.animator animator
 function playdate.graphics.animator.new(durations, parts, easingFunctions, startTimeOffset) end
 
@@ -4380,11 +4375,11 @@ function playdate.graphics.animator:ended() end
 --- * running: Read this property to see if the blinker is actively running
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.new
----@param onDuration any
----@param offDuration any
----@param loop any
----@param cycles any
----@param default any
+---@param onDuration integer
+---@param offDuration integer
+---@param loop boolean
+---@param cycles integer
+---@param default boolean
 function playdate.graphics.animation.blinker.new(onDuration, offDuration, loop, cycles, default) end
 
 --- Updates the state of all valid blinkers by calling :update() on each.
@@ -4402,11 +4397,11 @@ function playdate.graphics.animation.blinker:update() end
 --- Starts a blinker if it’s not running. Pass values for any property values you wish to modify.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.start
----@param onDuration any
----@param offDuration any
----@param loop any
----@param cycles any
----@param default any
+---@param onDuration integer
+---@param offDuration integer
+---@param loop boolean
+---@param cycles integer
+---@param default boolean
 function playdate.graphics.animation.blinker:start(onDuration, offDuration, loop, cycles, default) end
 
 --- Starts a blinker if it’s not running and sets its loop property to true. Equivalent to calling playdate.graphics.animation.blinker:start(nil, nil, true)
@@ -4547,7 +4542,7 @@ function playdate.graphics.tilemap.new() end
 --- Sets the tilemap’s playdate.graphics.imagetable to table, a playdate.graphics.imagetable.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setImageTable
----@param table any
+---@param table table
 function playdate.graphics.tilemap:setImageTable(table) end
 
 --- Sets the tilemap’s width to width, then populates the tilemap with data, which should be a flat, one-dimensional array-like table containing index values to the tilemap’s imagetable.
@@ -4632,7 +4627,7 @@ function playdate.graphics.tilemap:getTileSize() end
 --- Alternatively, instead of calling getCollisionRects() at all, you can use the convenience function playdate.graphics.sprite.addWallSprites(), which is effectively a shortcut for calling getCollisionRects() and passing all the resulting rects to addEmptyCollisionSprite().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getCollisionRects
----@param emptyIDs any
+---@param emptyIDs integer[]
 function playdate.graphics.tilemap:getCollisionRects(emptyIDs) end
 
 --- This class method (note the "." syntax rather than ":") returns a new sprite object. A previously-loaded image or tilemap object can be optionally passed-in.
@@ -4661,9 +4656,9 @@ function playdate.graphics.sprite.new(image_or_tilemap) end
 ---@param maxWidth any
 ---@param maxHeight any
 ---@param backgroundColor any
----@param leadingAdjustment any
----@param truncationString any
----@param alignment any
+---@param leadingAdjustment integer
+---@param truncationString string
+---@param alignment integer
 ---@param font any
 ---@return playdate.graphics.sprite
 function playdate.graphics.sprite.spriteWithText(text, maxWidth, maxHeight, backgroundColor, leadingAdjustment, truncationString, alignment, font) end
@@ -5063,7 +5058,7 @@ function playdate.graphics.sprite.clearClipRectsInRange(startz, endz) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilImage
 ---@param stencil any
----@param tile any
+---@param tile boolean
 ---@return nil
 function playdate.graphics.sprite:setStencilImage(stencil, tile) end
 
@@ -5273,7 +5268,7 @@ function playdate.graphics.sprite:collisionsEnabled() end
 --- Alternatively, use setGroupMask() to set group membership via a bitmask.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroups
----@param groups any
+---@param groups integer|integer[]
 ---@return nil
 function playdate.graphics.sprite:setGroups(groups) end
 
@@ -5282,7 +5277,7 @@ function playdate.graphics.sprite:setGroups(groups) end
 --- Alternatively, you can specify group collision behavior with a bitmask by using setCollidesWithGroupsMask().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroups
----@param groups any
+---@param groups integer|integer[]
 ---@return nil
 function playdate.graphics.sprite:setCollidesWithGroups(groups) end
 
@@ -5521,9 +5516,9 @@ function playdate.graphics.sprite.addEmptyCollisionSprite(x, y, w, h) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addWallSprites
 ---@param tilemap any
----@param emptyIDs any
+---@param emptyIDs integer[]
 ---@param xOffset integer
----@param yOffset any
+---@param yOffset integer
 ---@return nil
 function playdate.graphics.sprite.addWallSprites(tilemap, emptyIDs, xOffset, yOffset) end
 
@@ -5580,7 +5575,7 @@ function playdate.graphics.setFontFamily(fontFamily) end
 --- See playdate.graphics.font:setTracking to adjust tracking on a specific font.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontTracking
----@param pixels any
+---@param pixels integer
 ---@return nil
 function playdate.graphics.setFontTracking(pixels) end
 
@@ -5617,7 +5612,7 @@ function playdate.graphics.getSystemFont(variant) end
 ---@param text any
 ---@param x integer
 ---@param y integer
----@param leadingAdjustment any
+---@param leadingAdjustment integer
 function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
 
 --- You must import *CoreLibs/graphics* to use this function.
@@ -5628,8 +5623,8 @@ function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
 ---@param text any
 ---@param x integer
 ---@param y integer
----@param alignment any
----@param leadingAdjustment any
+---@param alignment integer
+---@param leadingAdjustment integer
 function playdate.graphics.font:drawTextAligned(text, x, y, alignment, leadingAdjustment) end
 
 --- Returns the pixel height of this font.
@@ -5648,7 +5643,7 @@ function playdate.graphics.font:getTextWidth(text) end
 --- Equivalent to playdate->graphics->setTextTracking() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setTracking
----@param pixels any
+---@param pixels integer
 function playdate.graphics.font:setTracking(pixels) end
 
 --- Returns the tracking of this font (spacing between letters), in pixels.
@@ -5661,7 +5656,7 @@ function playdate.graphics.font:getTracking() end
 --- Equivalent to playdate->graphics->setTextLeading() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setLeading
----@param pixels any
+---@param pixels integer
 function playdate.graphics.font:setLeading(pixels) end
 
 --- Returns the leading (spacing between lines) of this font, in pixels.
@@ -5710,7 +5705,7 @@ function playdate.graphics.font:getGlyph(character) end
 ---@param x integer
 ---@param y integer
 ---@param fontFamily any
----@param leadingAdjustment any
+---@param leadingAdjustment integer
 ---@return nil
 function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) end
 
@@ -5728,7 +5723,7 @@ function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) e
 ---@param x integer
 ---@param y integer
 ---@param language any
----@param leadingAdjustment any
+---@param leadingAdjustment integer
 ---@return nil
 function playdate.graphics.drawLocalizedText(key, x, y, language, leadingAdjustment) end
 
@@ -5754,7 +5749,7 @@ function playdate.graphics.getLocalizedText(key, language) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSize
 ---@param str any
 ---@param fontFamily any
----@param leadingAdjustment any
+---@param leadingAdjustment integer
 ---@return integer width
 ---@return integer height
 function playdate.graphics.getTextSize(str, fontFamily, leadingAdjustment) end
@@ -5771,8 +5766,8 @@ function playdate.graphics.getTextSize(str, fontFamily, leadingAdjustment) end
 ---@param text any
 ---@param x integer
 ---@param y integer
----@param alignment any
----@param leadingAdjustment any
+---@param alignment integer
+---@param leadingAdjustment integer
 ---@return nil
 function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustment) end
 
@@ -5800,9 +5795,9 @@ function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustm
 ---@param y integer
 ---@param width integer
 ---@param height integer
----@param leadingAdjustment any
----@param truncationString any
----@param alignment any
+---@param leadingAdjustment integer
+---@param truncationString string
+---@param alignment integer
 ---@param font any
 ---@return nil
 function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font) end
@@ -5828,9 +5823,9 @@ function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdju
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect
 ---@param text any
 ---@param rect playdate.geometry.rect
----@param leadingAdjustment any
----@param truncationString any
----@param alignment any
+---@param leadingAdjustment integer
+---@param truncationString string
+---@param alignment integer
 ---@param font any
 ---@return nil
 function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font) end
@@ -5843,9 +5838,9 @@ function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncat
 ---@param text any
 ---@param x integer
 ---@param y integer
----@param alignment any
+---@param alignment integer
 ---@param language any
----@param leadingAdjustment any
+---@param leadingAdjustment integer
 ---@return nil
 function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, language, leadingAdjustment) end
 
@@ -5859,9 +5854,9 @@ function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, langu
 ---@param y integer
 ---@param width integer
 ---@param height integer
----@param leadingAdjustment any
----@param truncationString any
----@param alignment any
+---@param leadingAdjustment integer
+---@param truncationString string
+---@param alignment integer
 ---@param font any
 ---@param language any
 ---@return nil
@@ -5874,9 +5869,9 @@ function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, le
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect
 ---@param text any
 ---@param rect playdate.geometry.rect
----@param leadingAdjustment any
----@param truncationString any
----@param alignment any
+---@param leadingAdjustment integer
+---@param truncationString string
+---@param alignment integer
 ---@param font any
 ---@param language any
 ---@return nil
@@ -5891,7 +5886,7 @@ function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSizeForMaxWidth
 ---@param text any
 ---@param maxWidth any
----@param leadingAdjustment any
+---@param leadingAdjustment integer
 ---@param font any
 ---@return integer width
 ---@return integer height
@@ -5920,9 +5915,9 @@ function playdate.graphics.getTextSizeForMaxWidth(text, maxWidth, leadingAdjustm
 ---@param maxWidth any
 ---@param maxHeight any
 ---@param backgroundColor any
----@param leadingAdjustment any
----@param truncationString any
----@param alignment any
+---@param leadingAdjustment integer
+---@param truncationString string
+---@param alignment integer
 ---@param font any
 ---@return playdate.graphics.image image
 ---@return boolean textWasTruncated
@@ -5976,7 +5971,7 @@ function playdate.graphics.video:useScreenContext() end
 --- Draws the given frame into the video’s render context.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.renderFrame
----@param number any
+---@param number integer
 ---@return nil
 function playdate.graphics.video:renderFrame(number) end
 
@@ -5985,7 +5980,7 @@ function playdate.graphics.video:renderFrame(number) end
 --- Equivalent to playdate->json->decode() in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.decode
----@param string any
+---@param string string
 ---@return table json_object
 function json.decode(string) end
 
@@ -6006,14 +6001,14 @@ function json.decodeFile(path) end
 --- Returns a string containing the JSON representation of the passed-in Lua table.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.encode
----@param table any
+---@param table table
 ---@return string json_string
 function json.encode(table) end
 
 --- Returns a string containing the JSON representation of a Lua table, with human-readable formatting.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.encodePretty
----@param table any
+---@param table table
 ---@return string json_string
 function json.encodePretty(table) end
 
@@ -6024,7 +6019,7 @@ function json.encodePretty(table) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.encodeToFile-file
 ---@param file any
 ---@param pretty boolean
----@param table any
+---@param table table
 ---@return nil
 function json.encodeToFile(file, pretty, table) end
 
@@ -6035,7 +6030,7 @@ function json.encodeToFile(file, pretty, table) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.encodeToFile-path
 ---@param path string
 ---@param pretty boolean
----@param table any
+---@param table table
 ---@return nil
 function json.encodeToFile(path, pretty, table) end
 
@@ -6104,7 +6099,7 @@ function playdate.keyboard.keyboardAnimatingCallback() end
 --- If set, this function will be called every time a character is entered or deleted.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.textChangedCallback
----@param ok any
+---@param ok boolean
 function playdate.keyboard.textChangedCallback(ok) end
 
 --- Returns a number that is the linear interpolation between min and max based on t, where t = 0.0 will return min and t = 1.0 will return max.
@@ -6124,7 +6119,7 @@ function playdate.math.lerp(min, max, t) end
 --- coordinates, if supplied, should be a table containing tables of x, y values, indexed by node IDs. For example, {{10, 10}, {50, 30}, {20, 100}, {100, 120}, {160, 130}}.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new
----@param nodeCount any
+---@param nodeCount integer
 ---@param coordinates any
 ---@return playdate.pathfinder.graph
 function playdate.pathfinder.graph.new(nodeCount, coordinates) end
@@ -6139,7 +6134,7 @@ function playdate.pathfinder.graph.new(nodeCount, coordinates) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new2DGrid
 ---@param width integer
 ---@param height integer
----@param allowDiagonals any
+---@param allowDiagonals boolean
 ---@param includedNodes any
 ---@return playdate.pathfinder.graph
 function playdate.pathfinder.graph.new2DGrid(width, height, allowDiagonals, includedNodes) end
@@ -6157,9 +6152,9 @@ function playdate.pathfinder.graph.new2DGrid(width, height, allowDiagonals, incl
 ---@param id any
 ---@param x integer
 ---@param y integer
----@param connectedNodes any
----@param weights any
----@param addReciprocalConnections any
+---@param connectedNodes playdate.pathfinder.node[]
+---@param weights number[]
+---@param addReciprocalConnections boolean
 ---@return nil
 function playdate.pathfinder.graph:addNewNode(id, x, y, connectedNodes, weights, addReciprocalConnections) end
 
@@ -6180,17 +6175,17 @@ function playdate.pathfinder.graph:addNewNodes(count) end
 --- * addReciprocalConnections: If true, connections will also be added in the reverse direction for each connection added.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNode
----@param node any
----@param connectedNodes any
----@param weights any
----@param addReciprocalConnections any
+---@param node playdate.pathfinder.node
+---@param connectedNodes playdate.pathfinder.node[]
+---@param weights number[]
+---@param addReciprocalConnections boolean
 ---@return nil
 function playdate.pathfinder.graph:addNode(node, connectedNodes, weights, addReciprocalConnections) end
 
 --- Adds an array of already-existing nodes to the graph.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNodes
----@param nodes any
+---@param nodes playdate.pathfinder.node[]
 ---@return nil
 function playdate.pathfinder.graph:addNodes(nodes) end
 
@@ -6203,7 +6198,7 @@ function playdate.pathfinder.graph:allNodes() end
 --- Removes node from the graph. Also removes all connections to and from the node.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNode
----@param node any
+---@param node playdate.pathfinder.node
 ---@return nil
 function playdate.pathfinder.graph:removeNode(node) end
 
@@ -6247,9 +6242,9 @@ function playdate.pathfinder.graph:addConnections(connections) end
 --- Adds a connection from the node with id fromNodeID to the node with id toNodeID with a weight value of weight. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available. If addReciprocalConnection is true, the reverse connection will also be added.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-playdate.pathfinder.graph.addConnectionToNodeWithID
----@param fromNodeID any
----@param toNodeID any
----@param weight any
+---@param fromNodeID integer
+---@param toNodeID integer
+---@param weight number
 ---@param addReciprocalConnection any
 ---@return nil
 function playdate.pathfinder.graph:addConnectionToNodeWithID(fromNodeID, toNodeID, weight, addReciprocalConnection) end
@@ -6276,20 +6271,20 @@ function playdate.pathfinder.graph:removeAllConnectionsFromNodeWithID(id, remove
 --- * findPathToGoalAdjacentNodes: If true, a path will be found to any node adjacent to the goal node, based on the x, y values of those nodes and the goal node. This does not rely on connections between adjacent nodes and  the goal node, which can be entirely disconnected from the rest of the graph.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.findPath
----@param startNode any
----@param goalNode any
----@param heuristicFunction any
----@param findPathToGoalAdjacentNodes any
+---@param startNode playdate.pathfinder.node
+---@param goalNode playdate.pathfinder.node
+---@param heuristicFunction fun(startNode: playdate.pathfinder.node, goalNode: playdate.pathfinder.node) -> integer
+---@param findPathToGoalAdjacentNodes boolean
 ---@return playdate.pathfinder.node[] nodes
 function playdate.pathfinder.graph:findPath(startNode, goalNode, heuristicFunction, findPathToGoalAdjacentNodes) end
 
 --- Works the same as findPath, but looks up nodes to find a path between using startNodeID and goalNodeID and returns a list of nodeIDs rather than the nodes themselves.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.findPathWithIDs
----@param startNodeID any
----@param goalNodeID any
----@param heuristicFunction any
----@param findPathToGoalAdjacentNodes any
+---@param startNodeID integer
+---@param goalNodeID integer
+---@param heuristicFunction fun(startNode: playdate.pathfinder.node, goalNode: playdate.pathfinder.node) -> integer
+---@param findPathToGoalAdjacentNodes boolean
 ---@return integer[] node_ids
 function playdate.pathfinder.graph:findPathWithIDs(startNodeID, goalNodeID, heuristicFunction, findPathToGoalAdjacentNodes) end
 
@@ -6309,8 +6304,8 @@ function playdate.pathfinder.graph:setXYForNodeWithID(id, x, y) end
 --- * addReciprocalConnection: If true, a second connection will be created with the same weight in the opposite direction.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnection
----@param node any
----@param weight any
+---@param node playdate.pathfinder.node
+---@param weight number
 ---@param addReciprocalConnection any
 function playdate.pathfinder.node:addConnection(node, weight, addReciprocalConnection) end
 
@@ -6321,9 +6316,9 @@ function playdate.pathfinder.node:addConnection(node, weight, addReciprocalConne
 --- * addReciprocalConnections: If true, connections will also be added in the reverse direction for each node.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnections
----@param nodes any
----@param weights any
----@param addReciprocalConnections any
+---@param nodes playdate.pathfinder.node[]
+---@param weights number[]
+---@param addReciprocalConnections boolean
 function playdate.pathfinder.node:addConnections(nodes, weights, addReciprocalConnections) end
 
 --- Adds a connection to the first node found with matching x and y values, if it exists.
@@ -6334,7 +6329,7 @@ function playdate.pathfinder.node:addConnections(nodes, weights, addReciprocalCo
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnectionToNodeWithXY
 ---@param x integer
 ---@param y integer
----@param weight any
+---@param weight number
 ---@param addReciprocalConnection any
 function playdate.pathfinder.node:addConnectionToNodeWithXY(x, y, weight, addReciprocalConnection) end
 
@@ -6346,7 +6341,7 @@ function playdate.pathfinder.node:connectedNodes() end
 --- Removes a connection to node, if it exists. If removeReciprocal is true the reverse connection will also be removed, if it exists.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.removeConnection
----@param node any
+---@param node playdate.pathfinder.node
 ---@param removeReciprocal any
 function playdate.pathfinder.node:removeConnection(node, removeReciprocal) end
 
@@ -6485,7 +6480,7 @@ function playdate.sound.sampleplayer:copy() end
 --- Starts playing the sample. If repeatCount is greater than one, it loops the given number of times. If zero, it loops endlessly until it is stopped with playdate.sound.sampleplayer:stop(). If rate is set, the sample will be played at the given rate instead of the rate previous set with playdate.sound.sampleplayer.setRate().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.play
----@param repeatCount any
+---@param repeatCount integer
 ---@param rate any
 ---@return nil
 function playdate.sound.sampleplayer:play(repeatCount, rate) end
@@ -6496,8 +6491,8 @@ function playdate.sound.sampleplayer:play(repeatCount, rate) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.playAt
 ---@param when any
----@param vol any
----@param rightvol any
+---@param vol number
+---@param rightvol number
 ---@param rate any
 ---@return nil
 function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
@@ -6505,8 +6500,8 @@ function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 --- Sets the playback volume (0.0 - 1.0) for left and right channels. If the optional right argument is omitted, it is the same as left.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setVolume
----@param left any
----@param right any
+---@param left integer
+---@param right integer
 ---@return nil
 function playdate.sound.sampleplayer:setVolume(left, right) end
 
@@ -6520,7 +6515,7 @@ function playdate.sound.sampleplayer:getVolume() end
 --- Sets a function to be called every time the sample loops. The sample object is passed to this function as the first argument, and the optional arg argument is passed as the second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setLoopCallback
----@param callback any
+---@param callback function
 ---@param arg any
 ---@return nil
 function playdate.sound.sampleplayer:setLoopCallback(callback, arg) end
@@ -6645,7 +6640,7 @@ function playdate.sound.fileplayer:load(path) end
 --- The function returns true if the file was successfully opened and the fileplayer added to the sound channel, otherwise false and a string describing the error.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.play
----@param repeatCount any
+---@param repeatCount integer
 ---@return boolean success
 ---@return string|nil error
 function playdate.sound.fileplayer:play(repeatCount) end
@@ -6716,7 +6711,7 @@ function playdate.sound.fileplayer:setLoopRange(start, _end, loopCallback, arg) 
 --- The fileplayer:play([repeatCount]) call needs to be invoked with a *repeatCount* value of 0 (infinite looping), or 2 or greater in order for the loop callback to be invoked.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopCallback
----@param callback any
+---@param callback function
 ---@param arg any
 ---@return nil
 function playdate.sound.fileplayer:setLoopCallback(callback, arg) end
@@ -6751,10 +6746,10 @@ function playdate.sound.fileplayer:setRateMod(signal) end
 --- Sets the playback volume (0.0 - 1.0). If a single value is passed in, both left side and right side volume are set to the given value. If two values are given, volumes are set separately. The optional fadeSeconds specifies the time it takes to fade from the current volume to the specified volume, in seconds. If the function fadeCallback is given, it is called when the volume fade has completed. The fileplayer object is passed as the first argument to the callback, and the optional arg argument is passed as the second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setVolume
----@param left any
----@param right any
+---@param left integer
+---@param right integer
 ---@param fadeSeconds any
----@param fadeCallback any
+---@param fadeCallback fun(self: playdate.sound.fileplayer, arg: any|nil)
 ---@param arg any
 ---@return nil
 function playdate.sound.fileplayer:setVolume(left, right, fadeSeconds, fadeCallback, arg) end
@@ -6793,8 +6788,8 @@ function playdate.sound.sample.new(path) end
 --- Returns a new subsample containing a subrange of the given sample. Offset values are in frames, not bytes.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSubsample
----@param startOffset any
----@param endOffset any
+---@param startOffset integer
+---@param endOffset integer
 ---@return playdate.sound.sample
 function playdate.sound.sample:getSubsample(startOffset, endOffset) end
 
@@ -6832,7 +6827,7 @@ function playdate.sound.sample:getLength() end
 --- Convenience function: Creates a new sampleplayer for the sample and passes the function arguments to its play function.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.play
----@param repeatCount any
+---@param repeatCount integer
 ---@param rate any
 ---@return nil
 function playdate.sound.sample:play(repeatCount, rate) end
@@ -6841,8 +6836,8 @@ function playdate.sound.sample:play(repeatCount, rate) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.playAt
 ---@param when any
----@param vol any
----@param rightvol any
+---@param vol number
+---@param rightvol number
 ---@param rate any
 ---@return nil
 function playdate.sound.sample:playAt(when, vol, rightvol, rate) end
@@ -6897,7 +6892,7 @@ function playdate.sound.channel:removeSource(source) end
 --- Sets the volume (0.0 - 1.0) for the channel.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolume
----@param volume any
+---@param volume number
 ---@return nil
 function playdate.sound.channel:setVolume(volume) end
 
@@ -6973,7 +6968,7 @@ function playdate.sound.synth:copy() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.playNote
 ---@param pitch any
----@param volume any
+---@param volume number
 ---@param length number
 ---@param when any
 ---@return boolean success
@@ -6983,7 +6978,7 @@ function playdate.sound.synth:playNote(pitch, volume, length, when) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.playMIDINote
 ---@param note any
----@param volume any
+---@param volume number
 ---@param length number
 ---@param when any
 ---@return boolean success
@@ -7069,7 +7064,7 @@ function playdate.sound.synth:getEnvelope() end
 --- Sets a function to be called when the synth stops playing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFinishCallback
----@param _function any
+---@param _function function
 ---@return nil
 function playdate.sound.synth:setFinishCallback(_function) end
 
@@ -7108,8 +7103,8 @@ function playdate.sound.synth:setParameterMod(parameter, signal) end
 --- Volume values are between 0.0 and 1.0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setVolume
----@param left any
----@param right any
+---@param left integer
+---@param right integer
 ---@return nil
 function playdate.sound.synth:setVolume(left, right) end
 
@@ -7175,7 +7170,6 @@ function playdate.sound.lfo:setType(type) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setArpeggio
 ---@param note1 any
----@param ... any
 ---@return nil
 function playdate.sound.lfo:setArpeggio(note1, ...) end
 
@@ -7661,7 +7655,7 @@ function playdate.sound.delaylinetap:setFlipChannels(flag) end
 --- Creates a new sound sequence. If path.mid is given, it attempts to load data from the midi file into the sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.sequence.new
----@param midi_path any
+---@param midi_path string
 ---@return playdate.sound.sequence
 function playdate.sound.sequence.new(midi_path) end
 
@@ -7693,7 +7687,7 @@ function playdate.sound.sequence:getLength() end
 --- Moves the play position for the sequence to step number step. If play is set, triggers the notes at that step.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.goToStep
----@param step any
+---@param step integer
 ---@param play any
 ---@return nil
 function playdate.sound.sequence:goToStep(step, play) end
@@ -7714,7 +7708,7 @@ function playdate.sound.sequence:setTempo(stepsPerSecond) end
 --- Gets the tempo of the sequence, in steps per second.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTempo
----@return number steps_per_second
+---@return number stepsPerSecond
 function playdate.sound.sequence:getTempo() end
 
 --- Sets the looping range of the sequence. If loops is 0 or unset, the loop repeats endlessly.
@@ -7722,14 +7716,14 @@ function playdate.sound.sequence:getTempo() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops
 ---@param startStep any
 ---@param endStep any
----@param loopCount any
+---@param loopCount integer
 ---@return nil
 function playdate.sound.sequence:setLoops(startStep, endStep, loopCount) end
 
 --- Same as above, with startStep set to 0 and endStep set to sequence:getLength().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops-2
----@param loopCount any
+---@param loopCount integer
 ---@return nil
 function playdate.sound.sequence:setLoops(loopCount) end
 
@@ -7778,7 +7772,7 @@ function playdate.sound.track.new() end
 --- See setNotes() for the ability to add more than one note at a time.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2
----@param step any
+---@param step integer
 ---@param note any
 ---@param length number
 ---@param velocity any
@@ -7790,7 +7784,7 @@ function playdate.sound.track:addNote(step, note, length, velocity) end
 --- See setNotes() for the ability to add more than one note at a time.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote
----@param table any
+---@param table table
 ---@return nil
 function playdate.sound.track:addNote(table) end
 
@@ -7808,7 +7802,7 @@ function playdate.sound.track:setNotes(list) end
 --- The tables contain values for keys step, note, length, and velocity. If step is given, the function returns only the notes at that step; if both step and endstep are set, it returns the notes between the two steps (including notes at endstep). n.b. The note field in the event tables is always a MIDI note number value, even if the note was added using the string notation.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotes
----@param step any
+---@param step integer
 ---@param endstep any
 ---@return SoundTrackNoteOut[] notes
 function playdate.sound.track:getNotes(step, endstep) end
@@ -7816,7 +7810,7 @@ function playdate.sound.track:getNotes(step, endstep) end
 --- Removes the note event at step playing note.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.removeNote
----@param step any
+---@param step integer
 ---@param note any
 ---@return nil
 function playdate.sound.track:removeNote(step, note) end
@@ -7848,7 +7842,7 @@ function playdate.sound.track:getPolyphony() end
 --- Sets the playdate.sound.instrument that this track plays. If inst is a playdate.sound.synth, the function creates an instrument for the synth.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setInstrument
----@param inst any
+---@param inst playdate.sound.instrument
 ---@return nil
 function playdate.sound.track:setInstrument(inst) end
 
@@ -7881,7 +7875,7 @@ function playdate.sound.track:getControlSignals() end
 --- Creates a new playdate.sound.instrument object. If synth is given, adds it as a voice for the instrument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.new
----@param synth any
+---@param synth playdate.sound.synth
 ---@return playdate.sound.instrument
 function playdate.sound.instrument.new(synth) end
 
@@ -7898,7 +7892,7 @@ function playdate.sound.instrument:addVoice(v, note, rangeend, transpose) end
 --- Transposes all voices in the instrument. halfsteps can be a fractional value.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setTranspose
----@param halfsteps any
+---@param halfsteps number
 ---@return nil
 function playdate.sound.instrument:setTranspose(halfsteps) end
 
@@ -7941,8 +7935,8 @@ function playdate.sound.instrument:allNotesOff() end
 --- Volume values are between 0.0 and 1.0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setVolume
----@param left any
----@param right any
+---@param left integer
+---@param right integer
 ---@return nil
 function playdate.sound.instrument:setVolume(left, right) end
 
@@ -7964,7 +7958,7 @@ function playdate.sound.controlsignal.new() end
 --- addEvent is a simpler way of adding events one at a time than setting the entire events table. Arguments are either the values themselves in the given order, or a table containing values for step, value, and optionally interpolate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2
----@param step any
+---@param step integer
 ---@param value any
 ---@param interpolate any
 ---@return nil
@@ -7986,7 +7980,7 @@ function playdate.sound.controlsignal:clearEvents() end
 --- Sets the midi controller number for the control signal, if that’s something you want to do. The value has no effect on playback.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.setControllerType
----@param number any
+---@param number integer
 ---@return nil
 function playdate.sound.controlsignal:setControllerType(number) end
 
@@ -8080,21 +8074,21 @@ function playdate.string.UUID(length) end
 --- Returns a string with the whitespace removed from the beginning and ending of string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.trimWhitespace
----@param string any
+---@param string string
 ---@return string
 function playdate.string.trimWhitespace(string) end
 
 --- Returns a string with the whitespace removed from the beginning of string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.trimLeadingWhitespace
----@param string any
+---@param string string
 ---@return string
 function playdate.string.trimLeadingWhitespace(string) end
 
 --- Returns a string with the whitespace removed from the ending of string.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-string.trimTrailingWhitespace
----@param string any
+---@param string string
 ---@return string
 function playdate.string.trimTrailingWhitespace(string) end
 
@@ -8112,8 +8106,7 @@ function playdate.timer.updateTimers() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.new
 ---@param duration any
----@param callback any
----@param ... any
+---@param callback function
 ---@return playdate.timer
 function playdate.timer.new(duration, callback, ...) end
 
@@ -8121,8 +8114,7 @@ function playdate.timer.new(duration, callback, ...) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.performAfterDelay
 ---@param delay any
----@param callback any
----@param ... any
+---@param callback function
 ---@return nil
 function playdate.timer.performAfterDelay(delay, callback, ...) end
 
@@ -8134,15 +8126,14 @@ function playdate.timer.performAfterDelay(delay, callback, ...) end
 ---@param duration any
 ---@param startValue any
 ---@param endValue any
----@param easingFunction any
+---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
 ---@return nil
 function playdate.timer.new(duration, startValue, endValue, easingFunction) end
 
 --- keyRepeatTimer() returns a timer that fires at key-repeat intervals. The function callback will be called immediately, then again after 300 milliseconds, then repeatedly at 100 millisecond intervals. If you wish to customize these millisecond intervals, use keyRepeatTimerWithDelay().
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimer
----@param callback any
----@param ... any
+---@param callback function
 ---@return nil
 function playdate.timer.keyRepeatTimer(callback, ...) end
 
@@ -8151,8 +8142,7 @@ function playdate.timer.keyRepeatTimer(callback, ...) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimerWithDelay
 ---@param delayAfterInitialFiring any
 ---@param delayAfterSecondFiring any
----@param callback any
----@param ... any
+---@param callback function
 ---@return nil
 function playdate.timer.keyRepeatTimerWithDelay(delayAfterInitialFiring, delayAfterSecondFiring, callback, ...) end
 
@@ -8193,13 +8183,11 @@ function playdate.timer.allTimers() end
 --- A Function of the form function(timer) or function(...) where "..." corresponds to the values in the table assigned to timerEndedArgs. Called when the timer has completed.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-timer.timerEndedCallback
----@param ... any
 function playdate.timer.timerEndedCallback(...) end
 
 --- A callback function that will be called on every frame (every time timer.updateAll() is called). If the timer was created with arguments, those will be passed as arguments to the function provided. Otherwise, the timer is passed as the single argument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-timer.updateCallback
----@param ... any
 function playdate.timer.updateCallback(...) end
 
 --- This should be called from the main playdate.update() loop to drive the frame timers.
@@ -8216,8 +8204,7 @@ function playdate.frameTimer.updateTimers() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.new
 ---@param duration any
----@param callback any
----@param ... any
+---@param callback function
 ---@return playdate.frameTimer
 function playdate.frameTimer.new(duration, callback, ...) end
 
@@ -8225,8 +8212,7 @@ function playdate.frameTimer.new(duration, callback, ...) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.performAfterDelay
 ---@param delay any
----@param callback any
----@param ... any
+---@param callback function
 ---@return nil
 function playdate.frameTimer.performAfterDelay(delay, callback, ...) end
 
@@ -8238,7 +8224,7 @@ function playdate.frameTimer.performAfterDelay(delay, callback, ...) end
 ---@param duration any
 ---@param startValue any
 ---@param endValue any
----@param easingFunction any
+---@param easingFunction fun(t:number, b:number, c:number, d:number, a?:number, p?:number): number
 ---@return playdate.frameTimer
 function playdate.frameTimer.new(duration, startValue, endValue, easingFunction) end
 
@@ -8277,13 +8263,11 @@ function playdate.frameTimer.allTimers() end
 --- A Function of the form function(timer) or function(...) where "..." corresponds to the values in the table assigned to timerEndedArgs. Called when the timer has completed.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.timerEndedCallback
----@param ... any
 function playdate.frameTimer.timerEndedCallback(...) end
 
 --- A function to be called on every frame update. If the frame timer was created with arguments, those will be passed as arguments to the function provided. Otherwise, the timer is passed as the single argument.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.updateCallback
----@param ... any
 function playdate.frameTimer.updateCallback(...) end
 
 --- Initializes or resets the crankIndicator. Should be called before showing the alert.
@@ -8301,18 +8285,18 @@ function playdate.ui.crankIndicator:update() end
 --- Returns a new playdate.ui.gridview with cells sized cellWidth, cellHeight. (Sizes are in pixels.) If cells should span the entire width of the grid (as in a list view), pass zero (0) for cellWidth.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-gridview.new
----@param cellWidth any
----@param cellHeight any
+---@param cellWidth integer
+---@param cellHeight integer
 ---@return playdate.ui.gridview
 function playdate.ui.gridview.new(cellWidth, cellHeight) end
 
 --- Override this method to draw the cells in the gridview. selected is a boolean, true if the cell being drawn is the currently-selected cell.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.drawCell
----@param section any
----@param row any
----@param column any
----@param selected any
+---@param section integer
+---@param row integer
+---@param column integer
+---@param selected boolean
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -8323,7 +8307,7 @@ function playdate.ui.gridview:drawCell(section, row, column, selected, x, y, wid
 --- Override this method to draw section headers. This function will only be called if the header height has been set to a value greater than zero (0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.drawSectionHeader
----@param section any
+---@param section integer
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -8354,7 +8338,7 @@ function playdate.ui.gridview:drawInRect(x, y, width, height) end
 --- Sets the number of sections in the grid view. Each section contains at least one row, and row numbering starts at 1 in each section.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfSections
----@param num any
+---@param num integer
 ---@return nil
 function playdate.ui.gridview:setNumberOfSections(num) end
 
@@ -8367,22 +8351,22 @@ function playdate.ui.gridview:getNumberOfSections() end
 --- Sets the number of rows in section.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfRowsInSection
----@param section any
----@param num any
+---@param section integer
+---@param num integer
 ---@return nil
 function playdate.ui.gridview:setNumberOfRowsInSection(section, num) end
 
 --- Gets the number of rows in section.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.getNumberOfRowsInSection
----@param section any
+---@param section integer
 ---@return integer rows
 function playdate.ui.gridview:getNumberOfRowsInSection(section) end
 
 --- Sets the number of columns in the gridview. 1 by default.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfColumns
----@param num any
+---@param num integer
 ---@return nil
 function playdate.ui.gridview:setNumberOfColumns(num) end
 
@@ -8395,35 +8379,34 @@ function playdate.ui.gridview:getNumberOfColumns() end
 --- Convenience method for list-style gridviews, or for setting the number of rows for multiple sections at a time. Pass in a list of numbers of rows for sections starting from section 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setNumberOfRows
----@param ... any
 ---@return nil
 function playdate.ui.gridview:setNumberOfRows(...) end
 
 --- Sets the size of the cells in the gridview. If cells should span the entire width of the grid (as in a list view), pass zero (0) for cellWidth.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setCellSize
----@param cellWidth any
----@param cellHeight any
+---@param cellWidth integer
+---@param cellHeight integer
 ---@return nil
 function playdate.ui.gridview:setCellSize(cellWidth, cellHeight) end
 
 --- Sets the amount of padding around cells.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setCellPadding
----@param left any
----@param right any
----@param top any
----@param bottom any
+---@param left integer
+---@param right integer
+---@param top integer
+---@param bottom integer
 ---@return nil
 function playdate.ui.gridview:setCellPadding(left, right, top, bottom) end
 
 --- Sets the amount of space the content is inset from the edges of the gridview. Useful if a background image is being used as a border.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setContentInset
----@param left any
----@param right any
----@param top any
----@param bottom any
+---@param left integer
+---@param right integer
+---@param top integer
+---@param bottom integer
 ---@return nil
 function playdate.ui.gridview:setContentInset(left, right, top, bottom) end
 
@@ -8432,9 +8415,9 @@ function playdate.ui.gridview:setContentInset(left, right, top, bottom) end
 --- If the grid view is configured with zero width cells (see playdate.ui.gridview:new), gridWidth is required, and should be the same value you would pass to playdate.ui.gridview:drawInRect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridView.getCellBounds
----@param section any
----@param row any
----@param column any
+---@param section integer
+---@param row integer
+---@param column integer
 ---@param gridWidth any
 ---@return integer x
 ---@return integer y
@@ -8458,10 +8441,10 @@ function playdate.ui.gridview:getSectionHeaderHeight() end
 --- Sets the amount of padding around section headers.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setSectionHeaderPadding
----@param left any
----@param right any
----@param top any
----@param bottom any
+---@param left integer
+---@param right integer
+---@param top integer
+---@param bottom integer
 ---@return nil
 function playdate.ui.gridview:setSectionHeaderPadding(left, right, top, bottom) end
 
@@ -8481,8 +8464,8 @@ function playdate.ui.gridview:getHorizontalDividerHeight() end
 --- Causes a horizontal divider to be drawn above the specified row. Drawing can be customized by overriding  playdate.ui.gridview:drawHorizontalDivider.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.addHorizontalDividerAbove
----@param section any
----@param row any
+---@param section integer
+---@param row integer
 ---@return nil
 function playdate.ui.gridview:addHorizontalDividerAbove(section, row) end
 
@@ -8495,7 +8478,7 @@ function playdate.ui.gridview:removeHorizontalDividers() end
 --- Controls the duration of scroll animations. 250ms by default.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setScrollDuration
----@param ms any
+---@param ms integer
 ---@return nil
 function playdate.ui.gridview:setScrollDuration(ms) end
 
@@ -8506,7 +8489,7 @@ function playdate.ui.gridview:setScrollDuration(ms) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setScrollPosition
 ---@param x integer
 ---@param y integer
----@param animated any
+---@param animated boolean
 ---@return nil
 function playdate.ui.gridview:setScrollPosition(x, y, animated) end
 
@@ -8520,44 +8503,44 @@ function playdate.ui.gridview:getScrollPosition() end
 --- Scrolls to the specified cell, just enough so the cell is visible.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.scrollToCell
----@param section any
----@param row any
----@param column any
----@param animated any
+---@param section integer
+---@param row integer
+---@param column integer
+---@param animated boolean
 ---@return nil
 function playdate.ui.gridview:scrollToCell(section, row, column, animated) end
 
 --- Scrolls to the specified cell, so the cell is centered in the gridview, if possible.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.scrollCellToCenter
----@param section any
----@param row any
----@param column any
----@param animated any
+---@param section integer
+---@param row integer
+---@param column integer
+---@param animated boolean
 ---@return nil
 function playdate.ui.gridview:scrollCellToCenter(section, row, column, animated) end
 
 --- Convenience function for list-style gridviews. Scrolls to the specified row in the list.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.scrollToRow
----@param row any
----@param animated any
+---@param row integer
+---@param animated boolean
 ---@return nil
 function playdate.ui.gridview:scrollToRow(row, animated) end
 
 --- Scrolls to the top of the gridview.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.scrollToTop
----@param animated any
+---@param animated boolean
 ---@return nil
 function playdate.ui.gridview:scrollToTop(animated) end
 
 --- Selects the cell at the given position.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setSelection
----@param section any
----@param row any
----@param column any
+---@param section integer
+---@param row integer
+---@param column integer
 ---@return nil
 function playdate.ui.gridview:setSelection(section, row, column) end
 
@@ -8572,7 +8555,7 @@ function playdate.ui.gridview:getSelection() end
 --- Convenience method for list-style gridviews. Selects the cell at row in section 1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-gridview.setSelectedRow
----@param row any
+---@param row integer
 ---@return nil
 function playdate.ui.gridview:setSelectedRow(row) end
 
@@ -8642,7 +8625,7 @@ function playdate.setCollectsGarbage(flag) end
 --- If your game isn’t generating a lot of garbage, it might be advantageous to set a smaller minimum GC time, granting more CPU bandwidth to your game.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-setMinimumGCTime
----@param ms any
+---@param ms integer
 ---@return nil
 function playdate.setMinimumGCTime(ms) end
 
