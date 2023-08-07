@@ -2484,16 +2484,20 @@ function playdate.geometry.lineSegment:intersectsRect(rect) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.point.new
 ---@param x integer
 ---@param y integer
+---@return playdate.geometry.point point
 function playdate.geometry.point.new(x, y) end
 
 --- Returns a new copy of the point.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.copy
+---@return playdate.geometry.point point
 function playdate.geometry.point:copy() end
 
 --- Returns the values x, y.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.unpack
+---@return number x
+---@return number y
 function playdate.geometry.point:unpack() end
 
 --- Modifies the point, offsetting its values by dx, dy.
@@ -2501,6 +2505,7 @@ function playdate.geometry.point:unpack() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.offset
 ---@param dx integer
 ---@param dy integer
+---@return nil
 function playdate.geometry.point:offset(dx, dy) end
 
 --- Returns a new point object, the given point offset by dx, dy.
@@ -2508,42 +2513,49 @@ function playdate.geometry.point:offset(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.offsetBy
 ---@param dx integer
 ---@param dy integer
+---@return playdate.geometry.point point
 function playdate.geometry.point:offsetBy(dx, dy) end
 
 --- Returns the square of the distance to point p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.squaredDistanceToPoint
 ---@param p any
+---@return number distanceSquared
 function playdate.geometry.point:squaredDistanceToPoint(p) end
 
 --- Returns the distance to point p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.distanceToPoint
 ---@param p any
+---@return number distance
 function playdate.geometry.point:distanceToPoint(p) end
 
 --- Returns a new point by adding the vector v to point p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.add
 ---@param v playdate.geometry.vector2D
+---@return playdate.geometry.point point
 function playdate.geometry.point:__add(v) end
 
 --- Returns the vector constructed by subtracting p2 from p1. By this construction, p2 + (p1 - p2) == p1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.sub
 ---@param p2 playdate.geometry.point
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.point:__sub(p2) end
 
 --- Returns a new point by applying the transform t to point p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.mul
 ---@param t any
+---@return playdate.geometry.point point
 function playdate.geometry.point:__mul(t) end
 
 --- Returns a new lineSegment connecting points p1 and p2.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.concat
 ---@param p2 playdate.geometry.point
+---@return playdate.geometry.lineSegment lineSegment
 function playdate.geometry.point:__concat(p2) end
 
 --- new(x1, y1, x2, y2, ..., xn, yn) returns a new playdate.geometry.polygon with vertices (x1, y1) through (xn, yn).  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -2561,6 +2573,7 @@ function playdate.geometry.point:__concat(p2) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.polygon.new(x1, y1, x2, y2, ...) end
 
 --- new(x1, y1, x2, y2, ..., xn, yn) returns a new playdate.geometry.polygon with vertices (x1, y1) through (xn, yn).  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -2576,6 +2589,7 @@ function playdate.geometry.polygon.new(x1, y1, x2, y2, ...) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
 ---@param p1 playdate.geometry.point
 ---@param p2 playdate.geometry.point
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.polygon.new(p1, p2, ...) end
 
 --- new(x1, y1, x2, y2, ..., xn, yn) returns a new playdate.geometry.polygon with vertices (x1, y1) through (xn, yn).  The Lua function table.unpack() can be used to turn an array into function arguments.
@@ -2590,21 +2604,25 @@ function playdate.geometry.polygon.new(p1, p2, ...) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
 ---@param numberOfVertices integer
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.polygon.new(numberOfVertices) end
 
 --- Returns a copy of a polygon.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.copy
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.polygon:copy() end
 
 --- :close() closes a polygon. If the polygon’s first and last point aren’t coincident, a line segment will be generated to connect them.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.close
+---@return nil
 function playdate.geometry.polygon:close() end
 
 --- Returns true if the polygon is closed, false if not.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.isClosed
+---@return boolean
 function playdate.geometry.polygon:isClosed() end
 
 --- Returns a boolean value, true if the point p or the point at (x, y) is contained within the caller polygon.
@@ -2614,6 +2632,7 @@ function playdate.geometry.polygon:isClosed() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint
 ---@param p any
 ---@param fillRule integer
+---@return boolean
 function playdate.geometry.polygon:containsPoint(p, fillRule) end
 
 --- Returns a boolean value, true if the point p or the point at (x, y) is contained within the caller polygon.
@@ -2624,26 +2643,34 @@ function playdate.geometry.polygon:containsPoint(p, fillRule) end
 ---@param x integer
 ---@param y integer
 ---@param fillRule integer
+---@return boolean
 function playdate.geometry.polygon:containsPoint(x, y, fillRule) end
 
 --- Returns multiple values (x, y, width, height) giving the axis-aligned bounding box for the polygon.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getBounds
+---@return number x
+---@return number y
+---@return number width
+---@return number height
 function playdate.geometry.polygon:getBounds() end
 
 --- Returns the axis-aligned bounding box for the given polygon as a playdate.geometry.rect object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getBoundsRect
+---@return playdate.geometry.rect rect
 function playdate.geometry.polygon:getBoundsRect() end
 
 --- Returns the number of points in the polygon.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.count
+---@return integer
 function playdate.geometry.polygon:count() end
 
 --- Returns the total length of all line segments in the polygon.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.length
+---@return number
 function playdate.geometry.polygon:length() end
 
 --- Sets the polygon’s n-th point to (x, y).
@@ -2652,18 +2679,21 @@ function playdate.geometry.polygon:length() end
 ---@param n any
 ---@param x integer
 ---@param y integer
+---@return nil
 function playdate.geometry.polygon:setPointAt(n, x, y) end
 
 --- Returns the polygon’s n-th point.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getPointAt
 ---@param n any
+---@return playdate.geometry.point point
 function playdate.geometry.polygon:getPointAt(n) end
 
 --- Returns true if the given polygon intersects the polygon p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.intersects
 ---@param p any
+---@return boolean
 function playdate.geometry.polygon:intersects(p) end
 
 --- Returns a playdate.geometry.point on one of the polygon’s line segments, distance pixels from the start of the polygon. If extend is true, the  point is allowed to project past the polygon’s ends; otherwise, it is constrained to the polygon’s initial point if distance is negative, or the last point if distance is greater than the polygon’s length.
@@ -2671,6 +2701,7 @@ function playdate.geometry.polygon:intersects(p) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.pointOnPolygon
 ---@param distance integer
 ---@param extend boolean
+---@return playdate.geometry.point point
 function playdate.geometry.polygon:pointOnPolygon(distance, extend) end
 
 --- Translates each point on the polygon by dx, dy pixels.
@@ -2678,12 +2709,14 @@ function playdate.geometry.polygon:pointOnPolygon(distance, extend) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.translate
 ---@param dx integer
 ---@param dy integer
+---@return nil
 function playdate.geometry.polygon:translate(dx, dy) end
 
 --- Returns a new polygon formed by applying the transform t to polygon p.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.mul
 ---@param t any
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.polygon:__mul(t) end
 
 --- Returns a new playdate.geometry.rect.
@@ -2693,44 +2726,55 @@ function playdate.geometry.polygon:__mul(t) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return playdate.geometry.rect
 function playdate.geometry.rect.new(x, y, width, height) end
 
 --- Returns a new copy of the rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.copy
+---@return playdate.geometry.rect rect
 function playdate.geometry.rect:copy() end
 
 --- Returns a new playdate.geometry.polygon version of the rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.toPolygon
+---@return playdate.geometry.polygon polygon
 function playdate.geometry.rect:toPolygon() end
 
 --- Returns x, y, width and height as individual values.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.unpack
+---@return number x
+---@return number y
+---@return number width
+---@return number height
 function playdate.geometry.rect:unpack() end
 
 --- Returns true if a rectangle has zero width or height.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.isEmpty
+---@return boolean
 function playdate.geometry.rect:isEmpty() end
 
 --- Returns true if the x, y, width, and height values of the caller and r2 are all equal.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.isEqual
 ---@param r2 playdate.geometry.rect
+---@return boolean
 function playdate.geometry.rect:isEqual(r2) end
 
 --- Returns true if r2 intersects the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.intersects
 ---@param r2 playdate.geometry.rect
+---@return boolean
 function playdate.geometry.rect:intersects(r2) end
 
 --- Returns a rect representing the overlapping portion of the caller and r2.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.intersection
 ---@param r2 playdate.geometry.rect
+---@return playdate.geometry.rect rect
 function playdate.geometry.rect:intersection(r2) end
 
 --- For use in inner loops where speed is the priority. About 3x faster than intersection.
@@ -2746,12 +2790,17 @@ function playdate.geometry.rect:intersection(r2) end
 ---@param y2 integer
 ---@param w2 integer
 ---@param h2 integer
+---@return number x
+---@return number y
+---@return number width
+---@return number height
 function playdate.geometry.rect.fast_intersection(x1, y1, w1, h1, x2, y2, w2, h2) end
 
 --- Returns the smallest possible rect that contains both the source rect and r2.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.union
 ---@param r2 playdate.geometry.rect
+---@return playdate.geometry.rect rect
 function playdate.geometry.rect:union(r2) end
 
 --- For use in inner loops where speed is the priority. About 3x faster than union.
@@ -2767,6 +2816,10 @@ function playdate.geometry.rect:union(r2) end
 ---@param y2 integer
 ---@param w2 integer
 ---@param h2 integer
+---@return number x
+---@return number y
+---@return number width
+---@return number height
 function playdate.geometry.rect.fast_union(x1, y1, w1, h1, x2, y2, w2, h2) end
 
 --- Insets the rect by the given dx and dy.
@@ -2774,6 +2827,7 @@ function playdate.geometry.rect.fast_union(x1, y1, w1, h1, x2, y2, w2, h2) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.inset
 ---@param dx integer
 ---@param dy integer
+---@return nil
 function playdate.geometry.rect:inset(dx, dy) end
 
 --- Returns a rect that is inset by the given dx and dy, with the same center point.
@@ -2781,6 +2835,7 @@ function playdate.geometry.rect:inset(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.insetBy
 ---@param dx integer
 ---@param dy integer
+---@return playdate.geometry.rect rect
 function playdate.geometry.rect:insetBy(dx, dy) end
 
 --- Offsets the rect by the given dx and dy.
@@ -2788,6 +2843,7 @@ function playdate.geometry.rect:insetBy(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.offset
 ---@param dx integer
 ---@param dy integer
+---@return nil
 function playdate.geometry.rect:offset(dx, dy) end
 
 --- Returns a rect with its origin point offset by dx, dy.
@@ -2795,12 +2851,14 @@ function playdate.geometry.rect:offset(dx, dy) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.offsetBy
 ---@param dx integer
 ---@param dy integer
+---@return playdate.geometry.rect rect
 function playdate.geometry.rect:offsetBy(dx, dy) end
 
 --- Returns true if the rect r2 is contained within the caller rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsRect-r2
 ---@param r2 playdate.geometry.rect
+---@return boolean
 function playdate.geometry.rect:containsRect(r2) end
 
 --- Returns true if the rect defined by (x, y, width, height) is contained within the caller rect.
@@ -2810,12 +2868,14 @@ function playdate.geometry.rect:containsRect(r2) end
 ---@param y integer
 ---@param width integer
 ---@param height integer
+---@return boolean
 function playdate.geometry.rect:containsRect(x, y, width, height) end
 
 --- Returns true if the point p is contained within the caller rect.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsPoint
 ---@param p any
+---@return boolean
 function playdate.geometry.rect:containsPoint(p) end
 
 --- Returns true if the point at (x, y) is contained within the caller rect.
@@ -2823,11 +2883,13 @@ function playdate.geometry.rect:containsPoint(p) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsPoint-xy
 ---@param x integer
 ---@param y integer
+---@return boolean
 function playdate.geometry.rect:containsPoint(x, y) end
 
 --- Returns a point at the center of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.centerPoint
+---@return playdate.geometry.point point
 function playdate.geometry.rect:centerPoint() end
 
 --- Flips the caller about the center of rect r2.
@@ -2842,6 +2904,7 @@ function playdate.geometry.rect:centerPoint() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.flipRelativeToRect
 ---@param r2 playdate.geometry.rect
 ---@param flip integer|string
+---@return nil
 function playdate.geometry.rect:flipRelativeToRect(r2, flip) end
 
 --- Returns a new playdate.geometry.size.
@@ -2849,16 +2912,20 @@ function playdate.geometry.rect:flipRelativeToRect(r2, flip) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.size.new
 ---@param width integer
 ---@param height integer
+---@return playdate.geometry.size size
 function playdate.geometry.size.new(width, height) end
 
 --- Returns a new copy of the size.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.size.copy
+---@return playdate.geometry.size size
 function playdate.geometry.size:copy() end
 
 --- Returns the values width, height.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.size.unpack
+---@return number width
+---@return number height
 function playdate.geometry.size:unpack() end
 
 --- Returns the square of the distance from point (x1, y1) to point (x2, y2).
@@ -2890,6 +2957,7 @@ function playdate.geometry.distanceToPoint(x1, y1, x2, y2) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.vector2D.new
 ---@param x integer
 ---@param y integer
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D.new(x, y) end
 
 --- Returns a new playdate.geometry.vector2D. Angles should be specified in degrees. Zero degrees represents the top of the circle.
@@ -2897,129 +2965,153 @@ function playdate.geometry.vector2D.new(x, y) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-geometry.vector2D.newPolar
 ---@param length number
 ---@param angle number
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D.newPolar(length, angle) end
 
 --- Returns a new copy of the vector2D.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.copy
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:copy() end
 
 --- Returns the values dx, dy.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.unpack
+---@return number x
+---@return number y
 function playdate.geometry.vector2D:unpack() end
 
 --- Modifies the caller by adding vector v.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.addVector
 ---@param v playdate.geometry.vector2D
+---@return nil
 function playdate.geometry.vector2D:addVector(v) end
 
 --- Modifies the caller, scaling it by amount s.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.scale
 ---@param s any
+---@return nil
 function playdate.geometry.vector2D:scale(s) end
 
 --- Returns the given vector scaled by s.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.scaledBy
 ---@param s any
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:scaledBy(s) end
 
 --- Modifies the caller by normalizing it so that its length is 1. If the vector is (0,0), the vector is unchanged.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.normalize
+---@return nil
 function playdate.geometry.vector2D:normalize() end
 
 --- Returns a new vector by normalizing the given vector.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.normalized
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:normalized() end
 
 --- Returns the dot product of the caller and the vector v.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.dotProduct
 ---@param v playdate.geometry.vector2D
+---@return number dotProduct
 function playdate.geometry.vector2D:dotProduct(v) end
 
 --- Returns the magnitude of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.magnitude
+---@return number magnitude
 function playdate.geometry.vector2D:magnitude() end
 
 --- Returns the square of the magnitude of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.magnitudeSquared
+---@return number magnitudeSquared
 function playdate.geometry.vector2D:magnitudeSquared() end
 
 --- Modifies the caller by projecting it along the vector v.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.projectAlong
 ---@param v playdate.geometry.vector2D
+---@return nil
 function playdate.geometry.vector2D:projectAlong(v) end
 
 --- Returns a new vector created by projecting the given vector along the vector v.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.projectedAlong
 ---@param v playdate.geometry.vector2D
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:projectedAlong(v) end
 
 --- Returns the angle between the caller and the vector v.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.angleBetween
 ---@param v playdate.geometry.vector2D
+---@return number degrees
 function playdate.geometry.vector2D:angleBetween(v) end
 
 --- Returns a vector that is the left normal of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.leftNormal
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:leftNormal() end
 
 --- Returns a vector that is the right normal of the caller.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.rightNormal
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:rightNormal() end
 
 --- Returns the vector formed by negating the components of vector v.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.unm
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__unm() end
 
 --- Returns the vector formed by adding vector v2 to vector v1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.add
 ---@param v2 playdate.geometry.vector2D
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__add(v2) end
 
 --- Returns the vector formed by subtracting vector v2 from vector v1.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.sub
 ---@param v2 playdate.geometry.vector2D
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__sub(v2) end
 
 --- Returns the vector v1 scaled by s.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_s
 ---@param s any
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__mul(s) end
 
 --- Returns the dot product of the two vectors.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_v
 ---@param v2 playdate.geometry.vector2D
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__mul(v2) end
 
 --- Returns the vector transformed by transform t.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_t
 ---@param t any
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__mul(t) end
 
 --- Returns the vector divided by scalar s.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.div
 ---@param s any
+---@return playdate.geometry.vector2D vector
 function playdate.geometry.vector2D:__div(s) end
 
 --- Pushes the current graphics state to the context stack and creates a new context. If a playdate.graphics.image is given, drawing functions are applied to the image instead of the screen buffer.
