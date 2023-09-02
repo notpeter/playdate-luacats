@@ -1,10 +1,12 @@
 # LuaCATS for Panic PlaydateSDK
 
-Unofficial Definitions for the Panic Playdate Lua SDK.
+<img width="359" alt="Screenshot 2023-09-02 at 19 51 41" src="https://github.com/notpeter/playdate-luacats/assets/145113/4be26c10-42b2-4139-a926-31fffcf97f59">
 
-Text Copyright (c) Panic Inc, [PlaydateSDK License 1.0](https://play.date/dev/sdk-license/)
+## Unofficial Definitions for the Panic Playdate Lua SDK.
 
-Everything else Copyright (c) Peter Tripp, [Apache 2.0 License](LICENSE)
+Text & API Copyright (c) Panic Inc, [PlaydateSDK License 1.0](https://play.date/dev/sdk-license/)
+
+Types and everything else Copyright (c) Peter Tripp, [Apache 2.0 License](LICENSE)
 
 ## LuaCATS? What's that.
 
