@@ -5638,14 +5638,14 @@ function playdate.graphics.sprite:setStencilImage(stencil, tile) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern
 ---@param pattern integer[]
 ---@return nil
-function playdate.graphics.sprite:setStencilPattern(pattern) end
+function playdate.graphics.setStencilPattern(pattern) end
 
 --- Sets the sprite’s stencil to the given pattern, tiled across the screen. `pattern` should be a table of the form `{ row1, row2, row3, row4, row5, row6, row7, row8 }`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern_p
 ---@param pattern integer[]
 ---@return nil
-function playdate.graphics.setStencilPattern(pattern) end
+function playdate.graphics.sprite:setStencilPattern(pattern) end
 
 --- Sets the sprite’s stencil to a dither pattern specified by *level* and optional *ditherType* (defaults to `playdate.graphics.image.kDitherTypeBayer8x8`).
 ---
@@ -9469,5 +9469,17 @@ function playdate.setMinimumGCTime(ms) end
 ---@param max number
 ---@return nil
 function playdate.setGCScaling(min, max) end
+
+---@param name string
+---@return _Class
+function class(name) end
+
+---@deprecated since 2.1.0-beta1
+---@return nil
+function playdate.ui.crankIndicator:start() end
+
+---@deprecated since 2.1.0-beta1
+---@return nil
+function playdate.ui.crankIndicator:update() end
 
 --- End of LuaCATS stubs.
