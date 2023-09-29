@@ -1,25 +1,293 @@
 ---@meta
 --- This file contains function stubs for autocompletion. DO NOT include it in your game.
 
----@param name string
----@return _Class
-function class(name) end
+---@class json
+json = {}
 
----@param ... any
----@return nil
-function print(...) end
+---@class kTextAlignment
+---@field left integer 0
+---@field right integer 1
+---@field center integer 2
+kTextAlignment = {}
 
----@param table table
----@return nil
-function printTable(table) end
+---@class playdate
+---@field argv string[]
+---@field isSimulator boolean
+---@field kButtonLeft integer 1
+---@field kButtonRight integer 2
+---@field kButtonUp integer 4
+---@field kButtonDown integer 8
+---@field kButtonB integer 16
+---@field kButtonA integer 32
+---@field metadate _Metadata
+---@field systeminfo _SystemInfo
+playdate = {}
 
----@param name string
----@param _function function
----@return nil
-function sample(name, _function) end
+---@class playdate.datastore
+playdate.datastore = {}
 
----@return string
-function where() end
+---@class playdate.display
+playdate.display = {}
+
+---@class playdate.easingFunctions
+playdate.easingFunctions = {}
+
+---@class playdate.file
+---@field kFileRead integer 3
+---@field kFileAppend integer 8
+---@field kFileWrite integer 4
+playdate.file = {}
+
+---@class playdate.frameTimer
+playdate.frameTimer = {}
+
+---@class playdate.geometry
+---@field kUnflipped integer 0
+---@field kFlippedX integer 1
+---@field kFlippedY integer 2
+---@field kFlippedXY integer 3
+playdate.geometry = {}
+
+---@class playdate.graphics
+---@field kColorBlack integer 0
+---@field kColorWhite integer 1
+---@field kColorClear integer 2
+---@field kColorXOR integer 3
+---@field kDrawModeCopy integer 0
+---@field kDrawModeWhiteTransparent integer 1
+---@field kDrawModeBlackTransparent integer 2
+---@field kDrawModeFillWhite integer 3
+---@field kDrawModeFillBlack integer 4
+---@field kDrawModeXOR integer 5
+---@field kDrawModeNXOR integer 6
+---@field kDrawModeInverted integer 7
+---@field kImageUnflipped integer 0
+---@field kImageFlippedX integer 1
+---@field kImageFlippedY integer 2
+---@field kImageFlippedXY integer 3
+---@field kPolygonFillNonZero integer 0
+---@field kPolygonFillEvenOdd integer 1
+---@field kStrokeCentered integer 0
+---@field kStrokeInside integer 1
+---@field kStrokeOutside integer 2
+playdate.graphics = {}
+
+---@class playdate.inputHandlers
+playdate.inputHandlers = {}
+
+---@class playdate.keyboard
+---@field kCapitalizationNormal integer 1
+---@field kCapitalizationSentences integer 3
+---@field kCapitalizationWords integer 2
+---@field text string
+playdate.keyboard = {}
+
+---@class playdate.math
+playdate.math = {}
+
+---@class playdate.menu
+playdate.menu = {}
+
+---@class playdate.pathfinder
+playdate.pathfinder = {}
+
+---@class playdate.simulator
+playdate.simulator = {}
+
+---@class playdate.sound
+---@field kFormat8bitMono integer 0
+---@field kFormat8bitStereo integer 1
+---@field kFormat16bitMono integer 2
+---@field kFormat16bitStereo integer 3
+---@field kLFOSquare integer 0
+---@field kLFOTriangle integer 1
+---@field kLFOSine integer 2
+---@field kLFOSampleAndHold integer 3
+---@field kLFOSawtoothUp integer 4
+---@field kLFOSawtoothDown integer 5
+---@field kWaveSquare integer 0
+---@field kWaveTriangle integer 1
+---@field kWaveSine integer 2
+---@field kWaveNoise integer 3
+---@field kWaveSawtooth integer 4
+---@field kWavePOPhase integer 5
+---@field kWavePODigital integer 6
+---@field kWavePOVosim integer 7
+playdate.sound = {}
+
+---@class playdate.string
+playdate.string = {}
+
+---@class playdate.timer
+playdate.timer = {}
+
+---@class playdate.ui
+playdate.ui = {}
+
+---@class playdate.file.file
+playdate.file.file = {}
+
+---@class playdate.geometry.affineTransform
+playdate.geometry.affineTransform = {}
+
+---@class playdate.geometry.arc
+playdate.geometry.arc = {}
+
+---@class playdate.geometry.lineSegment
+playdate.geometry.lineSegment = {}
+
+---@class playdate.geometry.point
+playdate.geometry.point = {}
+
+---@class playdate.geometry.polygon
+playdate.geometry.polygon = {}
+
+---@class playdate.geometry.rect
+playdate.geometry.rect = {}
+
+---@class playdate.geometry.size
+playdate.geometry.size = {}
+
+---@class playdate.geometry.vector2D
+playdate.geometry.vector2D = {}
+
+---@class playdate.graphics.animation
+playdate.graphics.animation = {}
+
+---@class playdate.graphics.animator
+playdate.graphics.animator = {}
+
+---@class playdate.graphics.font
+---@field kLanguageEnglish integer 0
+---@field kLanguageJapanese integer 1
+---@field kVariantNormal integer 0
+---@field kVariantBold integer 1
+---@field kVariantItalic integer 2
+playdate.graphics.font = {}
+
+---@class playdate.graphics.image
+---@field kDitherTypeNone integer 0
+---@field kDitherTypeDiagonalLine integer 1
+---@field kDitherTypeHorizontalLine integer 3
+---@field kDitherTypeVerticalLine integer 2
+---@field kDitherTypeScreen integer 4
+---@field kDitherTypeBayer2x2 integer 5
+---@field kDitherTypeBayer4x4 integer 6
+---@field kDitherTypeBayer8x8 integer 7
+---@field kDitherTypeFloydSteinberg integer 8
+---@field kDitherTypeBurkes integer 9
+---@field kDitherTypeAtkinson integer 10
+playdate.graphics.image = {}
+
+---@class playdate.graphics.imagetable
+playdate.graphics.imagetable = {}
+
+---@class playdate.graphics.nineSlice
+playdate.graphics.nineSlice = {}
+
+---@class playdate.graphics.sprite
+---@field kCollisionTypeSlide integer 0
+---@field kCollisionTypeFreeze integer 1
+---@field kCollisionTypeOverlap integer 2
+---@field kCollisionTypeBounce integer 3
+playdate.graphics.sprite = {}
+
+---@class playdate.graphics.tilemap
+playdate.graphics.tilemap = {}
+
+---@class playdate.graphics.video
+playdate.graphics.video = {}
+
+---@class playdate.graphics.animation.blinker
+playdate.graphics.animation.blinker = {}
+
+---@class playdate.graphics.animation.loop
+playdate.graphics.animation.loop = {}
+
+---@class playdate.menu.item
+playdate.menu.item = {}
+
+---@class playdate.pathfinder.graph
+playdate.pathfinder.graph = {}
+
+---@class playdate.pathfinder.node
+playdate.pathfinder.node = {}
+
+---@class playdate.sound.bitcrusher : _SoundEffect
+playdate.sound.bitcrusher = {}
+
+---@class playdate.sound.channel
+playdate.sound.channel = {}
+
+---@class playdate.sound.controlsignal : _Signal
+playdate.sound.controlsignal = {}
+
+---@class playdate.sound.delayline : _SoundEffect
+playdate.sound.delayline = {}
+
+---@class playdate.sound.delaylinetap : _SoundSource
+playdate.sound.delaylinetap = {}
+
+---@class playdate.sound.effect
+playdate.sound.effect = {}
+
+---@class playdate.sound.envelope : _Signal
+playdate.sound.envelope = {}
+
+---@class playdate.sound.fileplayer : _SoundSource
+playdate.sound.fileplayer = {}
+
+---@class playdate.sound.instrument : _SoundSource
+playdate.sound.instrument = {}
+
+---@class playdate.sound.lfo : _Signal
+playdate.sound.lfo = {}
+
+---@class playdate.sound.micinput
+playdate.sound.micinput = {}
+
+---@class playdate.sound.onepolefilter : _SoundEffect
+playdate.sound.onepolefilter = {}
+
+---@class playdate.sound.overdrive : _SoundEffect
+playdate.sound.overdrive = {}
+
+---@class playdate.sound.ringmod : _SoundEffect
+playdate.sound.ringmod = {}
+
+---@class playdate.sound.sample
+playdate.sound.sample = {}
+
+---@class playdate.sound.sampleplayer : _SoundSource
+playdate.sound.sampleplayer = {}
+
+---@class playdate.sound.sequence
+playdate.sound.sequence = {}
+
+---@class playdate.sound.signal
+playdate.sound.signal = {}
+
+---@class playdate.sound.source
+playdate.sound.source = {}
+
+---@class playdate.sound.synth : _SoundSource
+playdate.sound.synth = {}
+
+---@class playdate.sound.track
+playdate.sound.track = {}
+
+---@class playdate.sound.track
+playdate.sound.track = {}
+
+---@class playdate.sound.twopolefilter : _SoundEffect
+playdate.sound.twopolefilter = {}
+
+---@class playdate.ui.crankIndicator
+---@field clockwise boolean
+playdate.ui.crankIndicator = {}
+
+---@class playdate.ui.gridview
+playdate.ui.gridview = {}
 
 ---@class _AffineTransform : playdate.geometry.affineTransform
 local _AffineTransform = {}
@@ -365,27 +633,25 @@ local _Vector2D = {}
 ---@class _Video : playdate.graphics.video
 local _Video = {}
 
----@class json
-json = {}
+---@param name string
+---@return _Class
+function class(name) end
 
----@class kTextAlignment
----@field left integer 0
----@field right integer 1
----@field center integer 2
-kTextAlignment = {}
+---@param ... any
+---@return nil
+function print(...) end
 
----@class playdate
----@field argv string[]
----@field isSimulator boolean
----@field kButtonLeft integer 1
----@field kButtonRight integer 2
----@field kButtonUp integer 4
----@field kButtonDown integer 8
----@field kButtonB integer 16
----@field kButtonA integer 32
----@field metadate _Metadata
----@field systeminfo _SystemInfo
-playdate = {}
+---@param table table
+---@return nil
+function printTable(table) end
+
+---@param name string
+---@param _function function
+---@return nil
+function sample(name, _function) end
+
+---@return string
+function where() end
 
 ---@param str string
 ---@return table
@@ -679,107 +945,6 @@ function playdate.update() end
 ---@param milliseconds integer
 ---@return nil
 function playdate.wait(milliseconds) end
-
----@class playdate.datastore
-playdate.datastore = {}
-
----@class playdate.display
-playdate.display = {}
-
----@class playdate.easingFunctions
-playdate.easingFunctions = {}
-
----@class playdate.file
----@field kFileRead integer 3
----@field kFileAppend integer 8
----@field kFileWrite integer 4
-playdate.file = {}
-
----@class playdate.frameTimer
-playdate.frameTimer = {}
-
----@class playdate.geometry
----@field kUnflipped integer 0
----@field kFlippedX integer 1
----@field kFlippedY integer 2
----@field kFlippedXY integer 3
-playdate.geometry = {}
-
----@class playdate.graphics
----@field kColorBlack integer 0
----@field kColorWhite integer 1
----@field kColorClear integer 2
----@field kColorXOR integer 3
----@field kDrawModeCopy integer 0
----@field kDrawModeWhiteTransparent integer 1
----@field kDrawModeBlackTransparent integer 2
----@field kDrawModeFillWhite integer 3
----@field kDrawModeFillBlack integer 4
----@field kDrawModeXOR integer 5
----@field kDrawModeNXOR integer 6
----@field kDrawModeInverted integer 7
----@field kImageUnflipped integer 0
----@field kImageFlippedX integer 1
----@field kImageFlippedY integer 2
----@field kImageFlippedXY integer 3
----@field kPolygonFillNonZero integer 0
----@field kPolygonFillEvenOdd integer 1
----@field kStrokeCentered integer 0
----@field kStrokeInside integer 1
----@field kStrokeOutside integer 2
-playdate.graphics = {}
-
----@class playdate.inputHandlers
-playdate.inputHandlers = {}
-
----@class playdate.keyboard
----@field kCapitalizationNormal integer 1
----@field kCapitalizationSentences integer 3
----@field kCapitalizationWords integer 2
----@field text string
-playdate.keyboard = {}
-
----@class playdate.math
-playdate.math = {}
-
----@class playdate.menu
-playdate.menu = {}
-
----@class playdate.pathfinder
-playdate.pathfinder = {}
-
----@class playdate.simulator
-playdate.simulator = {}
-
----@class playdate.sound
----@field kFormat8bitMono integer 0
----@field kFormat8bitStereo integer 1
----@field kFormat16bitMono integer 2
----@field kFormat16bitStereo integer 3
----@field kLFOSquare integer 0
----@field kLFOTriangle integer 1
----@field kLFOSine integer 2
----@field kLFOSampleAndHold integer 3
----@field kLFOSawtoothUp integer 4
----@field kLFOSawtoothDown integer 5
----@field kWaveSquare integer 0
----@field kWaveTriangle integer 1
----@field kWaveSine integer 2
----@field kWaveNoise integer 3
----@field kWaveSawtooth integer 4
----@field kWavePOPhase integer 5
----@field kWavePODigital integer 6
----@field kWavePOVosim integer 7
-playdate.sound = {}
-
----@class playdate.string
-playdate.string = {}
-
----@class playdate.timer
-playdate.timer = {}
-
----@class playdate.ui
-playdate.ui = {}
 
 ---@param filename? string
 ---@return boolean
@@ -1222,9 +1387,6 @@ function playdate.file.rename(path, newPath) end
 ---@return nil
 function playdate.file.run(path, env) end
 
----@class playdate.file.file
-playdate.file.file = {}
-
 ---@return nil
 function playdate.file.file:close() end
 
@@ -1301,30 +1463,6 @@ function playdate.geometry.distanceToPoint(x1, y1, x2, y2) end
 ---@param y2 integer
 ---@return number
 function playdate.geometry.squaredDistanceToPoint(x1, y1, x2, y2) end
-
----@class playdate.geometry.affineTransform
-playdate.geometry.affineTransform = {}
-
----@class playdate.geometry.arc
-playdate.geometry.arc = {}
-
----@class playdate.geometry.lineSegment
-playdate.geometry.lineSegment = {}
-
----@class playdate.geometry.point
-playdate.geometry.point = {}
-
----@class playdate.geometry.polygon
-playdate.geometry.polygon = {}
-
----@class playdate.geometry.rect
-playdate.geometry.rect = {}
-
----@class playdate.geometry.size
-playdate.geometry.size = {}
-
----@class playdate.geometry.vector2D
-playdate.geometry.vector2D = {}
 
 ---@param m11 number
 ---@param m12 number
@@ -2424,59 +2562,6 @@ function playdate.graphics.setStrokeLocation(location) end
 ---@return nil
 function playdate.graphics.unlockFocus() end
 
----@class playdate.graphics.animation
-playdate.graphics.animation = {}
-
----@class playdate.graphics.animator
-playdate.graphics.animator = {}
-
----@class playdate.graphics.font
----@field kLanguageEnglish integer 0
----@field kLanguageJapanese integer 1
----@field kVariantNormal integer 0
----@field kVariantBold integer 1
----@field kVariantItalic integer 2
-playdate.graphics.font = {}
-
----@class playdate.graphics.image
----@field kDitherTypeNone integer 0
----@field kDitherTypeDiagonalLine integer 1
----@field kDitherTypeHorizontalLine integer 3
----@field kDitherTypeVerticalLine integer 2
----@field kDitherTypeScreen integer 4
----@field kDitherTypeBayer2x2 integer 5
----@field kDitherTypeBayer4x4 integer 6
----@field kDitherTypeBayer8x8 integer 7
----@field kDitherTypeFloydSteinberg integer 8
----@field kDitherTypeBurkes integer 9
----@field kDitherTypeAtkinson integer 10
-playdate.graphics.image = {}
-
----@class playdate.graphics.imagetable
-playdate.graphics.imagetable = {}
-
----@class playdate.graphics.nineSlice
-playdate.graphics.nineSlice = {}
-
----@class playdate.graphics.sprite
----@field kCollisionTypeSlide integer 0
----@field kCollisionTypeFreeze integer 1
----@field kCollisionTypeOverlap integer 2
----@field kCollisionTypeBounce integer 3
-playdate.graphics.sprite = {}
-
----@class playdate.graphics.tilemap
-playdate.graphics.tilemap = {}
-
----@class playdate.graphics.video
-playdate.graphics.video = {}
-
----@class playdate.graphics.animation.blinker
-playdate.graphics.animation.blinker = {}
-
----@class playdate.graphics.animation.loop
-playdate.graphics.animation.loop = {}
-
 ---@param onDuration? integer
 ---@param offDuration? integer
 ---@param loop? boolean
@@ -3502,9 +3587,6 @@ function playdate.keyboard.width() end
 ---@return number
 function playdate.math.lerp(min, max, t) end
 
----@class playdate.menu.item
-playdate.menu.item = {}
-
 ---@param title string
 ---@param initialValue? boolean
 ---@param callback? function
@@ -3550,12 +3632,6 @@ function playdate.menu.item:setTitle(newTitle) end
 ---@param newValue (integer|boolean|string)
 ---@return nil
 function playdate.menu.item:setValue(newValue) end
-
----@class playdate.pathfinder.graph
-playdate.pathfinder.graph = {}
-
----@class playdate.pathfinder.node
-playdate.pathfinder.node = {}
 
 ---@param nodeCount? integer
 ---@param coordinates? integer[][]
@@ -3734,75 +3810,6 @@ function playdate.sound.resetTime() end
 ---@param speaker boolean
 ---@return nil
 function playdate.sound.setOutputsActive(headphones, speaker) end
-
----@class playdate.sound.bitcrusher : _SoundEffect
-playdate.sound.bitcrusher = {}
-
----@class playdate.sound.channel
-playdate.sound.channel = {}
-
----@class playdate.sound.controlsignal : _Signal
-playdate.sound.controlsignal = {}
-
----@class playdate.sound.delayline : _SoundEffect
-playdate.sound.delayline = {}
-
----@class playdate.sound.delaylinetap : _SoundSource
-playdate.sound.delaylinetap = {}
-
----@class playdate.sound.effect
-playdate.sound.effect = {}
-
----@class playdate.sound.envelope : _Signal
-playdate.sound.envelope = {}
-
----@class playdate.sound.fileplayer : _SoundSource
-playdate.sound.fileplayer = {}
-
----@class playdate.sound.instrument : _SoundSource
-playdate.sound.instrument = {}
-
----@class playdate.sound.lfo : _Signal
-playdate.sound.lfo = {}
-
----@class playdate.sound.micinput
-playdate.sound.micinput = {}
-
----@class playdate.sound.onepolefilter : _SoundEffect
-playdate.sound.onepolefilter = {}
-
----@class playdate.sound.overdrive : _SoundEffect
-playdate.sound.overdrive = {}
-
----@class playdate.sound.ringmod : _SoundEffect
-playdate.sound.ringmod = {}
-
----@class playdate.sound.sample
-playdate.sound.sample = {}
-
----@class playdate.sound.sampleplayer : _SoundSource
-playdate.sound.sampleplayer = {}
-
----@class playdate.sound.sequence
-playdate.sound.sequence = {}
-
----@class playdate.sound.signal
-playdate.sound.signal = {}
-
----@class playdate.sound.source
-playdate.sound.source = {}
-
----@class playdate.sound.synth : _SoundSource
-playdate.sound.synth = {}
-
----@class playdate.sound.track
-playdate.sound.track = {}
-
----@class playdate.sound.track
-playdate.sound.track = {}
-
----@class playdate.sound.twopolefilter : _SoundEffect
-playdate.sound.twopolefilter = {}
 
 ---@return _BitCrusher
 function playdate.sound.bitcrusher.new() end
@@ -4722,13 +4729,6 @@ function playdate.timer:reset() end
 
 ---@return nil
 function playdate.timer:start() end
-
----@class playdate.ui.crankIndicator
----@field clockwise boolean
-playdate.ui.crankIndicator = {}
-
----@class playdate.ui.gridview
-playdate.ui.gridview = {}
 
 ---@return nil
 function playdate.ui.crankIndicator:start() end
