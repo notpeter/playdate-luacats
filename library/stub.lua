@@ -383,7 +383,7 @@ local _Font = {}
 ---@field frame integer
 ---@field repeats boolean
 ---@field reverses boolean
----@field timerEndedArgs any
+---@field timerEndedArgs any[]
 local _FrameTimer = {}
 
 ---@class _GridView : playdate.ui.gridview
@@ -652,6 +652,22 @@ function sample(name, _function) end
 
 ---@return string
 function where() end
+
+---@param ... any
+---@return nil
+function _FrameTimer:timerEndedCallback(...) end
+
+---@param ... any
+---@return nil
+function _FrameTimer:updateCallback(...) end
+
+---@param ... any
+---@return nil
+function _Timer:timerEndedCallback(...) end
+
+---@param ... any
+---@return nil
+function _Timer:updateCallback(...) end
 
 ---@param str string
 ---@return table
@@ -1408,10 +1424,10 @@ function playdate.file.file:seek(offset) end
 ---@return integer
 function playdate.file.file:tell() end
 
----@param string string
+---@param str string
 ---@return integer bytes_written
 ---@return string? error
-function playdate.file.file:write(string) end
+function playdate.file.file:write(str) end
 
 ---@return _FrameTimer[]
 function playdate.frameTimer.allTimers() end
@@ -4175,6 +4191,10 @@ function playdate.sound.lfo:setRate(rate) end
 ---@return nil
 function playdate.sound.lfo:setRetrigger(flag) end
 
+---@param phase number
+---@return nil
+function playdate.sound.lfo:setStartPhase(phase) end
+
 ---@param type integer
 ---@return nil
 function playdate.sound.lfo:setType(type) end
@@ -4564,6 +4584,12 @@ function playdate.sound.synth:setVolume(left, right) end
 ---@return nil
 function playdate.sound.synth:setWaveform(waveform) end
 
+---@param sample _Sample
+---@param samplesize integer
+---@param xsize integer
+---@param ysize? integer
+function playdate.sound.synth:setWavetable(sample, samplesize, xsize, ysize) end
+
 ---@return nil
 function playdate.sound.synth:stop() end
 
@@ -4665,17 +4691,17 @@ function playdate.sound.twopolefilter:setType(type) end
 ---@return string
 function playdate.string.UUID(length) end
 
----@param string string
+---@param str string
 ---@return string
-function playdate.string.trimLeadingWhitespace(string) end
+function playdate.string.trimLeadingWhitespace(str) end
 
----@param string string
+---@param str string
 ---@return string
-function playdate.string.trimTrailingWhitespace(string) end
+function playdate.string.trimTrailingWhitespace(str) end
 
----@param string string
+---@param str string
 ---@return string
-function playdate.string.trimWhitespace(string) end
+function playdate.string.trimWhitespace(str) end
 
 ---@return _Timer[]
 function playdate.timer.allTimers() end
@@ -4729,6 +4755,17 @@ function playdate.timer:reset() end
 
 ---@return nil
 function playdate.timer:start() end
+
+---@param xOffset? integer
+---@param yOffset? integer
+---@return nil
+function playdate.ui.crankIndicator:draw(xOffset, yOffset) end
+
+---@return integer x
+---@return integer y
+---@return integer width
+---@return integer height
+function playdate.ui.crankIndicator:getBounds() end
 
 ---@return nil
 function playdate.ui.crankIndicator:start() end
