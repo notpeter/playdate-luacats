@@ -71,6 +71,8 @@ local Blinker = {}
 local Channel = {}
 
 ---@class Class
+---@field extends fun(parentClass: any): nil
+---@field super table
 local Class = {}
 
 ---@class ControlSignal : playdate.sound.controlsignal
@@ -189,7 +191,6 @@ local MenuItem = {}
 ---@field launchSoundPath? string
 ---@field contentWarning? string
 ---@field contentWarning2? string
----@field ... string
 local Metadata = {}
 
 ---@class ModTime
@@ -268,7 +269,7 @@ local Signal = {}
 ---@field height number
 local Size = {}
 
----@class SoundControlEvent : table
+---@class SoundControlEvent
 ---@field step integer
 ---@field value number
 ---@field interpolate? boolean
@@ -335,12 +336,6 @@ local Synth = {}
 ---@field pdxcompatversion integer
 ---@field pdxversion integer
 local SystemInfo = {}
-
----@class SystemStats
----@field " kernel" number
----@field " game" number
----@field " audio" number
-local SystemStats = {}
 
 ---@class TileMap : playdate.graphics.tilemap
 local TileMap = {}
@@ -642,18 +637,6 @@ function Channel:setVolume(volume) end
 ---@param signal Signal
 ---@return nil
 function Channel:setVolumeMod(signal) end
-
----@param parentClass table
----@return nil
-function Class.extends(parentClass) end
-
----@class Class.super
-local Class.super = {}
-
----@param self any
----@param ...? any
----@return nil
-function Class.super.init(self, ...) end
 
 ---@param step integer
 ---@param value number
@@ -1393,7 +1376,7 @@ function OverDrive:setMixMod(signal) end
 ---@return nil
 function OverDrive:setOffset(level) end
 
----@param signal Signaly
+---@param signal Signal
 ---@return nil
 function OverDrive:setOffsetMod(signal) end
 
@@ -2739,7 +2722,7 @@ function playdate.getReduceFlashing() end
 ---@return integer milliseconds
 function playdate.getSecondsSinceEpoch() end
 
----@return SystemStats
+---@return table
 function playdate.getStats() end
 
 ---@return integer
@@ -4503,11 +4486,11 @@ function playdate.graphics.sprite.performOnAllSprites(f) end
 ---@param y1 integer
 ---@param x2 integer
 ---@param y2 integer
----@return CollisionInfo[]
+---@return SpriteCollisionInfo[]
 function playdate.graphics.sprite.querySpriteInfoAlongLine(x1, y1, x2, y2) end
 
 ---@param lineSegment LineSegment
----@return CollisionInfo[]
+---@return SpriteCollisionInfo[]
 function playdate.graphics.sprite.querySpriteInfoAlongLine(lineSegment) end
 
 ---@param x1 integer
