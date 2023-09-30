@@ -6,7 +6,8 @@
 
 Text & API Copyright (c) Panic Inc, [PlaydateSDK License 1.0](https://play.date/dev/sdk-license/)
 
-Types and everything else Copyright (c) Peter Tripp, [Apache 2.0 License](LICENSE)
+Types and everything else Copyright (c) Peter Tripp,
+under the Apache License, Version 2.0 or the MIT license at your option.
 
 ## LuaCATS? What's that.
 
@@ -16,7 +17,9 @@ LuaCATS stands for "Lua Comment And Type System", which is the system used by [S
 
 LuaCATS is method to provide machine readable
 [Lua Type Annotations](https://github.com/LuaLS/lua-language-server/wiki/Annotations#deprecated)
-and comments enabling inline autocompletion and linting suggestions within your IDE. Super nifty!
+and comments enabling inline autocompletion and linting suggestions in your IDE. Super nifty!
+
+![image](https://github.com/notpeter/playdate-luacats/assets/145113/1ce0e9c1-46ff-4b48-8e3d-c4b2cb519d35)
 
 ## How do I use it?
 
@@ -153,23 +156,20 @@ These names do not exist at runtime and are only used by LuaLS.
 
 ## Version tags
 
-These types were initially built against PlayDateSDK v2.0.1.
+See: [@notpeter/playdate-luacats/tags](https://github.com/notpeter/playdate-luacats/tags)
 
-We use [Semantic Versioning](https://semver.org/) but add a suffix
-for each update for a given SDK release. This technically makes them
-[pre-release]((https://semver.org/#spec-item-9)) versions
-but as long as we always use the suffix it'll be fine.
+Our version tags correspond to [PlaydateSDK versions](https://sdk.play.date/changelog/)
+with a numbered suffix (e.g. `luacats1`). For example: `v2.1.0-luacats2` is the second
+revision of annotations for SDK v2.1.0.
 
-```
-v2.0.1-luacats1
-v2.0.1-luacats2
-v2.0.2-luacats1
-etc
-```
+There are valid [Semantic Versioning](https://semver.org/).
+The suffix use makes them technically [pre-release]((https://semver.org/#spec-item-9))
+versions but as long as we always have a suffix it'll be fine.
 
 ## Meta notes
 
-* As 2023-08-05 None of the other [LuaCATS Definitions](https://github.com/LuaCATS)
-have tags at all. Over engineering is definitely on-brand for this project.
+* As of 2023-08-05 None of the other [LuaCATS Definitions](https://github.com/LuaCATS)
+have any tags at all, so we're ahead of the curve.
+Over engineering is definitely on-brand for this project.
 * As of 2023-08-05 [Google q=luacats1](https://www.google.com/search?q=luacats1)
 yields zero results.
