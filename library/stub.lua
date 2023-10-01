@@ -605,6 +605,12 @@ local _Synth = {}
 ---@field pdxversion integer
 local _SystemInfo = {}
 
+---@class _SystemStats
+---@field [" kernel"] number
+---@field [" game"] number
+---@field [" audio"] number
+local _SystemStats = {}
+
 ---@class _TileMap : playdate.graphics.tilemap
 local _TileMap = {}
 
@@ -1333,7 +1339,7 @@ function sample(name, _function) end
 --- `playdate.getStats()` only functions on a Playdate device. In the Simulator, this function returns `nil`.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getStats
----@return table
+---@return _SystemStats
 function playdate.getStats() end
 
 --- `setStatsInterval()` sets the length of time for each sample frame of runtime stats. Set *seconds* to zero to disable stats collection.
@@ -2192,7 +2198,7 @@ function playdate.easingFunctions.outInBounce(t, b, c, d) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-datastore.write
 ---@param table table
 ---@param filename? string
----@param pretty boolean
+---@param pretty? boolean
 ---@return nil
 function playdate.datastore.write(table, filename, pretty) end
 
@@ -2692,7 +2698,7 @@ function playdate.geometry.arc:setIsClockwise(flag) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.pointOnArc
 ---@param distance integer
----@param extend boolean
+---@param extend? boolean
 ---@return _Point
 function playdate.geometry.arc:pointOnArc(distance, extend) end
 
@@ -4444,7 +4450,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
----@param callback function
+---@param callback fun(image: _Image, errorMessage: string)
 ---@return nil
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
 
@@ -5531,7 +5537,7 @@ function playdate.graphics.sprite:isOpaque() end
 --- Some implementation details: `setBackgroundDrawingCallback()` creates a screen-sized sprite with a z-index set to the lowest possible value so it will draw behind other sprites, and adds the sprite to the display list so that it is drawn in the current scene. The background sprite ignores the drawOffset, and will not be automatically redrawn when the draw offset changes; use playdate.graphics.sprite.redrawBackground() if necessary in this case. *drawCallback* will be called from the newly-created background sprite’s playdate.graphics.sprite:draw() callback function and is where you should do your background drawing.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback
----@param drawCallback fun(x: integer, y: integer, width: integer, height: integer): nil
+---@param drawCallback? fun(x: integer, y: integer, width: integer, height: integer): nil
 ---@return nil
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 
@@ -9104,11 +9110,13 @@ function playdate.ui.crankIndicator:draw(xOffset, yOffset) end
 --- Returns *x*, *y*, *width*, *height* representing the bounds that the crank indicator draws within. If necessary, this rect could be passed into playdate.graphics.sprite.addDirtyRect(), or used to manually draw over the indicator image drawn by playdate.ui.crankIndicator:draw() when you want to stop showing the crank indicator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.getBounds
+---@param xOffset? integer
+---@param yOffset? integer
 ---@return integer x
 ---@return integer y
 ---@return integer width
 ---@return integer height
-function playdate.ui.crankIndicator:getBounds() end
+function playdate.ui.crankIndicator:getBounds(xOffset, yOffset) end
 
 --- Returns a new playdate.ui.gridview with cells sized *cellWidth*, *cellHeight*. (Sizes are in pixels.) If cells should span the entire width of the grid (as in a list view), pass zero (0) for *cellWidth*.
 ---
@@ -9473,6 +9481,10 @@ function playdate.setGCScaling(min, max) end
 ---@param name string
 ---@return _Class
 function class(name) end
+
+---@param ls _LineSegment
+---@return nil
+function playdate.graphics.drawLine(ls) end
 
 ---@deprecated since 2.1.0-beta1
 ---@return nil
