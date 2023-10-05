@@ -1,6 +1,6 @@
 # LuaCATS for Panic PlaydateSDK
 
-<img width="359" alt="Screenshot 2023-09-02 at 19 51 41" src="https://github.com/notpeter/playdate-luacats/assets/145113/4be26c10-42b2-4139-a926-31fffcf97f59">
+<img width="359" alt="AI Generated Image of cat holding a game controller" src="https://github.com/notpeter/playdate-luacats/assets/145113/4be26c10-42b2-4139-a926-31fffcf97f59">
 
 ## Unofficial Definitions for the Panic Playdate Lua SDK.
 
@@ -54,7 +54,7 @@ git clone https://github.com/notpeter/playdate-luacats
 
 ## What does it look like
 
-<img width="850" alt="Screenshot 2023-08-07 at 12 17 10" src="https://github.com/notpeter/playdate-luacats/assets/145113/55524a57-ea39-44b3-b792-edca2ce582c2">
+<img width="850" alt="VSCode Screenshot showing inline PlaydateSDK API documentation" src="https://github.com/notpeter/playdate-luacats/assets/145113/55524a57-ea39-44b3-b792-edca2ce582c2">
 
 ## Where does this come from?
 
@@ -62,6 +62,14 @@ git clone https://github.com/notpeter/playdate-luacats
 [notpeter/playdate-docdef/playdate.luars](https://github.com/notpeter/playdate-docdef/blob/main/playdate.luars)
 * We scrape [Lua PlayDateSDK "Inside Playdate" HTML Documentation](https://sdk.play.date/)
 * Then generate [stub.lua](library/stub.lua) with LuaCATS annotations.
+
+## Updates?
+
+Work in progress. Currently just do a `git pull` periodically in your local clone.
+
+Releases [are tagged](https://github.com/notpeter/playdate-luacats/tags) and 
+you could [subscribe to an Atom XML Feed](https://github.com/notpeter/playdate-luacats/tags.atom)
+like it's 2005.
 
 ## Why are your types different than the docs?
 
