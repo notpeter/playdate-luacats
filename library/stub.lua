@@ -4451,7 +4451,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
 ---@param callback fun(image: _Image, errorMessage: string)
----@return nil
+---@return _Timer
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
 
 --- You must import *CoreLibs/graphics* to use this function.
