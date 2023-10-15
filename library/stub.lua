@@ -339,7 +339,7 @@ local _Blinker = {}
 local _Channel = {}
 
 ---@class _Class
----@field extends fun(parentClass: any): nil
+---@field extends fun(parentClass: (any|string)): nil
 ---@field super table
 local _Class = {}
 
@@ -947,7 +947,7 @@ function playdate.accelerometerIsRunning() end
 --- Or one of the strings "a", "b", "up", "down", "left", "right".
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-buttonIsPressed
----@param button integer
+---@param button (integer|string)
 ---@return boolean
 function playdate.buttonIsPressed(button) end
 
@@ -956,7 +956,7 @@ function playdate.buttonIsPressed(button) end
 --- *button* should be one of the constants listed in playdate.buttonIsPressed()
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-buttonJustPressed
----@param button integer
+---@param button (integer|string)
 ---@return boolean
 function playdate.buttonJustPressed(button) end
 
@@ -965,7 +965,7 @@ function playdate.buttonJustPressed(button) end
 --- *button* should be one of the constants listed in playdate.buttonIsPressed()
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-buttonJustReleased
----@param button integer
+---@param button (integer|string)
 ---@return boolean
 function playdate.buttonJustReleased(button) end
 

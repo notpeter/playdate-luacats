@@ -43,6 +43,13 @@ git clone https://github.com/notpeter/playdate-luacats
     "Lua.diagnostics.globals": [
         "import",
     ],
+    "Lua.diagnostics.severity": {
+        "duplicate-set-field": "Hint"
+    },
+    "Lua.format.defaultConfig": {
+        "indent_style": "space",
+        "indent_size": "4"
+    },
     "Lua.workspace.library": [
         "/Users/peter/code/playdate-luacats"
     ]
