@@ -65,6 +65,9 @@ playdate.geometry = {}
 ---@field kImageFlippedX integer 1
 ---@field kImageFlippedY integer 2
 ---@field kImageFlippedXY integer 3
+---@field kLineCapStyleButt integer 0
+---@field kLineCapStyleSquare integer 1
+---@field kLineCapStyleRound integer 2
 ---@field kPolygonFillNonZero integer 0
 ---@field kPolygonFillEvenOdd integer 1
 ---@field kStrokeCentered integer 0
@@ -95,6 +98,13 @@ playdate.pathfinder = {}
 playdate.simulator = {}
 
 ---@class playdate.sound
+---@field kFilterLowPass integer 0
+---@field kFilterHighPass integer 1
+---@field kFilterBandPass integer 2
+---@field kFilterNotch integer 3
+---@field kFilterPEQ integer 4
+---@field kFilterLowShelf integer 5
+---@field kFilterHighShelf integer 6
 ---@field kFormat8bitMono integer 0
 ---@field kFormat8bitStereo integer 1
 ---@field kFormat16bitMono integer 2
@@ -8278,7 +8288,7 @@ function playdate.sound.onepolefilter:setParameterMod(m) end
 --- * playdate.sound.kFilterHighShelf (or "highshelf" or "hishelf")
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.twopolefilter.new
----@param type integer
+---@param type (integer|string)
 ---@return _TwoPoleFilter
 function playdate.sound.twopolefilter.new(type) end
 
@@ -8334,7 +8344,7 @@ function playdate.sound.twopolefilter:setGain(g) end
 --- Sets the type of the filter to *type*.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setType
----@param type integer
+---@param type (integer|string)
 ---@return nil
 function playdate.sound.twopolefilter:setType(type) end
 
