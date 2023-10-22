@@ -9508,6 +9508,9 @@ function class(ClassName, properties, namespace) end
 ---@return table
 function Object.baseObject() end
 
+---@param ... any
+function Object:init(...) end
+
 ---@param Class table
 ---@return boolean
 function Object:isa(Class) end
