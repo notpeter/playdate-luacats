@@ -1,6 +1,11 @@
 ---@meta
 --- This file contains function stubs for autocompletion. DO NOT include it in your game.
 
+---@class Object
+---@field class table
+---@field className string
+Object = {}
+
 ---@class json
 json = {}
 
@@ -195,7 +200,7 @@ playdate.graphics.imagetable = {}
 ---@class playdate.graphics.nineSlice
 playdate.graphics.nineSlice = {}
 
----@class playdate.graphics.sprite
+---@class playdate.graphics.sprite : _Object
 ---@field kCollisionTypeSlide integer 0
 ---@field kCollisionTypeFreeze integer 1
 ---@field kCollisionTypeOverlap integer 2
@@ -348,11 +353,6 @@ local _Blinker = {}
 ---@class _Channel : playdate.sound.channel
 local _Channel = {}
 
----@class _Class
----@field extends fun(parentClass: (any|string)): nil
----@field super table
-local _Class = {}
-
 ---@class _ControlSignal : playdate.sound.controlsignal
 ---@field events _SoundControlEvent
 local _ControlSignal = {}
@@ -480,11 +480,22 @@ local _Metadata = {}
 ---@field second integer
 local _ModTime = {}
 
+---@class _NewClass
+---@field className string
+---@field properties? table
+---@field namespace? table
+---@field extends fun(Parent?: (table|string)): nil
+local _NewClass = {}
+
 ---@class _NineSlice : playdate.graphics.nineSlice
 ---@field innerRect _Rect
 ---@field minWidth integer
 ---@field minHeight integer
 local _NineSlice = {}
+
+---@class _Object : Object
+---@field super table
+local _Object = {}
 
 ---@class _OnePoleFilter : playdate.sound.onepolefilter
 local _OnePoleFilter = {}
@@ -9488,9 +9499,23 @@ function playdate.setMinimumGCTime(ms) end
 ---@return nil
 function playdate.setGCScaling(min, max) end
 
----@param name string
----@return _Class
-function class(name) end
+---@param ClassName string
+---@param properties? table
+---@param namespace? table
+---@return _NewClass
+function class(ClassName, properties, namespace) end
+
+---@return table
+function Object.baseObject() end
+
+---@param Class table
+---@return boolean
+function Object:isa(Class) end
+
+---@param indent? boolean
+---@param _table? table
+---@return nil
+function Object:tableDump(indent, _table) end
 
 ---@param ls _LineSegment
 ---@return nil
