@@ -74,7 +74,7 @@ git clone https://github.com/notpeter/playdate-luacats
 
 Work in progress. Currently just do a `git pull` periodically in your local clone.
 
-Releases [are tagged](https://github.com/notpeter/playdate-luacats/tags) and 
+Releases [are tagged](https://github.com/notpeter/playdate-luacats/tags) and
 you could [subscribe to an Atom XML Feed](https://github.com/notpeter/playdate-luacats/tags.atom)
 like it's 2005.
 
@@ -102,6 +102,23 @@ We create short names Types like `_Image`
 with instance attributes (e.g. `.x`, `.y`, `.width`, `.height`)
 and inherit everything else from their parent (e.g. `playdate.graphics.image`).
 We prefix with "_" to avoid conflicts.
+
+## Anything else I need to know?
+
+If you are using the Lua Classes with `CoreLibs/Object.lua` in the PlaydateSDK
+you either need to add all your classes to `Lua.diagnostics.globals` or use this
+workaround to let LuaLS that `class().extends()`` has created a new global Class:
+
+```lua
+---@class TextSprite: playdate.graphics.sprite
+---@field text string
+---@field font _Font
+---@field alignment integer
+TextSprite = class("TextSprite").extends(playdate.graphics.sprite) or TextSprite -- no-op for LuaLS
+```
+
+This is an no-op because `class("TextSprite").extends()` returns nil but
+after it's done `TextSprite` is a valid identifier in the Global namespace (`_G).
 
 ## List of types
 These names do not exist at runtime and are only used by LuaLS.
@@ -180,6 +197,23 @@ revision of annotations for SDK v2.1.0.
 There are valid [Semantic Versioning](https://semver.org/).
 The suffix use makes them technically [pre-release]((https://semver.org/#spec-item-9))
 versions but as long as we always have a suffix it'll be fine.
+
+## About
+
+This was created by Peter Tripp, but much of the credit goes to
+[@sumneko](https://github.com/sumneko) and
+[@actboy168](https://github.com/actboy168) for their work on
+[lua-language-server](https://github.com/luals/lua-language-server/),
+[vscode-lua](https://github.com/luals/vscode-lua),
+[lua-debug](https://github.com/actboy168/lua-debug) and related dependencies.
+
+You can also follow me on socials:
+* [@notpeter on Twitter](https://twitter.com/notpeter/)
+* [@notpeter@hachyderm.io on Mastadon](https://hachyderm.io/@notpeter)
+* [@notnotpeter on Twitch](https://twitch.tv/notnotpeter)
+* [@notnotpeter on Discord](https://discord.com/users/notnotpeter)
+* [@notpeter on Itch](https://itch.io/profile/notpeter)
+
 
 ## Meta notes
 
