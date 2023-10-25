@@ -408,8 +408,6 @@ local _FrameTimer = {}
 local _GridView = {}
 
 ---@class _Image : playdate.graphics.image
----@field x integer
----@field y integer
 ---@field width integer
 ---@field height integer
 local _Image = {}
