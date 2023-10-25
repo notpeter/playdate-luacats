@@ -89,17 +89,17 @@ This makes it impossible to differentiate between the global object
 
 Both have a bunch of functions and constants attached like `.copy()` and
 `.draw(self, x, y, flip)`  and `.kDitherTypeNone`,
-but only the image instance has `.x`, `.y`, `.width`, `.height`
+but only the image instance has `.width`, `.height`
 attributes.  Without distinct types, our IDE (via LuaLS) can't tell that
 one of these calls will fail at runtime while the other is fine:
 
 ```lua
-xpos = playdate.graphics.image.new(64, 64).x + 1
-xpos = playdate.graphics.image.x + 1
+xpos = playdate.graphics.image.width + 1
+xpos = playdate.graphics.image.new(64, 64).width + 1
 ```
 
 We create short names Types like `_Image`
-with instance attributes (e.g. `.x`, `.y`, `.width`, `.height`)
+with instance attributes (e.g. `.width`, `.height`)
 and inherit everything else from their parent (e.g. `playdate.graphics.image`).
 We prefix with "_" to avoid conflicts.
 
@@ -171,11 +171,11 @@ These names do not exist at runtime and are only used by LuaLS.
 | _TwoPoleFilter | playdate.sound.twopolefilter |
 | _Vector2D | playdate.geometry.vector2D |
 | _Video | playdate.graphics.video |
-| _Class | |
 | _DateTime | |
 | _InputHandler | |
 | _Metadata | |
 | _ModTime | |
+| _NewClass | |
 | _PowerStatus | |
 | _SoundControlEvent | |
 | _SoundSource | |
