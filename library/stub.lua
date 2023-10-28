@@ -99,6 +99,12 @@ playdate.menu = {}
 ---@class playdate.pathfinder
 playdate.pathfinder = {}
 
+---@class playdate.scoreboards
+playdate.scoreboards = {}
+
+---@class playdate.server
+playdate.server = {}
+
 ---@class playdate.simulator
 playdate.simulator = {}
 
@@ -545,8 +551,40 @@ local _Sample = {}
 ---@class _SamplePlayer : playdate.sound.sampleplayer
 local _SamplePlayer = {}
 
+---@class _ScoreBoardAddResult
+---@field rank? integer
+---@field player string
+---@field value integer
+local _ScoreBoardAddResult = {}
+
+---@class _ScoreBoardBoards
+---@field boardId string
+---@field name string
+local _ScoreBoardBoards = {}
+
+---@class _ScoreBoardScores
+---@field rank integer
+---@field player string
+---@field value integer
+local _ScoreBoardScores = {}
+
+---@class _ScoreBoardScoresResult
+---@field lastUpdated integer
+---@field scores _ScoreBoardScores[]
+local _ScoreBoardScoresResult = {}
+
+---@class _ScoreBoardsScoreboardsResult
+---@field lastUpdated integer
+---@field boards _ScoreBoardBoards[]
+local _ScoreBoardsScoreboardsResult = {}
+
 ---@class _Sequence : playdate.sound.sequence
 local _Sequence = {}
+
+---@class _ServerStatus
+---@field code string
+---@field message string
+local _ServerStatus = {}
 
 ---@class _Signal : playdate.sound.signal
 local _Signal = {}
@@ -9521,6 +9559,49 @@ function Object:tableDump(indent, _table) end
 ---@param ls _LineSegment
 ---@return nil
 function playdate.graphics.drawLine(ls) end
+
+---@param boardName string
+---@param value integer
+---@param callback fun(status: _ServerStatus, result: _ScoreBoardAddResult): nil
+---@return nil
+function playdate.scoreboards.addScore(boardName, value, callback) end
+
+---@param boardName string
+---@param callback fun(status?: _ServerStatus, result?: _ScoreBoardAddResult): nil
+---@return nil
+function playdate.scoreboards.getPersonalBest(boardName, callback) end
+
+---@param callback fun(status: _ServerStatus, result: _ScoreBoardsScoreboardsResult): nil
+---@return nil
+function playdate.scoreboards.getScoreboards(callback) end
+
+---@param boardID string
+---@param callback fun(status: _ServerStatus, result: _ScoreBoardScoresResult): nil
+---@return nil
+function playdate.scoreboards.getScores(boardID, callback) end
+
+---@param something any
+---@param callback fun(status: _ServerStatus, result: table): nil
+---@return nil
+function playdate.server.getAvatar(something, callback) end
+
+---@param image _Image
+---@return nil
+function playdate.server.setAvatar(image) end
+
+---@param something1 string
+---@param something2 string
+---@return nil
+function playdate.server.uploadFile(something1, something2) end
+
+---@param image _Image
+---@param something string
+---@return nil
+function playdate.server.uploadImage(image, something) end
+
+---@param url string
+---@return nil
+function playdate.simulator.openURL(url) end
 
 ---@deprecated since 2.1.0-beta1
 ---@return nil
