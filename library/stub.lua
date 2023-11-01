@@ -24,7 +24,7 @@ kTextAlignment = {}
 ---@field kButtonDown integer 8
 ---@field kButtonB integer 16
 ---@field kButtonA integer 32
----@field metadate _Metadata
+---@field metadata _Metadata
 ---@field systeminfo _SystemInfo
 playdate = {}
 
