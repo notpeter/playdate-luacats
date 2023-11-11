@@ -6074,10 +6074,7 @@ function playdate.graphics.sprite:isOpaque() end
 --- *drawCallback* is a routine you specify that implements your background drawing. The callback
 --- should be a function taking the arguments `x, y, width, height`, where *x, y, width, height*
 --- specify the region (in screen coordinates, not world coordinates) of the background region that
---- needs to be updated. Passing nil for `drawCallback` will remove a previously-set background
---- drawing function.
----
---- Returns *bgSprite*, a playdate.graphics.sprite, or nil if `drawCallback` is nil.
+--- needs to be updated.
 ---
 --- Some implementation details: `setBackgroundDrawingCallback()` creates a screen-sized sprite
 --- with a z-index set to the lowest possible value so it will draw behind other sprites, and adds
@@ -6085,7 +6082,8 @@ function playdate.graphics.sprite:isOpaque() end
 --- ignores the drawOffset, and will not be automatically redrawn when the draw offset changes;
 --- use playdate.graphics.sprite.redrawBackground() if necessary in this case. *drawCallback* will
 --- be called from the newly-created background sprite’s playdate.graphics.sprite:draw() callback
---- function and is where you should do your background drawing.
+--- function and is where you should do your background drawing. This function returns the newly
+--- created playdate.graphics.sprite.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback
 ---@param drawCallback? fun(x: integer, y: integer, width: integer, height: integer): nil
@@ -8932,7 +8930,7 @@ function playdate.sound.envelope:setDecay(decay) end
 ---@return nil
 function playdate.sound.envelope:setSustain(sustain) end
 
---- Sets the envelope release time to *attack*, in seconds.
+--- Sets the envelope release time to *release*, in seconds.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRelease
 ---@param release number
