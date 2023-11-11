@@ -5561,7 +5561,7 @@ function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__index
 ---@param n integer
----@return nil
+---@return _Image
 function playdate.graphics.imagetable:__index(n) end
 
 --- Creates a new tilemap object.
@@ -10534,6 +10534,12 @@ function Object:tableDump(indent, _table) end
 ---@param ls _LineSegment
 ---@return nil
 function playdate.graphics.drawLine(ls) end
+
+---@param image _Image
+---@param x? integer
+---@param y? integer
+---@return nil
+function playdate.graphics.setPattern(image, x, y) end
 
 ---@param boardName string
 ---@param value integer
