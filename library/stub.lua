@@ -4852,7 +4852,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
----@param callback fun(image: _Image, errorMessage: string)
+---@param callback fun(image?: _Image, errorMessage?: string)
 ---@return _Timer
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
 
@@ -5481,7 +5481,8 @@ function playdate.graphics.getWorkingImage() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new
 ---@param path string
----@return _ImageTable
+---@return _ImageTable imagetable?
+---@return string errorMessage?
 function playdate.graphics.imagetable.new(path) end
 
 --- Returns an empty image table for loading images into via imagetable:load() or setting already-
@@ -5502,7 +5503,7 @@ function playdate.graphics.imagetable.new(count, cellsWide, cellSize) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-n
 ---@param n integer
----@return _Image
+---@return _Image?
 function playdate.graphics.imagetable:getImage(n) end
 
 --- Returns the image in cell (*x*,*y*) in the original bitmap. The first image is at index 1. If
@@ -5511,7 +5512,7 @@ function playdate.graphics.imagetable:getImage(n) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-xy
 ---@param x integer
 ---@param y integer
----@return _Image
+---@return _Image?
 function playdate.graphics.imagetable:getImage(x, y) end
 
 --- Sets the image at slot *n* in the image table by creating a reference to the data in *image*.
@@ -5561,7 +5562,7 @@ function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__index
 ---@param n integer
----@return _Image
+---@return _Image?
 function playdate.graphics.imagetable:__index(n) end
 
 --- Creates a new tilemap object.
@@ -10531,15 +10532,44 @@ function Object:isa(Class) end
 ---@return nil
 function Object:tableDump(indent, _table) end
 
+---@return string
+function _Timer:__tostring() end
+
 ---@param ls _LineSegment
 ---@return nil
 function playdate.graphics.drawLine(ls) end
+
+---@param stringToEncode string
+---@param desiredEdgeDimension integer
+---@return _Image image?
+---@return string errorMessage?
+function playdate.graphics.generateQRCodeSync(stringToEncode, desiredEdgeDimension) end
 
 ---@param image _Image
 ---@param x? integer
 ---@param y? integer
 ---@return nil
 function playdate.graphics.setPattern(image, x, y) end
+
+---@param bool1 boolean
+---@param bool2 boolean
+---@return boolean
+function playdate.math.logic.nand(bool1, bool2) end
+
+---@param bool1 boolean
+---@param bool2 boolean
+---@return boolean
+function playdate.math.logic.nor(bool1, bool2) end
+
+---@param bool1 boolean
+---@param bool2 boolean
+---@return boolean
+function playdate.math.logic.nxor(bool1, bool2) end
+
+---@param bool1 boolean
+---@param bool2 boolean
+---@return boolean
+function playdate.math.logic.xor(bool1, bool2) end
 
 ---@param boardName string
 ---@param value integer
