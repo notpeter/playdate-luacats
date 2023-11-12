@@ -59,6 +59,14 @@ git clone https://github.com/notpeter/playdate-luacats
 4. Close and reopen your VSCode window. Wait 5-10 secs and ta-da!
 5. Hover or start typing `playdate.` and you'll get suggestions.
 
+## Alternative Usage
+
+If you would like a minimal set of API definitions that does not include
+the English function annotations from Playdate SDK docs,
+you can use this minimal [stub.lua](https://github.com/notpeter/playdate-docdef/blob/main/stub.lua) from
+the [notpeter/playdate-docdef repo](https://github.com/notpeter/playdate-docdef/) instead of the
+fully annotated [stub.lua](library/stub.lua) in this repo.
+
 ## What does it look like
 
 <img width="850" alt="VSCode Screenshot showing inline PlaydateSDK API documentation" src="https://github.com/notpeter/playdate-luacats/assets/145113/55524a57-ea39-44b3-b792-edca2ce582c2">
@@ -77,6 +85,8 @@ Work in progress. Currently just do a `git pull` periodically in your local clon
 Releases [are tagged](https://github.com/notpeter/playdate-luacats/tags) and
 you could [subscribe to an Atom XML Feed](https://github.com/notpeter/playdate-luacats/tags.atom)
 like it's 2005.
+
+See: [CHANGELOG.md](CHANGELOG.md).
 
 ## Why are your types different than the docs?
 

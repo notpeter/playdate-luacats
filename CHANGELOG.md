@@ -8,6 +8,11 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+
+## [v2.1.1-luacats4] - 2023-11-12
+
+Generated with [notpeter/playdate-docdef#c9ea3bc](https://github.com/notpeter/playdate-docdef/commits/c9ea3bc5844fccf166d2604dd0ce162ff8313319)
+
 - Added [CHANGELOG.md](CHANGELOG.md).
 - Fixed playdate.graphics.sprite.setBackgroundDrawingCallback function return type.
 Returns the backgroundSprite not nil. (First documented in 2.1.1, behavior was same in older SDKs)
@@ -186,6 +191,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.1.1-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats3...v2.1.1-luacats4
 [v2.1.1-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats2...v2.1.1-luacats3
 [v2.1.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats1...v2.1.1-luacats2
 [v2.1.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.1.0-luacats8...v2.1.1-luacats1
