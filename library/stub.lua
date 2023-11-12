@@ -1531,7 +1531,7 @@ function playdate.setStatsInterval(seconds) end
 --- the update cycle will be faster than 30 times a second but at an indeterminate rate.
 --- playdate.getCurrentTimeMilliseconds() should then be used as a steady time base.
 ---
---- Equivalent to `playdate-&gt;display-&gt;setRefreshRate()` in the C API.
+--- Equivalent to `playdate->display->setRefreshRate()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setRefreshRate
 ---@param rate number
@@ -1556,7 +1556,7 @@ function playdate.display.flush() end
 --- if the scale is 2, the values returned will be based off of a 200 x 120-pixel screen rather than
 --- the native 400 x 240. (See playdate.display.setScale().)
 ---
---- Equivalent to `playdate-&gt;display-&gt;getHeight()` in the C API.
+--- Equivalent to `playdate->display->getHeight()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getHeight
 ---@return integer
@@ -1566,7 +1566,7 @@ function playdate.display.getHeight() end
 --- the scale is 2, the values returned will be based off of a 200 x 120-pixel screen rather than
 --- the native 400 x 240. (See playdate.display.setScale().)
 ---
---- Equivalent to `playdate-&gt;display-&gt;getWidth()` in the C API.
+--- Equivalent to `playdate->display->getWidth()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getWidth
 ---@return integer
@@ -1595,7 +1595,7 @@ function playdate.display.getRect() end
 --- The top-left corner of the frame buffer is scaled up to fill the display; e.g., if the scale is
 --- set to 4, the pixels in rectangle [0,100] x [0,60] are drawn on the screen as 4 x 4 squares.
 ---
---- Equivalent to `playdate-&gt;display-&gt;setScale()` in the C API.
+--- Equivalent to `playdate->display->setScale()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setScale
 ---@param scale integer
@@ -1611,7 +1611,7 @@ function playdate.display.getScale() end
 --- If the argument passed to `setInverted()` is true, the frame buffer will be drawn inverted
 --- (everything onscreen that was black will now be white, etc.)
 ---
---- Equivalent to `playdate-&gt;display-&gt;setInverted()` in the C API.
+--- Equivalent to `playdate->display->setInverted()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setInverted
 ---@param flag boolean
@@ -1627,7 +1627,7 @@ function playdate.display.getInverted() end
 
 --- Adds a mosaic effect to the display. Valid *x* and *y* values are between 0 and 3, inclusive.
 ---
---- Equivalent to `playdate-&gt;display-&gt;setMosaic()` in the C API.
+--- Equivalent to `playdate->display->setMosaic()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setMosaic
 ---@param x integer
@@ -1648,7 +1648,7 @@ function playdate.display.getMosaic() end
 ---
 --- This function is different from playdate.graphics.setDrawOffset().
 ---
---- Equivalent to `playdate-&gt;display-&gt;setOffset()` in the C API.
+--- Equivalent to `playdate->display->setOffset()` in the C API.
 ---
 --- ```
 --- -- You can copy and paste this example directly as your main.lua file to see it in action
@@ -1702,7 +1702,7 @@ function playdate.display.getOffset() end
 ---
 --- Function arguments are booleans, and in Lua `0` evaluates to `true`.
 ---
---- Equivalent to `playdate-&gt;display-&gt;setFlipped()` in the C API.
+--- Equivalent to `playdate->display->setFlipped()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.setFlipped
 ---@param x integer
@@ -2459,7 +2459,7 @@ function playdate.datastore.readImage(path) end
 --- If the file couldn’t be opened, a second return value indicates the error. The filesystem has a
 --- limit of 64 simultaneous open files.
 ---
---- Equivalent to `playdate-&gt;file-&gt;open()` in the C API.
+--- Equivalent to `playdate->file->open()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.open
 ---@param path string
@@ -2470,7 +2470,7 @@ function playdate.file.open(path, mode) end
 
 --- Closes the file.
 ---
---- Equivalent to `playdate-&gt;file-&gt;close()` in the C API.
+--- Equivalent to `playdate->file->close()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.close
 ---@return nil
@@ -2488,7 +2488,7 @@ function playdate.file.file:write(str) end
 
 --- Flushes any buffered data written to the file to the disk.
 ---
---- Equivalent to `playdate-&gt;file-&gt;flush()` in the C API.
+--- Equivalent to `playdate->file->flush()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.flush
 ---@return nil
@@ -2504,7 +2504,7 @@ function playdate.file.file:readline() end
 --- Returns a buffer containing up to *numberOfBytes* bytes from the file, and the number of bytes
 --- read. If the read failed, the function returns `nil` and a second value describing the error.
 ---
---- Equivalent to `playdate-&gt;file-&gt;read()` in the C API.
+--- Equivalent to `playdate->file->read()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.read
 ---@param numberOfBytes integer
@@ -2514,7 +2514,7 @@ function playdate.file.file:read(numberOfBytes) end
 
 --- Sets the file read/write position to the given byte offset.
 ---
---- Equivalent to `playdate-&gt;file-&gt;seek()` in the C API.
+--- Equivalent to `playdate->file->seek()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.seek
 ---@param offset integer
@@ -2523,7 +2523,7 @@ function playdate.file.file:seek(offset) end
 
 --- Returns the current byte offset of the read/write position in the file.
 ---
---- Equivalent to `playdate-&gt;file-&gt;tell()` in the C API.
+--- Equivalent to `playdate->file->tell()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.tell
 ---@return integer
@@ -2537,7 +2537,7 @@ function playdate.file.file:tell() end
 --- game with default access permissions, `listFiles()`, `listFiles("/")`, and `listFiles(".")`
 --- should all return the same result.)
 ---
---- Equivalent to `playdate-&gt;file-&gt;listfiles()` in the C API.
+--- Equivalent to `playdate->file->listfiles()` in the C API.
 ---
 --- Learn more about the Playdate filesystem.
 ---
@@ -2561,13 +2561,13 @@ function playdate.file.exists(path) end
 ---@return boolean
 function playdate.file.isdir(path) end
 
---- Creates a directory at the given path, under the /Data/&lt;bundleid&gt; folder. See About the
---- Playdate Filesystem for details.
+--- Creates a directory at the given path, under the /Data/<bundleid> folder. See About the Playdate
+--- Filesystem for details.
 ---
 --- `playdate.file.mkdir()` will create all intermediate directories, if a succession of directories
 --- ("testdir/testdir/testdir/") is specified in *path*.
 ---
---- Equivalent to `playdate-&gt;file-&gt;mkdir()` in the C API.
+--- Equivalent to `playdate->file->mkdir()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.mkdir
 ---@param path string
@@ -2617,7 +2617,7 @@ function playdate.file.modtime(path) end
 --- file being moved to a new directory, but directories will not be created. Returns true if the
 --- operation was successful.
 ---
---- Equivalent to `playdate-&gt;file-&gt;rename()` in the C API.
+--- Equivalent to `playdate->file->rename()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.rename
 ---@param path string
@@ -3775,7 +3775,7 @@ function playdate.geometry.vector2D:__div(s) end
 --- playdate.graphics.lockFocus(*image*) will reroute drawing into an image, without saving the
 --- overall graphics context.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;pushContext()` in the C API.
+--- Equivalent to `playdate->graphics->pushContext()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.pushContext
 ---@param image? _Image
@@ -3784,7 +3784,7 @@ function playdate.graphics.pushContext(image) end
 
 --- Pops a graphics context off the context stack and restores its state.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;popContext()` in the C API.
+--- Equivalent to `playdate->graphics->popContext()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.popContext
 ---@return nil
@@ -3793,7 +3793,7 @@ function playdate.graphics.popContext() end
 --- Clears the entire display, setting the color to either the given *color* argument, or the
 --- current background color set in setBackgroundColor(color) if no argument is given.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;clear()` in the C API.
+--- Equivalent to `playdate->graphics->clear()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clear
 ---@param color? integer
@@ -4312,7 +4312,7 @@ function playdate.graphics.getColor() end
 ---
 --- Use *kColorClear* if you intend to draw behind sprites.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setBackgroundColor()` in the C API.
+--- Equivalent to `playdate->graphics->setBackgroundColor()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setBackgroundColor
 ---@param color integer
@@ -4369,7 +4369,7 @@ function playdate.graphics.setDitherPattern(alpha, ditherType) end
 ---
 --- Line width is specified by setLineWidth(). End cap style is specified by setLineCapStyle().
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;drawLine()` in the C API.
+--- Equivalent to `playdate->graphics->drawLine()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLine
 ---@param x1 integer
@@ -4387,7 +4387,7 @@ function playdate.graphics.drawLine(x1, y1, x2, y2) end
 --- * playdate.graphics.kLineCapStyleRound
 --- * playdate.graphics.kLineCapStyleSquare
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setLineCapStyle()` in the C API.
+--- Equivalent to `playdate->graphics->setLineCapStyle()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineCapStyle
 ---@param style integer
@@ -4410,7 +4410,7 @@ function playdate.graphics.drawPixel(x, y) end
 ---
 --- Line width is specified by setLineWidth(). Stroke location is specified by setStrokeLocation().
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;drawRect()` in the C API.
+--- Equivalent to `playdate->graphics->drawRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect
 ---@param x integer
@@ -4424,7 +4424,7 @@ function playdate.graphics.drawRect(x, y, w, h) end
 ---
 --- Line width is specified by setLineWidth(). Stroke location is specified by setStrokeLocation().
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;drawRect()` in the C API.
+--- Equivalent to `playdate->graphics->drawRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect
 ---@param r _Rect
@@ -4433,7 +4433,7 @@ function playdate.graphics.drawRect(r) end
 
 --- Draws the filled rectangle *r* or the rect at (*x*, *y*) of the given width and height.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;fillRect()` in the C API.
+--- Equivalent to `playdate->graphics->fillRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect
 ---@param x integer
@@ -4445,7 +4445,7 @@ function playdate.graphics.fillRect(x, y, width, height) end
 
 --- Draws the filled rectangle *r* or the rect at (*x*, *y*) of the given width and height.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;fillRect()` in the C API.
+--- Equivalent to `playdate->graphics->fillRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect
 ---@param r _Rect
@@ -4677,7 +4677,7 @@ function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 
 --- Fills the polygon specified by a list of x,y coordinates.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;fillPolygon()` in the C API.
+--- Equivalent to `playdate->graphics->fillPolygon()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillPolygon
 ---@param x1 integer
@@ -4718,7 +4718,7 @@ function playdate.graphics.drawTriangle(x1, y1, x2, y2, x3, y3) end
 
 --- Draws a filled triangle with vertices (*x1*, *y1*), (*x2*, *y2*), and (*x3*, *y3*).
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;fillTriangle()` in the C API.
+--- Equivalent to `playdate->graphics->fillTriangle()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillTriangle
 ---@param x1 integer
@@ -4883,7 +4883,7 @@ function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitu
 --- function uses world coordinates; that is, the given rectangle will be translated by the current
 --- drawing offset. To use screen coordinates instead, use `setScreenClipRect()`
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setClipRect()` in the C API.
+--- Equivalent to `playdate->graphics->setClipRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect
 ---@param x integer
@@ -4917,7 +4917,7 @@ function playdate.graphics.getClipRect() end
 --- Sets the clip rectangle as above, but uses screen coordinates instead of world coordinates—​that
 --- is, it ignores the current drawing offset.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setScreenClipRect()` in the C API.
+--- Equivalent to `playdate->graphics->setScreenClipRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setScreenClipRect
 ---@param x integer
@@ -4947,7 +4947,7 @@ function playdate.graphics.getScreenClipRect() end
 
 --- Clears the current clipping rectangle, set with `setClipRect()`.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;clearClipRect()` in the C API.
+--- Equivalent to `playdate->graphics->clearClipRect()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearClipRect
 ---@return nil
@@ -4956,7 +4956,7 @@ function playdate.graphics.clearClipRect() end
 --- Sets the current stencil to the given image. If *tile* is set, the the stencil will be tiled; in
 --- this case, the image width must be a multiple of 32 pixels.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setStencilImage()` in the C API.
+--- Equivalent to `playdate->graphics->setStencilImage()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilImage
 ---@param image _Image
@@ -5028,7 +5028,7 @@ function playdate.graphics.clearStencilImage() end
 --- Instead of the above-specified constants, you can also use one of the following strings: "copy",
 --- "inverted", "XOR", "NXOR", "whiteTransparent", "blackTransparent", "fillWhite", or "fillBlack".
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setDrawMode()` in the C API.
+--- Equivalent to `playdate->graphics->setDrawMode()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setImageDrawMode
 ---@param mode integer
@@ -5433,7 +5433,7 @@ function playdate.graphics.animation.blinker:remove() end
 --- offsets by calling playdate.graphics.sprite:setIgnoresDrawOffset(true).
 --- playdate.graphics.image:drawIgnoringOffsets() lets you render an image using screen coordinates.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setDrawOffset()` in the C API.
+--- Equivalent to `playdate->graphics->setDrawOffset()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDrawOffset
 ---@param x integer
@@ -6088,7 +6088,7 @@ function playdate.graphics.sprite:isOpaque() end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback
 ---@param drawCallback? fun(x: integer, y: integer, width: integer, height: integer): nil
----@return nil
+---@return _Sprite
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 
 --- You must import *CoreLibs/sprites* to use this function.
@@ -6947,7 +6947,7 @@ function playdate.graphics.font.newFamily(fontPaths) end
 ---
 --- If no variant is specified, *kFontVariantNormal* is used.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setFont()` in the C API.
+--- Equivalent to `playdate->graphics->setFont()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFont
 ---@param font _Font
@@ -7057,7 +7057,7 @@ function playdate.graphics.font:getTextWidth(text) end
 
 --- Sets the tracking of this font (spacing between letters), in pixels.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setTextTracking()` in the C API.
+--- Equivalent to `playdate->graphics->setTextTracking()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setTracking
 ---@param pixels integer
@@ -7066,7 +7066,7 @@ function playdate.graphics.font:setTracking(pixels) end
 
 --- Returns the tracking of this font (spacing between letters), in pixels.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;getTextTracking()` in the C API.
+--- Equivalent to `playdate->graphics->getTextTracking()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getTracking
 ---@return integer
@@ -7074,7 +7074,7 @@ function playdate.graphics.font:getTracking() end
 
 --- Sets the leading (spacing between lines) of this font, in pixels.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;setTextLeading()` in the C API.
+--- Equivalent to `playdate->graphics->setTextLeading()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setLeading
 ---@param pixels integer
@@ -7137,7 +7137,7 @@ function playdate.graphics.font:getGlyph(character) end
 --- appropriate drawText() call. setImageDrawMode() affects how text is rendered because characters
 --- are technically images.
 ---
---- Equivalent to `playdate-&gt;graphics-&gt;drawText()` in the C API.
+--- Equivalent to `playdate->graphics->drawText()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawText
 ---@param text string
@@ -7447,7 +7447,7 @@ function playdate.graphics.video:renderFrame(number) end
 
 --- Takes the JSON encoded string and converts it to a Lua table.
 ---
---- Equivalent to `playdate-&gt;json-&gt;decode()` in the C API.
+--- Equivalent to `playdate->json->decode()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-json.decode
 ---@param str string
@@ -8320,7 +8320,7 @@ function playdate.sound.fileplayer:setLoopCallback(callback, arg) end
 function playdate.sound.fileplayer:setBufferSize(seconds) end
 
 --- Sets the playback rate for the file. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an
---- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate &lt; 0).
+--- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRate
 ---@param rate integer
@@ -8328,7 +8328,7 @@ function playdate.sound.fileplayer:setBufferSize(seconds) end
 function playdate.sound.fileplayer:setRate(rate) end
 
 --- Gets the playback rate for the file. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an
---- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate &lt; 0).
+--- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getRate
 ---@return number
@@ -8762,7 +8762,7 @@ function playdate.sound.synth:setWaveform(waveform) end
 --- * 1: x position, values are from 0 to the table width
 --- * 2: x position, values are from 0 to 1, parameter is scaled up to table width
 ---
---- For 2-D tables (`rowwidth` &gt; 0):
+--- For 2-D tables (`rowwidth` > 0):
 ---
 --- * 3: y position, values are from 0 to the table height
 --- * 4: y position, values are from 0 to 1, parameter is scaled up to table height
@@ -9797,7 +9797,7 @@ function playdate.sound.micinput.getSource() end
 --- automatically switch from speaker to headphones when headphones are plugged in (and vice versa),
 --- so the callback should use `playdate.sound.setOutputsActive()` to change the output if needed.
 ---
---- Equivalent to `playdate-&gt;sound-&gt;getHeadphoneState()` in the C API.
+--- Equivalent to `playdate->sound->getHeadphoneState()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getHeadphoneState
 ---@param changeCallback? fun(): nil
@@ -9809,7 +9809,7 @@ function playdate.sound.getHeadphoneState(changeCallback) end
 --- are plugged in or not. (With the caveat that it is not actually possible to play on the
 --- headphones if they’re not plugged in.) This function has no effect in the Simulator.
 ---
---- Equivalent to `playdate-&gt;sound-&gt;setOutputsActive()` in the C API.
+--- Equivalent to `playdate->sound->setOutputsActive()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.setOutputsActive
 ---@param headphones boolean
@@ -9820,7 +9820,7 @@ function playdate.sound.setOutputsActive(headphones, speaker) end
 --- Returns the current time, in seconds, as measured by the audio device. The audio device uses its
 --- own time base in order to provide accurate timing.
 ---
---- Equivalent to `playdate-&gt;sound-&gt;getCurrentTime()` in the C API.
+--- Equivalent to `playdate->sound->getCurrentTime()` in the C API.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.getCurrentTime
 ---@return number
