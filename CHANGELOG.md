@@ -20,21 +20,15 @@ Returns the backgroundSprite not nil. (First documented in 2.1.1, behavior was s
 
 ## [v2.1.1-luacats3] - 2023-11-12
 
-- Added playdate.math.logic  (undocumented, requires `import "CoreLibs/math"`)
-  - Added playdate.math.logic.nand
-  - Added playdate.math.logic.nor
-  - Added playdate.math.logic.nxor
-  - Added playdate.math.logic.xor
+- Added playdate.math.logic.{nand,nor,nxor,xor} (undocumented, requires `import "CoreLibs/math"`)
 - Added playdate.graphics.generateQRCodeSync (undocumented)
 - Fixed playdate.graphics.generateQRCode callback argument types (nilable)
-- Fixed playdate.graphics.imagetable.new function return type (nilable)
-- Fixed playdate.graphics.imagetable:getImage function return type (nilable)
-- Added playdate.timer:__tostring()
+- Fixed playdate.graphics.imagetable return types (nilable)
 
 ## [v2.1.1-luacats2] - 2023-11-11
 
 - Fixed playdate.graphics.sprite:setBackgroundDrawingCallback description
-(changed in PlaydateSDK v2.1.1; reverted changes which were included in PlaydateSDK v2.1.0-beta).
+(reverted changes from PlaydateSDK v2.1.0-beta which weren't in PlaydateSDK v2.1.0 final).
 - Fixed playdate.sound.envelope:setRelease description (changed in PlaydateSDK v2.1.1).
 - Fixed playdate.graphics.imagetable:__index function return type.
 LuaLS does not correctly use this, use playdate.graphics.imagetable:getImage instead.
@@ -67,34 +61,16 @@ Switched from Playdate SDK v2.1.0-beta1 to v2.1.0 (final).
 
 ## [v2.1.0-luacats7] - 2023-10-21
 
-- Fixed `Object.lua` (Panic Playdate Classes) things:
-  - Added Object to Global namespace
-  - Fixed class()
-  - Added Object.baseObject
-  - Added Object:init
-  - Added Object:isa
-  - Added Object:tableDump
-  - Added _Object duck type.
-  - Added _Object.super
-  - Added playdate.graphics.sprite superclass: _Object
+- Fixed `Object.lua` (Panic Playdate Classes) things
+- Added Object to Global namespace
+- Fixed class()
+- Added _Object
 
 ## [v2.1.0-luacats6] - 2023-10-18
 
-- Added playdate.geometry constants:
-  - Added playdate.geometry.kLineCapStyleButt (0)
-  - Added playdate.geometry.kLineCapStyleSquare (1)
-  - Added playdate.geometry.kLineCapStyleRound (2)
-- Fixed playdate.sound.twopolefilter
-  - Fixed playdate.sound.twopolefilter.new (alternatively accepts string)
-  - Fixed playdate.sound.twopolefilter.setType (alternatively accepts string)
-- Added playdate.sound constants:
-  - Added playdate.sound.kFilterLowPass (0)
-  - Added playdate.sound.kFilterHighPass (1)
-  - Added playdate.sound.kFilterBandPass (2)
-  - Added playdate.sound.kFilterNotch (3)
-  - Added playdate.sound.kFilterPEQ (4)
-  - Added playdate.sound.kFilterLowShelf (5)
-  - Added playdate.sound.kFilterHighShelf (6)
+- Added playdate.geometry.kLineCapStyle* constants:
+- Fixed playdate.sound.twopolefilter (accepts string)
+- Added playdate.sound.kFilter* constants
 
 ## [v2.1.0-luacats5] - 2023-10-14
 
@@ -155,11 +131,6 @@ type names (e.g. playdate.graphics.image, etc).
 - Remove playdate.frameTimer.timeLeft (my error)
 - Added playdate.frameTimer.frame
 - Fixed playdate.frameTimer callback stuff:
-  - Fixed playdate.frameTimer.timerEndedArgs type
-  - Added playdate.frameTimer:timeEndedCallback
-  - Added playdate.frameTimer:updateCallback
-  - Added playdate.frameTimer:timerEndedCallback
-  - Added playdate.frameTimer:updateCallback
 - Fixed argument name collisions (string to str)
 - Added playdate.sound.lfo:setStartPhase (new in 2.1.0-beta1)
 - Added playdate.sound.synth:setWavetable (new in 2.1.0-beta1)
