@@ -88,6 +88,14 @@ like it's 2005.
 
 See: [CHANGELOG.md](CHANGELOG.md).
 
+## Giving Thanks
+
+If you find this software useful, please consider:
+
+1. [Sponsoring me on GitHub](https://github.com/sponsors/notpeter/)
+2. [Purchasing something from my Itch Store](https://notpeter.itch.io)
+3. Sending me free copies of the Playdate games you build.
+
 ## Why are your types different than the docs?
 
 tldr: Our types are `_Image` and `_Sprite` instead of `playdate.graphics.{image,sprite}`.
