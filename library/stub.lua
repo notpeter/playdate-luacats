@@ -225,6 +225,9 @@ playdate.graphics.animation.blinker = {}
 ---@class playdate.graphics.animation.loop
 playdate.graphics.animation.loop = {}
 
+---@class playdate.math.logic
+playdate.math.logic = {}
+
 ---@class playdate.menu.item
 playdate.menu.item = {}
 
