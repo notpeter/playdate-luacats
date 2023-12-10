@@ -9622,7 +9622,7 @@ function playdate.sound.instrument.new(synth) end
 --- argument transposes the note played, in half-tone units.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.addVoice
----@param v _Vector2D
+---@param v _Synth
 ---@param note? integer
 ---@param rangeend? integer
 ---@param transpose? integer

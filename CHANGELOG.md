@@ -8,15 +8,23 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.1.1-luacats5] - 2023-12-10
+
+- Improved Changelog
+- Fixed missing `playdate.math.logic`
+- Fixed instrument:addVoice param from _Vector2D to _Synth.
+Thanks [ncocchiaro](https://github.com/ncocchiaro) for [PR #3](https://github.com/notpeter/playdate-docdef/pull/3).
+
+Generated with [notpeter/playdate-docdef#2ba00c6](https://github.com/notpeter/playdate-docdef/commit/2ba00c6ed15c753109505b582a917d6010ca9017).
 
 ## [v2.1.1-luacats4] - 2023-11-12
-
-Generated with [notpeter/playdate-docdef#c9ea3bc](https://github.com/notpeter/playdate-docdef/commits/c9ea3bc5844fccf166d2604dd0ce162ff8313319)
 
 - Added [CHANGELOG.md](CHANGELOG.md).
 - Fixed playdate.graphics.sprite.setBackgroundDrawingCallback function return type.
 Returns the backgroundSprite not nil. (First documented in 2.1.1, behavior was same in older SDKs)
 - Fixed less than an greater than being incorrectly escaped when rendered as markdown.
+
+Generated with [notpeter/playdate-docdef#c9ea3bc](https://github.com/notpeter/playdate-docdef/commits/c9ea3bc5844fccf166d2604dd0ce162ff8313319)
 
 ## [v2.1.1-luacats3] - 2023-11-12
 
@@ -162,6 +170,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.1.1-luacats5]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats4...v2.1.1-luacats5
 [v2.1.1-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats3...v2.1.1-luacats4
 [v2.1.1-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats2...v2.1.1-luacats3
 [v2.1.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats1...v2.1.1-luacats2
