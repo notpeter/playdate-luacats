@@ -8,6 +8,10 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- More type fixes.
+
+Thanks [ncocchiaro](https://github.com/ncocchiaro) for[PR #5](https://github.com/notpeter/playdate-docdef/pull/5)
+
 ## [v2.1.1-luacats5] - 2023-12-10
 
 - Improved Changelog

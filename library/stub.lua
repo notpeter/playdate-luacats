@@ -2545,7 +2545,7 @@ function playdate.file.file:tell() end
 --- Learn more about the Playdate filesystem.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-file.listFiles
----@param path string
+---@param path? string
 ---@param showhidden? boolean
 ---@return string[]
 function playdate.file.listFiles(path, showhidden) end
@@ -5989,7 +5989,7 @@ function playdate.graphics.sprite:setImageDrawMode(mode) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageFlip
 ---@param flip (integer|string)
----@param flipCollideRect? integer
+---@param flipCollideRect? boolean
 ---@return nil
 function playdate.graphics.sprite:setImageFlip(flip, flipCollideRect) end
 
@@ -8058,8 +8058,8 @@ function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 --- argument is omitted, it is the same as *left*.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setVolume
----@param left integer
----@param right? integer
+---@param left number
+---@param right? number
 ---@return nil
 function playdate.sound.sampleplayer:setVolume(left, right) end
 
@@ -8646,7 +8646,7 @@ function playdate.sound.synth:setAmplitudeMod(signal) end
 ---@param decay number
 ---@param sustain number
 ---@param release number
----@param curvature number
+---@param curvature? number
 ---@return nil
 function playdate.sound.synth:setADSR(attack, decay, sustain, release, curvature) end
 
@@ -8720,8 +8720,8 @@ function playdate.sound.synth:setLegato(flag) end
 --- Volume values are between 0.0 and 1.0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setVolume
----@param left integer
----@param right? integer
+---@param left number
+---@param right? number
 ---@return nil
 function playdate.sound.synth:setVolume(left, right) end
 
@@ -9363,7 +9363,7 @@ function playdate.sound.delaylinetap:setFlipChannels(flag) end
 --- file into the sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.sequence.new
----@param midi_path string
+---@param midi_path? string
 ---@return _Sequence
 function playdate.sound.sequence.new(midi_path) end
 
@@ -9477,7 +9477,7 @@ function playdate.sound.sequence:allNotesOff() end
 --- Creates a new `playdate.sound.track` object.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.track.new
----@return playdate.sound.track
+---@return _Track
 function playdate.sound.track.new() end
 
 --- Adds a single note event to the track, letting you specify `step`, `note`, `length`, and
@@ -9574,7 +9574,7 @@ function playdate.sound.track:getPolyphony() end
 --- the function creates an instrument for the synth.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setInstrument
----@param inst _Instrument
+---@param inst (_Instrument|_Synth)
 ---@return nil
 function playdate.sound.track:setInstrument(inst) end
 
@@ -9684,8 +9684,8 @@ function playdate.sound.instrument:allNotesOff() end
 --- Volume values are between 0.0 and 1.0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setVolume
----@param left integer
----@param right? integer
+---@param left number
+---@param right? number
 ---@return nil
 function playdate.sound.instrument:setVolume(left, right) end
 
