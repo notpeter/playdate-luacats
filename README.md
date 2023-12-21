@@ -123,20 +123,53 @@ We prefix with "_" to avoid conflicts.
 
 ## Anything else I need to know?
 
-If you are using the Lua Classes with `CoreLibs/Object.lua` in the PlaydateSDK
-you either need to add all your classes to `Lua.diagnostics.globals` or use this
-workaround to let LuaLS that `class().extends()`` has created a new global Class:
+### PlaydateSDK `CoreLibs/Object.lua` classes
+
+If you are creating class objects via the `class()` function
+you'll want to describe your class to LuaLS and let it know
+it's been added to the global namespace.
+
+For example here's a simple class:
 
 ```lua
----@class TextSprite: playdate.graphics.sprite
----@field text string
----@field font _Font
----@field alignment integer
-TextSprite = class("TextSprite").extends(playdate.graphics.sprite) or TextSprite -- no-op for LuaLS
+class("FillSprite").extends(playdate.graphics.sprite)
+
+function FillSprite:init(w, h, color)
+	local img = playdate.graphics.image.new(w, h, color)
+    FillSprite.super.init(self, img)
+end
+
+local ts = FillSprite(64, 64 playdate.graphics.kColorBlack)
 ```
 
-This is an no-op because `class("TextSprite").extends()` returns nil but
-after it's done `TextSprite` is a valid identifier in the Global namespace (`_G).
+Which could be annotated like so:
+
+```lua
+---@class FillSprite: _Sprite
+---@field color: integer
+---@overload fun(w: integer, h:integer, color:integer): FillSprite
+FillSprite = class("FillSprite").extends(playdate.graphics.sprite) or FillSprite
+
+function FillSprite:init(w, h, color)
+	local img = playdate.graphics.image.new(w, h, color)
+    FillSprite.super.init(self, img)
+	self.color = color
+end
+
+local ts = FillSprite(64, 64 playdate.graphics.kColorBlack)
+```
+
+The `FillSprite = [...] or FillSprite` becomes a no-op because
+`class().extends()`
+[returns nil](https://devforum.play.date/t/trivial-object-improvements/13976/2)
+but does set `G_["FillSprite"]` so we end of up with
+`FillSprite = nil or FillSprite`, a no-op.
+
+The `@overload` defines a signature for when the name `FillSprite`
+is invoked as a function (via `__call` in it's metatable). With
+Object.lua class objects this should match the signature
+of the `:init` constructor with the a return type
+of the class instance object.
 
 ## List of types
 These names do not exist at runtime and are only used by LuaLS.
