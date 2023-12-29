@@ -8,7 +8,13 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.1.1-luacats6] - 2023-12-29
+
 - More type fixes.
+- Fix _Animator.reverses.
+- Add _Timer.paused.
+
+Thanks [akshaybharwani](https://github.com/akshaybharwani) for [PR #6](https://github.com/notpeter/playdate-docdef/pull/6)
 
 Thanks [ncocchiaro](https://github.com/ncocchiaro) for[PR #5](https://github.com/notpeter/playdate-docdef/pull/5)
 
@@ -174,6 +180,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.1.1-luacats6]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats5...v2.1.1-luacats6
 [v2.1.1-luacats5]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats4...v2.1.1-luacats5
 [v2.1.1-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats3...v2.1.1-luacats4
 [v2.1.1-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats2...v2.1.1-luacats3
