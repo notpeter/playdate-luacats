@@ -328,7 +328,7 @@ local _AnimationLoop = {}
 
 ---@class _Animator : playdate.graphics.animator
 ---@field repeatCount integer
----@field reverses integer
+---@field reverses boolean
 ---@field easingAmplitude number
 ---@field easingPeriod number
 ---@field s? number
@@ -680,6 +680,7 @@ local _TileMap = {}
 ---@field discardOnCompletion boolean
 ---@field duration integer
 ---@field timeLeft integer
+---@field paused boolean
 ---@field repeats boolean
 ---@field reverses boolean
 ---@field timerEndedArgs any[]
