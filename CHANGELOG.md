@@ -8,6 +8,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- _FrameTimer and _Timer enhancements.
 - non-integer image scale and rotation  ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
 - non-integer sprite:setCenter ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
 
