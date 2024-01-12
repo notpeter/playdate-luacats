@@ -399,10 +399,19 @@ local _Font = {}
 ---@field delay integer
 ---@field discardOnCompletion boolean
 ---@field duration integer
+---@field easingAmplitude number
+---@field easingFunction function
+---@field easingPeriod number
+---@field endValue number
 ---@field frame integer
 ---@field repeats boolean
+---@field reverseEasingFunction function
 ---@field reverses boolean
+---@field startValue number
 ---@field timerEndedArgs any[]
+---@field timerEndedCallback function
+---@field updateCallback function
+---@field value number
 local _FrameTimer = {}
 
 ---@class _GridView : playdate.ui.gridview
@@ -679,11 +688,20 @@ local _TileMap = {}
 ---@field delay integer
 ---@field discardOnCompletion boolean
 ---@field duration integer
----@field timeLeft integer
+---@field easingAmplitude number
+---@field easingFunction function
+---@field easingPeriod number
+---@field endValue number
 ---@field paused boolean
 ---@field repeats boolean
+---@field reverseEasingFunction function
 ---@field reverses boolean
+---@field startValue number
+---@field timeLeft integer
 ---@field timerEndedArgs any[]
+---@field timerEndedCallback function
+---@field updateCallback function
+---@field value number
 local _Timer = {}
 
 ---@class _Track : playdate.sound.track
@@ -3984,8 +4002,8 @@ function playdate.graphics.image:sample(x, y) end
 ---@param x integer
 ---@param y integer
 ---@param angle number
----@param scale? integer
----@param yscale? integer
+---@param scale? number
+---@param yscale? number
 ---@return nil
 function playdate.graphics.image:drawRotated(x, y, angle, scale, yscale) end
 
@@ -3997,8 +4015,8 @@ function playdate.graphics.image:drawRotated(x, y, angle, scale, yscale) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.rotatedImage
 ---@param angle number
----@param scale? integer
----@param yscale? integer
+---@param scale? number
+---@param yscale? number
 ---@return _Image
 function playdate.graphics.image:rotatedImage(angle, scale, yscale) end
 
@@ -4008,8 +4026,8 @@ function playdate.graphics.image:rotatedImage(angle, scale, yscale) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawScaled
 ---@param x integer
 ---@param y integer
----@param scale integer
----@param yscale? integer
+---@param scale number
+---@param yscale? number
 ---@return nil
 function playdate.graphics.image:drawScaled(x, y, scale, yscale) end
 
@@ -4017,8 +4035,8 @@ function playdate.graphics.image:drawScaled(x, y, scale, yscale) end
 --- scaling for the y axis.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.scaledImage
----@param scale integer
----@param yscale? integer
+---@param scale number
+---@param yscale? number
 ---@return _Image
 function playdate.graphics.image:scaledImage(scale, yscale) end
 
@@ -5865,8 +5883,8 @@ function playdate.graphics.sprite:isVisible() end
 --- the upper left corner of your sprite, specify the center as 0, 0.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCenter
----@param x integer
----@param y integer
+---@param x number
+---@param y number
 ---@return nil
 function playdate.graphics.sprite:setCenter(x, y) end
 
