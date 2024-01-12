@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+
+## [v2.1.1-luacats7] - 2024-01-11
+
 - _FrameTimer and _Timer enhancements.
 - non-integer image scale and rotation  ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
 - non-integer sprite:setCenter ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
@@ -182,6 +185,8 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.1.1-luacats7]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats6...v2.1.1-luacats7
+[v2.1.1-luacats6]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats5...v2.1.1-luacats6
 [v2.1.1-luacats5]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats4...v2.1.1-luacats5
 [v2.1.1-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats3...v2.1.1-luacats4
 [v2.1.1-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats2...v2.1.1-luacats3
