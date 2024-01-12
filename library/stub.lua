@@ -1553,10 +1553,10 @@ function playdate.setStatsInterval(seconds) end
 --- recommended figure that balances animation smoothness with performance and power considerations.
 --- Maximum is 50 fps.
 ---
---- If *rate* is 0, playdate.update() is called as soon as a frame buffer is available.
---- Since the display refreshes line-by-line, and unchanged lines aren’t sent to the display,
---- the update cycle will be faster than 30 times a second but at an indeterminate rate.
---- playdate.getCurrentTimeMilliseconds() should then be used as a steady time base.
+--- If *rate* is 0, playdate.update() is called as soon as possible. Since the display refreshes
+--- line-by-line, and unchanged lines aren’t sent to the display, the update cycle will be faster
+--- than 30 times a second but at an indeterminate rate. playdate.getCurrentTimeMilliseconds()
+--- should then be used as a steady time base.
 ---
 --- Equivalent to `playdate->display->setRefreshRate()` in the C API.
 ---
@@ -2524,7 +2524,7 @@ function playdate.file.file:flush() end
 --- Returns the next line of the file, delimited by either \n or \r\n. The returned string does not
 --- include newline characters.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.readLine
+--- https://sdk.play.date/Inside%20Playdate.html#m-file.readline
 ---@return string
 function playdate.file.file:readline() end
 
@@ -8062,10 +8062,16 @@ function playdate.sound.sampleplayer:copy() end
 function playdate.sound.sampleplayer:play(repeatCount, rate) end
 
 --- Schedules the sound for playing at device time *when*. If *vol* is specified, the sample
---- will be played at level *vol* (with optional separate right channel volume *rightvol*). If
---- *when* is less than the current device time, the sample is played immediately. If *rate*
---- is set, the sample will be played at the given rate instead of the rate previous set with
+--- will be played at level *vol* (with optional separate right channel volume *rightvol*),
+--- otherwise it plays at the volume set by playdate.sound.sampleplayer.setVolume(). Note
+--- that the *when* argument is an offset in the audio device’s time scale, as returned by
+--- playdate.sound.getCurrentTime(); it is **not** relative to the current time! If *when*
+--- is less than the current audio time, the sample is played immediately. If *rate* is
+--- set, the sample will be played at the given rate instead of the rate previously set with
 --- playdate.sound.sampleplayer.setRate().
+---
+--- Only one event can be queued at a time. If `playAt()` is called while another event is queued,
+--- it will overwrite it with the new values.
 ---
 --- The function returns true if the sample was successfully added to the sound channel, otherwise
 --- false (i.e., if the channel is full).
@@ -8079,7 +8085,9 @@ function playdate.sound.sampleplayer:play(repeatCount, rate) end
 function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 
 --- Sets the playback volume (0.0 - 1.0) for left and right channels. If the optional *right*
---- argument is omitted, it is the same as *left*.
+--- argument is omitted, it is the same as *left*. If the sampleplayer is currently playing using
+--- the default volume (that is, it wasn’t triggered by `playAt()` with a volume given) it also
+--- changes the volume of the playing sample.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setVolume
 ---@param left number
@@ -8507,14 +8515,14 @@ function playdate.sound.channel:remove() end
 
 --- Adds an effect to the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addeffect
+--- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addEffect
 ---@param effect _SoundEffect
 ---@return nil
 function playdate.sound.channel:addEffect(effect) end
 
 --- Removes an effect from the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeeffect
+--- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeEffect
 ---@param effect _SoundEffect
 ---@return nil
 function playdate.sound.channel:removeEffect(effect) end
@@ -8522,14 +8530,14 @@ function playdate.sound.channel:removeEffect(effect) end
 --- Adds a source to the channel. If a source is not assigned to a channel, it plays on the default
 --- global channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addsource
+--- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addSource
 ---@param source _SoundSource
 ---@return nil
 function playdate.sound.channel:addSource(source) end
 
 --- Removes a source from the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removesource
+--- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeSource
 ---@param source _SoundSource
 ---@return nil
 function playdate.sound.channel:removeSource(source) end
@@ -8582,13 +8590,13 @@ function playdate.sound.playingSources() end
 ---@return _Synth
 function playdate.sound.synth.new(waveform) end
 
---- Returns a new synth object to play a Sample. An optional sustain region defines a loop to play
---- while the note is on. Sample data must be uncompressed PCM, not ADPCM.
+--- Returns a new synth object to play a Sample. An optional sustain region (measured in samples)
+--- defines a loop to play while the note is on. Sample data must be uncompressed PCM, not ADPCM.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new
 ---@param sample _Sample
----@param sustainStart? number
----@param sustainEnd? number
+---@param sustainStart? integer
+---@param sustainEnd? integer
 ---@return _Synth
 function playdate.sound.synth.new(sample, sustainStart, sustainEnd) end
 

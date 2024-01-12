@@ -8,6 +8,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.2.0-luacats1] - 2024-01-11
+
+- Update for [Playdate SDK v2.2.0](https://sdk.play.date/changelog/#_2_2_0)
+- Fix types for playdate.sound.synth.new sustainStart/sustainEnd [bee6e02](https://github.com/notpeter/playdate-docdef/commit/bee6e0221d6a5992fe4b0336ee8a7075079ca120)
+- Fix anchors for doc links
+- sampleplayer:playAt() improvements
 
 ## [v2.1.1-luacats7] - 2024-01-11
 
@@ -185,6 +191,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.2.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats7...v2.2.0-luacats1
 [v2.1.1-luacats7]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats6...v2.1.1-luacats7
 [v2.1.1-luacats6]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats5...v2.1.1-luacats6
 [v2.1.1-luacats5]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats4...v2.1.1-luacats5
