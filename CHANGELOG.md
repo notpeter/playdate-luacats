@@ -8,6 +8,13 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- non-integer image scale and rotation  ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
+- non-integer sprite:setCenter ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
+
+Thanks [@ncocchiaro](https://github.com/ncocchiaro)
+
+## [v2.1.1-luacats6] - 2023-12-29
+
 - More type fixes.
 
 Thanks [ncocchiaro](https://github.com/ncocchiaro) for[PR #5](https://github.com/notpeter/playdate-docdef/pull/5)
