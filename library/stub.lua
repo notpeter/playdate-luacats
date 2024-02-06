@@ -754,7 +754,7 @@ function table.getsize(table) end
 ---@return table
 function table.create(arrayCount, hashCount) end
 
---- `shallowCopy` returns a shallow copy of the *source* table. If a *destination* table is
+--- `shallowcopy` returns a shallow copy of the *source* table. If a *destination* table is
 --- provided, it copies the contents of *source* into *destination* and returns *destination*. The
 --- copy will contain references to any nested tables.
 ---
@@ -764,7 +764,7 @@ function table.create(arrayCount, hashCount) end
 ---@return table
 function table.shallowcopy(source, destination) end
 
---- `deepCopy` returns a deep copy of the *source* table. The copy will contain copies of any nested
+--- `deepcopy` returns a deep copy of the *source* table. The copy will contain copies of any nested
 --- tables.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#t-table.deepcopy
@@ -1488,8 +1488,9 @@ function playdate.setNewlinePrinted(flag) end
 ---@return nil
 function playdate.drawFPS(x, y) end
 
---- Returns the effective refresh rate in frames per second. See also
---- playdate.display.getRefreshRate().
+--- Returns the *measured, actual* refresh rate in frames per second. This value may be different
+--- from the *specified* refresh rate (see playdate.display.getRefreshRate()) by a little or a lot
+--- depending upon how much calculation is being done per frame.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-getFPS
 ---@return number
@@ -1549,7 +1550,7 @@ function playdate.getStats() end
 ---@return nil
 function playdate.setStatsInterval(seconds) end
 
---- Sets the nominal refresh rate in frames per second. The default is 30 fps, which is a
+--- Sets the desired refresh rate in frames per second. The default is 30 fps, which is a
 --- recommended figure that balances animation smoothness with performance and power considerations.
 --- Maximum is 50 fps.
 ---
@@ -1565,7 +1566,8 @@ function playdate.setStatsInterval(seconds) end
 ---@return nil
 function playdate.display.setRefreshRate(rate) end
 
---- Returns the nominal refresh rate in frames per second. See also playdate.getFPS().
+--- Returns the specified refresh rate in frames per second. See also playdate.getFPS() for
+--- *measured, actual* frame rate.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-display.getRefreshRate
 ---@return integer
@@ -5335,7 +5337,7 @@ function playdate.graphics.animator.new(durations, parts, easingFunctions, start
 ---@return (number|_Point)
 function playdate.graphics.animator:currentValue() end
 
---- Returns the value of the animation at the given number of seconds after the start time. The
+--- Returns the value of the animation at the given number of milliseconds after the start time. The
 --- value will be either a number or a playdate.geometry.point, depending on the type of animator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.valueAtTime
@@ -9942,10 +9944,8 @@ function playdate.timer.performAfterDelay(delay, callback, ...) end
 ---@return _Timer
 function playdate.timer.new(duration, startValue, endValue, easingFunction) end
 
---- `keyRepeatTimer()` returns a timer that fires at key-repeat intervals. The function
---- *callback* will be called immediately, then again after 300 milliseconds, then repeatedly
---- at 100 millisecond intervals. If you wish to customize these millisecond intervals, use
---- `keyRepeatTimerWithDelay()`.
+--- Calls `keyRepeatTimerWithDelay()` below with standard values of *delayAfterInitialFiring* = 300
+--- and *delayAfterSecondFiring* = 100.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimer
 ---@param callback function
@@ -9953,10 +9953,9 @@ function playdate.timer.new(duration, startValue, endValue, easingFunction) end
 ---@return _Timer
 function playdate.timer.keyRepeatTimer(callback, ...) end
 
---- `keyRepeatTimer()` returns a timer that fires at key-repeat intervals. The function
---- *callback* will be called immediately, then again after 300 milliseconds, then repeatedly
---- at 100 millisecond intervals. If you wish to customize these millisecond intervals, use
---- `keyRepeatTimerWithDelay()`.
+--- returns a timer that fires at key-repeat intervals. The function *callback* will be called
+--- immediately, then again after *delayAfterInitialFiring* milliseconds, then repeatedly at
+--- *delayAfterSecondFiring* millisecond intervals.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimerWithDelay
 ---@param delayAfterInitialFiring integer
@@ -10120,7 +10119,10 @@ function _FrameTimer:timerEndedCallback(...) end
 ---@return nil
 function _FrameTimer:updateCallback(...) end
 
---- Draws the alert.
+--- Draws the next frame of the crank indicator animation, and is typically invoked in the
+--- `playdate.update()` callback. *xOffset* and *yOffset* can be used to alter the position of
+--- the indicator by a specified number of pixels if desired. To stop drawing the crank indicator,
+--- simply stop calling `:draw()` in `playdate.update()`.
 ---
 --- Note that if sprites are being used, this call should usually happen after
 --- playdate.graphics.sprite.update().
@@ -10130,6 +10132,11 @@ function _FrameTimer:updateCallback(...) end
 ---@param yOffset? integer
 ---@return nil
 function playdate.ui.crankIndicator:draw(xOffset, yOffset) end
+
+--- Resets the crank animation to the beginning of its sequence.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.reset
+function playdate.ui.crankIndicator:resetAnimation() end
 
 --- Returns *x*, *y*, *width*, *height* representing the bounds that the crank indicator draws
 --- within. If necessary, this rect could be passed into playdate.graphics.sprite.addDirtyRect(), or
