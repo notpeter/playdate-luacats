@@ -10136,6 +10136,7 @@ function playdate.ui.crankIndicator:draw(xOffset, yOffset) end
 --- Resets the crank animation to the beginning of its sequence.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.reset
+---@return nil
 function playdate.ui.crankIndicator:resetAnimation() end
 
 --- Returns *x*, *y*, *width*, *height* representing the bounds that the crank indicator draws
