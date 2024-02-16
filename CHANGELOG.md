@@ -8,9 +8,14 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.3.1-luacats1] - 2024-02-16
+
+- Update for [Playdate SDK v2.3.1](https://sdk.play.date/changelog/#_2_3_1)
+- Add missing return type for playdate.ui.crankIndicator:resetAnimation().
+
 ## [v2.3.0-luacats1] - 2024-02-05
 
-- Update for [Playdate SDK v2.3.0](https://sdk.play.date/changelog/#_2_3_0)
+- Update for [Playdate SDK v2.3.0](https://sdk.play.date/changelog/#_2_3_)
 
 ## [v2.2.0-luacats1] - 2024-01-11
 
@@ -195,6 +200,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.3.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.0-luacats1...v2.3.1-luacats1
 [v2.3.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.2.0-luacats1...v2.3.0-luacats1
 [v2.2.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats7...v2.2.0-luacats1
 [v2.1.1-luacats7]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats6...v2.1.1-luacats7
