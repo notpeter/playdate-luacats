@@ -8,6 +8,13 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.4.0-luacats1] - 2024-02-28
+
+- Update for [PlaydateSDK v2.4.0-beta2](https://devforum.play.date/t/2-4-0-beta-2-is-available-for-testing/16227/2)
+- Various modulators (setVolumeMod, setPanMod, etc) may be called with nil to reset/remove the signal modulator.
+- easingAmplitude / easingPeriod option on _Animator
+- New keys for `playdate.getStats()`
+
 ## [v2.3.1-luacats1] - 2024-02-16
 
 - Update for [Playdate SDK v2.3.1](https://sdk.play.date/changelog/#_2_3_1)
@@ -200,6 +207,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.4.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.1-luacats1...v2.4.0-luacats1
 [v2.3.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.0-luacats1...v2.3.1-luacats1
 [v2.3.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.2.0-luacats1...v2.3.0-luacats1
 [v2.2.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.1.1-luacats7...v2.2.0-luacats1
