@@ -2828,7 +2828,7 @@ function playdate.geometry.affineTransform:rotate(angle, point) end
 ---
 --- *angle* is the value, in degrees, by which to rotate the affine transform. A positive value
 --- specifies clockwise rotation and a negative value specifies counterclockwise rotation.  If
---- the optional *x* and *y* argumentsare given, the transform rotates around (*x*,*y*) instead
+--- the optional *x* and *y* arguments are given, the transform rotates around (*x*,*y*) instead
 --- of (0,0).
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.rotatedBy
@@ -5116,7 +5116,7 @@ function playdate.graphics.getImageDrawMode() end
 
 --- Sets the width of the line for drawLine, drawRect, drawPolygon, and drawArc when a
 --- playdate.geometry.arc is passed as the argument. This value is saved and restored when pushing
---- and popping the <<graphics context.
+--- and popping the graphics context.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineWidth
 ---@param width integer
@@ -5137,7 +5137,7 @@ function playdate.graphics.getLineWidth() end
 --- * playdate.graphics.kStrokeOutside
 --- * playdate.graphics.kStrokeInside
 ---
---- This value is saved and restored when pushing and popping the <<graphics context.
+--- This value is saved and restored when pushing and popping the graphics context.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStrokeLocation
 ---@param location integer
@@ -9816,7 +9816,7 @@ function playdate.sound.instrument:setTranspose(halfsteps) end
 ---@return nil
 function playdate.sound.instrument:playNote(frequency, vel, length, when) end
 
---- Identicat to `instrument:playNote()` but *note* is a MIDI note number: 60=C4, 61=C#4, etc.
+--- Identical to `instrument:playNote()` but *note* is a MIDI note number: 60=C4, 61=C#4, etc.
 --- Fractional values are allowed.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.playMIDINote
@@ -10361,7 +10361,7 @@ function playdate.ui.gridview:drawInRect(x, y, width, height) end
 ---@return nil
 function playdate.ui.gridview:setNumberOfSections(num) end
 
---- Returs the number of sections in the grid view.
+--- Returns the number of sections in the grid view.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfSections
 ---@return integer
@@ -10681,6 +10681,17 @@ function playdate.setMinimumGCTime(ms) end
 ---@return nil
 function playdate.setGCScaling(min, max) end
 
+--- Called when a `msg <text>` command is received on the serial port. The text following the
+--- command is passed to the function as the string *message*.
+---
+--- Running `!msg <message>` in the simulator Lua console sends the command to the device if one is
+--- connected, otherwise it sends it to the game running in the simulator.
+---
+--- https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived
+---@param message string
+---@return nil
+function playdate.serialMessageReceived(message) end
+
 ---@param ClassName string
 ---@param properties? table
 ---@param namespace? table
@@ -10704,10 +10715,6 @@ function Object:tableDump(indent, _table) end
 
 ---@return string
 function _Timer:__tostring() end
-
----@param msg string
----@return nil
-function playdate.serialMessageReceived(msg) end
 
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer

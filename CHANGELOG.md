@@ -8,6 +8,11 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.4.0-luacats2] - 2024-03-02
+
+- Update for PlaydateSDK 2.4.0 final.
+- Add [playdate.serialMessageReceived](https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived)
+
 ## [v2.4.0-luacats1] - 2024-02-28
 
 - Update for [PlaydateSDK v2.4.0-beta2](https://devforum.play.date/t/2-4-0-beta-2-is-available-for-testing/16227/2)
@@ -207,6 +212,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.4.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats1...v2.4.0-luacats2
 [v2.4.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.1-luacats1...v2.4.0-luacats1
 [v2.3.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.0-luacats1...v2.3.1-luacats1
 [v2.3.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.2.0-luacats1...v2.3.0-luacats1
