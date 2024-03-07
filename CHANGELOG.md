@@ -8,6 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.4.0-luacats3] - 2024-03-07
+
 - Add [.editorconfig](.editorconfig) file.
 - Switch from `error` and `errorString` to `err` to avoid conflict with Lua's `error` function.
 - Cleanup markdown in this changelog (escape certain characters, hanging indent, etc.)
@@ -217,6 +219,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.4.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats2...v2.4.0-luacats3
 [v2.4.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats1...v2.4.0-luacats2
 [v2.4.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.1-luacats1...v2.4.0-luacats1
 [v2.3.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.0-luacats1...v2.3.1-luacats1
