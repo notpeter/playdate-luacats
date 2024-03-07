@@ -2512,7 +2512,7 @@ function playdate.datastore.readImage(path) end
 ---@param path string
 ---@param mode? integer
 ---@return _File? file
----@return string? error
+---@return string? err
 function playdate.file.open(path, mode) end
 
 --- Closes the file.
@@ -2530,7 +2530,7 @@ function playdate.file.file:close() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.write
 ---@param str string
 ---@return integer bytes_written
----@return string? error
+---@return string? err
 function playdate.file.file:write(str) end
 
 --- Flushes any buffered data written to the file to the disk.
@@ -2556,7 +2556,7 @@ function playdate.file.file:readline() end
 --- https://sdk.play.date/Inside%20Playdate.html#m-file.read
 ---@param numberOfBytes integer
 ---@return integer numberOfBytes
----@return string? error
+---@return string? err
 function playdate.file.file:read(numberOfBytes) end
 
 --- Sets the file read/write position to the given byte offset.
@@ -3865,7 +3865,7 @@ function playdate.graphics.image.new(width, height, bgcolor) end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new-path
 ---@param path string
 ---@return _Image? image
----@return string? error
+---@return string? err
 function playdate.graphics.image.new(path) end
 
 --- Loads a new image from the data at *path* into an already-existing image, without allocating
@@ -3876,7 +3876,7 @@ function playdate.graphics.image.new(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.load
 ---@param path string
 ---@return boolean success
----@return string? error
+---@return string? err
 function playdate.graphics.image:load(path) end
 
 --- Returns a new `playdate.graphics.image` that is an exact copy of the original.
@@ -4910,7 +4910,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
----@param callback fun(image?: _Image, errorMessage?: string)
+---@param callback fun(image?: _Image, err?: string)
 ---@return _Timer
 function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, callback) end
 
@@ -5551,7 +5551,7 @@ function playdate.graphics.getWorkingImage() end
 --- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new
 ---@param path string
 ---@return _ImageTable imagetable?
----@return string errorMessage?
+---@return string err?
 function playdate.graphics.imagetable.new(path) end
 
 --- Returns an empty image table for loading images into via imagetable:load() or setting already-
@@ -5601,7 +5601,7 @@ function playdate.graphics.imagetable:setImage(n, image) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.load
 ---@param path string
 ---@return boolean success
----@return string? error
+---@return string? err
 function playdate.graphics.imagetable:load(path) end
 
 --- Returns the number of images in the table. See also #imagetable.
@@ -8386,7 +8386,7 @@ function playdate.sound.fileplayer:load(path) end
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.play
 ---@param repeatCount? integer
 ---@return boolean success
----@return string? error
+---@return string? err
 function playdate.sound.fileplayer:play(repeatCount) end
 
 --- Stops playing the file, resets the playback offset to zero, and calls the finish callback.
@@ -8583,7 +8583,7 @@ function playdate.sound.sample:load(path) end
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.decompress
 ---@return boolean success
----@return string error?
+---@return string err?
 function playdate.sound.sample:decompress() end
 
 --- Returns the sample rate as an integer, such as 44100 or 22050.
@@ -10719,7 +10719,7 @@ function _Timer:__tostring() end
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
 ---@return _Image image?
----@return string errorMessage?
+---@return string err?
 function playdate.graphics.generateQRCodeSync(stringToEncode, desiredEdgeDimension) end
 
 ---@param image _Image

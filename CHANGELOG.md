@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Add [.editorconfig](.editorconfig) file.
+- Switch from `error` and `errorString` to `err` to avoid conflict with Lua's `error` function.
+
 ## [v2.4.0-luacats2] - 2024-03-02
 
 - Update for PlaydateSDK 2.4.0 final.
