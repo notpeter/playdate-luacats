@@ -10,6 +10,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 - Add [.editorconfig](.editorconfig) file.
 - Switch from `error` and `errorString` to `err` to avoid conflict with Lua's `error` function.
+- Cleanup markdown in this changelog (escape certain characters, hanging indent, etc.)
 
 ## [v2.4.0-luacats2] - 2024-03-02
 
@@ -20,7 +21,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 - Update for [PlaydateSDK v2.4.0-beta2](https://devforum.play.date/t/2-4-0-beta-2-is-available-for-testing/16227/2)
 - Various modulators (setVolumeMod, setPanMod, etc) may be called with nil to reset/remove the signal modulator.
-- easingAmplitude / easingPeriod option on _Animator
+- easingAmplitude / easingPeriod option on \_Animator
 - New keys for `playdate.getStats()`
 
 ## [v2.3.1-luacats1] - 2024-02-16
@@ -41,8 +42,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## [v2.1.1-luacats7] - 2024-01-11
 
-- _FrameTimer and _Timer enhancements.
-- non-integer image scale and rotation  ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
+- \_FrameTimer and \_Timer enhancements.
+- non-integer image scale and rotation ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
 - non-integer sprite:setCenter ([PR#7](https://github.com/notpeter/playdate-docdef/pull/7))
 
 Thanks [@ncocchiaro](https://github.com/ncocchiaro)
@@ -57,7 +58,8 @@ Thanks [ncocchiaro](https://github.com/ncocchiaro) for[PR #5](https://github.com
 
 - Improved Changelog
 - Fixed missing `playdate.math.logic`
-- Fixed instrument:addVoice param from _Vector2D to _Synth.
+- Fixed instrument:addVoice param from \_Vector2D to \_Synth.
+
 Thanks [ncocchiaro](https://github.com/ncocchiaro) for [PR #3](https://github.com/notpeter/playdate-docdef/pull/3).
 
 Generated with [notpeter/playdate-docdef#2ba00c6](https://github.com/notpeter/playdate-docdef/commit/2ba00c6ed15c753109505b582a917d6010ca9017).
@@ -66,7 +68,7 @@ Generated with [notpeter/playdate-docdef#2ba00c6](https://github.com/notpeter/pl
 
 - Added [CHANGELOG.md](CHANGELOG.md).
 - Fixed playdate.graphics.sprite.setBackgroundDrawingCallback function return type.
-Returns the backgroundSprite not nil. (First documented in 2.1.1, behavior was same in older SDKs)
+  Returns the backgroundSprite not nil. (First documented in 2.1.1, behavior was same in older SDKs)
 - Fixed less than an greater than being incorrectly escaped when rendered as markdown.
 
 Generated with [notpeter/playdate-docdef#c9ea3bc](https://github.com/notpeter/playdate-docdef/commits/c9ea3bc5844fccf166d2604dd0ce162ff8313319)
@@ -81,19 +83,19 @@ Generated with [notpeter/playdate-docdef#c9ea3bc](https://github.com/notpeter/pl
 ## [v2.1.1-luacats2] - 2023-11-11
 
 - Fixed playdate.graphics.sprite:setBackgroundDrawingCallback description
-(reverted changes from PlaydateSDK v2.1.0-beta which weren't in PlaydateSDK v2.1.0 final).
+  (reverted changes from PlaydateSDK v2.1.0-beta which weren't in PlaydateSDK v2.1.0 final).
 - Fixed playdate.sound.envelope:setRelease description (changed in PlaydateSDK v2.1.1).
-- Fixed playdate.graphics.imagetable:__index function return type.
-LuaLS does not correctly use this, use playdate.graphics.imagetable:getImage instead.
+- Fixed playdate.graphics.imagetable:\_\_index function return type.
+  LuaLS does not correctly use this, use playdate.graphics.imagetable:getImage instead.
 - Added playdate.graphics.setPattern(image, x, y)
-Present in [sdk docs](https://sdk.play.date/inside-playdate/#f-graphics.setPattern)
-but is incorrectly formatted.
+  Present in [sdk docs](https://sdk.play.date/inside-playdate/#f-graphics.setPattern)
+  but is incorrectly formatted.
 
 ## [v2.1.1-luacats1] - 2023-11-02
 
 - Fixed playdate.metadata typo (was: playdate.metadate).
 - Implement long line wrapping for function descriptions.
-see: [notpeter/playdate-docdef#899b3b8](https://github.com/notpeter/playdate-docdef/commit/899b3b8).
+  see: [notpeter/playdate-docdef#899b3b8](https://github.com/notpeter/playdate-docdef/commit/899b3b8).
 
 ## [v2.1.0-luacats8] - 2023-10-28
 
@@ -101,12 +103,12 @@ Switched from Playdate SDK v2.1.0-beta1 to v2.1.0 (final).
 
 - Added README.md section on how to type Object.lua Playdate classes.
 - Fixed README.md playdate.graphics.image example
-- Added playdate.scoreboards.*
+- Added playdate.scoreboards.\*
   - playdate.scoreboards.addScore
   - playdate.scoreboards.getPersonalBest
   - playdate.scoreboards.getScoreboards
   - playdate.scoreboards.getScores
-- Added playdate.server.* (undocumented)
+- Added playdate.server.\* (undocumented)
   - playdate.server.getAvatar
   - playdate.server.setAvatar
   - playdate.server.uploadFile
@@ -117,13 +119,13 @@ Switched from Playdate SDK v2.1.0-beta1 to v2.1.0 (final).
 - Fixed `Object.lua` (Panic Playdate Classes) things
 - Added Object to Global namespace
 - Fixed class()
-- Added _Object
+- Added \_Object
 
 ## [v2.1.0-luacats6] - 2023-10-18
 
-- Added playdate.geometry.kLineCapStyle* constants:
+- Added playdate.geometry.kLineCapStyle\* constants:
 - Fixed playdate.sound.twopolefilter (accepts string)
-- Added playdate.sound.kFilter* constants
+- Added playdate.sound.kFilter\* constants
 
 ## [v2.1.0-luacats5] - 2023-10-14
 
@@ -144,7 +146,7 @@ Switched from Playdate SDK v2.1.0-beta1 to v2.1.0 (final).
 - Updated README.md to reflect MIT license option.
 - Updated README.md image alttexts
 - Added README.md update instructions
-- Added _SystemStats for playdate.getStats()
+- Added \_SystemStats for playdate.getStats()
 - Fixed playdate.datastore.write (pretty is nilable)
 - Added playdate.graphics.generateQRCode callback typing.
 - Fixed playdate.graphics.sprite.setBackgroundDrawingCallback (callback is nilable)
@@ -168,17 +170,17 @@ First public release. Run against v2.1.0-beta1 SDK.
 - Added 100% coverage on return types (including explicit return nil)
 - Added inline examples from docs (e.g. playdate.getCrankChange)
 - Added support for translating HTML to Markdown in function descriptions.
-Preserve `*italic*`, backtick code fencing.
+  Preserve `*italic*`, backtick code fencing.
 - Added paratheses around types for arguments which accept multiple types.
 - Changed class types so we can differentiate between class variables/class functions
-and instance properties/instance functions. So Playdate Images are now of type _Image
-rather than of type playdate.graphics.image.
-- Renamed existing duck types to have leading underscore (e.g. _ModTime, _PowerStatus).
-- Added new synthetic types (e.g. _Image, _Sprite, _File) with a parent of their Playdate
-type names (e.g. playdate.graphics.image, etc).
+  and instance properties/instance functions. So Playdate Images are now of type \_Image
+  rather than of type playdate.graphics.image.
+- Renamed existing duck types to have leading underscore (e.g. \_ModTime, \_PowerStatus).
+- Added new synthetic types (e.g. \_Image, \_Sprite, \_File) with a parent of their Playdate
+  type names (e.g. playdate.graphics.image, etc).
 - Updated README.md to document Synthetic types.
-- Added playdate.graphics.font.kDitherType* constants
-- Added playdate.graphics.sprite.kCollisionType* constants
+- Added playdate.graphics.font.kDitherType\* constants
+- Added playdate.graphics.sprite.kCollisionType\* constants
 - Changed many #anchor links (to match changes to PlaydateSDK docs)
 - Changed easingFunction arguments type to be less specific (now just function)
 - Remove playdate.frameTimer.timeLeft (my error)
