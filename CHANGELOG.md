@@ -8,6 +8,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.4.1-luacats1] - 2024-03-08
+
+- Update for PlaydateSDK 2.4.1 (no changes)
+- Remove HTML-like placeholders from markdown output.
+  E.g. `/Data/<bundleid>` becomes `/Data/{bundleid}`
+
 ## [v2.4.0-luacats3] - 2024-03-07
 
 - Add [.editorconfig](.editorconfig) file.
@@ -219,6 +225,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.4.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats3...v2.4.1-luacats1
 [v2.4.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats2...v2.4.0-luacats3
 [v2.4.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats1...v2.4.0-luacats2
 [v2.4.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.3.1-luacats1...v2.4.0-luacats1

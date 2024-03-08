@@ -2496,7 +2496,7 @@ function playdate.datastore.readImage(path) end
 --- Returns a playdate.file.file corresponding to the opened file. *mode* should be one of the
 --- following:
 ---
---- * playdate.file.kFileRead: the file is opened for reading; the system first looks in the /Data/<bundleid> folder for the given file, then in the game’s pdx folder if it isn’t found
+--- * playdate.file.kFileRead: the file is opened for reading; the system first looks in the /Data/{bundleid} folder for the given file, then in the game’s pdx folder if it isn’t found
 --- * playdate.file.kFileWrite: the file is created if it doesn’t exist, truncated to zero length if it does, then opened for writing
 --- * playdate.file.kFileAppend: the file is created if it doesn’t exist, opened for writing, with
 --- new data written to the end of the file
@@ -2608,7 +2608,7 @@ function playdate.file.exists(path) end
 ---@return boolean
 function playdate.file.isdir(path) end
 
---- Creates a directory at the given path, under the /Data/<bundleid> folder. See About the Playdate
+--- Creates a directory at the given path, under the /Data/{bundleid} folder. See About the Playdate
 --- Filesystem for details.
 ---
 --- `playdate.file.mkdir()` will create all intermediate directories, if a succession of directories
@@ -10681,10 +10681,10 @@ function playdate.setMinimumGCTime(ms) end
 ---@return nil
 function playdate.setGCScaling(min, max) end
 
---- Called when a `msg <text>` command is received on the serial port. The text following the
+--- Called when a `msg {text}` command is received on the serial port. The text following the
 --- command is passed to the function as the string *message*.
 ---
---- Running `!msg <message>` in the simulator Lua console sends the command to the device if one is
+--- Running `!msg {message}` in the simulator Lua console sends the command to the device if one is
 --- connected, otherwise it sends it to the game running in the simulator.
 ---
 --- https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived
