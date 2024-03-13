@@ -1,14 +1,16 @@
 {
-
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "runtime.nonstandardSymbol": [
-        "+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="
-    ],
+    "diagnostics.globals": ["import"],
+    "format.defaultConfig": {
+        "indent_style": "space",
+        "indent_size": "4"
+    },
+    "runtime.builtin": {
+        "io": "disable",
+        "os": "disable",
+        "package": "disable"
+    },
+    "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
     "runtime.version": "Lua 5.4",
-    "diagnostics.globals": [
-        "import"
-    ],
-    "workspace.library": [
-        "./"
-    ]
+    "workspace.library": ["./"]
 }

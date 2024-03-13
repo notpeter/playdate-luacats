@@ -23,41 +23,52 @@ and comments enabling inline autocompletion and linting suggestions in your IDE.
 
 ## How do I use it?
 
-1. Add [sumneko.lua VSCode extension](https://marketplace.visualstudio.com/items?itemName=sumneko.lua).
+1. Clone this repo somewhere:
 
-  cmd+shift+p "install extensions", "sumneko.lua"
-
-2. Clone this repo somewhere:
 ```
 cd ~/code/
 git clone https://github.com/notpeter/playdate-luacats
 ```
 
-3. Add the following to `.vscode/settings.json` in your workspace and
-(edit `Lua.workspace.library` to reflect where you cloned playdate-luacats.
+2. Add the following to `.luarc.json` in your workspace and
+   edit `workspace.library` to reflect where you cloned playdate-luacats
+
 ```
 {
-    "Lua.runtime.nonstandardSymbol": [
-        "+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="
-    ],
-    "Lua.diagnostics.globals": [
-        "import",
-    ],
-    "Lua.diagnostics.severity": {
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "diagnostics.globals": ["import"],
+    "diagnostics.severity": {
         "duplicate-set-field": "Hint"
     },
-    "Lua.format.defaultConfig": {
+    "format.defaultConfig": {
         "indent_style": "space",
         "indent_size": "4"
     },
-    "Lua.workspace.library": [
+    "runtime.builtin": {
+        "io": "disable",
+        "os": "disable",
+        "package": "disable"
+    },
+    "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
+    "runtime.version": "Lua 5.4",
+    "workspace.library": [
         "/Users/peter/code/playdate-luacats"
     ]
 }
 ```
 
-4. Close and reopen your VSCode window. Wait 5-10 secs and ta-da!
-5. Hover or start typing `playdate.` and you'll get suggestions.
+3. Enable LuaLS (Lua Language Server) support for your editor:
+
+| Editor  | Instructions                                    | Link                                                                           |
+| ------- | ----------------------------------------------- | ------------------------------------------------------------------------------ |
+| VSCode  | cmd+shift+p "install extensions", "sumneko.lua" | [sumneko.lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) |
+| NeoVim  | `require'lspconfig'.lua_ls.setup{}` in config   | [LuaLS NeoVim Install](https://luals.github.io/#neovim-install)                |
+| Sublime | cmd\_+shift+p "install package", "LSP-lua"      | [LSP-Lua Package](https://github.com/sublimelsp/LSP-lua/)                      |
+| Zed     | n/a (LuaLS is built in)                         |                                                                                |
+
+4. Close and re-open your editor; wait 5-10 seconds for LuaLS to initialize.
+
+5. Hover over code or start typing `playdate.` and you'll get suggestions.
 
 ## Alternative Usage
 
