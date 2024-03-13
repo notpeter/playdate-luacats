@@ -8,6 +8,11 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Add instructions for NeoVim, Sublime and Zed (in addition to VSCode)
+- Switch suggested config from `.vscode/settings.json` to `.luarc.json`
+- Suppress LuaLS suggesting `os`, `package` and `io` which are absent
+  on the playdate. (thanks @thacuber2a03)
+
 ## [v2.4.1-luacats1] - 2024-03-08
 
 - Update for PlaydateSDK 2.4.1 (no changes)
