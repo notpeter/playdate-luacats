@@ -73,10 +73,10 @@ fully annotated [stub.lua](library/stub.lua) in this repo.
 
 ## Where does this come from?
 
-* Types are defined in
-[notpeter/playdate-docdef/playdate.luars](https://github.com/notpeter/playdate-docdef/blob/main/playdate.luars)
-* We scrape [Lua PlayDateSDK "Inside Playdate" HTML Documentation](https://sdk.play.date/)
-* Then generate [stub.lua](library/stub.lua) with LuaCATS annotations.
+- Types are defined in
+  [notpeter/playdate-docdef/playdate.luars](https://github.com/notpeter/playdate-docdef/blob/main/playdate.luars)
+- We scrape [Lua PlayDateSDK "Inside Playdate" HTML Documentation](https://sdk.play.date/)
+- Then generate [stub.lua](library/stub.lua) with LuaCATS annotations.
 
 ## Updates?
 
@@ -106,9 +106,9 @@ This makes it impossible to differentiate between the global object
 `playdate.graphics.image` and a instance of type `playdate.graphics.image`.
 
 Both have a bunch of functions and constants attached like `.copy()` and
-`.draw(self, x, y, flip)`  and `.kDitherTypeNone`,
+`.draw(self, x, y, flip)` and `.kDitherTypeNone`,
 but only the image instance has `.width`, `.height`
-attributes.  Without distinct types, our IDE (via LuaLS) can't tell that
+attributes. Without distinct types, our IDE (via LuaLS) can't tell that
 one of these calls will fail at runtime while the other is fine:
 
 ```lua
@@ -119,7 +119,7 @@ xpos = playdate.graphics.image.new(64, 64).width + 1
 We create short names Types like `_Image`
 with instance attributes (e.g. `.width`, `.height`)
 and inherit everything else from their parent (e.g. `playdate.graphics.image`).
-We prefix with "_" to avoid conflicts.
+We prefix with "\_" to avoid conflicts.
 
 ## Anything else I need to know?
 
@@ -172,70 +172,70 @@ of the `:init` constructor with the a return type
 of the class instance object.
 
 ## List of types
+
 These names do not exist at runtime and are only used by LuaLS.
 
-| playdate-luacats | Offical Docs                  |
-| ---------------- | ----------------------------- |
-| _AffineTransform | playdate.geometry.affineTransform |
-| _AnimationLoop | playdate.graphics.animation.loop |
-| _Animator | playdate.graphics.animator |
-| _Arc | playdate.geometry.arc |
-| _BitCrusher | playdate.sound.bitcrusher |
-| _Blinker | playdate.graphics.animation.blinker |
-| _Channel | playdate.sound.channel |
-| _ControlSignal | playdate.sound.controlsignal |
-| _DelayLine | playdate.sound.delayline |
-| _DelayLineTap | playdate.sound.delaylinetap |
-| _Envelope | playdate.sound.envelope |
-| _File | playdate.file.file |
-| _FilePlayer | playdate.sound.fileplayer |
-| _Font | playdate.graphics.font |
-| _FrameTimer | playdate.frameTimer |
-| _GridView | playdate.ui.gridview |
-| _Image | playdate.graphics.image |
-| _ImageTable | playdate.graphics.imagetable |
-| _Instrument | playdate.sound.instrument |
-| _LFO | playdate.sound.lfo |
-| _LineSegment | playdate.geometry.lineSegment |
-| _Menu | playdate.menu |
-| _MenuItem | playdate.menu.item |
-| _NineSlice | playdate.graphics.nineSlice |
-| _OnePoleFilter | playdate.sound.onepolefilter |
-| _OverDrive | playdate.sound.overdrive |
-| _PathFinderGraph | playdate.pathfinder.graph |
-| _PathFinderNode | playdate.pathfinder.node |
-| _Point | playdate.geometry.point |
-| _Polygon | playdate.geometry.polygon |
-| _Rect | playdate.geometry.rect |
-| _RingMod | playdate.sound.ringmod |
-| _Sample | playdate.sound.sample |
-| _SamplePlayer | playdate.sound.sampleplayer |
-| _Sequence | playdate.sound.sequence |
-| _Signal | playdate.sound.signal |
-| _Size | playdate.geometry.size |
-| _SoundEffect | playdate.sound.effect |
-| _Sprite | playdate.graphics.sprite |
-| _Synth | playdate.sound.synth |
-| _TileMap | playdate.graphics.tilemap |
-| _Timer | playdate.timer |
-| _Track | playdate.sound.track |
-| _TwoPoleFilter | playdate.sound.twopolefilter |
-| _Vector2D | playdate.geometry.vector2D |
-| _Video | playdate.graphics.video |
-| _DateTime | |
-| _InputHandler | |
-| _Metadata | |
-| _ModTime | |
-| _NewClass | |
-| _PowerStatus | |
-| _SoundControlEvent | |
-| _SoundSource | |
-| _SoundTrackNote | |
-| _SoundTrackNoteIn | |
-| _SpriteCollisionData | |
-| _SpriteCollisionInfo | |
-| _SystemInfo | |
-
+| playdate-luacats      | Offical Docs                        |
+| --------------------- | ----------------------------------- |
+| \_AffineTransform     | playdate.geometry.affineTransform   |
+| \_AnimationLoop       | playdate.graphics.animation.loop    |
+| \_Animator            | playdate.graphics.animator          |
+| \_Arc                 | playdate.geometry.arc               |
+| \_BitCrusher          | playdate.sound.bitcrusher           |
+| \_Blinker             | playdate.graphics.animation.blinker |
+| \_Channel             | playdate.sound.channel              |
+| \_ControlSignal       | playdate.sound.controlsignal        |
+| \_DelayLine           | playdate.sound.delayline            |
+| \_DelayLineTap        | playdate.sound.delaylinetap         |
+| \_Envelope            | playdate.sound.envelope             |
+| \_File                | playdate.file.file                  |
+| \_FilePlayer          | playdate.sound.fileplayer           |
+| \_Font                | playdate.graphics.font              |
+| \_FrameTimer          | playdate.frameTimer                 |
+| \_GridView            | playdate.ui.gridview                |
+| \_Image               | playdate.graphics.image             |
+| \_ImageTable          | playdate.graphics.imagetable        |
+| \_Instrument          | playdate.sound.instrument           |
+| \_LFO                 | playdate.sound.lfo                  |
+| \_LineSegment         | playdate.geometry.lineSegment       |
+| \_Menu                | playdate.menu                       |
+| \_MenuItem            | playdate.menu.item                  |
+| \_NineSlice           | playdate.graphics.nineSlice         |
+| \_OnePoleFilter       | playdate.sound.onepolefilter        |
+| \_OverDrive           | playdate.sound.overdrive            |
+| \_PathFinderGraph     | playdate.pathfinder.graph           |
+| \_PathFinderNode      | playdate.pathfinder.node            |
+| \_Point               | playdate.geometry.point             |
+| \_Polygon             | playdate.geometry.polygon           |
+| \_Rect                | playdate.geometry.rect              |
+| \_RingMod             | playdate.sound.ringmod              |
+| \_Sample              | playdate.sound.sample               |
+| \_SamplePlayer        | playdate.sound.sampleplayer         |
+| \_Sequence            | playdate.sound.sequence             |
+| \_Signal              | playdate.sound.signal               |
+| \_Size                | playdate.geometry.size              |
+| \_SoundEffect         | playdate.sound.effect               |
+| \_Sprite              | playdate.graphics.sprite            |
+| \_Synth               | playdate.sound.synth                |
+| \_TileMap             | playdate.graphics.tilemap           |
+| \_Timer               | playdate.timer                      |
+| \_Track               | playdate.sound.track                |
+| \_TwoPoleFilter       | playdate.sound.twopolefilter        |
+| \_Vector2D            | playdate.geometry.vector2D          |
+| \_Video               | playdate.graphics.video             |
+| \_DateTime            |                                     |
+| \_InputHandler        |                                     |
+| \_Metadata            |                                     |
+| \_ModTime             |                                     |
+| \_NewClass            |                                     |
+| \_PowerStatus         |                                     |
+| \_SoundControlEvent   |                                     |
+| \_SoundSource         |                                     |
+| \_SoundTrackNote      |                                     |
+| \_SoundTrackNoteIn    |                                     |
+| \_SpriteCollisionData |                                     |
+| \_SpriteCollisionInfo |                                     |
+| \_SystemInfo          |                                     |
 
 ## Version tags
 
@@ -246,7 +246,7 @@ with a numbered suffix (e.g. `luacats1`). For example: `v2.1.0-luacats2` is the 
 revision of annotations for SDK v2.1.0.
 
 There are valid [Semantic Versioning](https://semver.org/).
-The suffix use makes them technically [pre-release]((https://semver.org/#spec-item-9))
+The suffix use makes them technically [pre-release](https://semver.org/#spec-item-9)
 versions but as long as we always have a suffix it'll be fine.
 
 ## About
@@ -259,17 +259,17 @@ This was created by Peter Tripp, but much of the credit goes to
 [lua-debug](https://github.com/actboy168/lua-debug) and related dependencies.
 
 You can also follow me on socials:
-* [@notpeter on Twitter](https://twitter.com/notpeter/)
-* [@notpeter@hachyderm.io on Mastadon](https://hachyderm.io/@notpeter)
-* [@notnotpeter on Twitch](https://twitch.tv/notnotpeter)
-* [@notnotpeter on Discord](https://discord.com/users/notnotpeter)
-* [@notpeter on Itch](https://itch.io/profile/notpeter)
 
+- [@notpeter on Twitter](https://twitter.com/notpeter/)
+- [@notpeter@hachyderm.io on Mastadon](https://hachyderm.io/@notpeter)
+- [@notnotpeter on Twitch](https://twitch.tv/notnotpeter)
+- [@notnotpeter on Discord](https://discord.com/users/notnotpeter)
+- [@notpeter on Itch](https://itch.io/profile/notpeter)
 
 ## Meta notes
 
-* As of 2023-08-05 None of the other [LuaCATS Definitions](https://github.com/LuaCATS)
-have any tags at all, so we're ahead of the curve.
-Over engineering is definitely on-brand for this project.
-* As of 2023-08-05 [Google q=luacats1](https://www.google.com/search?q=luacats1)
-yields zero results.
+- As of 2023-08-05 None of the other [LuaCATS Definitions](https://github.com/LuaCATS)
+  have any tags at all, so we're ahead of the curve.
+  Over engineering is definitely on-brand for this project.
+- As of 2023-08-05 [Google q=luacats1](https://www.google.com/search?q=luacats1)
+  yields zero results.
