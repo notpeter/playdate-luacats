@@ -731,7 +731,7 @@ local _Video = {}
 --- Returns the first index of *element* in the given array-style table. If the table does not
 --- contain *element*, the function returns nil.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#t-table.indexOfElement
+--- [Inside Playdate: table.indexOfElement](https://sdk.play.date/Inside%20Playdate.html#t-table.indexOfElement)
 ---@param table table
 ---@param element any
 ---@return integer?
@@ -739,7 +739,7 @@ function table.indexOfElement(table, element) end
 
 --- Returns the size of the given table as multiple values (*arrayCount*, *hashCount*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#t-table.getsize
+--- [Inside Playdate: table.getsize](https://sdk.play.date/Inside%20Playdate.html#t-table.getsize)
 ---@param table table
 ---@return integer arrayCount
 ---@return integer hashCount
@@ -753,7 +753,7 @@ function table.getsize(table) end
 --- array is always going to contain approximately ten elements, say `myArray = table.create( 10,
 --- 0 )` instead of `myArray = {}`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#t-table.create
+--- [Inside Playdate: table.create](https://sdk.play.date/Inside%20Playdate.html#t-table.create)
 ---@param arrayCount integer
 ---@param hashCount integer
 ---@return table
@@ -763,7 +763,7 @@ function table.create(arrayCount, hashCount) end
 --- provided, it copies the contents of *source* into *destination* and returns *destination*. The
 --- copy will contain references to any nested tables.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#t-table.shallowcopy
+--- [Inside Playdate: table.shallowcopy](https://sdk.play.date/Inside%20Playdate.html#t-table.shallowcopy)
 ---@param source table
 ---@param destination? table
 ---@return table
@@ -772,7 +772,7 @@ function table.shallowcopy(source, destination) end
 --- `deepcopy` returns a deep copy of the *source* table. The copy will contain copies of any nested
 --- tables.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#t-table.deepcopy
+--- [Inside Playdate: table.deepcopy](https://sdk.play.date/Inside%20Playdate.html#t-table.deepcopy)
 ---@param source table
 ---@return table
 function table.deepcopy(source) end
@@ -780,7 +780,7 @@ function table.deepcopy(source) end
 --- Returns two values, the current API version of the Playdate runtime and the minimum API version
 --- supported by the runtime.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-apiVersion
+--- [Inside Playdate: playdate.apiVersion](https://sdk.play.date/Inside%20Playdate.html#f-apiVersion)
 ---@return integer api_version
 ---@return integer runtime_minimum_api_version
 function playdate.apiVersion() end
@@ -795,7 +795,7 @@ function playdate.apiVersion() end
 --- and call it as often as it can, with a not-to-exceed rate of playdate.display.getRefreshRate()
 --- frames per second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-update
+--- [Inside Playdate: playdate.update](https://sdk.play.date/Inside%20Playdate.html#c-update)
 ---@return nil
 function playdate.update() end
 
@@ -810,7 +810,7 @@ function playdate.update() end
 --- and `playdate.frameTimer.updateTimers()` are invoked during `playdate.update()`), animators will
 --- *not* pause during `playdate.wait()`. Be sure to account for this in your code.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-wait
+--- [Inside Playdate: playdate.wait](https://sdk.play.date/Inside%20Playdate.html#f-wait)
 ---@param milliseconds integer
 ---@return nil
 function playdate.wait(milliseconds) end
@@ -818,25 +818,25 @@ function playdate.wait(milliseconds) end
 --- Stops per-frame callbacks to playdate.update(). Useful in conjunction with
 --- playdate.display.flush() if your program only does things in response to button presses.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-stop
+--- [Inside Playdate: playdate.stop](https://sdk.play.date/Inside%20Playdate.html#f-stop)
 ---@return nil
 function playdate.stop() end
 
 --- Resumes per-frame callbacks to playdate.update().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-start
+--- [Inside Playdate: playdate.start](https://sdk.play.date/Inside%20Playdate.html#f-start)
 ---@return nil
 function playdate.start() end
 
 --- Called when the player chooses to exit the game via the System Menu or Menu button.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-gameWillTerminate
+--- [Inside Playdate: playdate.gameWillTerminate](https://sdk.play.date/Inside%20Playdate.html#c-gameWillTerminate)
 ---@return nil
 function playdate.gameWillTerminate() end
 
 --- Called before the device goes to low-power sleep mode because of a low battery.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-deviceWillSleep
+--- [Inside Playdate: playdate.deviceWillSleep](https://sdk.play.date/Inside%20Playdate.html#c-deviceWillSleep)
 ---@return nil
 function playdate.deviceWillSleep() end
 
@@ -844,14 +844,14 @@ function playdate.deviceWillSleep() end
 --- Implementing this function allows your game to take special action when the Playdate is locked,
 --- e.g., saving state.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-deviceWillLock
+--- [Inside Playdate: playdate.deviceWillLock](https://sdk.play.date/Inside%20Playdate.html#c-deviceWillLock)
 ---@return nil
 function playdate.deviceWillLock() end
 
 --- If your game is running on the Playdate when the device is unlocked, this function will be
 --- called.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-deviceDidUnlock
+--- [Inside Playdate: playdate.deviceDidUnlock](https://sdk.play.date/Inside%20Playdate.html#c-deviceDidUnlock)
 ---@return nil
 function playdate.deviceDidUnlock() end
 
@@ -859,25 +859,25 @@ function playdate.deviceDidUnlock() end
 --- happens when the device’s Menu button is pushed.) Implementing these functions allows your game
 --- to take special action when it is paused, e.g., updating the menu image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-gameWillPause
+--- [Inside Playdate: playdate.gameWillPause](https://sdk.play.date/Inside%20Playdate.html#c-gameWillPause)
 ---@return nil
 function playdate.gameWillPause() end
 
 --- Called before the system resumes the game.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-gameWillResume
+--- [Inside Playdate: playdate.gameWillResume](https://sdk.play.date/Inside%20Playdate.html#c-gameWillResume)
 ---@return nil
 function playdate.gameWillResume() end
 
 --- Returns a `playdate.menu` object. Use this to add your custom menu items.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-menu.getSystemMenu
+--- [Inside Playdate: playdate.getSystemMenu](https://sdk.play.date/Inside%20Playdate.html#f-menu.getSystemMenu)
 ---@return _Menu
 function playdate.getSystemMenu() end
 
 --- *title* will be the title displayed by the menu item.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.addMenuItem
+--- [Inside Playdate: playdate.menu:addMenuItem](https://sdk.play.date/Inside%20Playdate.html#m-menu.addMenuItem)
 ---@param title string
 ---@param callback function
 ---@return nil
@@ -899,7 +899,7 @@ function playdate.menu:addMenuItem(title, callback) end
 ---
 --- Playdate OS allows a maximum of **three** custom menu items to be added to the System Menu.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.addCheckmarkMenuItem
+--- [Inside Playdate: playdate.menu:addCheckmarkMenuItem](https://sdk.play.date/Inside%20Playdate.html#m-menu.addCheckmarkMenuItem)
 ---@param title string
 ---@param initialValue? boolean
 ---@param callback? function
@@ -925,7 +925,7 @@ function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 ---
 --- Playdate OS allows a maximum of **three** custom menu items to be added to the System Menu.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.addOptionsMenuItem
+--- [Inside Playdate: playdate.menu:addOptionsMenuItem](https://sdk.play.date/Inside%20Playdate.html#m-menu.addOptionsMenuItem)
 ---@param title string
 ---@param options string[]
 ---@param initalValue? string
@@ -933,13 +933,13 @@ function playdate.menu:addCheckmarkMenuItem(title, initialValue, callback) end
 ---@return nil
 function playdate.menu:addOptionsMenuItem(title, options, initalValue, callback) end
 
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.getMenuItems
+--- [Inside Playdate: playdate.menu:getMenuItems](https://sdk.play.date/Inside%20Playdate.html#m-menu.getMenuItems)
 ---@return _MenuItem[]
 function playdate.menu:getMenuItems() end
 
 --- Removes the specified playdate.menu.item from the menu.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.removeMenuItem
+--- [Inside Playdate: playdate.menu:removeMenuItem](https://sdk.play.date/Inside%20Playdate.html#m-menu.removeMenuItem)
 ---@param menuItem _Menu
 ---@return nil
 function playdate.menu:removeMenuItem(menuItem) end
@@ -949,7 +949,7 @@ function playdate.menu:removeMenuItem(menuItem) end
 --- Items that were added to the System Menu by the operating system cannot be removed by this
 --- operation, or any other.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.removeAllMenuItems
+--- [Inside Playdate: playdate.menu:removeAllMenuItems](https://sdk.play.date/Inside%20Playdate.html#m-menu.removeAllMenuItems)
 ---@return nil
 function playdate.menu:removeAllMenuItems() end
 
@@ -966,7 +966,7 @@ function playdate.menu:removeAllMenuItems() end
 ---
 --- To remove a previously-set menu image, pass `nil` for the *image* argument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setMenuImage
+--- [Inside Playdate: playdate.setMenuImage](https://sdk.play.date/Inside%20Playdate.html#f-setMenuImage)
 ---@param image _Image
 ---@param xOffset? integer
 ---@return nil
@@ -974,7 +974,7 @@ function playdate.setMenuImage(image, xOffset) end
 
 --- Sets the callback function for this menu item.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setCallback
+--- [Inside Playdate: playdate.menu.item:setCallback](https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setCallback)
 ---@param callback function
 ---@return nil
 function playdate.menu.item:setCallback(callback) end
@@ -983,14 +983,14 @@ function playdate.menu.item:setCallback(callback) end
 ---
 --- The `title` for a menu item can also be set using dot syntax.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setTitle
+--- [Inside Playdate: playdate.menu.item:setTitle](https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setTitle)
 ---@param newTitle string
 ---@return nil
 function playdate.menu.item:setTitle(newTitle) end
 
 --- Returns the title displayed for this menu item.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.getTitle
+--- [Inside Playdate: playdate.menu.item:getTitle](https://sdk.play.date/Inside%20Playdate.html#m-menu.item.getTitle)
 ---@return string
 function playdate.menu.item:getTitle() end
 
@@ -1005,21 +1005,21 @@ function playdate.menu.item:getTitle() end
 ---
 --- The `value` for a menu item can also be set using dot syntax.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setValue
+--- [Inside Playdate: playdate.menu.item:setValue](https://sdk.play.date/Inside%20Playdate.html#m-menu.item.setValue)
 ---@param newValue (integer|boolean|string)
 ---@return nil
 function playdate.menu.item:setValue(newValue) end
 
 --- Returns the value for this menu item.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-menu.item.getValue
+--- [Inside Playdate: playdate.menu.item:getValue](https://sdk.play.date/Inside%20Playdate.html#m-menu.item.getValue)
 ---@return (integer|boolean|string)
 function playdate.menu.item:getValue() end
 
 --- Returns the current language of the system, which will be one of the constants
 --- *playdate.graphics.font.kLanguageEnglish* or *playdate.graphics.font.kLanguageJapanese*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getSystemLanguage
+--- [Inside Playdate: playdate.getSystemLanguage](https://sdk.play.date/Inside%20Playdate.html#f-getSystemLanguage)
 ---@return integer
 function playdate.getSystemLanguage() end
 
@@ -1027,7 +1027,7 @@ function playdate.getSystemLanguage() end
 --- *false* otherwise. Games should read this value and, if *true*, avoid visuals that could be
 --- problematic for people with sensitivities to flashing lights or patterns.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getReduceFlashing
+--- [Inside Playdate: playdate.getReduceFlashing](https://sdk.play.date/Inside%20Playdate.html#f-getReduceFlashing)
 ---@return boolean
 function playdate.getReduceFlashing() end
 
@@ -1043,7 +1043,7 @@ function playdate.getReduceFlashing() end
 --- holding Playdate upside-down. However, the A and B buttons —&nbsp;since they are still labeled
 --- as "A" and "B"&nbsp;—&nbsp;retain their normal meanings and will be reported as usual.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getFlipped
+--- [Inside Playdate: playdate.getFlipped](https://sdk.play.date/Inside%20Playdate.html#f-getFlipped)
 ---@return boolean
 function playdate.getFlipped() end
 
@@ -1053,14 +1053,14 @@ function playdate.getFlipped() end
 --- again for a while, calling `playdate.stopAccelerometer()` will put it back into a low-power
 --- idle state.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-startAccelerometer
+--- [Inside Playdate: playdate.startAccelerometer](https://sdk.play.date/Inside%20Playdate.html#f-startAccelerometer)
 ---@return nil
 function playdate.startAccelerometer() end
 
 --- Puts the accelerometer into a low-power idle state. (Though, to be honest, the accelerometer
 --- draws so little power when it’s running you’d never notice the difference.)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-stopAccelerometer
+--- [Inside Playdate: playdate.stopAccelerometer](https://sdk.play.date/Inside%20Playdate.html#f-stopAccelerometer)
 ---@return nil
 function playdate.stopAccelerometer() end
 
@@ -1070,7 +1070,7 @@ function playdate.stopAccelerometer() end
 --- example, with the device held upright this function returns the values (0,1,0). With it flat on
 --- its back, it returns (0,0,1).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-readAccelerometer
+--- [Inside Playdate: playdate.readAccelerometer](https://sdk.play.date/Inside%20Playdate.html#f-readAccelerometer)
 ---@return number x
 ---@return number y
 ---@return number z
@@ -1078,7 +1078,7 @@ function playdate.readAccelerometer() end
 
 --- Returns true if the accelerometer is currently running.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-accelerometerIsRunning
+--- [Inside Playdate: playdate.accelerometerIsRunning](https://sdk.play.date/Inside%20Playdate.html#f-accelerometerIsRunning)
 ---@return boolean
 function playdate.accelerometerIsRunning() end
 
@@ -1095,7 +1095,7 @@ function playdate.accelerometerIsRunning() end
 ---
 --- Or one of the strings "a", "b", "up", "down", "left", "right".
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-buttonIsPressed
+--- [Inside Playdate: playdate.buttonIsPressed](https://sdk.play.date/Inside%20Playdate.html#f-buttonIsPressed)
 ---@param button (integer|string)
 ---@return boolean
 function playdate.buttonIsPressed(button) end
@@ -1106,7 +1106,7 @@ function playdate.buttonIsPressed(button) end
 ---
 --- *button* should be one of the constants listed in playdate.buttonIsPressed()
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-buttonJustPressed
+--- [Inside Playdate: playdate.buttonJustPressed](https://sdk.play.date/Inside%20Playdate.html#f-buttonJustPressed)
 ---@param button (integer|string)
 ---@return boolean
 function playdate.buttonJustPressed(button) end
@@ -1116,7 +1116,7 @@ function playdate.buttonJustPressed(button) end
 ---
 --- *button* should be one of the constants listed in playdate.buttonIsPressed()
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-buttonJustReleased
+--- [Inside Playdate: playdate.buttonJustReleased](https://sdk.play.date/Inside%20Playdate.html#f-buttonJustReleased)
 ---@param button (integer|string)
 ---@return boolean
 function playdate.buttonJustReleased(button) end
@@ -1126,7 +1126,7 @@ function playdate.buttonJustReleased(button) end
 --- pressed and released since the last update. For example, if the d-pad left button and the A
 --- button are both down, the *current* value will be (*playdate.kButtonA*|*playdate.kButtonLeft*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getButtonState
+--- [Inside Playdate: playdate.getButtonState](https://sdk.play.date/Inside%20Playdate.html#f-getButtonState)
 ---@return integer current
 ---@return integer pressed
 ---@return integer released
@@ -1139,94 +1139,94 @@ function playdate.getButtonState() end
 --- are caught. Additionally, when the button queue is enabled the button callbacks listed below are
 --- passed the event time as an argument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setButtonQueueSize
+--- [Inside Playdate: playdate.setButtonQueueSize](https://sdk.play.date/Inside%20Playdate.html#f-setButtonQueueSize)
 ---@param size integer
 ---@return nil
 function playdate.setButtonQueueSize(size) end
 
 --- Called immediately after the player presses the A Button.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-AButtonDown
+--- [Inside Playdate: playdate.AButtonDown](https://sdk.play.date/Inside%20Playdate.html#c-AButtonDown)
 ---@return nil
 function playdate.AButtonDown() end
 
 --- Called after the A Button is held down for one second. This can be used for secondary actions
 --- (e.g., displaying a game world map, changing weapons).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-AButtonHeld
+--- [Inside Playdate: playdate.AButtonHeld](https://sdk.play.date/Inside%20Playdate.html#c-AButtonHeld)
 ---@return nil
 function playdate.AButtonHeld() end
 
 --- Called immediately after the player releases the A Button.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-AButtonUp
+--- [Inside Playdate: playdate.AButtonUp](https://sdk.play.date/Inside%20Playdate.html#c-AButtonUp)
 ---@return nil
 function playdate.AButtonUp() end
 
 --- Called immediately after the player presses the B Button.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-BButtonDown
+--- [Inside Playdate: playdate.BButtonDown](https://sdk.play.date/Inside%20Playdate.html#c-BButtonDown)
 ---@return nil
 function playdate.BButtonDown() end
 
 --- Called after the B Button is held down for one second. This can be used for secondary actions
 --- (e.g., displaying a game world map, changing weapons).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-BButtonHeld
+--- [Inside Playdate: playdate.BButtonHeld](https://sdk.play.date/Inside%20Playdate.html#c-BButtonHeld)
 ---@return nil
 function playdate.BButtonHeld() end
 
 --- Called immediately after the player releases the B Button.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-BButtonUp
+--- [Inside Playdate: playdate.BButtonUp](https://sdk.play.date/Inside%20Playdate.html#c-BButtonUp)
 ---@return nil
 function playdate.BButtonUp() end
 
 --- Called immediately after the player presses the down direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-downButtonDown
+--- [Inside Playdate: playdate.downButtonDown](https://sdk.play.date/Inside%20Playdate.html#c-downButtonDown)
 ---@return nil
 function playdate.downButtonDown() end
 
 --- Called immediately after the player releases the down direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-downButtonUp
+--- [Inside Playdate: playdate.downButtonUp](https://sdk.play.date/Inside%20Playdate.html#c-downButtonUp)
 ---@return nil
 function playdate.downButtonUp() end
 
 --- Called immediately after the player presses the left direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-leftButtonDown
+--- [Inside Playdate: playdate.leftButtonDown](https://sdk.play.date/Inside%20Playdate.html#c-leftButtonDown)
 ---@return nil
 function playdate.leftButtonDown() end
 
 --- Called immediately after the player releases the left direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-leftButtonUp
+--- [Inside Playdate: playdate.leftButtonUp](https://sdk.play.date/Inside%20Playdate.html#c-leftButtonUp)
 ---@return nil
 function playdate.leftButtonUp() end
 
 --- Called immediately after the player presses the right direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-rightButtonDown
+--- [Inside Playdate: playdate.rightButtonDown](https://sdk.play.date/Inside%20Playdate.html#c-rightButtonDown)
 ---@return nil
 function playdate.rightButtonDown() end
 
 --- Called immediately after the player releases the right direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-rightButtonUp
+--- [Inside Playdate: playdate.rightButtonUp](https://sdk.play.date/Inside%20Playdate.html#c-rightButtonUp)
 ---@return nil
 function playdate.rightButtonUp() end
 
 --- Called immediately after the player presses the up direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-upButtonDown
+--- [Inside Playdate: playdate.upButtonDown](https://sdk.play.date/Inside%20Playdate.html#c-upButtonDown)
 ---@return nil
 function playdate.upButtonDown() end
 
 --- Called immediately after the player releases the up direction on the d-pad.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-upButtonUp
+--- [Inside Playdate: playdate.upButtonUp](https://sdk.play.date/Inside%20Playdate.html#c-upButtonUp)
 ---@return nil
 function playdate.upButtonUp() end
 
@@ -1235,7 +1235,7 @@ function playdate.upButtonUp() end
 --- If your game requires the crank and `:isCrankDocked()` is true, you can use a crank alert to
 --- notify the user that the crank should be extended.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-isCrankDocked
+--- [Inside Playdate: playdate.isCrankDocked](https://sdk.play.date/Inside%20Playdate.html#f-isCrankDocked)
 ---@return boolean
 function playdate.isCrankDocked() end
 
@@ -1247,7 +1247,7 @@ function playdate.isCrankDocked() end
 --- ```
 --- local crankPosition = playdate.getCrankPosition()
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-getCrankPosition
+--- [Inside Playdate: playdate.getCrankPosition](https://sdk.play.date/Inside%20Playdate.html#f-getCrankPosition)
 ---@return number
 function playdate.getCrankPosition() end
 
@@ -1259,7 +1259,7 @@ function playdate.getCrankPosition() end
 --- ```
 --- local change, acceleratedChange = playdate.getCrankChange()
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-getCrankChange
+--- [Inside Playdate: playdate.getCrankChange](https://sdk.play.date/Inside%20Playdate.html#f-getCrankChange)
 ---@return number
 function playdate.getCrankChange() end
 
@@ -1290,7 +1290,7 @@ function playdate.getCrankChange() end
 ---     end
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-getCrankTicks
+--- [Inside Playdate: playdate.getCrankTicks](https://sdk.play.date/Inside%20Playdate.html#f-getCrankTicks)
 ---@param ticksPerRevolution number
 ---@return number
 function playdate.getCrankTicks(ticksPerRevolution) end
@@ -1299,7 +1299,7 @@ function playdate.getCrankTicks(ticksPerRevolution) end
 --- multiplied by a value that increases as the crank moves faster, similar to the way mouse
 --- acceleration works. Negative values are anti-clockwise.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-cranked
+--- [Inside Playdate: playdate.cranked](https://sdk.play.date/Inside%20Playdate.html#c-cranked)
 ---@param change number
 ---@param acceleratedChange number
 ---@return nil
@@ -1307,13 +1307,13 @@ function playdate.cranked(change, acceleratedChange) end
 
 --- This function, if defined, is called when the crank is docked.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-crankDocked
+--- [Inside Playdate: playdate.crankDocked](https://sdk.play.date/Inside%20Playdate.html#c-crankDocked)
 ---@return nil
 function playdate.crankDocked() end
 
 --- This function, if defined, is called when the crank is undocked.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-crankUndocked
+--- [Inside Playdate: playdate.crankUndocked](https://sdk.play.date/Inside%20Playdate.html#c-crankUndocked)
 ---@return nil
 function playdate.crankUndocked() end
 
@@ -1322,7 +1322,7 @@ function playdate.crankUndocked() end
 ---
 --- When your game terminates, crank sounds will automatically be re-enabled.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setCrankSoundsDisabled
+--- [Inside Playdate: playdate.setCrankSoundsDisabled](https://sdk.play.date/Inside%20Playdate.html#f-setCrankSoundsDisabled)
 ---@param disable boolean
 ---@return nil
 function playdate.setCrankSoundsDisabled(disable) end
@@ -1334,7 +1334,7 @@ function playdate.setCrankSoundsDisabled(disable) end
 --- If missing or false, the previously-pushed input handler tables will be searched for input
 --- functions missing from handler, cascading down to the default playdate table.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.push
+--- [Inside Playdate: playdate.inputHandlers.push](https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.push)
 ---@param handler table
 ---@param masksPreviousHandlers? boolean
 ---@return nil
@@ -1342,7 +1342,7 @@ function playdate.inputHandlers.push(handler, masksPreviousHandlers) end
 
 --- Pops the last input handler off of the stack.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.pop
+--- [Inside Playdate: playdate.inputHandlers.pop](https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.pop)
 ---@return nil
 function playdate.inputHandlers.pop() end
 
@@ -1355,27 +1355,27 @@ function playdate.inputHandlers.pop() end
 --- appropriate. (For example, if your game is an MP3 audio player, auto-lock could be re-enabled
 --- when the user pauses the audio.)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setAutoLockDisabled
+--- [Inside Playdate: playdate.setAutoLockDisabled](https://sdk.play.date/Inside%20Playdate.html#f-setAutoLockDisabled)
 ---@param disable boolean
 ---@return nil
 function playdate.setAutoLockDisabled(disable) end
 
 --- Returns the number of milliseconds the game has been *active* since launched.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getCurrentTimeMilliseconds
+--- [Inside Playdate: playdate.getCurrentTimeMilliseconds](https://sdk.play.date/Inside%20Playdate.html#f-getCurrentTimeMilliseconds)
 ---@return integer
 function playdate.getCurrentTimeMilliseconds() end
 
 --- Resets the high-resolution timer.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-resetElapsedTime
+--- [Inside Playdate: playdate.resetElapsedTime](https://sdk.play.date/Inside%20Playdate.html#f-resetElapsedTime)
 ---@return nil
 function playdate.resetElapsedTime() end
 
 --- Returns the number of seconds since `playdate.resetElapsedTime()` was called. The value is a
 --- floating-point number with microsecond accuracy.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getElapsedTime
+--- [Inside Playdate: playdate.getElapsedTime](https://sdk.play.date/Inside%20Playdate.html#f-getElapsedTime)
 ---@return number
 function playdate.getElapsedTime() end
 
@@ -1386,7 +1386,7 @@ function playdate.getElapsedTime() end
 --- ```
 --- math.randomseed(playdate.getSecondsSinceEpoch())
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-getSecondsSinceEpoch
+--- [Inside Playdate: playdate.getSecondsSinceEpoch](https://sdk.play.date/Inside%20Playdate.html#f-getSecondsSinceEpoch)
 ---@return integer seconds
 ---@return integer milliseconds
 function playdate.getSecondsSinceEpoch() end
@@ -1402,13 +1402,13 @@ function playdate.getSecondsSinceEpoch() end
 --- * second: 0 - 59 (or 60 on a leap second)
 --- * millisecond: 0 - 999
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getTime
+--- [Inside Playdate: playdate.getTime](https://sdk.play.date/Inside%20Playdate.html#f-getTime)
 ---@return _DateTime
 function playdate.getTime() end
 
 --- Returns a table in the same format as playdate.getTime(), but in GMT rather than local time.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getGMTTime
+--- [Inside Playdate: playdate.getGMTTime](https://sdk.play.date/Inside%20Playdate.html#f-getGMTTime)
 ---@return _DateTime
 function playdate.getGMTTime() end
 
@@ -1417,7 +1417,7 @@ function playdate.getGMTTime() end
 ---
 --- *time* should be a table of the same format as the one returned by playdate.getTime().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-epochFromTime
+--- [Inside Playdate: playdate.epochFromTime](https://sdk.play.date/Inside%20Playdate.html#f-epochFromTime)
 ---@param time _DateTime
 ---@return integer seconds
 ---@return integer milliseconds
@@ -1428,7 +1428,7 @@ function playdate.epochFromTime(time) end
 ---
 --- *time* should be a table of the same format as the one returned by playdate.getTime().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-epochFromGMTTime
+--- [Inside Playdate: playdate.epochFromGMTTime](https://sdk.play.date/Inside%20Playdate.html#f-epochFromGMTTime)
 ---@param time _DateTime
 ---@return integer seconds
 ---@return integer milliseconds
@@ -1437,7 +1437,7 @@ function playdate.epochFromGMTTime(time) end
 --- Converts the epoch to a local date and time table, in the same format as the table returned
 --- by playdate.getTime().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timeFromEpoch
+--- [Inside Playdate: playdate.timeFromEpoch](https://sdk.play.date/Inside%20Playdate.html#f-timeFromEpoch)
 ---@param seconds integer
 ---@param milliseconds integer
 ---@return _DateTime
@@ -1446,7 +1446,7 @@ function playdate.timeFromEpoch(seconds, milliseconds) end
 --- Converts the epoch to a GMT date and time table, in the same format as the table returned by
 --- playdate.getTime().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-GMTTimeFromEpoch
+--- [Inside Playdate: playdate.GMTTimeFromEpoch](https://sdk.play.date/Inside%20Playdate.html#f-GMTTimeFromEpoch)
 ---@param seconds integer
 ---@param milliseconds integer
 ---@return _DateTime
@@ -1454,7 +1454,7 @@ function playdate.GMTTimeFromEpoch(seconds, milliseconds) end
 
 --- Returns true if the user has set the 24-Hour Time preference in the Settings program.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-shouldDisplay24HourTime
+--- [Inside Playdate: playdate.shouldDisplay24HourTime](https://sdk.play.date/Inside%20Playdate.html#f-shouldDisplay24HourTime)
 ---@return boolean
 function playdate.shouldDisplay24HourTime() end
 
@@ -1466,7 +1466,7 @@ function playdate.shouldDisplay24HourTime() end
 --- You should ideally remove debugging print statements from your final games to improve
 --- performance.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-print
+--- [Inside Playdate: print](https://sdk.play.date/Inside%20Playdate.html#f-print)
 ---@param ... any
 ---@return nil
 function print(...) end
@@ -1479,7 +1479,7 @@ function print(...) end
 --- You should ideally remove debugging print statements from your final games to improve
 --- performance.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-printTable
+--- [Inside Playdate: printTable](https://sdk.play.date/Inside%20Playdate.html#f-printTable)
 ---@param table table
 ---@return nil
 function printTable(table) end
@@ -1487,14 +1487,14 @@ function printTable(table) end
 --- *flag* determines whether or not the print() function adds a newline to the end of the printed
 --- text.  Default is *true*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setNewlinePrinted
+--- [Inside Playdate: playdate.setNewlinePrinted](https://sdk.play.date/Inside%20Playdate.html#f-setNewlinePrinted)
 ---@param flag boolean
 ---@return nil
 function playdate.setNewlinePrinted(flag) end
 
 --- Calculates the current frames per second and draws that value at *x, y*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-drawFPS
+--- [Inside Playdate: playdate.drawFPS](https://sdk.play.date/Inside%20Playdate.html#f-drawFPS)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -1504,7 +1504,7 @@ function playdate.drawFPS(x, y) end
 --- from the *specified* refresh rate (see playdate.display.getRefreshRate()) by a little or a lot
 --- depending upon how much calculation is being done per frame.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getFPS
+--- [Inside Playdate: playdate.getFPS](https://sdk.play.date/Inside%20Playdate.html#f-getFPS)
 ---@return number
 function playdate.getFPS() end
 
@@ -1517,7 +1517,7 @@ function playdate.getFPS() end
 ---
 --- You must import *CoreLibs/utilities/where* to use this function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-where
+--- [Inside Playdate: where](https://sdk.play.date/Inside%20Playdate.html#f-where)
 ---@return string
 function where() end
 
@@ -1536,7 +1536,7 @@ function where() end
 ---
 --- You must import *CoreLibs/utilities/sampler* to use this function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#lua-sample
+--- [Inside Playdate: sample](https://sdk.play.date/Inside%20Playdate.html#lua-sample)
 ---@param name string
 ---@param _function function
 ---@return nil
@@ -1557,14 +1557,14 @@ function sample(name, _function) end
 --- `playdate.getStats()` only functions on a Playdate device. In the Simulator, this function
 --- returns `nil`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getStats
+--- [Inside Playdate: playdate.getStats](https://sdk.play.date/Inside%20Playdate.html#f-getStats)
 ---@return _SystemStats
 function playdate.getStats() end
 
 --- `setStatsInterval()` sets the length of time for each sample frame of runtime stats. Set
 --- *seconds* to zero to disable stats collection.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setStatsInterval
+--- [Inside Playdate: playdate.setStatsInterval](https://sdk.play.date/Inside%20Playdate.html#f-setStatsInterval)
 ---@param seconds number
 ---@return nil
 function playdate.setStatsInterval(seconds) end
@@ -1580,7 +1580,7 @@ function playdate.setStatsInterval(seconds) end
 ---
 --- Equivalent to `playdate->display->setRefreshRate()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.setRefreshRate
+--- [Inside Playdate: playdate.display.setRefreshRate](https://sdk.play.date/Inside%20Playdate.html#f-display.setRefreshRate)
 ---@param rate number
 ---@return nil
 function playdate.display.setRefreshRate(rate) end
@@ -1588,7 +1588,7 @@ function playdate.display.setRefreshRate(rate) end
 --- Returns the specified refresh rate in frames per second. See also playdate.getFPS() for
 --- *measured, actual* frame rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getRefreshRate
+--- [Inside Playdate: playdate.display.getRefreshRate](https://sdk.play.date/Inside%20Playdate.html#f-display.getRefreshRate)
 ---@return integer
 function playdate.display.getRefreshRate() end
 
@@ -1596,7 +1596,7 @@ function playdate.display.getRefreshRate() end
 --- playdate.stop() to disable update callbacks in, say, the case where your app updates the display
 --- only in reaction to button presses.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.flush
+--- [Inside Playdate: playdate.display.flush](https://sdk.play.date/Inside%20Playdate.html#f-display.flush)
 ---@return nil
 function playdate.display.flush() end
 
@@ -1606,7 +1606,7 @@ function playdate.display.flush() end
 ---
 --- Equivalent to `playdate->display->getHeight()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getHeight
+--- [Inside Playdate: playdate.display.getHeight](https://sdk.play.date/Inside%20Playdate.html#f-display.getHeight)
 ---@return integer
 function playdate.display.getHeight() end
 
@@ -1616,7 +1616,7 @@ function playdate.display.getHeight() end
 ---
 --- Equivalent to `playdate->display->getWidth()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getWidth
+--- [Inside Playdate: playdate.display.getWidth](https://sdk.play.date/Inside%20Playdate.html#f-display.getWidth)
 ---@return integer
 function playdate.display.getWidth() end
 
@@ -1624,7 +1624,7 @@ function playdate.display.getWidth() end
 --- display scale into account; e.g., if the scale is 2, the values returned will be based off of a
 --- 200 x 120-pixel screen rather than the native 400 x 240. (See playdate.display.setScale().)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getSize
+--- [Inside Playdate: playdate.display.getSize](https://sdk.play.date/Inside%20Playdate.html#f-display.getSize)
 ---@return integer width
 ---@return integer height
 function playdate.display.getSize() end
@@ -1634,7 +1634,7 @@ function playdate.display.getSize() end
 --- will be based off of a 200 x 120-pixel screen rather than the native 400 x 240. (See
 --- playdate.display.setScale().)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getRect
+--- [Inside Playdate: playdate.display.getRect](https://sdk.play.date/Inside%20Playdate.html#f-display.getRect)
 ---@return _Rect
 function playdate.display.getRect() end
 
@@ -1645,14 +1645,14 @@ function playdate.display.getRect() end
 ---
 --- Equivalent to `playdate->display->setScale()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.setScale
+--- [Inside Playdate: playdate.display.setScale](https://sdk.play.date/Inside%20Playdate.html#f-display.setScale)
 ---@param scale integer
 ---@return nil
 function playdate.display.setScale(scale) end
 
 --- Gets the display scale factor. Valid values for *scale* are 1, 2, 4, and 8.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getScale
+--- [Inside Playdate: playdate.display.getScale](https://sdk.play.date/Inside%20Playdate.html#f-display.getScale)
 ---@return integer
 function playdate.display.getScale() end
 
@@ -1661,14 +1661,14 @@ function playdate.display.getScale() end
 ---
 --- Equivalent to `playdate->display->setInverted()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.setInverted
+--- [Inside Playdate: playdate.display.setInverted](https://sdk.play.date/Inside%20Playdate.html#f-display.setInverted)
 ---@param flag boolean
 ---@return nil
 function playdate.display.setInverted(flag) end
 
 --- Returns the current value of the display invert flag.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getInverted
+--- [Inside Playdate: playdate.display.getInverted](https://sdk.play.date/Inside%20Playdate.html#f-display.getInverted)
 ---@return boolean
 function playdate.display.getInverted() end
 
@@ -1676,7 +1676,7 @@ function playdate.display.getInverted() end
 ---
 --- Equivalent to `playdate->display->setMosaic()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.setMosaic
+--- [Inside Playdate: playdate.display.setMosaic](https://sdk.play.date/Inside%20Playdate.html#f-display.setMosaic)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -1684,7 +1684,7 @@ function playdate.display.setMosaic(x, y) end
 
 --- Returns the current mosaic effect settings as multiple values (*x*, *y*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getMosaic
+--- [Inside Playdate: playdate.display.getMosaic](https://sdk.play.date/Inside%20Playdate.html#f-display.getMosaic)
 ---@return integer x
 ---@return integer y
 function playdate.display.getMosaic() end
@@ -1732,7 +1732,7 @@ function playdate.display.getMosaic() end
 ---     playdate.graphics.fillCircleAtPoint(200, 120, 10)
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-display.setOffset
+--- [Inside Playdate: playdate.display.setOffset](https://sdk.play.date/Inside%20Playdate.html#f-display.setOffset)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -1740,7 +1740,7 @@ function playdate.display.setOffset(x, y) end
 
 --- `getOffset()` returns the current display offset as multiple values (*x*, *y*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.getOffset
+--- [Inside Playdate: playdate.display.getOffset](https://sdk.play.date/Inside%20Playdate.html#f-display.getOffset)
 ---@return integer x
 ---@return integer y
 function playdate.display.getOffset() end
@@ -1751,7 +1751,7 @@ function playdate.display.getOffset() end
 ---
 --- Equivalent to `playdate->display->setFlipped()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.setFlipped
+--- [Inside Playdate: playdate.display.setFlipped](https://sdk.play.date/Inside%20Playdate.html#f-display.setFlipped)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -1763,7 +1763,7 @@ function playdate.display.setFlipped(x, y) end
 --- Loading an image via playdate.graphics.image.new() and drawing it at a desired coordinate with
 --- playdate.graphics.image:draw() offers more flexibility.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-display.loadImage
+--- [Inside Playdate: playdate.display.loadImage](https://sdk.play.date/Inside%20Playdate.html#f-display.loadImage)
 ---@param path string
 ---@return nil
 function playdate.display.loadImage(path) end
@@ -1776,7 +1776,7 @@ function playdate.display.loadImage(path) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.linear](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1792,7 +1792,7 @@ function playdate.easingFunctions.linear(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1808,7 +1808,7 @@ function playdate.easingFunctions.inQuad(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1824,7 +1824,7 @@ function playdate.easingFunctions.outQuad(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1840,7 +1840,7 @@ function playdate.easingFunctions.inOutQuad(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1856,7 +1856,7 @@ function playdate.easingFunctions.outInQuad(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1872,7 +1872,7 @@ function playdate.easingFunctions.inCubic(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1888,7 +1888,7 @@ function playdate.easingFunctions.outCubic(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1904,7 +1904,7 @@ function playdate.easingFunctions.inOutCubic(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1920,7 +1920,7 @@ function playdate.easingFunctions.outInCubic(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1936,7 +1936,7 @@ function playdate.easingFunctions.inQuart(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1952,7 +1952,7 @@ function playdate.easingFunctions.outQuart(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1968,7 +1968,7 @@ function playdate.easingFunctions.inOutQuart(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -1984,7 +1984,7 @@ function playdate.easingFunctions.outInQuart(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2000,7 +2000,7 @@ function playdate.easingFunctions.inQuint(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2016,7 +2016,7 @@ function playdate.easingFunctions.outQuint(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2032,7 +2032,7 @@ function playdate.easingFunctions.inOutQuint(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2048,7 +2048,7 @@ function playdate.easingFunctions.outInQuint(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2064,7 +2064,7 @@ function playdate.easingFunctions.inSine(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2080,7 +2080,7 @@ function playdate.easingFunctions.outSine(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2096,7 +2096,7 @@ function playdate.easingFunctions.inOutSine(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2112,7 +2112,7 @@ function playdate.easingFunctions.outInSine(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2128,7 +2128,7 @@ function playdate.easingFunctions.inExpo(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2144,7 +2144,7 @@ function playdate.easingFunctions.outExpo(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2160,7 +2160,7 @@ function playdate.easingFunctions.inOutExpo(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2176,7 +2176,7 @@ function playdate.easingFunctions.outInExpo(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2192,7 +2192,7 @@ function playdate.easingFunctions.inCirc(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2208,7 +2208,7 @@ function playdate.easingFunctions.outCirc(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2224,7 +2224,7 @@ function playdate.easingFunctions.inOutCirc(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2240,7 +2240,7 @@ function playdate.easingFunctions.outInCirc(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2258,7 +2258,7 @@ function playdate.easingFunctions.inElastic(t, b, c, d, a, p) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2276,7 +2276,7 @@ function playdate.easingFunctions.outElastic(t, b, c, d, a, p) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2294,7 +2294,7 @@ function playdate.easingFunctions.inOutElastic(t, b, c, d, a, p) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2312,7 +2312,7 @@ function playdate.easingFunctions.outInElastic(t, b, c, d, a, p) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2329,7 +2329,7 @@ function playdate.easingFunctions.inBack(t, b, c, d, s) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2346,7 +2346,7 @@ function playdate.easingFunctions.outBack(t, b, c, d, s) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2363,7 +2363,7 @@ function playdate.easingFunctions.inOutBack(t, b, c, d, s) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2380,7 +2380,7 @@ function playdate.easingFunctions.outInBack(t, b, c, d, s) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2396,7 +2396,7 @@ function playdate.easingFunctions.outBounce(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2412,7 +2412,7 @@ function playdate.easingFunctions.inBounce(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.inOutBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2428,7 +2428,7 @@ function playdate.easingFunctions.inOutBounce(t, b, c, d) end
 --- * p - period parameter
 --- * s - amount of "overshoot"
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions
+--- [Inside Playdate: playdate.easingFunctions.outInBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
 ---@param b number
 ---@param c number
@@ -2440,7 +2440,7 @@ function playdate.easingFunctions.outInBounce(t, b, c, d) end
 --- file name.) The default file name is "data". If *pretty-print* is true, the JSON will be nicely
 --- formatted.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-datastore.write
+--- [Inside Playdate: playdate.datastore.write](https://sdk.play.date/Inside%20Playdate.html#f-datastore.write)
 ---@param table table
 ---@param filename? string
 ---@param pretty? boolean
@@ -2451,7 +2451,7 @@ function playdate.datastore.write(table, filename, pretty) end
 --- extension should be omitted.)  The default file name is "data". If no file is found, this
 --- function returns nil.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-datastore.read
+--- [Inside Playdate: playdate.datastore.read](https://sdk.play.date/Inside%20Playdate.html#f-datastore.read)
 ---@param filename? string
 ---@return table?
 function playdate.datastore.read(filename) end
@@ -2459,7 +2459,7 @@ function playdate.datastore.read(filename) end
 --- Deletes the specified datastore file. The default file name is "data". Returns `false` if the
 --- datastore file could not be deleted.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-datastore.delete
+--- [Inside Playdate: playdate.datastore.delete](https://sdk.play.date/Inside%20Playdate.html#f-datastore.delete)
 ---@param filename? string
 ---@return boolean
 function playdate.datastore.delete(filename) end
@@ -2476,7 +2476,7 @@ function playdate.datastore.delete(filename) end
 --- height, bgcolor* ) with *bgcolor* set to `playdate.graphics.kColorWhite` or
 --- `playdate.graphics.kColorBlack`, otherwise your image will render improperly to the file.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-datastore.writeImage
+--- [Inside Playdate: playdate.datastore.writeImage](https://sdk.play.date/Inside%20Playdate.html#f-datastore.writeImage)
 ---@param image _Image
 ---@param path string
 ---@return nil
@@ -2488,7 +2488,7 @@ function playdate.datastore.writeImage(image, path) end
 --- `readImage()` can only load compiled pdi files. (`writeImage()` by default creates compiled
 --- pdi files.)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-datastore.readImage
+--- [Inside Playdate: playdate.datastore.readImage](https://sdk.play.date/Inside%20Playdate.html#f-datastore.readImage)
 ---@param path string
 ---@return _Image?
 function playdate.datastore.readImage(path) end
@@ -2508,7 +2508,7 @@ function playdate.datastore.readImage(path) end
 ---
 --- Equivalent to `playdate->file->open()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.open
+--- [Inside Playdate: playdate.file.open](https://sdk.play.date/Inside%20Playdate.html#f-file.open)
 ---@param path string
 ---@param mode? integer
 ---@return _File? file
@@ -2519,7 +2519,7 @@ function playdate.file.open(path, mode) end
 ---
 --- Equivalent to `playdate->file->close()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.close
+--- [Inside Playdate: playdate.file.file:close](https://sdk.play.date/Inside%20Playdate.html#m-file.close)
 ---@return nil
 function playdate.file.file:close() end
 
@@ -2527,7 +2527,7 @@ function playdate.file.file:close() end
 --- or 0 and a second return value describing the error. If you wish to include line termination
 --- characters (`\n`, `\r`), please include them in the string.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.write
+--- [Inside Playdate: playdate.file.file:write](https://sdk.play.date/Inside%20Playdate.html#m-file.write)
 ---@param str string
 ---@return integer bytes_written
 ---@return string? err
@@ -2537,14 +2537,14 @@ function playdate.file.file:write(str) end
 ---
 --- Equivalent to `playdate->file->flush()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.flush
+--- [Inside Playdate: playdate.file.file:flush](https://sdk.play.date/Inside%20Playdate.html#m-file.flush)
 ---@return nil
 function playdate.file.file:flush() end
 
 --- Returns the next line of the file, delimited by either `\n` or `\r\n`. The returned string does
 --- not include newline characters.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.readline
+--- [Inside Playdate: playdate.file.file:readline](https://sdk.play.date/Inside%20Playdate.html#m-file.readline)
 ---@return string
 function playdate.file.file:readline() end
 
@@ -2553,7 +2553,7 @@ function playdate.file.file:readline() end
 ---
 --- Equivalent to `playdate->file->read()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.read
+--- [Inside Playdate: playdate.file.file:read](https://sdk.play.date/Inside%20Playdate.html#m-file.read)
 ---@param numberOfBytes integer
 ---@return integer numberOfBytes
 ---@return string? err
@@ -2563,7 +2563,7 @@ function playdate.file.file:read(numberOfBytes) end
 ---
 --- Equivalent to `playdate->file->seek()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.seek
+--- [Inside Playdate: playdate.file.file:seek](https://sdk.play.date/Inside%20Playdate.html#m-file.seek)
 ---@param offset integer
 ---@return nil
 function playdate.file.file:seek(offset) end
@@ -2572,7 +2572,7 @@ function playdate.file.file:seek(offset) end
 ---
 --- Equivalent to `playdate->file->tell()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-file.tell
+--- [Inside Playdate: playdate.file.file:tell](https://sdk.play.date/Inside%20Playdate.html#m-file.tell)
 ---@return integer
 function playdate.file.file:tell() end
 
@@ -2588,7 +2588,7 @@ function playdate.file.file:tell() end
 ---
 --- Learn more about the Playdate filesystem.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.listFiles
+--- [Inside Playdate: playdate.file.listFiles](https://sdk.play.date/Inside%20Playdate.html#f-file.listFiles)
 ---@param path? string
 ---@param showhidden? boolean
 ---@return string[]
@@ -2596,14 +2596,14 @@ function playdate.file.listFiles(path, showhidden) end
 
 --- Returns true if a file exists at the given path.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.exists
+--- [Inside Playdate: playdate.file.exists](https://sdk.play.date/Inside%20Playdate.html#f-file.exists)
 ---@param path string
 ---@return boolean
 function playdate.file.exists(path) end
 
 --- Returns true if a directory exists at the given path.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.isdir
+--- [Inside Playdate: playdate.file.isdir](https://sdk.play.date/Inside%20Playdate.html#f-file.isdir)
 ---@param path string
 ---@return boolean
 function playdate.file.isdir(path) end
@@ -2616,7 +2616,7 @@ function playdate.file.isdir(path) end
 ---
 --- Equivalent to `playdate->file->mkdir()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.mkdir
+--- [Inside Playdate: playdate.file.mkdir](https://sdk.play.date/Inside%20Playdate.html#f-file.mkdir)
 ---@param path string
 ---@return nil
 function playdate.file.mkdir(path) end
@@ -2626,7 +2626,7 @@ function playdate.file.mkdir(path) end
 --- If *recursive* is `true`, this function will delete the directory at *path* and its contents,
 --- otherwise the directory must be empty to be deleted.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.delete
+--- [Inside Playdate: playdate.file.delete](https://sdk.play.date/Inside%20Playdate.html#f-file.delete)
 ---@param path string
 ---@param recursive? boolean
 ---@return boolean
@@ -2634,14 +2634,14 @@ function playdate.file.delete(path, recursive) end
 
 --- Returns the size of the file at the given path.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.getSize
+--- [Inside Playdate: playdate.file.getSize](https://sdk.play.date/Inside%20Playdate.html#f-file.getSize)
 ---@param path string
 ---@return integer
 function playdate.file.getSize(path) end
 
 --- Returns the type of the file at the given path.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.getType
+--- [Inside Playdate: playdate.file.getType](https://sdk.play.date/Inside%20Playdate.html#f-file.getType)
 ---@param path string
 ---@return string
 function playdate.file.getType(path) end
@@ -2655,7 +2655,7 @@ function playdate.file.getType(path) end
 --- * minute: 0 - 59
 --- * second: 0 - 59 (or 60 on a leap second)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.modtime
+--- [Inside Playdate: playdate.file.modtime](https://sdk.play.date/Inside%20Playdate.html#f-file.modtime)
 ---@param path string
 ---@return _ModTime
 function playdate.file.modtime(path) end
@@ -2666,7 +2666,7 @@ function playdate.file.modtime(path) end
 ---
 --- Equivalent to `playdate->file->rename()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.rename
+--- [Inside Playdate: playdate.file.rename](https://sdk.play.date/Inside%20Playdate.html#f-file.rename)
 ---@param path string
 ---@param newPath string
 ---@return boolean
@@ -2677,7 +2677,7 @@ function playdate.file.rename(path, newPath) end
 ---
 --- *env*, if specified, is a table to use as the function’s global namespace instead of *_G*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.load
+--- [Inside Playdate: playdate.file.load](https://sdk.play.date/Inside%20Playdate.html#f-file.load)
 ---@param path string
 ---@param env? table
 ---@return function
@@ -2690,7 +2690,7 @@ function playdate.file.load(path, env) end
 ---
 --- *env*, if specified, is a table to use as the function’s global namespace instead of *_G*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-file.run
+--- [Inside Playdate: playdate.file.run](https://sdk.play.date/Inside%20Playdate.html#f-file.run)
 ---@param path string
 ---@param env? table
 ---@return nil
@@ -2699,7 +2699,7 @@ function playdate.file.run(path, env) end
 --- Returns a new playdate.geometry.affineTransform. Use new() instead to get a new copy of the
 --- identity transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.affineTransform.new
+--- [Inside Playdate: playdate.geometry.affineTransform.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.affineTransform.new)
 ---@param m11 number
 ---@param m12 number
 ---@param m21 number
@@ -2711,13 +2711,13 @@ function playdate.geometry.affineTransform.new(m11, m12, m21, m22, tx, ty) end
 
 --- Returns a new playdate.geometry.affineTransform that is the identity transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.affineTransform.new-1
+--- [Inside Playdate: playdate.geometry.affineTransform.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.affineTransform.new-1)
 ---@return _AffineTransform
 function playdate.geometry.affineTransform.new() end
 
 --- Returns a new copy of the affine transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.copy
+--- [Inside Playdate: playdate.geometry.affineTransform:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.copy)
 ---@return _AffineTransform
 function playdate.geometry.affineTransform:copy() end
 
@@ -2729,13 +2729,13 @@ function playdate.geometry.affineTransform:copy() end
 --- coordinates (x’, y’), transforming the coordinates (x’, y’) by the inverse matrix produces the
 --- original coordinates (x, y).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.invert
+--- [Inside Playdate: playdate.geometry.affineTransform:invert](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.invert)
 ---@return nil
 function playdate.geometry.affineTransform:invert() end
 
 --- Mutates the the caller, changing it to an identity transform matrix.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.reset
+--- [Inside Playdate: playdate.geometry.affineTransform:reset](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.reset)
 ---@return nil
 function playdate.geometry.affineTransform:reset() end
 
@@ -2749,7 +2749,7 @@ function playdate.geometry.affineTransform:reset() end
 --- important. That is, the result of multiplying matrix t1 by matrix t2 does not necessarily equal
 --- the result of multiplying matrix t2 by matrix t1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.concat
+--- [Inside Playdate: playdate.geometry.affineTransform:concat](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.concat)
 ---@param af _AffineTransform
 ---@return nil
 function playdate.geometry.affineTransform:concat(af) end
@@ -2757,7 +2757,7 @@ function playdate.geometry.affineTransform:concat(af) end
 --- Mutates the caller by applying a translate transformation.  x values are moved by *dx*, y values
 --- by *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.translate
+--- [Inside Playdate: playdate.geometry.affineTransform:translate](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.translate)
 ---@param dx integer
 ---@param dy integer
 ---@return nil
@@ -2765,7 +2765,7 @@ function playdate.geometry.affineTransform:translate(dx, dy) end
 
 --- Returns a copy of the calling affine transform with a translate transformation appended.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.translatedBy
+--- [Inside Playdate: playdate.geometry.affineTransform:translatedBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.translatedBy)
 ---@param dx integer
 ---@param dy integer
 ---@return _AffineTransform
@@ -2778,7 +2778,7 @@ function playdate.geometry.affineTransform:translatedBy(dx, dy) end
 ---
 --- If only one parameter is passed, it is used to scale both x and y values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.scale
+--- [Inside Playdate: playdate.geometry.affineTransform:scale](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.scale)
 ---@param sx number
 ---@param sy? number
 ---@return nil
@@ -2791,7 +2791,7 @@ function playdate.geometry.affineTransform:scale(sx, sy) end
 ---
 --- If only one parameter is passed, it is used to scale both x and y values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.scaledBy
+--- [Inside Playdate: playdate.geometry.affineTransform:scaledBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.scaledBy)
 ---@param sx number
 ---@param sy? number
 ---@return _AffineTransform
@@ -2804,7 +2804,7 @@ function playdate.geometry.affineTransform:scaledBy(sx, sy) end
 --- optional *x* and *y* arguments are given, the transform rotates around (*x*,*y*) instead of
 --- (0,0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.rotate
+--- [Inside Playdate: playdate.geometry.affineTransform:rotate](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.rotate)
 ---@param angle number
 ---@param x? integer
 ---@param y? integer
@@ -2818,7 +2818,7 @@ function playdate.geometry.affineTransform:rotate(angle, x, y) end
 --- optional playdate.geometry.point *point* argument is given, the transform rotates around the
 --- *point* instead of (0,0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform:rotate-point
+--- [Inside Playdate: playdate.geometry.affineTransform:rotate](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform:rotate-point)
 ---@param angle number
 ---@param point? _Point
 ---@return nil
@@ -2831,7 +2831,7 @@ function playdate.geometry.affineTransform:rotate(angle, point) end
 --- the optional *x* and *y* arguments are given, the transform rotates around (*x*,*y*) instead
 --- of (0,0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.rotatedBy
+--- [Inside Playdate: playdate.geometry.affineTransform:rotatedBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.rotatedBy)
 ---@param angle number
 ---@param x? integer
 ---@param y? integer
@@ -2845,7 +2845,7 @@ function playdate.geometry.affineTransform:rotatedBy(angle, x, y) end
 --- optional point *point* argument is given, the transform rotates around the *point* instead of
 --- (0,0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform:rotatedBy-point
+--- [Inside Playdate: playdate.geometry.affineTransform:rotatedBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform:rotatedBy-point)
 ---@param angle number
 ---@param point? _Point
 ---@return _AffineTransform
@@ -2854,7 +2854,7 @@ function playdate.geometry.affineTransform:rotatedBy(angle, point) end
 --- Mutates the caller, appending a skew transformation.  *sx* is the value by which to skew the x
 --- axis, and *sy* the value for the y axis. Values are in degrees.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.skew
+--- [Inside Playdate: playdate.geometry.affineTransform:skew](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.skew)
 ---@param sx number
 ---@param sy number
 ---@return nil
@@ -2863,7 +2863,7 @@ function playdate.geometry.affineTransform:skew(sx, sy) end
 --- Returns the given transform with a skew transformation appended.  *sx* is the value by which to
 --- skew the x axis, and *sy* the value for the y axis. Values are in degrees.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.skewedBy
+--- [Inside Playdate: playdate.geometry.affineTransform:skewedBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.skewedBy)
 ---@param sx number
 ---@param sy number
 ---@return _AffineTransform
@@ -2871,21 +2871,21 @@ function playdate.geometry.affineTransform:skewedBy(sx, sy) end
 
 --- Modifies the point *p* by applying the affine transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformPoint
+--- [Inside Playdate: playdate.geometry.affineTransform:transformPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformPoint)
 ---@param p _Point
 ---@return nil
 function playdate.geometry.affineTransform:transformPoint(p) end
 
 --- As above, but returns a new point rather than modifying *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedPoint
+--- [Inside Playdate: playdate.geometry.affineTransform:transformedPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedPoint)
 ---@param p _Point
 ---@return _Point
 function playdate.geometry.affineTransform:transformedPoint(p) end
 
 --- Returns two values calculated by applying the affine transform to the point (*x*, *y*)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformXY
+--- [Inside Playdate: playdate.geometry.affineTransform:transformXY](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformXY)
 ---@param x integer
 ---@param y integer
 ---@return number x
@@ -2894,63 +2894,63 @@ function playdate.geometry.affineTransform:transformXY(x, y) end
 
 --- Modifies the line segment *ls* by applying the affine transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformLineSegment
+--- [Inside Playdate: playdate.geometry.affineTransform:transformLineSegment](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformLineSegment)
 ---@param ls _LineSegment
 ---@return nil
 function playdate.geometry.affineTransform:transformLineSegment(ls) end
 
 --- As above, but returns a new line segment rather than modifying *ls*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedLineSegment
+--- [Inside Playdate: playdate.geometry.affineTransform:transformedLineSegment](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedLineSegment)
 ---@param ls _LineSegment
 ---@return _LineSegment
 function playdate.geometry.affineTransform:transformedLineSegment(ls) end
 
 --- Modifies the axis aligned bounding box *r* (a rect) by applying the affine transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformAABB
+--- [Inside Playdate: playdate.geometry.affineTransform:transformAABB](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformAABB)
 ---@param r _Rect
 ---@return nil
 function playdate.geometry.affineTransform:transformAABB(r) end
 
 --- As above, but returns a new rect rather than modifying *r*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedAABB
+--- [Inside Playdate: playdate.geometry.affineTransform:transformedAABB](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedAABB)
 ---@param r _Rect
 ---@return _Rect
 function playdate.geometry.affineTransform:transformedAABB(r) end
 
 --- Modifies the polygon *p* by applying the affine transform.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformPolygon
+--- [Inside Playdate: playdate.geometry.affineTransform:transformPolygon](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformPolygon)
 ---@param p _Polygon
 ---@return nil
 function playdate.geometry.affineTransform:transformPolygon(p) end
 
 --- As above, but returns a new polygon rather than modifying *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedPolygon
+--- [Inside Playdate: playdate.geometry.affineTransform:transformedPolygon](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.transformedPolygon)
 ---@param p _Polygon
 ---@return _Polygon
 function playdate.geometry.affineTransform:transformedPolygon(p) end
 
 --- Returns the transform created by multiplying transform *t1* by transform *t2*
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.mul_t
+--- [Inside Playdate: playdate.geometry.affineTransform:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.mul_t)
 ---@param t _AffineTransform
 ---@return _AffineTransform
 function playdate.geometry.affineTransform:__mul(t) end
 
 --- Returns the vector2D created by applying the transform *t* to the `vector2D` `v`
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.mul_v
+--- [Inside Playdate: playdate.geometry.affineTransform:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.mul_v)
 ---@param v _Vector2D
 ---@return _Vector2D
 function playdate.geometry.affineTransform:__mul(v) end
 
 --- Returns the point created by applying the transform *t* to the `point` *p*
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.mul_p
+--- [Inside Playdate: playdate.geometry.affineTransform:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.affineTransform.mul_p)
 ---@param p _Point
 ---@return _Point
 function playdate.geometry.affineTransform:__mul(p) end
@@ -2961,7 +2961,7 @@ function playdate.geometry.affineTransform:__mul(p) end
 --- If specified, *direction* should be true for clockwise, false for counterclockwise. If not
 --- specified, the direction is inferred from the start and end angles.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.arc.new
+--- [Inside Playdate: playdate.geometry.arc.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.arc.new)
 ---@param x integer
 ---@param y integer
 ---@param radius number
@@ -2973,25 +2973,25 @@ function playdate.geometry.arc.new(x, y, radius, startAngle, endAngle, direction
 
 --- Returns a new copy of the arc.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.copy
+--- [Inside Playdate: playdate.geometry.arc:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.copy)
 ---@return _Arc
 function playdate.geometry.arc:copy() end
 
 --- Returns the length of the arc.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.length
+--- [Inside Playdate: playdate.geometry.arc:length](https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.length)
 ---@return number
 function playdate.geometry.arc:length() end
 
 --- Returns true if the direction of the arc is clockwise.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.isClockwise
+--- [Inside Playdate: playdate.geometry.arc:isClockwise](https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.isClockwise)
 ---@return boolean
 function playdate.geometry.arc:isClockwise() end
 
 --- Sets the direction of the arc.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.setIsClockwise
+--- [Inside Playdate: playdate.geometry.arc:setIsClockwise](https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.setIsClockwise)
 ---@param flag boolean
 ---@return nil
 function playdate.geometry.arc:setIsClockwise(flag) end
@@ -3001,7 +3001,7 @@ function playdate.geometry.arc:setIsClockwise(flag) end
 --- constrained to the arc’s initial point if `distance` is negative, or the end point if `distance`
 --- is greater than the arc’s length.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.pointOnArc
+--- [Inside Playdate: playdate.geometry.arc:pointOnArc](https://sdk.play.date/Inside%20Playdate.html#m-geometry.arc.pointOnArc)
 ---@param distance integer
 ---@param extend? boolean
 ---@return _Point
@@ -3009,7 +3009,7 @@ function playdate.geometry.arc:pointOnArc(distance, extend) end
 
 --- Returns a new playdate.geometry.lineSegment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.lineSegment.new
+--- [Inside Playdate: playdate.geometry.lineSegment.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.lineSegment.new)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -3019,13 +3019,13 @@ function playdate.geometry.lineSegment.new(x1, y1, x2, y2) end
 
 --- Returns a new copy of the line segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.copy
+--- [Inside Playdate: playdate.geometry.lineSegment:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.copy)
 ---@return _LineSegment
 function playdate.geometry.lineSegment:copy() end
 
 --- Returns the values *x1, y1, x2, y2*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.unpack
+--- [Inside Playdate: playdate.geometry.lineSegment:unpack](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.unpack)
 ---@return number x1
 ---@return number y1
 ---@return number x2
@@ -3034,13 +3034,13 @@ function playdate.geometry.lineSegment:unpack() end
 
 --- Returns the length of the line segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.length
+--- [Inside Playdate: playdate.geometry.lineSegment:length](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.length)
 ---@return number
 function playdate.geometry.lineSegment:length() end
 
 --- Modifies the line segment, offsetting its values by *dx*, *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.offset
+--- [Inside Playdate: playdate.geometry.lineSegment:offset](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.offset)
 ---@param dx integer
 ---@param dy integer
 ---@return nil
@@ -3048,7 +3048,7 @@ function playdate.geometry.lineSegment:offset(dx, dy) end
 
 --- Returns a new line segment, the given segment offset by *dx*, *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.offsetBy
+--- [Inside Playdate: playdate.geometry.lineSegment:offsetBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.offsetBy)
 ---@param dx integer
 ---@param dy integer
 ---@return _LineSegment
@@ -3056,7 +3056,7 @@ function playdate.geometry.lineSegment:offsetBy(dx, dy) end
 
 --- Returns a playdate.geometry.point representing the mid point of the line segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.midPoint
+--- [Inside Playdate: playdate.geometry.lineSegment:midPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.midPoint)
 ---@return _Point
 function playdate.geometry.lineSegment:midPoint() end
 
@@ -3065,7 +3065,7 @@ function playdate.geometry.lineSegment:midPoint() end
 --- endpoints; otherwise, it is constrained to the line segment’s initial point if `distance` is
 --- negative, or the end point if `distance` is greater than the segment’s length.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.pointOnLine
+--- [Inside Playdate: playdate.geometry.lineSegment:pointOnLine](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.pointOnLine)
 ---@param distance integer
 ---@param extend? boolean
 ---@return _Point
@@ -3073,14 +3073,14 @@ function playdate.geometry.lineSegment:pointOnLine(distance, extend) end
 
 --- Returns a playdate.geometry.vector2D representation of the line segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.segmentVector
+--- [Inside Playdate: playdate.geometry.lineSegment:segmentVector](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.segmentVector)
 ---@return _Vector2D
 function playdate.geometry.lineSegment:segmentVector() end
 
 --- Returns a playdate.geometry.point that is the closest point to point *p* that is on the line
 --- segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.closestPointOnLineToPoint
+--- [Inside Playdate: playdate.geometry.lineSegment:closestPointOnLineToPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.closestPointOnLineToPoint)
 ---@param p _Point
 ---@return _Point
 function playdate.geometry.lineSegment:closestPointOnLineToPoint(p) end
@@ -3089,7 +3089,7 @@ function playdate.geometry.lineSegment:closestPointOnLineToPoint(p) end
 ---
 --- If there is an intersection, a playdate.geometry.point representing that point is also returned.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsLineSegment
+--- [Inside Playdate: playdate.geometry.lineSegment:intersectsLineSegment](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsLineSegment)
 ---@param ls _LineSegment
 ---@return boolean intersects
 ---@return _Point? intersection
@@ -3101,7 +3101,7 @@ function playdate.geometry.lineSegment:intersectsLineSegment(ls) end
 --- y2)* and *(x3, y3)*, *(x4, y4)*. If there is an intersection, *x, y* values representing the
 --- intersection point are also returned.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.fast_intersection
+--- [Inside Playdate: playdate.geometry.lineSegment.fast_intersection](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.fast_intersection)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -3122,7 +3122,7 @@ function playdate.geometry.lineSegment.fast_intersection(x1, y1, x2, y2, x3, y3,
 --- *intersectionPoints* is an array of playdate.geometry.points containing all intersection points
 --- between the caller and poly.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsPolygon
+--- [Inside Playdate: playdate.geometry.lineSegment:intersectsPolygon](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsPolygon)
 ---@param poly _Polygon
 ---@return boolean intersects
 ---@return _Point[]? intersectionPoints
@@ -3135,7 +3135,7 @@ function playdate.geometry.lineSegment:intersectsPolygon(poly) end
 --- *intersectionPoints* is an array of playdate.geometry.points containing all intersection points
 --- between the caller and rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsRect
+--- [Inside Playdate: playdate.geometry.lineSegment:intersectsRect](https://sdk.play.date/Inside%20Playdate.html#m-geometry.lineSegment.intersectsRect)
 ---@param rect _Rect
 ---@return boolean intersects
 ---@return _Point[]? intersectionPoints
@@ -3143,7 +3143,7 @@ function playdate.geometry.lineSegment:intersectsRect(rect) end
 
 --- Returns a new playdate.geometry.point.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.point.new
+--- [Inside Playdate: playdate.geometry.point.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.point.new)
 ---@param x integer
 ---@param y integer
 ---@return _Point
@@ -3151,20 +3151,20 @@ function playdate.geometry.point.new(x, y) end
 
 --- Returns a new copy of the point.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.copy
+--- [Inside Playdate: playdate.geometry.point:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.copy)
 ---@return _Point
 function playdate.geometry.point:copy() end
 
 --- Returns the values *x, y*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.unpack
+--- [Inside Playdate: playdate.geometry.point:unpack](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.unpack)
 ---@return number x
 ---@return number y
 function playdate.geometry.point:unpack() end
 
 --- Modifies the point, offsetting its values by *dx*, *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.offset
+--- [Inside Playdate: playdate.geometry.point:offset](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.offset)
 ---@param dx integer
 ---@param dy integer
 ---@return nil
@@ -3172,7 +3172,7 @@ function playdate.geometry.point:offset(dx, dy) end
 
 --- Returns a new point object, the given point offset by *dx*, *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.offsetBy
+--- [Inside Playdate: playdate.geometry.point:offsetBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.offsetBy)
 ---@param dx integer
 ---@param dy integer
 ---@return _Point
@@ -3180,21 +3180,21 @@ function playdate.geometry.point:offsetBy(dx, dy) end
 
 --- Returns the square of the distance to point *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.squaredDistanceToPoint
+--- [Inside Playdate: playdate.geometry.point:squaredDistanceToPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.squaredDistanceToPoint)
 ---@param p _Point
 ---@return number
 function playdate.geometry.point:squaredDistanceToPoint(p) end
 
 --- Returns the distance to point *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.distanceToPoint
+--- [Inside Playdate: playdate.geometry.point:distanceToPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.distanceToPoint)
 ---@param p _Point
 ---@return number
 function playdate.geometry.point:distanceToPoint(p) end
 
 --- Returns a new point by adding the vector *v* to point *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.add
+--- [Inside Playdate: playdate.geometry.point:__add](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.add)
 ---@param v _Vector2D
 ---@return _Point
 function playdate.geometry.point:__add(v) end
@@ -3202,21 +3202,21 @@ function playdate.geometry.point:__add(v) end
 --- Returns the vector constructed by subtracting *p2* from *p1*. By this construction, *p2* + (*p1*
 --- - *p2*) == *p1*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.sub
+--- [Inside Playdate: playdate.geometry.point:__sub](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.sub)
 ---@param p2 _Point
 ---@return _Vector2D
 function playdate.geometry.point:__sub(p2) end
 
 --- Returns a new point by applying the transform *t* to point *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.mul
+--- [Inside Playdate: playdate.geometry.point:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.mul)
 ---@param t _AffineTransform
 ---@return _Point
 function playdate.geometry.point:__mul(t) end
 
 --- Returns a new lineSegment connecting points *p1* and *p2*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.concat
+--- [Inside Playdate: playdate.geometry.point:__concat](https://sdk.play.date/Inside%20Playdate.html#m-geometry.point.concat)
 ---@param p2 _Point
 ---@return _LineSegment
 function playdate.geometry.point:__concat(p2) end
@@ -3236,7 +3236,7 @@ function playdate.geometry.point:__concat(p2) end
 ---
 --- To draw a polygon, use `playdate.graphics.drawPolygon()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
+--- [Inside Playdate: playdate.geometry.polygon.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -3260,7 +3260,7 @@ function playdate.geometry.polygon.new(x1, y1, x2, y2, ...) end
 ---
 --- To draw a polygon, use `playdate.graphics.drawPolygon()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
+--- [Inside Playdate: playdate.geometry.polygon.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new)
 ---@param p1 _Point
 ---@param p2 _Point
 ---@param ... integer
@@ -3282,27 +3282,27 @@ function playdate.geometry.polygon.new(p1, p2, ...) end
 ---
 --- To draw a polygon, use `playdate.graphics.drawPolygon()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new
+--- [Inside Playdate: playdate.geometry.polygon.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.polygon.new)
 ---@param numberOfVertices integer
 ---@return _Polygon
 function playdate.geometry.polygon.new(numberOfVertices) end
 
 --- Returns a copy of a polygon.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.copy
+--- [Inside Playdate: playdate.geometry.polygon:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.copy)
 ---@return _Polygon
 function playdate.geometry.polygon:copy() end
 
 --- `:close()` closes a polygon. If the polygon’s first and last point aren’t coincident, a line
 --- segment will be generated to connect them.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.close
+--- [Inside Playdate: playdate.geometry.polygon:close](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.close)
 ---@return nil
 function playdate.geometry.polygon:close() end
 
 --- Returns true if the polygon is closed, false if not.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.isClosed
+--- [Inside Playdate: playdate.geometry.polygon:isClosed](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.isClosed)
 ---@return boolean
 function playdate.geometry.polygon:isClosed() end
 
@@ -3313,7 +3313,7 @@ function playdate.geometry.polygon:isClosed() end
 --- playdate.graphics.setPolygonFillRule. By default `*playdate.graphics.kPolygonFillEvenOdd*` is
 --- used.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint
+--- [Inside Playdate: playdate.geometry.polygon:containsPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint)
 ---@param p _Point
 ---@param fillRule? integer
 ---@return boolean
@@ -3326,7 +3326,7 @@ function playdate.geometry.polygon:containsPoint(p, fillRule) end
 --- playdate.graphics.setPolygonFillRule. By default `*playdate.graphics.kPolygonFillEvenOdd*` is
 --- used.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint
+--- [Inside Playdate: playdate.geometry.polygon:containsPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.containsPoint)
 ---@param x integer
 ---@param y integer
 ---@param fillRule? integer
@@ -3336,7 +3336,7 @@ function playdate.geometry.polygon:containsPoint(x, y, fillRule) end
 --- Returns multiple values (*x*, *y*, *width*, *height*) giving the axis-aligned bounding box for
 --- the polygon.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getBounds
+--- [Inside Playdate: playdate.geometry.polygon:getBounds](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getBounds)
 ---@return number x
 ---@return number y
 ---@return number width
@@ -3346,25 +3346,25 @@ function playdate.geometry.polygon:getBounds() end
 --- Returns the axis-aligned bounding box for the given polygon as a `playdate.geometry.rect`
 --- object.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getBoundsRect
+--- [Inside Playdate: playdate.geometry.polygon:getBoundsRect](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getBoundsRect)
 ---@return _Rect
 function playdate.geometry.polygon:getBoundsRect() end
 
 --- Returns the number of points in the polygon.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.count
+--- [Inside Playdate: playdate.geometry.polygon:count](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.count)
 ---@return integer
 function playdate.geometry.polygon:count() end
 
 --- Returns the total length of all line segments in the polygon.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.length
+--- [Inside Playdate: playdate.geometry.polygon:length](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.length)
 ---@return number
 function playdate.geometry.polygon:length() end
 
 --- Sets the polygon’s *n*-th point to (*x*, *y*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.setPointAt
+--- [Inside Playdate: playdate.geometry.polygon:setPointAt](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.setPointAt)
 ---@param n integer
 ---@param x integer
 ---@param y integer
@@ -3373,14 +3373,14 @@ function playdate.geometry.polygon:setPointAt(n, x, y) end
 
 --- Returns the polygon’s *n*-th point.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getPointAt
+--- [Inside Playdate: playdate.geometry.polygon:getPointAt](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.getPointAt)
 ---@param n integer
 ---@return _Point
 function playdate.geometry.polygon:getPointAt(n) end
 
 --- Returns true if the given polygon intersects the polygon *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.intersects
+--- [Inside Playdate: playdate.geometry.polygon:intersects](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.intersects)
 ---@param p _Point
 ---@return boolean
 function playdate.geometry.polygon:intersects(p) end
@@ -3390,7 +3390,7 @@ function playdate.geometry.polygon:intersects(p) end
 --- polygon’s ends; otherwise, it is constrained to the polygon’s initial point if `distance` is
 --- negative, or the last point if `distance` is greater than the polygon’s length.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.pointOnPolygon
+--- [Inside Playdate: playdate.geometry.polygon:pointOnPolygon](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.pointOnPolygon)
 ---@param distance integer
 ---@param extend? boolean
 ---@return _Point
@@ -3398,7 +3398,7 @@ function playdate.geometry.polygon:pointOnPolygon(distance, extend) end
 
 --- Translates each point on the polygon by *dx*, *dy* pixels.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.translate
+--- [Inside Playdate: playdate.geometry.polygon:translate](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.translate)
 ---@param dx integer
 ---@param dy integer
 ---@return nil
@@ -3406,14 +3406,14 @@ function playdate.geometry.polygon:translate(dx, dy) end
 
 --- Returns a new polygon formed by applying the transform *t* to polygon *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.mul
+--- [Inside Playdate: playdate.geometry.polygon:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.polygon.mul)
 ---@param t _AffineTransform
 ---@return _Polygon
 function playdate.geometry.polygon:__mul(t) end
 
 --- Returns a new playdate.geometry.rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.rect.new
+--- [Inside Playdate: playdate.geometry.rect.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.rect.new)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -3423,19 +3423,19 @@ function playdate.geometry.rect.new(x, y, width, height) end
 
 --- Returns a new copy of the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.copy
+--- [Inside Playdate: playdate.geometry.rect:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.copy)
 ---@return _Rect
 function playdate.geometry.rect:copy() end
 
 --- Returns a new playdate.geometry.polygon version of the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.toPolygon
+--- [Inside Playdate: playdate.geometry.rect:toPolygon](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.toPolygon)
 ---@return _Polygon
 function playdate.geometry.rect:toPolygon() end
 
 --- Returns *x*, *y*, *width* and *height* as individual values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.unpack
+--- [Inside Playdate: playdate.geometry.rect:unpack](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.unpack)
 ---@return number x
 ---@return number y
 ---@return number width
@@ -3444,27 +3444,27 @@ function playdate.geometry.rect:unpack() end
 
 --- Returns true if a rectangle has zero width or height.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.isEmpty
+--- [Inside Playdate: playdate.geometry.rect:isEmpty](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.isEmpty)
 ---@return boolean
 function playdate.geometry.rect:isEmpty() end
 
 --- Returns true if the *x*, *y*, *width*, and *height* values of the caller and *r2* are all equal.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.isEqual
+--- [Inside Playdate: playdate.geometry.rect:isEqual](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.isEqual)
 ---@param r2 _Rect
 ---@return boolean
 function playdate.geometry.rect:isEqual(r2) end
 
 --- Returns true if *r2* intersects the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.intersects
+--- [Inside Playdate: playdate.geometry.rect:intersects](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.intersects)
 ---@param r2 _Rect
 ---@return boolean
 function playdate.geometry.rect:intersects(r2) end
 
 --- Returns a rect representing the overlapping portion of the caller and *r2*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.intersection
+--- [Inside Playdate: playdate.geometry.rect:intersection](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.intersection)
 ---@param r2 _Rect
 ---@return _Rect
 function playdate.geometry.rect:intersection(r2) end
@@ -3475,7 +3475,7 @@ function playdate.geometry.rect:intersection(r2) end
 --- rects defined by *x1, y1, w1, h1* and *x2, y2, w2, h2*. If there is no intersection, (0, 0, 0,
 --- 0) is returned.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.rect.fast_intersection
+--- [Inside Playdate: playdate.geometry.rect.fast_intersection](https://sdk.play.date/Inside%20Playdate.html#f-geometry.rect.fast_intersection)
 ---@param x1 integer
 ---@param y1 integer
 ---@param w1 integer
@@ -3492,7 +3492,7 @@ function playdate.geometry.rect.fast_intersection(x1, y1, w1, h1, x2, y2, w2, h2
 
 --- Returns the smallest possible rect that contains both the source rect and *r2*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.union
+--- [Inside Playdate: playdate.geometry.rect:union](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.union)
 ---@param r2 _Rect
 ---@return _Rect
 function playdate.geometry.rect:union(r2) end
@@ -3502,7 +3502,7 @@ function playdate.geometry.rect:union(r2) end
 --- Returns multiple values (*x, y, width, height*) representing the smallest possible rect that
 --- contains the two rects defined by *x1, y1, w1, h1* and *x2, y2, w2, h2*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.rect.fast_union
+--- [Inside Playdate: playdate.geometry.rect.fast_union](https://sdk.play.date/Inside%20Playdate.html#f-geometry.rect.fast_union)
 ---@param x1 integer
 ---@param y1 integer
 ---@param w1 integer
@@ -3519,7 +3519,7 @@ function playdate.geometry.rect.fast_union(x1, y1, w1, h1, x2, y2, w2, h2) end
 
 --- Insets the rect by the given *dx* and *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.inset
+--- [Inside Playdate: playdate.geometry.rect:inset](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.inset)
 ---@param dx integer
 ---@param dy integer
 ---@return nil
@@ -3527,7 +3527,7 @@ function playdate.geometry.rect:inset(dx, dy) end
 
 --- Returns a rect that is inset by the given *dx* and *dy*, with the same center point.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.insetBy
+--- [Inside Playdate: playdate.geometry.rect:insetBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.insetBy)
 ---@param dx integer
 ---@param dy integer
 ---@return _Rect
@@ -3535,7 +3535,7 @@ function playdate.geometry.rect:insetBy(dx, dy) end
 
 --- Offsets the rect by the given *dx* and *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.offset
+--- [Inside Playdate: playdate.geometry.rect:offset](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.offset)
 ---@param dx integer
 ---@param dy integer
 ---@return nil
@@ -3543,7 +3543,7 @@ function playdate.geometry.rect:offset(dx, dy) end
 
 --- Returns a rect with its origin point offset by *dx*, *dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.offsetBy
+--- [Inside Playdate: playdate.geometry.rect:offsetBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.offsetBy)
 ---@param dx integer
 ---@param dy integer
 ---@return _Rect
@@ -3551,14 +3551,14 @@ function playdate.geometry.rect:offsetBy(dx, dy) end
 
 --- Returns true if the rect *r2* is contained within the caller rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsRect-r2
+--- [Inside Playdate: playdate.geometry.rect:containsRect](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsRect-r2)
 ---@param r2 _Rect
 ---@return boolean
 function playdate.geometry.rect:containsRect(r2) end
 
 --- Returns true if the rect defined by *(x, y, width, height)* is contained within the caller rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsRect
+--- [Inside Playdate: playdate.geometry.rect:containsRect](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -3568,14 +3568,14 @@ function playdate.geometry.rect:containsRect(x, y, width, height) end
 
 --- Returns true if the point *p* is contained within the caller rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsPoint
+--- [Inside Playdate: playdate.geometry.rect:containsPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsPoint)
 ---@param p _Point
 ---@return boolean
 function playdate.geometry.rect:containsPoint(p) end
 
 --- Returns true if the point at *(x, y)* is contained within the caller rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsPoint-xy
+--- [Inside Playdate: playdate.geometry.rect:containsPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.containsPoint-xy)
 ---@param x integer
 ---@param y integer
 ---@return boolean
@@ -3583,7 +3583,7 @@ function playdate.geometry.rect:containsPoint(x, y) end
 
 --- Returns a point at the center of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.centerPoint
+--- [Inside Playdate: playdate.geometry.rect:centerPoint](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.centerPoint)
 ---@return _Point
 function playdate.geometry.rect:centerPoint() end
 
@@ -3596,7 +3596,7 @@ function playdate.geometry.rect:centerPoint() end
 --- * playdate.geometry.kFlippedY
 --- * playdate.geometry.kFlippedXY
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.flipRelativeToRect
+--- [Inside Playdate: playdate.geometry.rect:flipRelativeToRect](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.flipRelativeToRect)
 ---@param r2 _Rect
 ---@param flip (integer|string)
 ---@return nil
@@ -3604,7 +3604,7 @@ function playdate.geometry.rect:flipRelativeToRect(r2, flip) end
 
 --- Returns a new playdate.geometry.size.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.size.new
+--- [Inside Playdate: playdate.geometry.size.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.size.new)
 ---@param width integer
 ---@param height integer
 ---@return _Size
@@ -3612,13 +3612,13 @@ function playdate.geometry.size.new(width, height) end
 
 --- Returns a new copy of the size.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.size.copy
+--- [Inside Playdate: playdate.geometry.size:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.size.copy)
 ---@return _Size
 function playdate.geometry.size:copy() end
 
 --- Returns the values *width, height*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.size.unpack
+--- [Inside Playdate: playdate.geometry.size:unpack](https://sdk.play.date/Inside%20Playdate.html#m-geometry.size.unpack)
 ---@return number width
 ---@return number height
 function playdate.geometry.size:unpack() end
@@ -3627,7 +3627,7 @@ function playdate.geometry.size:unpack() end
 ---
 --- Compared to geometry.point:squaredDistanceToPoint(), this version will be slightly faster.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.squaredDistanceToPoint
+--- [Inside Playdate: playdate.geometry.squaredDistanceToPoint](https://sdk.play.date/Inside%20Playdate.html#f-geometry.squaredDistanceToPoint)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -3639,7 +3639,7 @@ function playdate.geometry.squaredDistanceToPoint(x1, y1, x2, y2) end
 ---
 --- Compared to geometry.point:distanceToPoint(), this version will be slightly faster.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.distanceToPoint
+--- [Inside Playdate: playdate.geometry.distanceToPoint](https://sdk.play.date/Inside%20Playdate.html#f-geometry.distanceToPoint)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -3649,7 +3649,7 @@ function playdate.geometry.distanceToPoint(x1, y1, x2, y2) end
 
 --- Returns a new playdate.geometry.vector2D.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.vector2D.new
+--- [Inside Playdate: playdate.geometry.vector2D.new](https://sdk.play.date/Inside%20Playdate.html#f-geometry.vector2D.new)
 ---@param x integer
 ---@param y integer
 ---@return _Vector2D
@@ -3658,7 +3658,7 @@ function playdate.geometry.vector2D.new(x, y) end
 --- Returns a new playdate.geometry.vector2D. Angles should be specified in degrees. Zero degrees
 --- represents the top of the circle.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-geometry.vector2D.newPolar
+--- [Inside Playdate: playdate.geometry.vector2D.newPolar](https://sdk.play.date/Inside%20Playdate.html#f-geometry.vector2D.newPolar)
 ---@param length number
 ---@param angle number
 ---@return _Vector2D
@@ -3666,34 +3666,34 @@ function playdate.geometry.vector2D.newPolar(length, angle) end
 
 --- Returns a new copy of the vector2D.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.copy
+--- [Inside Playdate: playdate.geometry.vector2D:copy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.copy)
 ---@return _Vector2D
 function playdate.geometry.vector2D:copy() end
 
 --- Returns the values *dx, dy*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.unpack
+--- [Inside Playdate: playdate.geometry.vector2D:unpack](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.unpack)
 ---@return number x
 ---@return number y
 function playdate.geometry.vector2D:unpack() end
 
 --- Modifies the caller by adding vector *v*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.addVector
+--- [Inside Playdate: playdate.geometry.vector2D:addVector](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.addVector)
 ---@param v _Vector2D
 ---@return nil
 function playdate.geometry.vector2D:addVector(v) end
 
 --- Modifies the caller, scaling it by amount *s*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.scale
+--- [Inside Playdate: playdate.geometry.vector2D:scale](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.scale)
 ---@param s number
 ---@return nil
 function playdate.geometry.vector2D:scale(s) end
 
 --- Returns the given vector scaled by *s*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.scaledBy
+--- [Inside Playdate: playdate.geometry.vector2D:scaledBy](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.scaledBy)
 ---@param s number
 ---@return _Vector2D
 function playdate.geometry.vector2D:scaledBy(s) end
@@ -3701,112 +3701,112 @@ function playdate.geometry.vector2D:scaledBy(s) end
 --- Modifies the caller by normalizing it so that its length is 1. If the vector is (0,0), the
 --- vector is unchanged.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.normalize
+--- [Inside Playdate: playdate.geometry.vector2D:normalize](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.normalize)
 ---@return nil
 function playdate.geometry.vector2D:normalize() end
 
 --- Returns a new vector by normalizing the given vector.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.normalized
+--- [Inside Playdate: playdate.geometry.vector2D:normalized](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.normalized)
 ---@return _Vector2D
 function playdate.geometry.vector2D:normalized() end
 
 --- Returns the dot product of the caller and the vector *v*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.dotProduct
+--- [Inside Playdate: playdate.geometry.vector2D:dotProduct](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.dotProduct)
 ---@param v _Vector2D
 ---@return number
 function playdate.geometry.vector2D:dotProduct(v) end
 
 --- Returns the magnitude of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.magnitude
+--- [Inside Playdate: playdate.geometry.vector2D:magnitude](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.magnitude)
 ---@return number
 function playdate.geometry.vector2D:magnitude() end
 
 --- Returns the square of the magnitude of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.magnitudeSquared
+--- [Inside Playdate: playdate.geometry.vector2D:magnitudeSquared](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.magnitudeSquared)
 ---@return number
 function playdate.geometry.vector2D:magnitudeSquared() end
 
 --- Modifies the caller by projecting it along the vector *v*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.projectAlong
+--- [Inside Playdate: playdate.geometry.vector2D:projectAlong](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.projectAlong)
 ---@param v _Vector2D
 ---@return nil
 function playdate.geometry.vector2D:projectAlong(v) end
 
 --- Returns a new vector created by projecting the given vector along the vector *v*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.projectedAlong
+--- [Inside Playdate: playdate.geometry.vector2D:projectedAlong](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.projectedAlong)
 ---@param v _Vector2D
 ---@return _Vector2D
 function playdate.geometry.vector2D:projectedAlong(v) end
 
 --- Returns the angle between the caller and the vector *v*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.angleBetween
+--- [Inside Playdate: playdate.geometry.vector2D:angleBetween](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.angleBetween)
 ---@param v _Vector2D
 ---@return number
 function playdate.geometry.vector2D:angleBetween(v) end
 
 --- Returns a vector that is the left normal of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.leftNormal
+--- [Inside Playdate: playdate.geometry.vector2D:leftNormal](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.leftNormal)
 ---@return _Vector2D
 function playdate.geometry.vector2D:leftNormal() end
 
 --- Returns a vector that is the right normal of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.rightNormal
+--- [Inside Playdate: playdate.geometry.vector2D:rightNormal](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.rightNormal)
 ---@return _Vector2D
 function playdate.geometry.vector2D:rightNormal() end
 
 --- Returns the vector formed by negating the components of vector *v*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.unm
+--- [Inside Playdate: playdate.geometry.vector2D:__unm](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.unm)
 ---@return _Vector2D
 function playdate.geometry.vector2D:__unm() end
 
 --- Returns the vector formed by adding vector *v2* to vector *v1*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.add
+--- [Inside Playdate: playdate.geometry.vector2D:__add](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.add)
 ---@param v2 _Vector2D
 ---@return _Vector2D
 function playdate.geometry.vector2D:__add(v2) end
 
 --- Returns the vector formed by subtracting vector *v2* from vector *v1*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.sub
+--- [Inside Playdate: playdate.geometry.vector2D:__sub](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.sub)
 ---@param v2 _Vector2D
 ---@return _Vector2D
 function playdate.geometry.vector2D:__sub(v2) end
 
 --- Returns the vector *v1* scaled by *s*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_s
+--- [Inside Playdate: playdate.geometry.vector2D:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_s)
 ---@param s number
 ---@return _Vector2D
 function playdate.geometry.vector2D:__mul(s) end
 
 --- Returns the dot product of the two vectors.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_v
+--- [Inside Playdate: playdate.geometry.vector2D:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_v)
 ---@param v2 _Vector2D
 ---@return _Vector2D
 function playdate.geometry.vector2D:__mul(v2) end
 
 --- Returns the vector transformed by transform *t*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_t
+--- [Inside Playdate: playdate.geometry.vector2D:__mul](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.mul_t)
 ---@param t _AffineTransform
 ---@return _Vector2D
 function playdate.geometry.vector2D:__mul(t) end
 
 --- Returns the vector divided by scalar *s*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.div
+--- [Inside Playdate: playdate.geometry.vector2D:__div](https://sdk.play.date/Inside%20Playdate.html#m-geometry.vector2D.div)
 ---@param s number
 ---@return _Vector2D
 function playdate.geometry.vector2D:__div(s) end
@@ -3824,7 +3824,7 @@ function playdate.geometry.vector2D:__div(s) end
 ---
 --- Equivalent to `playdate->graphics->pushContext()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.pushContext
+--- [Inside Playdate: playdate.graphics.pushContext](https://sdk.play.date/Inside%20Playdate.html#f-graphics.pushContext)
 ---@param image? _Image
 ---@return nil
 function playdate.graphics.pushContext(image) end
@@ -3833,7 +3833,7 @@ function playdate.graphics.pushContext(image) end
 ---
 --- Equivalent to `playdate->graphics->popContext()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.popContext
+--- [Inside Playdate: playdate.graphics.popContext](https://sdk.play.date/Inside%20Playdate.html#f-graphics.popContext)
 ---@return nil
 function playdate.graphics.popContext() end
 
@@ -3842,7 +3842,7 @@ function playdate.graphics.popContext() end
 ---
 --- Equivalent to `playdate->graphics->clear()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clear
+--- [Inside Playdate: playdate.graphics.clear](https://sdk.play.date/Inside%20Playdate.html#f-graphics.clear)
 ---@param color? integer
 ---@return nil
 function playdate.graphics.clear(color) end
@@ -3852,7 +3852,7 @@ function playdate.graphics.clear(color) end
 --- argument is one of the color constants as used in playdate.graphics.setColor(), defaulting to
 --- *kColorClear*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new
+--- [Inside Playdate: playdate.graphics.image.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new)
 ---@param width integer
 ---@param height integer
 ---@param bgcolor? integer
@@ -3862,7 +3862,7 @@ function playdate.graphics.image.new(width, height, bgcolor) end
 --- Returns a playdate.graphics.image object from the data at *path*. If there is no file at *path*,
 --- the function returns nil and a second value describing the error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new-path
+--- [Inside Playdate: playdate.graphics.image.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.new-path)
 ---@param path string
 ---@return _Image? image
 ---@return string? err
@@ -3873,7 +3873,7 @@ function playdate.graphics.image.new(path) end
 ---
 --- Returns *(success, [error])*. If the boolean *success* is false, *error* is also returned.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.load
+--- [Inside Playdate: playdate.graphics.image:load](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.load)
 ---@param path string
 ---@return boolean success
 ---@return string? err
@@ -3881,20 +3881,20 @@ function playdate.graphics.image:load(path) end
 
 --- Returns a new `playdate.graphics.image` that is an exact copy of the original.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.copy
+--- [Inside Playdate: playdate.graphics.image:copy](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.copy)
 ---@return _Image
 function playdate.graphics.image:copy() end
 
 --- Returns the pair (*width*, *height*)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.getSize
+--- [Inside Playdate: playdate.graphics.image:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.getSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.image:getSize() end
 
 --- Returns the pair (*width*, *height*) for the image at *path* without actually loading the image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.imageSizeAtPath
+--- [Inside Playdate: playdate.graphics.imageSizeAtPath](https://sdk.play.date/Inside%20Playdate.html#f-graphics.image.imageSizeAtPath)
 ---@param path string
 ---@return integer width
 ---@return integer height
@@ -3917,7 +3917,7 @@ function playdate.graphics.imageSizeAtPath(path) end
 --- *sourceRect* should be relative to the image’s bounds and can be a playdate.geometry.rect or
 --- four integers, (*x*, *y*, *w*, *h*), representing the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imgDraw
+--- [Inside Playdate: playdate.graphics.image:draw](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imgDraw)
 ---@param x integer
 ---@param y integer
 ---@param flip? (integer|string)
@@ -3942,7 +3942,7 @@ function playdate.graphics.image:draw(x, y, flip, sourceRect) end
 --- *sourceRect* should be relative to the image’s bounds and can be a playdate.geometry.rect or
 --- four integers, (*x*, *y*, *w*, *h*), representing the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imgDraw
+--- [Inside Playdate: playdate.graphics.image:draw](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imgDraw)
 ---@param p _Point
 ---@param flip? (integer|string)
 ---@param sourceRect? _Rect
@@ -3958,7 +3958,7 @@ function playdate.graphics.image:draw(p, flip, sourceRect) end
 ---
 --- You must import *CoreLibs/graphics* to use this method.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawAnchored
+--- [Inside Playdate: playdate.graphics.image:drawAnchored](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawAnchored)
 ---@param x integer
 ---@param y integer
 ---@param ax number
@@ -3973,7 +3973,7 @@ function playdate.graphics.image:drawAnchored(x, y, ax, ay, flip) end
 ---
 --- You must import *CoreLibs/graphics* to use this method.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawCentered
+--- [Inside Playdate: playdate.graphics.image:drawCentered](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawCentered)
 ---@param x integer
 ---@param y integer
 ---@param flip? (integer|string)
@@ -3982,7 +3982,7 @@ function playdate.graphics.image:drawCentered(x, y, flip) end
 
 --- Draws the image ignoring the currently-set `drawOffset`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset
+--- [Inside Playdate: playdate.graphics.image:drawIgnoringOffset](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset)
 ---@param x integer
 ---@param y integer
 ---@param flip? (integer|string)
@@ -3991,7 +3991,7 @@ function playdate.graphics.image:drawIgnoringOffset(x, y, flip) end
 
 --- Draws the image ignoring the currently-set `drawOffset`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset
+--- [Inside Playdate: playdate.graphics.image:drawIgnoringOffset](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawIgnoringOffset)
 ---@param p _Point
 ---@param flip? (integer|string)
 ---@return nil
@@ -4003,7 +4003,7 @@ function playdate.graphics.image:drawIgnoringOffset(p, flip) end
 --- it exists) is set to fully opaque. If the image is cleared to kColorClear and the image doesn’t
 --- have a mask, a mask is added to it.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.clear
+--- [Inside Playdate: playdate.graphics.image:clear](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.clear)
 ---@param color integer
 ---@return nil
 function playdate.graphics.image:clear(color) end
@@ -4014,7 +4014,7 @@ function playdate.graphics.image:clear(color) end
 ---
 --- The upper-left pixel of the image is at coordinate *(0, 0)*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.sample
+--- [Inside Playdate: playdate.graphics.image:sample](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.sample)
 ---@param x integer
 ---@param y integer
 ---@return integer
@@ -4023,7 +4023,7 @@ function playdate.graphics.image:sample(x, y) end
 --- Draws this image centered at point *(x,y)* at (clockwise) *angle* degrees, scaled by optional
 --- argument *scale*, with an optional separate scaling for the y axis.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawRotated
+--- [Inside Playdate: playdate.graphics.image:drawRotated](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawRotated)
 ---@param x integer
 ---@param y integer
 ---@param angle number
@@ -4038,7 +4038,7 @@ function playdate.graphics.image:drawRotated(x, y, angle, scale, yscale) end
 --- Unless rotating by a multiple of 180 degrees, the new image will have different dimensions than
 --- the original.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.rotatedImage
+--- [Inside Playdate: playdate.graphics.image:rotatedImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.rotatedImage)
 ---@param angle number
 ---@param scale? number
 ---@param yscale? number
@@ -4048,7 +4048,7 @@ function playdate.graphics.image:rotatedImage(angle, scale, yscale) end
 --- Draws this image with its upper-left corner at  point *(x,y)*, scaled by amount *scale*, with an
 --- optional separate scaling for the y axis.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawScaled
+--- [Inside Playdate: playdate.graphics.image:drawScaled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawScaled)
 ---@param x integer
 ---@param y integer
 ---@param scale number
@@ -4059,7 +4059,7 @@ function playdate.graphics.image:drawScaled(x, y, scale, yscale) end
 --- Returns a new image containing this image scaled by amount *scale*, with an optional separate
 --- scaling for the y axis.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.scaledImage
+--- [Inside Playdate: playdate.graphics.image:scaledImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.scaledImage)
 ---@param scale number
 ---@param yscale? number
 ---@return _Image
@@ -4067,7 +4067,7 @@ function playdate.graphics.image:scaledImage(scale, yscale) end
 
 --- Draws this image centered at point *(x,y)* with the transform *xform* applied.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawWithTransform
+--- [Inside Playdate: playdate.graphics.image:drawWithTransform](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawWithTransform)
 ---@param xform _AffineTransform
 ---@param x integer
 ---@param y integer
@@ -4076,7 +4076,7 @@ function playdate.graphics.image:drawWithTransform(xform, x, y) end
 
 --- Returns a new image containing the image with the transform *xform* applied.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.transformedImage
+--- [Inside Playdate: playdate.graphics.image:transformedImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.transformedImage)
 ---@param xform _AffineTransform
 ---@return _Image
 function playdate.graphics.image:transformedImage(xform) end
@@ -4096,7 +4096,7 @@ function playdate.graphics.image:transformedImage(xform) end
 --- The *Mode7Driver* demo in the */Examples* folder of the SDK demonstrates the usage of this
 --- function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawSampled
+--- [Inside Playdate: playdate.graphics.image:drawSampled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawSampled)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4117,7 +4117,7 @@ function playdate.graphics.image:drawSampled(x, y, width, height, centerx, cente
 
 --- Sets the image’s mask to a copy of *maskImage*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.setMaskImage
+--- [Inside Playdate: playdate.graphics.image:setMaskImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.setMaskImage)
 ---@param maskImage _Image
 ---@return nil
 function playdate.graphics.image:setMaskImage(maskImage) end
@@ -4127,7 +4127,7 @@ function playdate.graphics.image:setMaskImage(maskImage) end
 --- The returned image references the original’s data, so drawing into this image alters the
 --- original image’s mask.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.getMaskImage
+--- [Inside Playdate: playdate.graphics.image:getMaskImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.getMaskImage)
 ---@return _Image
 function playdate.graphics.image:getMaskImage() end
 
@@ -4136,27 +4136,27 @@ function playdate.graphics.image:getMaskImage() end
 --- If *opaque* is `false`, the mask will be completely black, so the image will be entirely
 --- transparent.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.addMask
+--- [Inside Playdate: playdate.graphics.image:addMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.addMask)
 ---@param opaque? boolean
 ---@return nil
 function playdate.graphics.image:addMask(opaque) end
 
 --- Removes the mask from the image if it has one.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.removeMask
+--- [Inside Playdate: playdate.graphics.image:removeMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.removeMask)
 ---@return nil
 function playdate.graphics.image:removeMask() end
 
 --- Returns *true* if the image has a mask.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.hasMask
+--- [Inside Playdate: playdate.graphics.image:hasMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.hasMask)
 ---@return boolean
 function playdate.graphics.image:hasMask() end
 
 --- Erases the contents of the image’s mask, so that the image is entirely opaque if *opaque* is 1,
 --- transparent otherwise. This function has no effect if the image doesn’t have a mask.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.clearMask
+--- [Inside Playdate: playdate.graphics.image:clearMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.clearMask)
 ---@param opaque? boolean
 ---@return nil
 function playdate.graphics.image:clearMask(opaque) end
@@ -4164,7 +4164,7 @@ function playdate.graphics.image:clearMask(opaque) end
 --- Tiles the image into the given rectangle, using either listed dimensions or a
 --- `playdate.geometry.rect` object, and the optional flip style.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawTiled
+--- [Inside Playdate: playdate.graphics.image:drawTiled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawTiled)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4176,7 +4176,7 @@ function playdate.graphics.image:drawTiled(x, y, width, height, flip) end
 --- Tiles the image into the given rectangle, using either listed dimensions or a
 --- `playdate.geometry.rect` object, and the optional flip style.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawTiled
+--- [Inside Playdate: playdate.graphics.image:drawTiled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawTiled)
 ---@param rect _Rect
 ---@param flip? (integer|string)
 ---@return nil
@@ -4194,7 +4194,7 @@ function playdate.graphics.image:drawTiled(rect, flip) end
 --- playdate.graphics.image.kDitherTypeBayer2x2, playdate.graphics.image.kDitherTypeBayer4x4, and
 --- playdate.graphics.image.kDitherTypeBayer8x8.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawBlurred
+--- [Inside Playdate: playdate.graphics.image:drawBlurred](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawBlurred)
 ---@param x integer
 ---@param y integer
 ---@param radius number
@@ -4236,7 +4236,7 @@ function playdate.graphics.image:drawBlurred(x, y, radius, numPasses, ditherType
 --- * playdate.graphics.image.kDitherTypeBurkes
 --- * playdate.graphics.image.kDitherTypeAtkinson
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.blurredImage
+--- [Inside Playdate: playdate.graphics.image:blurredImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.blurredImage)
 ---@param radius number
 ---@param numPasses integer
 ---@param ditherType integer
@@ -4252,7 +4252,7 @@ function playdate.graphics.image:blurredImage(radius, numPasses, ditherType, pad
 --- * ditherType: The caller is faded using one of the dithering algorithms listed in
 --- playdate.graphics.image:blurredImage()
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawFaded
+--- [Inside Playdate: playdate.graphics.image:drawFaded](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawFaded)
 ---@param x integer
 ---@param y integer
 ---@param alpha number
@@ -4266,7 +4266,7 @@ function playdate.graphics.image:drawFaded(x, y, alpha, ditherType) end
 --- * ditherType: The caller is faded into a greyscale image and dithered with one of the dithering
 --- algorithms listed in playdate.graphics.image:blurredImage()
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.fadedImage
+--- [Inside Playdate: playdate.graphics.image:fadedImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.fadedImage)
 ---@param alpha number
 ---@param ditherType integer
 ---@return _Image
@@ -4276,14 +4276,14 @@ function playdate.graphics.image:fadedImage(alpha, ditherType) end
 --- as a stencil, its behavior is reversed: pixels are drawn where the stencil is black, nothing is
 --- drawn where the stencil is white.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.setInverted
+--- [Inside Playdate: playdate.graphics.image:setInverted](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.setInverted)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.image:setInverted(flag) end
 
 --- Returns a color-inverted copy of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.invertedImage
+--- [Inside Playdate: playdate.graphics.image:invertedImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.invertedImage)
 ---@return _Image
 function playdate.graphics.image:invertedImage() end
 
@@ -4294,7 +4294,7 @@ function playdate.graphics.image:invertedImage() end
 --- * ditherType: The caller and image are blended into a greyscale image and dithered with one of
 --- the dithering algorithms listed in playdate.graphics.image:blurredImage()
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.blendWithImage
+--- [Inside Playdate: playdate.graphics.image:blendWithImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.blendWithImage)
 ---@param image _Image
 ---@param alpha number
 ---@param ditherType integer
@@ -4303,7 +4303,7 @@ function playdate.graphics.image:blendWithImage(image, alpha, ditherType) end
 
 --- Returns an image created by applying a VCR pause effect to the calling image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.vcrPauseFilterImage
+--- [Inside Playdate: playdate.graphics.image:vcrPauseFilterImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.vcrPauseFilterImage)
 ---@return _Image
 function playdate.graphics.image:vcrPauseFilterImage() end
 
@@ -4311,7 +4311,7 @@ function playdate.graphics.image:vcrPauseFilterImage() end
 --- drawn at positions (*x1*, *y1*) and (*x2*, *y2*) and flipped according to *flip1* and *flip2*,
 --- which should each be one of the values listed in `playdate.graphics.image:draw()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.checkAlphaCollision
+--- [Inside Playdate: playdate.graphics.checkAlphaCollision](https://sdk.play.date/Inside%20Playdate.html#f-graphics.checkAlphaCollision)
 ---@param image1 _Image
 ---@param x1 integer
 ---@param y1 integer
@@ -4337,14 +4337,14 @@ function playdate.graphics.checkAlphaCollision(image1, x1, y1, flip1, image2, x2
 --- `setColor()` and `setPattern()` / `setDitherPattern()` are mutually exclusive. Setting a color
 --- will overwrite a pattern, and vice versa.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setColor
+--- [Inside Playdate: playdate.graphics.setColor](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setColor)
 ---@param color integer
 ---@return nil
 function playdate.graphics.setColor(color) end
 
 --- Gets the current drawing color for primitives.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getColor
+--- [Inside Playdate: playdate.graphics.getColor](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getColor)
 ---@return integer
 function playdate.graphics.getColor() end
 
@@ -4361,7 +4361,7 @@ function playdate.graphics.getColor() end
 ---
 --- Equivalent to `playdate->graphics->setBackgroundColor()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setBackgroundColor
+--- [Inside Playdate: playdate.graphics.setBackgroundColor](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setBackgroundColor)
 ---@param color integer
 ---@return nil
 function playdate.graphics.setBackgroundColor(color) end
@@ -4369,7 +4369,7 @@ function playdate.graphics.setBackgroundColor(color) end
 --- Gets the color used for drawing the background, if necessary, before playdate.graphics.sprites
 --- are drawn on top.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getBackgroundColor
+--- [Inside Playdate: playdate.graphics.getBackgroundColor](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getBackgroundColor)
 ---@return integer
 function playdate.graphics.getBackgroundColor() end
 
@@ -4386,7 +4386,7 @@ function playdate.graphics.getBackgroundColor() end
 --- Uses the given playdate.graphics.image to set the 8 x 8 pattern used for drawing. The optional
 --- *x*, *y* offset (default 0, 0) indicates the top left corner of the 8 x 8 pattern.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPattern
+--- [Inside Playdate: playdate.graphics.setPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPattern)
 ---@param pattern integer[]
 ---@return nil
 function playdate.graphics.setPattern(pattern) end
@@ -4404,7 +4404,7 @@ function playdate.graphics.setPattern(pattern) end
 --- (`kDitherTypeBurkes`), and Atkinson (`kDitherTypeAtkinson`) are allowed but produce very
 --- unpredictable results here.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDitherPattern
+--- [Inside Playdate: playdate.graphics.setDitherPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDitherPattern)
 ---@param alpha number
 ---@param ditherType? integer
 ---@return nil
@@ -4416,7 +4416,7 @@ function playdate.graphics.setDitherPattern(alpha, ditherType) end
 ---
 --- Equivalent to `playdate->graphics->drawLine()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLine
+--- [Inside Playdate: playdate.graphics.drawLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLine)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -4430,7 +4430,7 @@ function playdate.graphics.drawLine(x1, y1, x2, y2) end
 ---
 --- Equivalent to `playdate->graphics->drawLine()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLine
+--- [Inside Playdate: playdate.graphics.drawLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLine)
 ---@param ls _LineSegment
 ---@return nil
 function playdate.graphics.drawLine(ls) end
@@ -4445,7 +4445,7 @@ function playdate.graphics.drawLine(ls) end
 ---
 --- Equivalent to `playdate->graphics->setLineCapStyle()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineCapStyle
+--- [Inside Playdate: playdate.graphics.setLineCapStyle](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineCapStyle)
 ---@param style integer
 ---@return nil
 function playdate.graphics.setLineCapStyle(style) end
@@ -4456,7 +4456,7 @@ function playdate.graphics.setLineCapStyle(style) end
 ---
 --- Draw a single pixel in the current color at playdate.geometry.point *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPixel
+--- [Inside Playdate: playdate.graphics.drawPixel](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPixel)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -4468,7 +4468,7 @@ function playdate.graphics.drawPixel(x, y) end
 ---
 --- Equivalent to `playdate->graphics->drawRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect
+--- [Inside Playdate: playdate.graphics.drawRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect)
 ---@param x integer
 ---@param y integer
 ---@param w integer
@@ -4482,7 +4482,7 @@ function playdate.graphics.drawRect(x, y, w, h) end
 ---
 --- Equivalent to `playdate->graphics->drawRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect
+--- [Inside Playdate: playdate.graphics.drawRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRect)
 ---@param r _Rect
 ---@return nil
 function playdate.graphics.drawRect(r) end
@@ -4491,7 +4491,7 @@ function playdate.graphics.drawRect(r) end
 ---
 --- Equivalent to `playdate->graphics->fillRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect
+--- [Inside Playdate: playdate.graphics.fillRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4503,7 +4503,7 @@ function playdate.graphics.fillRect(x, y, width, height) end
 ---
 --- Equivalent to `playdate->graphics->fillRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect
+--- [Inside Playdate: playdate.graphics.fillRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRect)
 ---@param r _Rect
 ---@return nil
 function playdate.graphics.fillRect(r) end
@@ -4513,7 +4513,7 @@ function playdate.graphics.fillRect(r) end
 ---
 --- *radius* defines the radius of the corners.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRoundRect
+--- [Inside Playdate: playdate.graphics.drawRoundRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRoundRect)
 ---@param x integer
 ---@param y integer
 ---@param w integer
@@ -4527,7 +4527,7 @@ function playdate.graphics.drawRoundRect(x, y, w, h, radius) end
 ---
 --- *radius* defines the radius of the corners.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRoundRect
+--- [Inside Playdate: playdate.graphics.drawRoundRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawRoundRect)
 ---@param r _Rect
 ---@param radius number
 ---@return nil
@@ -4538,7 +4538,7 @@ function playdate.graphics.drawRoundRect(r, radius) end
 ---
 --- *radius* defines the radius of the corners.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRoundRect
+--- [Inside Playdate: playdate.graphics.fillRoundRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRoundRect)
 ---@param x integer
 ---@param y integer
 ---@param w integer
@@ -4552,7 +4552,7 @@ function playdate.graphics.fillRoundRect(x, y, w, h, radius) end
 ---
 --- *radius* defines the radius of the corners.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRoundRect
+--- [Inside Playdate: playdate.graphics.fillRoundRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillRoundRect)
 ---@param r _Rect
 ---@param radius number
 ---@return nil
@@ -4562,7 +4562,7 @@ function playdate.graphics.fillRoundRect(r, radius) end
 ---
 --- Angles are specified in degrees, not radians.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawArc
+--- [Inside Playdate: playdate.graphics.drawArc](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawArc)
 ---@param arc _Arc
 ---@return nil
 function playdate.graphics.drawArc(arc) end
@@ -4571,7 +4571,7 @@ function playdate.graphics.drawArc(arc) end
 ---
 --- Angles are specified in degrees, not radians.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawArc
+--- [Inside Playdate: playdate.graphics.drawArc](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawArc)
 ---@param x integer
 ---@param y integer
 ---@param radius number
@@ -4582,7 +4582,7 @@ function playdate.graphics.drawArc(x, y, radius, startAngle, endAngle) end
 
 --- Draws a circle at the point *(x, y)* (or *p*) with radius *radius*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleAtPoint
+--- [Inside Playdate: playdate.graphics.drawCircleAtPoint](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleAtPoint)
 ---@param x integer
 ---@param y integer
 ---@param radius number
@@ -4591,7 +4591,7 @@ function playdate.graphics.drawCircleAtPoint(x, y, radius) end
 
 --- Draws a circle at the point *(x, y)* (or *p*) with radius *radius*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleAtPoint
+--- [Inside Playdate: playdate.graphics.drawCircleAtPoint](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleAtPoint)
 ---@param p _Point
 ---@param radius number
 ---@return nil
@@ -4601,7 +4601,7 @@ function playdate.graphics.drawCircleAtPoint(p, radius) end
 ---
 --- If the rect is not a square, the circle will be drawn centered in the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleInRect
+--- [Inside Playdate: playdate.graphics.drawCircleInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4613,14 +4613,14 @@ function playdate.graphics.drawCircleInRect(x, y, width, height) end
 ---
 --- If the rect is not a square, the circle will be drawn centered in the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleInRect
+--- [Inside Playdate: playdate.graphics.drawCircleInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawCircleInRect)
 ---@param r _Rect
 ---@return nil
 function playdate.graphics.drawCircleInRect(r) end
 
 --- Draws a filled circle at the point *(x, y)* (or *p*) with radius *radius*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleAtPoint
+--- [Inside Playdate: playdate.graphics.fillCircleAtPoint](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleAtPoint)
 ---@param x integer
 ---@param y integer
 ---@param radius number
@@ -4629,7 +4629,7 @@ function playdate.graphics.fillCircleAtPoint(x, y, radius) end
 
 --- Draws a filled circle at the point *(x, y)* (or *p*) with radius *radius*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleAtPoint
+--- [Inside Playdate: playdate.graphics.fillCircleAtPoint](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleAtPoint)
 ---@param p _Point
 ---@param radius number
 ---@return nil
@@ -4640,7 +4640,7 @@ function playdate.graphics.fillCircleAtPoint(p, radius) end
 ---
 --- If the rect is not a square, the circle will be drawn centered in the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleInRect
+--- [Inside Playdate: playdate.graphics.fillCircleInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4653,7 +4653,7 @@ function playdate.graphics.fillCircleInRect(x, y, width, height) end
 ---
 --- If the rect is not a square, the circle will be drawn centered in the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleInRect
+--- [Inside Playdate: playdate.graphics.fillCircleInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillCircleInRect)
 ---@param r _Rect
 ---@return nil
 function playdate.graphics.fillCircleInRect(r) end
@@ -4663,7 +4663,7 @@ function playdate.graphics.fillCircleInRect(r) end
 --- *startAngle* and *endAngle*, if provided, should be in degrees (not radians), and will cause
 --- only the segment of the ellipse between *startAngle* and *endAngle* to be drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawEllipseInRect
+--- [Inside Playdate: playdate.graphics.drawEllipseInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawEllipseInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4678,7 +4678,7 @@ function playdate.graphics.drawEllipseInRect(x, y, width, height, startAngle, en
 --- *startAngle* and *endAngle*, if provided, should be in degrees (not radians), and will cause
 --- only the segment of the ellipse between *startAngle* and *endAngle* to be drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawEllipseInRect
+--- [Inside Playdate: playdate.graphics.drawEllipseInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawEllipseInRect)
 ---@param rect _Rect
 ---@param startAngle? number
 ---@param endAngle? number
@@ -4691,7 +4691,7 @@ function playdate.graphics.drawEllipseInRect(rect, startAngle, endAngle) end
 --- *startAngle* and *endAngle*, if provided, should be in degrees (not radians), and will cause
 --- only the segment of the ellipse between *startAngle* and *endAngle* to be drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillEllipseInRect
+--- [Inside Playdate: playdate.graphics.fillEllipseInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillEllipseInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4707,7 +4707,7 @@ function playdate.graphics.fillEllipseInRect(x, y, width, height, startAngle, en
 --- *startAngle* and *endAngle*, if provided, should be in degrees (not radians), and will cause
 --- only the segment of the ellipse between *startAngle* and *endAngle* to be drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillEllipseInRect
+--- [Inside Playdate: playdate.graphics.fillEllipseInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillEllipseInRect)
 ---@param rect _Rect
 ---@param startAngle? number
 ---@param endAngle? number
@@ -4719,7 +4719,7 @@ function playdate.graphics.fillEllipseInRect(rect, startAngle, endAngle) end
 ---
 --- Line width is specified by setLineWidth().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPolygon
+--- [Inside Playdate: playdate.graphics.drawPolygon](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPolygon)
 ---@param p _Polygon
 ---@return nil
 function playdate.graphics.drawPolygon(p) end
@@ -4737,7 +4737,7 @@ function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 ---
 --- Equivalent to `playdate->graphics->fillPolygon()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillPolygon
+--- [Inside Playdate: playdate.graphics.fillPolygon](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillPolygon)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -4757,14 +4757,14 @@ function playdate.graphics.fillPolygon(p) end
 ---
 --- See https://en.wikipedia.org/wiki/Nonzero-rule for an explanation of the winding rule.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPolygonFillRule
+--- [Inside Playdate: playdate.graphics.setPolygonFillRule](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPolygonFillRule)
 ---@param rule integer
 ---@return nil
 function playdate.graphics.setPolygonFillRule(rule) end
 
 --- Draws a triangle with vertices (*x1*, *y1*), (*x2*, *y2*), and (*x3*, *y3*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTriangle
+--- [Inside Playdate: playdate.graphics.drawTriangle](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTriangle)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -4778,7 +4778,7 @@ function playdate.graphics.drawTriangle(x1, y1, x2, y2, x3, y3) end
 ---
 --- Equivalent to `playdate->graphics->fillTriangle()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillTriangle
+--- [Inside Playdate: playdate.graphics.fillTriangle](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillTriangle)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -4792,7 +4792,7 @@ function playdate.graphics.fillTriangle(x1, y1, x2, y2, x3, y3) end
 --- other parameters. The arguments represent the origin and dimensions of the innermost ("center")
 --- slice.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.nineSlice.new
+--- [Inside Playdate: playdate.graphics.nineSlice.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.nineSlice.new)
 ---@param imagePath string
 ---@param innerX integer
 ---@param innerY integer
@@ -4803,14 +4803,14 @@ function playdate.graphics.nineSlice.new(imagePath, innerX, innerY, innerWidth, 
 
 --- Returns the size of the 9 slice image as a pair *(width, height)*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.getSize
+--- [Inside Playdate: playdate.graphics.nineSlice:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.getSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.nineSlice:getSize() end
 
 --- Returns the minimum size of the 9 slice image as a pair *(width, height)*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.getMinSize
+--- [Inside Playdate: playdate.graphics.nineSlice:getMinSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.getMinSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.nineSlice:getMinSize() end
@@ -4818,7 +4818,7 @@ function playdate.graphics.nineSlice:getMinSize() end
 --- Draws the 9 slice image at the desired coordinates by stretching the defined region to achieve
 --- the width and height inputs.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.drawInRect
+--- [Inside Playdate: playdate.graphics.nineSlice:drawInRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.drawInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4829,7 +4829,7 @@ function playdate.graphics.nineSlice:drawInRect(x, y, width, height) end
 --- Draws the 9 slice image at the desired coordinates by stretching the defined region to achieve
 --- the width and height inputs.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.drawInRect
+--- [Inside Playdate: playdate.graphics.nineSlice:drawInRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.nineSlice.drawInRect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.nineSlice:drawInRect(rect) end
@@ -4846,7 +4846,7 @@ function playdate.graphics.nineSlice:drawInRect(rect) end
 --- the amplitude is scaled each octave.  The lower the value of *persistence*, the less influence
 --- each successive octave has on the final value.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.perlin
+--- [Inside Playdate: playdate.graphics.perlin](https://sdk.play.date/Inside%20Playdate.html#f-graphics.perlin)
 ---@param x integer
 ---@param y integer
 ---@param z integer
@@ -4865,7 +4865,7 @@ function playdate.graphics.perlin(x, y, z, _repeat, octaves, persistence) end
 ---
 --- *dx*, *dy*, and *dz* are how far to step along the x, y, and z axes in each iteration.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.perlinArray
+--- [Inside Playdate: playdate.graphics.perlinArray](https://sdk.play.date/Inside%20Playdate.html#f-graphics.perlinArray)
 ---@param count integer
 ---@param x integer
 ---@param dx integer
@@ -4907,7 +4907,7 @@ function playdate.graphics.perlinArray(count, x, dx, y, dy, z, dz, _repeat, octa
 --- the QR code, store it as a .png file in your game, and draw the .png at runtime. You can use
 --- `playdate.simulator.writeToFile()` to create this .png file.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode
+--- [Inside Playdate: playdate.graphics.generateQRCode](https://sdk.play.date/Inside%20Playdate.html#f-graphics.generateQRCode)
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
 ---@param callback fun(image?: _Image, err?: string)
@@ -4923,7 +4923,7 @@ function playdate.graphics.generateQRCode(stringToEncode, desiredEdgeDimension, 
 --- * period: The distance between peaks, in pixels.
 --- * phaseShift: If provided, specifies the wave’s offset, in pixels.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawSineWave
+--- [Inside Playdate: playdate.graphics.drawSineWave](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawSineWave)
 ---@param startX integer
 ---@param startY integer
 ---@param endX integer
@@ -4943,7 +4943,7 @@ function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitu
 ---
 --- Equivalent to `playdate->graphics->setClipRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect
+--- [Inside Playdate: playdate.graphics.setClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -4959,7 +4959,7 @@ function playdate.graphics.setClipRect(x, y, width, height) end
 ---
 --- Equivalent to `playdate->graphics->setClipRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect
+--- [Inside Playdate: playdate.graphics.setClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.setClipRect(rect) end
@@ -4970,7 +4970,7 @@ function playdate.graphics.setClipRect(rect) end
 --- function uses world coordinates; that is, the given rectangle will be translated by the current
 --- drawing offset. To use screen coordinates instead, use `setScreenClipRect()`
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect-rect
+--- [Inside Playdate: playdate.graphics.setClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setClipRect-rect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.setClipRect(rect) end
@@ -4978,7 +4978,7 @@ function playdate.graphics.setClipRect(rect) end
 --- `getClipRect()` returns multiple values (*x*, *y*, *width*, *height*) giving the current
 --- clipping rectangle.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getClipRect
+--- [Inside Playdate: playdate.graphics.getClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getClipRect)
 ---@return integer x
 ---@return integer y
 ---@return integer width
@@ -4990,7 +4990,7 @@ function playdate.graphics.getClipRect() end
 ---
 --- Equivalent to `playdate->graphics->setScreenClipRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setScreenClipRect
+--- [Inside Playdate: playdate.graphics.setScreenClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setScreenClipRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -5003,7 +5003,7 @@ function playdate.graphics.setScreenClipRect(x, y, width, height) end
 ---
 --- Equivalent to `playdate->graphics->setScreenClipRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setScreenClipRect
+--- [Inside Playdate: playdate.graphics.setScreenClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setScreenClipRect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.setScreenClipRect(rect) end
@@ -5011,7 +5011,7 @@ function playdate.graphics.setScreenClipRect(rect) end
 --- Returns the clip rect as in `getClipRect()`, but using screen coordinates instead of world
 --- coordinates.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getScreenClipRect
+--- [Inside Playdate: playdate.graphics.getScreenClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getScreenClipRect)
 ---@return integer x
 ---@return integer y
 ---@return integer width
@@ -5022,7 +5022,7 @@ function playdate.graphics.getScreenClipRect() end
 ---
 --- Equivalent to `playdate->graphics->clearClipRect()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearClipRect
+--- [Inside Playdate: playdate.graphics.clearClipRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearClipRect)
 ---@return nil
 function playdate.graphics.clearClipRect() end
 
@@ -5031,7 +5031,7 @@ function playdate.graphics.clearClipRect() end
 ---
 --- Equivalent to `playdate->graphics->setStencilImage()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilImage
+--- [Inside Playdate: playdate.graphics.setStencilImage](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilImage)
 ---@param image _Image
 ---@param tile? boolean
 ---@return nil
@@ -5041,7 +5041,7 @@ function playdate.graphics.setStencilImage(image, tile) end
 --- pattern into the image, then using that in `setStencilImage()`. `pattern` should be a table of
 --- the form `{ row1, row2, row3, row4, row5, row6, row7, row8 }`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern
+--- [Inside Playdate: playdate.graphics.setStencilPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern)
 ---@param pattern integer[]
 ---@return nil
 function playdate.graphics.setStencilPattern(pattern) end
@@ -5060,7 +5060,7 @@ function playdate.graphics.setStencilPattern(row1, row2, row3, row4, row5, row6,
 --- Sets the stencil to a dither pattern specified by *level* and optional *ditherType* (defaults to
 --- `playdate.graphics.image.kDitherTypeBayer8x8`).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern-dither
+--- [Inside Playdate: playdate.graphics.setStencilPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern-dither)
 ---@param level any
 ---@param ditherType? integer
 ---@return nil
@@ -5068,7 +5068,7 @@ function playdate.graphics.setStencilPattern(level, ditherType) end
 
 --- Clears the stencil buffer.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearStencil
+--- [Inside Playdate: playdate.graphics.clearStencil](https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearStencil)
 ---@return nil
 function playdate.graphics.clearStencil() end
 
@@ -5076,7 +5076,7 @@ function playdate.graphics.clearStencil() end
 ---
 --- Clears the stencil buffer.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearStencilImage
+--- [Inside Playdate: playdate.graphics.clearStencilImage](https://sdk.play.date/Inside%20Playdate.html#f-graphics.clearStencilImage)
 ---@return nil
 function playdate.graphics.clearStencilImage() end
 
@@ -5103,14 +5103,14 @@ function playdate.graphics.clearStencilImage() end
 ---
 --- Equivalent to `playdate->graphics->setDrawMode()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setImageDrawMode
+--- [Inside Playdate: playdate.graphics.setImageDrawMode](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setImageDrawMode)
 ---@param mode integer
 ---@return nil
 function playdate.graphics.setImageDrawMode(mode) end
 
 --- Gets the current drawing mode for images.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getImageDrawMode
+--- [Inside Playdate: playdate.graphics.getImageDrawMode](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getImageDrawMode)
 ---@return integer
 function playdate.graphics.getImageDrawMode() end
 
@@ -5118,14 +5118,14 @@ function playdate.graphics.getImageDrawMode() end
 --- playdate.geometry.arc is passed as the argument. This value is saved and restored when pushing
 --- and popping the graphics context.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineWidth
+--- [Inside Playdate: playdate.graphics.setLineWidth](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setLineWidth)
 ---@param width integer
 ---@return nil
 function playdate.graphics.setLineWidth(width) end
 
 --- Gets the current line width.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLineWidth
+--- [Inside Playdate: playdate.graphics.getLineWidth](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLineWidth)
 ---@return integer
 function playdate.graphics.getLineWidth() end
 
@@ -5139,14 +5139,14 @@ function playdate.graphics.getLineWidth() end
 ---
 --- This value is saved and restored when pushing and popping the graphics context.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStrokeLocation
+--- [Inside Playdate: playdate.graphics.setStrokeLocation](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStrokeLocation)
 ---@param location integer
 ---@return nil
 function playdate.graphics.setStrokeLocation(location) end
 
 --- Gets the current stroke position.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getStrokeLocation
+--- [Inside Playdate: playdate.graphics.getStrokeLocation](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getStrokeLocation)
 ---@return integer
 function playdate.graphics.getStrokeLocation() end
 
@@ -5160,14 +5160,14 @@ function playdate.graphics.getStrokeLocation() end
 --- playdate.graphics.pushContext(*image*) will also allow offscreen drawing into an image, with the
 --- additional benefit of being able to save and restore the graphics state.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.lockFocus
+--- [Inside Playdate: playdate.graphics.lockFocus](https://sdk.play.date/Inside%20Playdate.html#f-graphics.lockFocus)
 ---@param image _Image
 ---@return nil
 function playdate.graphics.lockFocus(image) end
 
 --- After calling `unlockFocus()`, drawing is routed to the frame buffer.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.unlockFocus
+--- [Inside Playdate: playdate.graphics.unlockFocus](https://sdk.play.date/Inside%20Playdate.html#f-graphics.unlockFocus)
 ---@return nil
 function playdate.graphics.unlockFocus() end
 
@@ -5185,7 +5185,7 @@ function playdate.graphics.unlockFocus() end
 --- * shouldLoop : the value of shouldLoop, if passed, or true. (whether the object loops when it completes)
 --- * paused : false (paused loops don’t change their frame value)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new
+--- [Inside Playdate: playdate.graphics.animation.loop.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new)
 ---@param delay? number
 ---@param imageTable? _ImageTable
 ---@param shouldLoop? boolean
@@ -5196,7 +5196,7 @@ function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
 ---
 --- The *flip* argument is optional; see `playdate.graphics.image:draw()` for valid values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.draw
+--- [Inside Playdate: playdate.graphics.animation.loop:draw](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.draw)
 ---@param x integer
 ---@param y integer
 ---@param flip? (integer|string)
@@ -5206,20 +5206,20 @@ function playdate.graphics.animation.loop:draw(x, y, flip) end
 --- Returns a `playdate.graphics.image` from the caller’s *imageTable* if it exists. The image
 --- returned will be at the imageTable’s index that matches the caller’s *frame*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.image
+--- [Inside Playdate: playdate.graphics.animation.loop:image](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.image)
 ---@return _Image
 function playdate.graphics.animation.loop:image() end
 
 --- Returns false if the loop has passed its last frame and does not loop.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.isValid
+--- [Inside Playdate: playdate.graphics.animation.loop:isValid](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.isValid)
 ---@return boolean
 function playdate.graphics.animation.loop:isValid() end
 
 --- Sets the `playdate.graphics.imagetable` to be used for this animation loop, and sets the loop’s
 --- endFrame property to #imageTable.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.setImageTable
+--- [Inside Playdate: playdate.graphics.animation.loop:setImageTable](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.loop.setImageTable)
 ---@param imageTable _ImageTable
 ---@return nil
 function playdate.graphics.animation.loop:setImageTable(imageTable) end
@@ -5263,7 +5263,7 @@ function playdate.graphics.animation.loop:setImageTable(imageTable) end
 ---     square:draw(animator:currentValue(), 120)
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new1
+--- [Inside Playdate: playdate.graphics.animator.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new1)
 ---@param duration integer
 ---@param startValue (number|_Point)
 ---@param endValue (number|_Point)
@@ -5292,7 +5292,7 @@ function playdate.graphics.animator.new(duration, startValue, endValue, easingFu
 ---     square:draw(animator:currentValue())
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new2
+--- [Inside Playdate: playdate.graphics.animator.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new2)
 ---@param duration integer
 ---@param lineSegment _LineSegment
 ---@param easingFunction? function
@@ -5302,7 +5302,7 @@ function playdate.graphics.animator.new(duration, lineSegment, easingFunction, s
 
 --- Creates a new Animator that will animate along the provided playdate.geometry.arc
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new3
+--- [Inside Playdate: playdate.graphics.animator.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new3)
 ---@param duration integer
 ---@param arc _Arc
 ---@param easingFunction? function
@@ -5312,7 +5312,7 @@ function playdate.graphics.animator.new(duration, arc, easingFunction, startTime
 
 --- Creates a new Animator that will animate along the provided playdate.geometry.polygon
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new4
+--- [Inside Playdate: playdate.graphics.animator.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new4)
 ---@param duration integer
 ---@param polygon _Polygon
 ---@param easingFunction? function
@@ -5362,7 +5362,7 @@ function playdate.graphics.animator.new(duration, polygon, easingFunction, start
 ---     square:draw(animator:currentValue())
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new5
+--- [Inside Playdate: playdate.graphics.animator.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animator.new5)
 ---@param durations integer
 ---@param parts number[]
 ---@param easingFunctions function[]
@@ -5373,28 +5373,28 @@ function playdate.graphics.animator.new(durations, parts, easingFunctions, start
 --- Returns the current value of the animation, which will be either a number or a
 --- playdate.geometry.point, depending on the type of animator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.currentValue
+--- [Inside Playdate: playdate.graphics.animator:currentValue](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.currentValue)
 ---@return (number|_Point)
 function playdate.graphics.animator:currentValue() end
 
 --- Returns the value of the animation at the given number of milliseconds after the start time. The
 --- value will be either a number or a playdate.geometry.point, depending on the type of animator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.valueAtTime
+--- [Inside Playdate: playdate.graphics.animator:valueAtTime](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.valueAtTime)
 ---@param time number
 ---@return (number|_Point)
 function playdate.graphics.animator:valueAtTime(time) end
 
 --- Returns the current progress of the animation as a value from 0 to 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.progress
+--- [Inside Playdate: playdate.graphics.animator:progress](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.progress)
 ---@return number
 function playdate.graphics.animator:progress() end
 
 --- Resets the animation, setting its start time to the current time, and changes the animation’s
 --- duration if a new duration is given.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.reset
+--- [Inside Playdate: playdate.graphics.animator:reset](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.reset)
 ---@param duration? integer
 ---@return nil
 function playdate.graphics.animator:reset(duration) end
@@ -5403,7 +5403,7 @@ function playdate.graphics.animator:reset(duration) end
 --- `currentValue()` has been called since the animation ended in order to allow animations to fully
 --- finish before true is returned.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.ended
+--- [Inside Playdate: playdate.graphics.animator:ended](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animator.ended)
 ---@return boolean
 function playdate.graphics.animator:ended() end
 
@@ -5424,7 +5424,7 @@ function playdate.graphics.animator:ended() end
 --- * on: Read this property to determine the current state of the blinker. The blinker always starts in the state specified by the default property.
 --- * running: Read this property to see if the blinker is actively running
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.new
+--- [Inside Playdate: playdate.graphics.animation.blinker.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.new)
 ---@param onDuration? integer
 ---@param offDuration? integer
 ---@param loop? boolean
@@ -5438,19 +5438,19 @@ function playdate.graphics.animation.blinker.new(onDuration, offDuration, loop, 
 --- If you intend to use blinkers, be sure to call `:updateAll()` once a cycle, ideally in your
 --- game’s `playdate.update()` function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.updateAll
+--- [Inside Playdate: playdate.graphics.animation.blinker.updateAll](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.updateAll)
 ---@return nil
 function playdate.graphics.animation.blinker.updateAll() end
 
 --- Updates the caller’s state.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.update
+--- [Inside Playdate: playdate.graphics.animation.blinker:update](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.update)
 ---@return nil
 function playdate.graphics.animation.blinker:update() end
 
 --- Starts a blinker if it’s not running. Pass values for any property values you wish to modify.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.start
+--- [Inside Playdate: playdate.graphics.animation.blinker:start](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.start)
 ---@param onDuration? integer
 ---@param offDuration? integer
 ---@param loop? boolean
@@ -5462,25 +5462,25 @@ function playdate.graphics.animation.blinker:start(onDuration, offDuration, loop
 --- Starts a blinker if it’s not running and sets its `loop` property to true. Equivalent to calling
 --- `playdate.graphics.animation.blinker:start(nil, nil, true)`
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.startLoop
+--- [Inside Playdate: playdate.graphics.animation.blinker:startLoop](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.startLoop)
 ---@return nil
 function playdate.graphics.animation.blinker:startLoop() end
 
 --- Stops a blinker if it’s running, returning the blinker’s `on` properly to the default value.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.stop
+--- [Inside Playdate: playdate.graphics.animation.blinker:stop](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.stop)
 ---@return nil
 function playdate.graphics.animation.blinker:stop() end
 
 --- Stops all blinkers.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.stopAll
+--- [Inside Playdate: playdate.graphics.animation.blinker.stopAll](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.stopAll)
 ---@return nil
 function playdate.graphics.animation.blinker.stopAll() end
 
 --- Flags the caller for removal from the global list of blinkers
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.remove
+--- [Inside Playdate: playdate.graphics.animation.blinker:remove](https://sdk.play.date/Inside%20Playdate.html#m-graphics.animation.blinker.remove)
 ---@return nil
 function playdate.graphics.animation.blinker:remove() end
 
@@ -5504,7 +5504,7 @@ function playdate.graphics.animation.blinker:remove() end
 ---
 --- Equivalent to `playdate->graphics->setDrawOffset()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDrawOffset
+--- [Inside Playdate: playdate.graphics.setDrawOffset](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setDrawOffset)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -5512,7 +5512,7 @@ function playdate.graphics.setDrawOffset(x, y) end
 
 --- `getDrawOffset()` returns multiple values (*x*, *y*) giving the current draw offset.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getDrawOffset
+--- [Inside Playdate: playdate.graphics.getDrawOffset](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getDrawOffset)
 ---@return integer x
 ---@return integer y
 function playdate.graphics.getDrawOffset() end
@@ -5523,7 +5523,7 @@ function playdate.graphics.getDrawOffset() end
 --- Display functions like setMosaic(), setInverted(), setScale(), and setOffset() do not affect the
 --- returned image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getDisplayImage
+--- [Inside Playdate: playdate.graphics.getDisplayImage](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getDisplayImage)
 ---@return _Image
 function playdate.graphics.getDisplayImage() end
 
@@ -5533,7 +5533,7 @@ function playdate.graphics.getDisplayImage() end
 --- Display functions like setMosaic(), setInverted(), setScale(), and setOffset() do not affect the
 --- returned image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getWorkingImage
+--- [Inside Playdate: playdate.graphics.getWorkingImage](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getWorkingImage)
 ---@return _Image
 function playdate.graphics.getWorkingImage() end
 
@@ -5548,7 +5548,7 @@ function playdate.graphics.getWorkingImage() end
 --- To load a **sequential** image table defined with the files `frames-table-1.png`, `frames-table-
 --- 2.png`, etc., you call `playdate.graphics.imagetable.new("frames")`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new
+--- [Inside Playdate: playdate.graphics.imagetable.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new)
 ---@param path string
 ---@return _ImageTable imagetable?
 ---@return string err?
@@ -5559,7 +5559,7 @@ function playdate.graphics.imagetable.new(path) end
 --- by x,y position. The optional *cellSize* argument gives the allocation size for the images, if
 --- load() will be used. (This is a weird technical detail, so ask us if you need guidance here.)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new-alloc
+--- [Inside Playdate: playdate.graphics.imagetable.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.imagetable.new-alloc)
 ---@param count integer
 ---@param cellsWide? integer
 ---@param cellSize? integer
@@ -5570,7 +5570,7 @@ function playdate.graphics.imagetable.new(count, cellsWide, cellSize) end
 --- The first image is at index 1. If .n_ or (*x*,*y*) is out of bounds, the function returns nil.
 --- See also imagetable[n].
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-n
+--- [Inside Playdate: playdate.graphics.imagetable:getImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-n)
 ---@param n integer
 ---@return _Image?
 function playdate.graphics.imagetable:getImage(n) end
@@ -5578,7 +5578,7 @@ function playdate.graphics.imagetable:getImage(n) end
 --- Returns the image in cell (*x*,*y*) in the original bitmap. The first image is at index 1. If
 --- *n* or (*x*,*y*) is out of bounds, the function returns nil. See also imagetable[n].
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-xy
+--- [Inside Playdate: playdate.graphics.imagetable:getImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getImage-xy)
 ---@param x integer
 ---@param y integer
 ---@return _Image?
@@ -5586,7 +5586,7 @@ function playdate.graphics.imagetable:getImage(x, y) end
 
 --- Sets the image at slot *n* in the image table by creating a reference to the data in *image*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.setImage
+--- [Inside Playdate: playdate.graphics.imagetable:setImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.setImage)
 ---@param n integer
 ---@param image _Image
 ---@return nil
@@ -5598,7 +5598,7 @@ function playdate.graphics.imagetable:setImage(n, image) end
 ---
 --- Returns (success, [error]). If the boolean success is false, error is also returned.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.load
+--- [Inside Playdate: playdate.graphics.imagetable:load](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.load)
 ---@param path string
 ---@return boolean success
 ---@return string? err
@@ -5606,20 +5606,20 @@ function playdate.graphics.imagetable:load(path) end
 
 --- Returns the number of images in the table. See also #imagetable.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getLength
+--- [Inside Playdate: playdate.graphics.imagetable:getLength](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getLength)
 ---@return integer
 function playdate.graphics.imagetable:getLength() end
 
 --- Returns the pair (*cellsWide*, *cellsHigh*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getSize
+--- [Inside Playdate: playdate.graphics.imagetable:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.getSize)
 ---@return integer cellsWide
 ---@return integer cellsHigh
 function playdate.graphics.imagetable:getSize() end
 
 --- Equivalent to `graphics.imagetable:getImage(n):draw(x,y,[flip])`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.drawImage
+--- [Inside Playdate: playdate.graphics.imagetable:drawImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.drawImage)
 ---@param n integer
 ---@param x integer
 ---@param y integer
@@ -5629,20 +5629,20 @@ function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 
 --- Equivalent to imagetable:getImage(n).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__index
+--- [Inside Playdate: playdate.graphics.imagetable:__index](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__index)
 ---@param n integer
 ---@return _Image?
 function playdate.graphics.imagetable:__index(n) end
 
 --- Creates a new tilemap object.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.tilemap.new
+--- [Inside Playdate: playdate.graphics.tilemap.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.tilemap.new)
 ---@return _TileMap
 function playdate.graphics.tilemap.new() end
 
 --- Sets the tilemap’s playdate.graphics.imagetable to *table*, a playdate.graphics.imagetable.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setImageTable
+--- [Inside Playdate: playdate.graphics.tilemap:setImageTable](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setImageTable)
 ---@param table table
 ---@return nil
 function playdate.graphics.tilemap:setImageTable(table) end
@@ -5650,7 +5650,7 @@ function playdate.graphics.tilemap:setImageTable(table) end
 --- Sets the tilemap’s width to *width*, then populates the tilemap with *data*, which should be a
 --- flat, one-dimensional array-like table containing index values to the tilemap’s imagetable.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setTiles
+--- [Inside Playdate: playdate.graphics.tilemap:setTiles](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setTiles)
 ---@param data integer[]
 ---@param width integer
 ---@return nil
@@ -5663,7 +5663,7 @@ function playdate.graphics.tilemap:setTiles(data, width) end
 --- ---
 --- ---  *width* is the width of the tile map, in number of tiles.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTiles
+--- [Inside Playdate: playdate.graphics.tilemap:getTiles](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTiles)
 ---@return integer[] data
 ---@return integer width
 function playdate.graphics.tilemap:getTiles() end
@@ -5674,7 +5674,7 @@ function playdate.graphics.tilemap:getTiles() end
 --- to be drawn. *sourceRect* should be relative to the tilemap’s bounds and can be a
 --- playdate.geometry.rect or four integers, (*x*, *y*, *w*, *h*), representing the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.draw
+--- [Inside Playdate: playdate.graphics.tilemap:draw](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.draw)
 ---@param x integer
 ---@param y integer
 ---@param sourceRect? _Rect
@@ -5683,7 +5683,7 @@ function playdate.graphics.tilemap:draw(x, y, sourceRect) end
 
 --- Draws the tilemap ignoring the currently-set `drawOffset`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.drawIgnoringOffset
+--- [Inside Playdate: playdate.graphics.tilemap:drawIgnoringOffset](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.drawIgnoringOffset)
 ---@param x integer
 ---@param y integer
 ---@param sourceRect? _Rect
@@ -5697,7 +5697,7 @@ function playdate.graphics.tilemap:drawIgnoringOffset(x, y, sourceRect) end
 --- `tilemap:setTileAtPosition(1, 1, 2)` will set the index of the tile in the top-leftmost position
 --- to 2.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setTileAtPosition
+--- [Inside Playdate: playdate.graphics.tilemap:setTileAtPosition](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setTileAtPosition)
 ---@param x integer
 ---@param y integer
 ---@param index integer
@@ -5710,7 +5710,7 @@ function playdate.graphics.tilemap:setTileAtPosition(x, y, index) end
 --- Tilemaps and imagetables, like Lua arrays, are 1-based, not 0-based.
 --- `tilemap:getTileAtPosition(1, 1)` will return the index of the top-leftmost tile.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTileAtPosition
+--- [Inside Playdate: playdate.graphics.tilemap:getTileAtPosition](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTileAtPosition)
 ---@param x integer
 ---@param y integer
 ---@return number?
@@ -5718,7 +5718,7 @@ function playdate.graphics.tilemap:getTileAtPosition(x, y) end
 
 --- Sets the tilemap’s width and height, in number of tiles.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setSize
+--- [Inside Playdate: playdate.graphics.tilemap:setSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setSize)
 ---@param width integer
 ---@param height integer
 ---@return nil
@@ -5726,7 +5726,7 @@ function playdate.graphics.tilemap:setSize(width, height) end
 
 --- Returns the size of the tile map, in tiles, as a pair, (*width*, *height*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getSize
+--- [Inside Playdate: playdate.graphics.tilemap:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.tilemap:getSize() end
@@ -5734,14 +5734,14 @@ function playdate.graphics.tilemap:getSize() end
 --- Returns the size of the tilemap in pixels; that is, the size of the image multiplied by the
 --- number of rows and columns in the map. Returns multiple values (*width*, *height*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getPixelSize
+--- [Inside Playdate: playdate.graphics.tilemap:getPixelSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getPixelSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.tilemap:getPixelSize() end
 
 --- Returns multiple values (*width*, *height*), the pixel width and height of an individual tile.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTileSize
+--- [Inside Playdate: playdate.graphics.tilemap:getTileSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTileSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.tilemap:getTileSize() end
@@ -5767,7 +5767,7 @@ function playdate.graphics.tilemap:getTileSize() end
 --- function playdate.graphics.sprite.addWallSprites(), which is effectively a shortcut for calling
 --- getCollisionRects() and passing all the resulting rects to addEmptyCollisionSprite().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getCollisionRects
+--- [Inside Playdate: playdate.graphics.tilemap:getCollisionRects](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getCollisionRects)
 ---@param emptyIDs integer[]
 ---@return _Rect[]
 function playdate.graphics.tilemap:getCollisionRects(emptyIDs) end
@@ -5778,7 +5778,7 @@ function playdate.graphics.tilemap:getCollisionRects(emptyIDs) end
 --- To see your sprite onscreen, you will need to call `:add()` on your sprite to add it to the
 --- display list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.new
+--- [Inside Playdate: playdate.graphics.sprite.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.new)
 ---@param image_or_tilemap? (_Image|_TileMap)
 ---@return _Sprite
 function playdate.graphics.sprite.new(image_or_tilemap) end
@@ -5798,7 +5798,7 @@ function playdate.graphics.sprite.new(image_or_tilemap) end
 --- `*textWasTruncated*` indicates if the text was truncated to fit within the specified width and
 --- height.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.spriteWithText
+--- [Inside Playdate: playdate.graphics.sprite.spriteWithText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.spriteWithText)
 ---@param text string
 ---@param maxWidth integer
 ---@param maxHeight integer
@@ -5820,7 +5820,7 @@ function playdate.graphics.sprite.spriteWithText(text, maxWidth, maxHeight, back
 --- Be careful not confuse `sprite.update()` with `sprite:update()`: the former updates all sprites;
 --- the latter updates just the sprite being invoked.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.update
+--- [Inside Playdate: playdate.graphics.sprite.update](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.update)
 ---@return nil
 function playdate.graphics.sprite.update() end
 
@@ -5830,7 +5830,7 @@ function playdate.graphics.sprite.update() end
 --- playdate.graphics.sprite:setRedrawOnImageChange(), the sprite is automatically marked for redraw
 --- if the image isn’t the previous image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImage
+--- [Inside Playdate: playdate.graphics.sprite:setImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImage)
 ---@param image _Image
 ---@param flip? (integer|string)
 ---@param scale? integer
@@ -5840,41 +5840,41 @@ function playdate.graphics.sprite:setImage(image, flip, scale, yscale) end
 
 --- Returns the playdate.graphics.image object that was set with setImage().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImage
+--- [Inside Playdate: playdate.graphics.sprite:getImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImage)
 ---@return _Image
 function playdate.graphics.sprite:getImage() end
 
 --- Adds the given sprite to the display list, so that it is drawn in the current scene.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.add
+--- [Inside Playdate: playdate.graphics.sprite:add](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.add)
 ---@return nil
 function playdate.graphics.sprite:add() end
 
 --- Adds the given sprite to the display list, so that it is drawn in the current scene. Note that
 --- this is called with a period `.` instead of a colon `:`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addSprite
+--- [Inside Playdate: playdate.graphics.sprite.addSprite](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addSprite)
 ---@param sprite _Sprite
 ---@return nil
 function playdate.graphics.sprite.addSprite(sprite) end
 
 --- Removes the given sprite from the display list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.remove
+--- [Inside Playdate: playdate.graphics.sprite:remove](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.remove)
 ---@return nil
 function playdate.graphics.sprite:remove() end
 
 --- Removes the given sprite from the display list. As with `add()`/`addSprite()`, note that this is
 --- called with a period `.` instead of a colon `:`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.removeSprite
+--- [Inside Playdate: playdate.graphics.sprite.removeSprite](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.removeSprite)
 ---@param sprite _Sprite
 ---@return nil
 function playdate.graphics.sprite.removeSprite(sprite) end
 
 --- Moves the sprite and resets the bounds based on the image dimensions and center.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveTo
+--- [Inside Playdate: playdate.graphics.sprite:moveTo](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveTo)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -5882,14 +5882,14 @@ function playdate.graphics.sprite:moveTo(x, y) end
 
 --- Returns the sprite’s current x, y position as multiple values (*x*, *y*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getPosition
+--- [Inside Playdate: playdate.graphics.sprite:getPosition](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getPosition)
 ---@return integer x
 ---@return integer y
 function playdate.graphics.sprite:getPosition() end
 
 --- Moves the sprite by *x*, *y* pixels relative to its current position.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveBy
+--- [Inside Playdate: playdate.graphics.sprite:moveBy](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveBy)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -5898,27 +5898,27 @@ function playdate.graphics.sprite:moveBy(x, y) end
 --- Sets the Z-index of the given sprite. Sprites with higher Z-indexes are drawn on top of those
 --- with lower Z-indexes. Valid values for *z* are in the range (-32768, 32767).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setZIndex
+--- [Inside Playdate: playdate.graphics.sprite:setZIndex](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setZIndex)
 ---@param z integer
 ---@return nil
 function playdate.graphics.sprite:setZIndex(z) end
 
 --- Returns the Z-index of the given sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getZIndex
+--- [Inside Playdate: playdate.graphics.sprite:getZIndex](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getZIndex)
 ---@return integer
 function playdate.graphics.sprite:getZIndex() end
 
 --- Sprites that aren’t visible don’t get their draw() method called.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setVisible
+--- [Inside Playdate: playdate.graphics.sprite:setVisible](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setVisible)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite:setVisible(flag) end
 
 --- Returns a boolean value, true if the sprite is visible.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.isVisible
+--- [Inside Playdate: playdate.graphics.sprite:isVisible](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.isVisible)
 ---@return boolean
 function playdate.graphics.sprite:isVisible() end
 
@@ -5927,7 +5927,7 @@ function playdate.graphics.sprite:isVisible() end
 --- y), the center of your sprite will be positioned at *x*, *y*. If you want x and y to represent
 --- the upper left corner of your sprite, specify the center as 0, 0.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCenter
+--- [Inside Playdate: playdate.graphics.sprite:setCenter](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCenter)
 ---@param x number
 ---@param y number
 ---@return nil
@@ -5936,7 +5936,7 @@ function playdate.graphics.sprite:setCenter(x, y) end
 --- Returns multiple values (`x, y`) representing the sprite’s drawing center as a fraction (ranging
 --- from 0.0 to 1.0) of the height and width.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenter
+--- [Inside Playdate: playdate.graphics.sprite:getCenter](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenter)
 ---@return number x
 ---@return number y
 function playdate.graphics.sprite:getCenter() end
@@ -5944,13 +5944,13 @@ function playdate.graphics.sprite:getCenter() end
 --- Returns a playdate.geometry.point representing the sprite’s drawing center as a fraction
 --- (ranging from 0.0 to 1.0) of the height and width.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenterPoint
+--- [Inside Playdate: playdate.graphics.sprite:getCenterPoint](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCenterPoint)
 ---@return _Point
 function playdate.graphics.sprite:getCenterPoint() end
 
 --- Sets the sprite’s size. The method has no effect if the sprite has an image set.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setSize
+--- [Inside Playdate: playdate.graphics.sprite:setSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setSize)
 ---@param width integer
 ---@param height integer
 ---@return nil
@@ -5958,7 +5958,7 @@ function playdate.graphics.sprite:setSize(width, height) end
 
 --- Returns multiple values *(width, height)*, the current size of the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getSize
+--- [Inside Playdate: playdate.graphics.sprite:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.sprite:getSize() end
@@ -5967,7 +5967,7 @@ function playdate.graphics.sprite:getSize() end
 --- setImage() is called after this, the scale factor is applied to the new image. Only affects
 --- sprites that have an image set.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setScale
+--- [Inside Playdate: playdate.graphics.sprite:setScale](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setScale)
 ---@param scale integer
 ---@param yScale? integer
 ---@return nil
@@ -5975,7 +5975,7 @@ function playdate.graphics.sprite:setScale(scale, yScale) end
 
 --- Returns multiple values *(xScale, yScale)*, the current scaling of the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getScale
+--- [Inside Playdate: playdate.graphics.sprite:getScale](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getScale)
 ---@return integer xScale
 ---@return integer yScale
 function playdate.graphics.sprite:getScale() end
@@ -5986,7 +5986,7 @@ function playdate.graphics.sprite:getScale() end
 --- likely to be slow on the hardware. Consider pre-rendering rotated images for your sprites
 --- instead.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setRotation
+--- [Inside Playdate: playdate.graphics.sprite:setRotation](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setRotation)
 ---@param angle number
 ---@param scale? integer
 ---@param yScale? integer
@@ -5995,13 +5995,13 @@ function playdate.graphics.sprite:setRotation(angle, scale, yScale) end
 
 --- Returns the current rotation of the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getRotation
+--- [Inside Playdate: playdate.graphics.sprite:getRotation](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getRotation)
 ---@return number
 function playdate.graphics.sprite:getRotation() end
 
 --- Returns a copy of the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.copy
+--- [Inside Playdate: playdate.graphics.sprite:copy](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.copy)
 ---@return _Sprite
 function playdate.graphics.sprite:copy() end
 
@@ -6010,35 +6010,35 @@ function playdate.graphics.sprite:copy() end
 --- choose to have your sprite do something on every frame by implementing an update method on your
 --- sprite instance, or implementing it in your sprite subclass.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setUpdatesEnabled
+--- [Inside Playdate: playdate.graphics.sprite:setUpdatesEnabled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setUpdatesEnabled)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite:setUpdatesEnabled(flag) end
 
 --- Returns a boolean value, true if updates are enabled on the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.updatesEnabled
+--- [Inside Playdate: playdate.graphics.sprite:updatesEnabled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.updatesEnabled)
 ---@return boolean
 function playdate.graphics.sprite:updatesEnabled() end
 
 --- Sets the sprite’s tag, an integer value in the range of 0 to 255, useful for identifying sprites
 --- later, particularly when working with collisions.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setTag
+--- [Inside Playdate: playdate.graphics.sprite:setTag](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setTag)
 ---@param tag integer
 ---@return nil
 function playdate.graphics.sprite:setTag(tag) end
 
 --- Returns the sprite’s tag, an integer value.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getTag
+--- [Inside Playdate: playdate.graphics.sprite:getTag](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getTag)
 ---@return integer
 function playdate.graphics.sprite:getTag() end
 
 --- Sets the mode for drawing the bitmap. See playdate.graphics.setImageDrawMode(mode) for valid
 --- modes.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageDrawMode
+--- [Inside Playdate: playdate.graphics.sprite:setImageDrawMode](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageDrawMode)
 ---@param mode integer
 ---@return nil
 function playdate.graphics.sprite:setImageDrawMode(mode) end
@@ -6051,7 +6051,7 @@ function playdate.graphics.sprite:setImageDrawMode(mode) end
 --- Calling setImage() will reset the sprite to its default, non-flipped orientation.  So, if you
 --- call both setImage() and setImageFlip(), call setImage() first.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageFlip
+--- [Inside Playdate: playdate.graphics.sprite:setImageFlip](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setImageFlip)
 ---@param flip (integer|string)
 ---@param flipCollideRect? boolean
 ---@return nil
@@ -6059,7 +6059,7 @@ function playdate.graphics.sprite:setImageFlip(flip, flipCollideRect) end
 
 --- Returns one of the values listed at playdate.graphics.image:draw().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImageFlip
+--- [Inside Playdate: playdate.graphics.sprite:getImageFlip](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getImageFlip)
 ---@return integer
 function playdate.graphics.sprite:getImageFlip() end
 
@@ -6069,7 +6069,7 @@ function playdate.graphics.sprite:getImageFlip() end
 --- This only affects drawing, and should not be used on sprites being used for collisions, which
 --- will still happen in world-space.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setIgnoresDrawOffset
+--- [Inside Playdate: playdate.graphics.sprite:setIgnoresDrawOffset](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setIgnoresDrawOffset)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite:setIgnoresDrawOffset(flag) end
@@ -6084,7 +6084,7 @@ function playdate.graphics.sprite:setIgnoresDrawOffset(flag) end
 --- where *x* and *y* honor the sprite’s defined center (by default, at a point 50% along the
 --- sprite’s width and height.)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setBounds
+--- [Inside Playdate: playdate.graphics.sprite:setBounds](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setBounds)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6094,14 +6094,14 @@ function playdate.graphics.sprite:setBounds(x, y, width, height) end
 
 --- `setBounds(rect)` sets the bounds of the sprite with a `playdate.geometry.rect` object.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setBounds-rect
+--- [Inside Playdate: playdate.graphics.sprite:setBounds](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setBounds-rect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.sprite:setBounds(rect) end
 
 --- `getBounds()` returns multiple values (*x*, *y*, *width*, *height*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBounds
+--- [Inside Playdate: playdate.graphics.sprite:getBounds](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBounds)
 ---@return integer x
 ---@return integer y
 ---@return integer width
@@ -6110,7 +6110,7 @@ function playdate.graphics.sprite:getBounds() end
 
 --- `getBoundsRect()` returns the sprite bounds as a `playdate.geometry.rect` object.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBoundsRect
+--- [Inside Playdate: playdate.graphics.sprite:getBoundsRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getBoundsRect)
 ---@return _Rect
 function playdate.graphics.sprite:getBoundsRect() end
 
@@ -6120,14 +6120,14 @@ function playdate.graphics.sprite:getBoundsRect() end
 ---
 --- Setting a sprite to opaque can have performance benefits.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setOpaque
+--- [Inside Playdate: playdate.graphics.sprite:setOpaque](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setOpaque)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite:setOpaque(flag) end
 
 --- Returns the sprite’s current opaque flag.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.isOpaque
+--- [Inside Playdate: playdate.graphics.sprite:isOpaque](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.isOpaque)
 ---@return boolean
 function playdate.graphics.sprite:isOpaque() end
 
@@ -6149,7 +6149,7 @@ function playdate.graphics.sprite:isOpaque() end
 --- function and is where you should do your background drawing. This function returns the newly
 --- created playdate.graphics.sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback
+--- [Inside Playdate: playdate.graphics.sprite.setBackgroundDrawingCallback](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback)
 ---@param drawCallback? fun(x: integer, y: integer, width: integer, height: integer): nil
 ---@return _Sprite
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
@@ -6159,14 +6159,14 @@ function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 --- Marks the background sprite dirty, forcing the drawing callback to be run when
 --- playdate.graphics.sprite.update() is called.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.redrawBackground
+--- [Inside Playdate: playdate.graphics.sprite.redrawBackground](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.redrawBackground)
 ---@return nil
 function playdate.graphics.sprite.redrawBackground() end
 
 --- Sets the sprite’s contents to the given tilemap. Useful if you want to automate drawing of your
 --- tilemap, especially if interleaved by depth with other sprites being drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setTilemap
+--- [Inside Playdate: playdate.graphics.sprite:setTilemap](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setTilemap)
 ---@param tilemap _TileMap
 ---@return nil
 function playdate.graphics.sprite:setTilemap(tilemap) end
@@ -6184,7 +6184,7 @@ function playdate.graphics.sprite:setTilemap(tilemap) end
 ---
 --- `setAnimator` should be called only after any custom update method has been set on the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setAnimator
+--- [Inside Playdate: playdate.graphics.sprite:setAnimator](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setAnimator)
 ---@param animator _Animator
 ---@param moveWithCollisions? boolean
 ---@param removeOnCollision? boolean
@@ -6193,14 +6193,14 @@ function playdate.graphics.sprite:setAnimator(animator, moveWithCollisions, remo
 
 --- Removes a playdate.graphics.animator assigned to the sprite
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeAnimator
+--- [Inside Playdate: playdate.graphics.sprite:removeAnimator](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeAnimator)
 ---@return nil
 function playdate.graphics.sprite:removeAnimator() end
 
 --- Sets the clipping rectangle for the sprite, using separate parameters or a
 --- `playdate.geometry.rect` object. Only areas within the rect will be drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setClipRect
+--- [Inside Playdate: playdate.graphics.sprite:setClipRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setClipRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6211,20 +6211,20 @@ function playdate.graphics.sprite:setClipRect(x, y, width, height) end
 --- Sets the clipping rectangle for the sprite, using separate parameters or a
 --- `playdate.geometry.rect` object. Only areas within the rect will be drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setClipRect
+--- [Inside Playdate: playdate.graphics.sprite:setClipRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setClipRect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.sprite:setClipRect(rect) end
 
 --- Clears the sprite’s current clipping rectangle.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearClipRect
+--- [Inside Playdate: playdate.graphics.sprite:clearClipRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearClipRect)
 ---@return nil
 function playdate.graphics.sprite:clearClipRect() end
 
 --- Sets the clip rect for sprites in the given z-index range.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setClipRectsInRange
+--- [Inside Playdate: playdate.graphics.sprite.setClipRectsInRange](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setClipRectsInRange)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6236,7 +6236,7 @@ function playdate.graphics.sprite.setClipRectsInRange(x, y, width, height, start
 
 --- Sets the clip rect for sprites in the given z-index range.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setClipRectsInRange
+--- [Inside Playdate: playdate.graphics.sprite.setClipRectsInRange](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setClipRectsInRange)
 ---@param rect _Rect
 ---@param startz integer
 ---@param endz integer
@@ -6245,7 +6245,7 @@ function playdate.graphics.sprite.setClipRectsInRange(rect, startz, endz) end
 
 --- Clears sprite clip rects in the given z-index range.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.clearClipRectsInRange
+--- [Inside Playdate: playdate.graphics.sprite.clearClipRectsInRange](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.clearClipRectsInRange)
 ---@param startz integer
 ---@param endz integer
 ---@return nil
@@ -6255,7 +6255,7 @@ function playdate.graphics.sprite.clearClipRectsInRange(startz, endz) end
 --- is set, the the stencil will be tiled; in this case, the image width must be a multiple of 32
 --- pixels.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilImage
+--- [Inside Playdate: playdate.graphics.sprite:setStencilImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilImage)
 ---@param stencil _Image
 ---@param tile? boolean
 ---@return nil
@@ -6263,7 +6263,7 @@ function playdate.graphics.sprite:setStencilImage(stencil, tile) end
 
 --- Sets the sprite’s stencil to the given pattern, tiled across the screen.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern
+--- [Inside Playdate: playdate.graphics.setStencilPattern](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern)
 ---@param pattern integer[]
 ---@return nil
 function playdate.graphics.setStencilPattern(pattern) end
@@ -6271,7 +6271,7 @@ function playdate.graphics.setStencilPattern(pattern) end
 --- Sets the sprite’s stencil to the given pattern, tiled across the screen. `pattern` should be a
 --- table of the form `{ row1, row2, row3, row4, row5, row6, row7, row8 }`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern_p
+--- [Inside Playdate: playdate.graphics.sprite:setStencilPattern](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern_p)
 ---@param pattern integer[]
 ---@return nil
 function playdate.graphics.sprite:setStencilPattern(pattern) end
@@ -6279,7 +6279,7 @@ function playdate.graphics.sprite:setStencilPattern(pattern) end
 --- Sets the sprite’s stencil to a dither pattern specified by *level* and optional *ditherType*
 --- (defaults to `playdate.graphics.image.kDitherTypeBayer8x8`).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern-dither
+--- [Inside Playdate: playdate.graphics.sprite:setStencilPattern](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilPattern-dither)
 ---@param level any
 ---@param ditherType? integer
 ---@return nil
@@ -6287,7 +6287,7 @@ function playdate.graphics.sprite:setStencilPattern(level, ditherType) end
 
 --- Clears the sprite’s stencil.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearStencil
+--- [Inside Playdate: playdate.graphics.sprite:clearStencil](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearStencil)
 ---@return nil
 function playdate.graphics.sprite:clearStencil() end
 
@@ -6295,20 +6295,20 @@ function playdate.graphics.sprite:clearStencil() end
 --- dirty. This may speed up the performance of your game if the system’s dirty rect tracking is
 --- taking up too much time - for example if there are many sprites moving around on screen at once.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setAlwaysRedraw
+--- [Inside Playdate: playdate.graphics.sprite.setAlwaysRedraw](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setAlwaysRedraw)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite.setAlwaysRedraw(flag) end
 
 --- Return’s the sprites "always redraw" flag.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.getAlwaysRedraw
+--- [Inside Playdate: playdate.graphics.sprite.getAlwaysRedraw](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.getAlwaysRedraw)
 ---@return boolean
 function playdate.graphics.sprite.getAlwaysRedraw() end
 
 --- Marks the rect defined by the sprite’s current bounds as needing a redraw.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.markDirty
+--- [Inside Playdate: playdate.graphics.sprite:markDirty](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.markDirty)
 ---@return nil
 function playdate.graphics.sprite:markDirty() end
 
@@ -6317,7 +6317,7 @@ function playdate.graphics.sprite:markDirty() end
 --- there’s likely no need to call this manually any more. This behavior may change in the future,
 --- though.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.addDirtyRect
+--- [Inside Playdate: playdate.graphics.sprite.addDirtyRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.addDirtyRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6330,14 +6330,14 @@ function playdate.graphics.sprite.addDirtyRect(x, y, width, height) end
 --- argument, playdate.graphics.sprite.addDirtyRect() can be used to mark the (potentially smaller)
 --- area of the screen that needs to be redrawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setRedrawsOnImageChange
+--- [Inside Playdate: playdate.graphics.sprite:setRedrawsOnImageChange](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setRedrawsOnImageChange)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite:setRedrawsOnImageChange(flag) end
 
 --- Returns an array of all sprites in the display list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.getAllSprites
+--- [Inside Playdate: playdate.graphics.sprite.getAllSprites](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.getAllSprites)
 ---@return _Sprite[]
 function playdate.graphics.sprite.getAllSprites() end
 
@@ -6346,26 +6346,26 @@ function playdate.graphics.sprite.getAllSprites() end
 --- Performs the function *f* on all sprites in the display list. *f* should take one argument,
 --- which will be a sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.performOnAllSprites
+--- [Inside Playdate: playdate.graphics.sprite.performOnAllSprites](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.performOnAllSprites)
 ---@param f fun(sprite: _Sprite)
 ---@return nil
 function playdate.graphics.sprite.performOnAllSprites(f) end
 
 --- Returns the number of sprites in the display list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.spriteCount
+--- [Inside Playdate: playdate.graphics.sprite.spriteCount](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.spriteCount)
 ---@return integer
 function playdate.graphics.sprite.spriteCount() end
 
 --- Removes all sprites from the global sprite list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.removeAll
+--- [Inside Playdate: playdate.graphics.sprite.removeAll](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.removeAll)
 ---@return nil
 function playdate.graphics.sprite.removeAll() end
 
 --- Removes all sprites in `spriteArray` from the global sprite list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeSprites
+--- [Inside Playdate: playdate.graphics.sprite.removeSprites](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.removeSprites)
 ---@param spriteArray _Sprite[]
 ---@return nil
 function playdate.graphics.sprite.removeSprites(spriteArray) end
@@ -6404,7 +6404,7 @@ function playdate.graphics.sprite.removeSprites(spriteArray) end
 ---     mySprite:markDirty()
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.draw
+--- [Inside Playdate: playdate.graphics.sprite:draw](https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.draw)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6469,7 +6469,7 @@ function playdate.graphics.sprite:draw(x, y, width, height) end
 ---     end
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.update
+--- [Inside Playdate: playdate.graphics.sprite:update](https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.update)
 ---@return nil
 function playdate.graphics.sprite:update() end
 
@@ -6486,7 +6486,7 @@ function playdate.graphics.sprite:update() end
 --- Very large sprites with very large collide rects should be avoided, as they will have a negative
 --- impact on performance and memory usage.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollideRect
+--- [Inside Playdate: playdate.graphics.sprite:setCollideRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollideRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6507,7 +6507,7 @@ function playdate.graphics.sprite:setCollideRect(x, y, width, height) end
 --- Very large sprites with very large collide rects should be avoided, as they will have a negative
 --- impact on performance and memory usage.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollideRect
+--- [Inside Playdate: playdate.graphics.sprite:setCollideRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollideRect)
 ---@param rect _Rect
 ---@return nil
 function playdate.graphics.sprite:setCollideRect(rect) end
@@ -6518,7 +6518,7 @@ function playdate.graphics.sprite:setCollideRect(rect) end
 --- This function return coordinates relative to the sprite itself; the sprite’s position has no
 --- bearing on these values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideRect
+--- [Inside Playdate: playdate.graphics.sprite:getCollideRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideRect)
 ---@return _Rect
 function playdate.graphics.sprite:getCollideRect() end
 
@@ -6527,7 +6527,7 @@ function playdate.graphics.sprite:getCollideRect() end
 --- This function return coordinates relative to the sprite itself; the sprite’s position has no
 --- bearing on these values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideBounds
+--- [Inside Playdate: playdate.graphics.sprite:getCollideBounds](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollideBounds)
 ---@return integer x
 ---@return integer y
 ---@return integer width
@@ -6536,14 +6536,14 @@ function playdate.graphics.sprite:getCollideBounds() end
 
 --- Clears the sprite’s collide rect set with `setCollideRect()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearCollideRect
+--- [Inside Playdate: playdate.graphics.sprite:clearCollideRect](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.clearCollideRect)
 ---@return nil
 function playdate.graphics.sprite:clearCollideRect() end
 
 --- Returns an array of sprites that have collide rects that are currently overlapping the calling
 --- sprite’s collide rect, taking the sprites' groups and collides-with masks into consideration.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.overlappingSprites
+--- [Inside Playdate: playdate.graphics.sprite:overlappingSprites](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.overlappingSprites)
 ---@return _Sprite[]
 function playdate.graphics.sprite:overlappingSprites() end
 
@@ -6560,7 +6560,7 @@ function playdate.graphics.sprite:overlappingSprites() end
 ---         -- do something with the colliding sprites
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.allOverlappingSprites
+--- [Inside Playdate: playdate.graphics.sprite.allOverlappingSprites](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.allOverlappingSprites)
 ---@return _Sprite[][]
 function playdate.graphics.sprite.allOverlappingSprites() end
 
@@ -6571,7 +6571,7 @@ function playdate.graphics.sprite.allOverlappingSprites() end
 --- `overlappingSprites()` or `moveWithCollisions()` report a collision of two sprite’s bounding
 --- rects, alphaCollision() could then be used to discern if a pixel-level collision occurred.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.alphaCollision
+--- [Inside Playdate: playdate.graphics.sprite:alphaCollision](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.alphaCollision)
 ---@param anotherSprite _Sprite
 ---@return boolean
 function playdate.graphics.sprite:alphaCollision(anotherSprite) end
@@ -6579,14 +6579,14 @@ function playdate.graphics.sprite:alphaCollision(anotherSprite) end
 --- The sprite’s *collisionsEnabled* flag (defaults to true) can be set to `false` in order to
 --- temporarily keep a sprite from colliding with any other sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollisionsEnabled
+--- [Inside Playdate: playdate.graphics.sprite:setCollisionsEnabled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollisionsEnabled)
 ---@param flag boolean
 ---@return nil
 function playdate.graphics.sprite:setCollisionsEnabled(flag) end
 
 --- Returns the sprite’s *collisionsEnabled* flag.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.collisionsEnabled
+--- [Inside Playdate: playdate.graphics.sprite:collisionsEnabled](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.collisionsEnabled)
 ---@return boolean
 function playdate.graphics.sprite:collisionsEnabled() end
 
@@ -6600,7 +6600,7 @@ function playdate.graphics.sprite:collisionsEnabled() end
 ---
 --- Alternatively, use `setGroupMask()` to set group membership via a bitmask.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroups
+--- [Inside Playdate: playdate.graphics.sprite:setGroups](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroups)
 ---@param groups (integer|integer[])
 ---@return nil
 function playdate.graphics.sprite:setGroups(groups) end
@@ -6612,7 +6612,7 @@ function playdate.graphics.sprite:setGroups(groups) end
 --- Alternatively, you can specify group collision behavior with a bitmask by using
 --- `setCollidesWithGroupsMask()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroups
+--- [Inside Playdate: playdate.graphics.sprite:setCollidesWithGroups](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroups)
 ---@param groups (integer|integer[])
 ---@return nil
 function playdate.graphics.sprite:setCollidesWithGroups(groups) end
@@ -6623,14 +6623,14 @@ function playdate.graphics.sprite:setCollidesWithGroups(groups) end
 --- For large group mask numbers, pass the number as a hex value, eg. `0xFFFFFFFF` to work around
 --- limitations in Lua’s integer sizes.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroupMask
+--- [Inside Playdate: playdate.graphics.sprite:setGroupMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setGroupMask)
 ---@param mask integer
 ---@return nil
 function playdate.graphics.sprite:setGroupMask(mask) end
 
 --- `getGroupMask()` returns the integer value of the sprite’s group bitmask.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getGroupMask
+--- [Inside Playdate: playdate.graphics.sprite:getGroupMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getGroupMask)
 ---@return integer
 function playdate.graphics.sprite:getGroupMask() end
 
@@ -6644,26 +6644,26 @@ function playdate.graphics.sprite:getGroupMask() end
 --- For large mask numbers, pass the number as a hex value, eg. `0xFFFFFFFF` to work around
 --- limitations in Lua’s integer sizes.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroupsMask
+--- [Inside Playdate: playdate.graphics.sprite:setCollidesWithGroupsMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCollidesWithGroupsMask)
 ---@param mask integer
 ---@return nil
 function playdate.graphics.sprite:setCollidesWithGroupsMask(mask) end
 
 --- Returns the integer value of the sprite’s collision bitmask.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollidesWithGroupsMask
+--- [Inside Playdate: playdate.graphics.sprite:getCollidesWithGroupsMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.getCollidesWithGroupsMask)
 ---@return integer
 function playdate.graphics.sprite:getCollidesWithGroupsMask() end
 
 --- Resets the sprite’s group mask to `0x00000000`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.resetGroupMask
+--- [Inside Playdate: playdate.graphics.sprite:resetGroupMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.resetGroupMask)
 ---@return nil
 function playdate.graphics.sprite:resetGroupMask() end
 
 --- Resets the sprite’s collides-with-groups mask to `0x00000000`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.resetCollidesWithGroupsMask
+--- [Inside Playdate: playdate.graphics.sprite:resetCollidesWithGroupsMask](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.resetCollidesWithGroupsMask)
 ---@return nil
 function playdate.graphics.sprite:resetCollidesWithGroupsMask() end
 
@@ -6763,7 +6763,7 @@ function playdate.graphics.sprite:resetCollidesWithGroupsMask() end
 ---     end
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveWithCollisions
+--- [Inside Playdate: playdate.graphics.sprite:moveWithCollisions](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveWithCollisions)
 ---@param goalX integer
 ---@param goalY integer
 ---@return integer actualX
@@ -6868,7 +6868,7 @@ function playdate.graphics.sprite:moveWithCollisions(goalX, goalY) end
 ---     end
 --- end
 --- ```
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveWithCollisions
+--- [Inside Playdate: playdate.graphics.sprite:moveWithCollisions](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveWithCollisions)
 ---@param goalPoint _Point
 ---@return integer actualX
 ---@return integer actualY
@@ -6878,7 +6878,7 @@ function playdate.graphics.sprite:moveWithCollisions(goalPoint) end
 
 --- Returns the same values as `moveWithCollisions()` but does not actually move the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.checkCollisions
+--- [Inside Playdate: playdate.graphics.sprite:checkCollisions](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.checkCollisions)
 ---@param x integer
 ---@param y integer
 ---@return integer actualX
@@ -6889,7 +6889,7 @@ function playdate.graphics.sprite:checkCollisions(x, y) end
 
 --- Returns the same values as `moveWithCollisions()` but does not actually move the sprite.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.checkCollisions
+--- [Inside Playdate: playdate.graphics.sprite:checkCollisions](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.checkCollisions)
 ---@param point _Point
 ---@return integer actualX
 ---@return integer actualY
@@ -6925,14 +6925,14 @@ function playdate.graphics.sprite:checkCollisions(point) end
 --- need to be modified as the result of a collision, do so elsewhere, such as by inspecting the
 --- list of collisions returned by `moveWithCollisions()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.collisionResponse
+--- [Inside Playdate: playdate.graphics.sprite:collisionResponse](https://sdk.play.date/Inside%20Playdate.html#c-graphics.sprite.collisionResponse)
 ---@param other _Sprite
 ---@return integer
 function playdate.graphics.sprite:collisionResponse(other) end
 
 --- Returns all sprites with collision rects containing the point.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAtPoint
+--- [Inside Playdate: playdate.graphics.sprite.querySpritesAtPoint](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAtPoint)
 ---@param x integer
 ---@param y integer
 ---@return _Sprite[]
@@ -6940,14 +6940,14 @@ function playdate.graphics.sprite.querySpritesAtPoint(x, y) end
 
 --- Returns all sprites with collision rects containing the point.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAtPoint
+--- [Inside Playdate: playdate.graphics.sprite.querySpritesAtPoint](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAtPoint)
 ---@param p _Point
 ---@return _Sprite[]
 function playdate.graphics.sprite.querySpritesAtPoint(p) end
 
 --- Returns all sprites with collision rects overlapping the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesInRect
+--- [Inside Playdate: playdate.graphics.sprite.querySpritesInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -6957,14 +6957,14 @@ function playdate.graphics.sprite.querySpritesInRect(x, y, width, height) end
 
 --- Returns all sprites with collision rects overlapping the rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesInRect
+--- [Inside Playdate: playdate.graphics.sprite.querySpritesInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesInRect)
 ---@param rect _Rect
 ---@return _Sprite[]
 function playdate.graphics.sprite.querySpritesInRect(rect) end
 
 --- Returns all sprites with collision rects intersecting the line segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAlongLine
+--- [Inside Playdate: playdate.graphics.sprite.querySpritesAlongLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAlongLine)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -6974,7 +6974,7 @@ function playdate.graphics.sprite.querySpritesAlongLine(x1, y1, x2, y2) end
 
 --- Returns all sprites with collision rects intersecting the line segment.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAlongLine
+--- [Inside Playdate: playdate.graphics.sprite.querySpritesAlongLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpritesAlongLine)
 ---@param lineSegment _LineSegment
 ---@return _Sprite[]
 function playdate.graphics.sprite.querySpritesAlongLine(lineSegment) end
@@ -6993,7 +6993,7 @@ function playdate.graphics.sprite.querySpritesAlongLine(lineSegment) end
 --- line segment the collision happened; t1 for the entry point, t2 for the exit point. This can be
 --- useful for things like having a laser cause more damage if the impact is close.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine
+--- [Inside Playdate: playdate.graphics.sprite.querySpriteInfoAlongLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -7015,7 +7015,7 @@ function playdate.graphics.sprite.querySpriteInfoAlongLine(x1, y1, x2, y2) end
 --- line segment the collision happened; t1 for the entry point, t2 for the exit point. This can be
 --- useful for things like having a laser cause more damage if the impact is close.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine
+--- [Inside Playdate: playdate.graphics.sprite.querySpriteInfoAlongLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine)
 ---@param lineSegment _LineSegment
 ---@return _SpriteCollisionInfo[]
 function playdate.graphics.sprite.querySpriteInfoAlongLine(lineSegment) end
@@ -7026,7 +7026,7 @@ function playdate.graphics.sprite.querySpriteInfoAlongLine(lineSegment) end
 --- (or the playdate.geometry.rect *r*) for the purpose of triggering collisions.  This is useful
 --- for making areas impassable, triggering an event when a sprite enters a certain area, and so on.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addEmptyCollisionSprite
+--- [Inside Playdate: playdate.graphics.sprite.addEmptyCollisionSprite](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addEmptyCollisionSprite)
 ---@param r _Rect
 ---@return nil
 function playdate.graphics.sprite.addEmptyCollisionSprite(r) end
@@ -7037,7 +7037,7 @@ function playdate.graphics.sprite.addEmptyCollisionSprite(r) end
 --- (or the playdate.geometry.rect *r*) for the purpose of triggering collisions.  This is useful
 --- for making areas impassable, triggering an event when a sprite enters a certain area, and so on.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addEmptyCollisionSprite
+--- [Inside Playdate: playdate.graphics.sprite.addEmptyCollisionSprite](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addEmptyCollisionSprite)
 ---@param x integer
 ---@param y integer
 ---@param w integer
@@ -7064,7 +7064,7 @@ function playdate.graphics.sprite.addEmptyCollisionSprite(x, y, w, h) end
 --- playdate.graphics.tilemap:getCollisionRects() and passing the resulting rects to
 --- addEmptyCollisionSprite().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addWallSprites
+--- [Inside Playdate: playdate.graphics.sprite.addWallSprites](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.addWallSprites)
 ---@param tilemap _TileMap
 ---@param emptyIDs integer[]
 ---@param xOffset? integer
@@ -7075,7 +7075,7 @@ function playdate.graphics.sprite.addWallSprites(tilemap, emptyIDs, xOffset, yOf
 --- Returns a playdate.graphics.font object from the data at *path*. If there is no file at *path*,
 --- the function returns nil.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.font.new
+--- [Inside Playdate: playdate.graphics.font.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.font.new)
 ---@param path string
 ---@return _Font
 function playdate.graphics.font.new(path) end
@@ -7090,7 +7090,7 @@ function playdate.graphics.font.new(path) end
 --- The table returned is of the same format with font objects in place of the paths, and is
 --- appropriate to pass to the functions setFontFamily() and getTextSize().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.font.newFamily
+--- [Inside Playdate: playdate.graphics.font.newFamily](https://sdk.play.date/Inside%20Playdate.html#f-graphics.font.newFamily)
 ---@param fontPaths table<integer, string>
 ---@return _Font[]
 function playdate.graphics.font.newFamily(fontPaths) end
@@ -7107,7 +7107,7 @@ function playdate.graphics.font.newFamily(fontPaths) end
 ---
 --- Equivalent to `playdate->graphics->setFont()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFont
+--- [Inside Playdate: playdate.graphics.setFont](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFont)
 ---@param font _Font
 ---@param variant? (integer|string)
 ---@return nil
@@ -7115,7 +7115,7 @@ function playdate.graphics.setFont(font, variant) end
 
 --- Returns the current font, a playdate.graphics.font.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFont
+--- [Inside Playdate: playdate.graphics.getFont](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFont)
 ---@param variant? (integer|string)
 ---@return _Font
 function playdate.graphics.getFont(variant) end
@@ -7128,7 +7128,7 @@ function playdate.graphics.getFont(variant) end
 ---
 --- All fonts and font variants need not be present in the table.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontFamily
+--- [Inside Playdate: playdate.graphics.setFontFamily](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontFamily)
 ---@param fontFamily table<integer, _Font>
 ---@return nil
 function playdate.graphics.setFontFamily(fontFamily) end
@@ -7138,14 +7138,14 @@ function playdate.graphics.setFontFamily(fontFamily) end
 ---
 --- See playdate.graphics.font:setTracking to adjust tracking on a specific font.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontTracking
+--- [Inside Playdate: playdate.graphics.setFontTracking](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontTracking)
 ---@param pixels integer
 ---@return nil
 function playdate.graphics.setFontTracking(pixels) end
 
 --- Gets the global font tracking (spacing between letters) in pixels.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFontTracking
+--- [Inside Playdate: playdate.graphics.getFontTracking](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getFontTracking)
 ---@return integer
 function playdate.graphics.getFontTracking() end
 
@@ -7157,7 +7157,7 @@ function playdate.graphics.getFontTracking() end
 --- * playdate.graphics.font.kVariantBold
 --- * playdate.graphics.font.kVariantItalic
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getSystemFont
+--- [Inside Playdate: playdate.graphics.getSystemFont](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getSystemFont)
 ---@param variant? (integer|string)
 ---@return _Font
 function playdate.graphics.getSystemFont(variant) end
@@ -7174,7 +7174,7 @@ function playdate.graphics.getSystemFont(variant) end
 --- `font:drawText()` does not support inline styles like bold and italics. Instead use
 --- playdate.graphics.drawText().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawText
+--- [Inside Playdate: playdate.graphics.font:drawText](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawText)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7189,7 +7189,7 @@ function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
 --- parameter. (Compare to playdate.graphics.drawTextAligned(text, x, y, alignment), which draws the
 --- string with the "current font", as defined by playdate.graphics.setFont(font)).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawTextAligned
+--- [Inside Playdate: playdate.graphics.font:drawTextAligned](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawTextAligned)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7200,13 +7200,13 @@ function playdate.graphics.font:drawTextAligned(text, x, y, alignment, leadingAd
 
 --- Returns the pixel height of this font.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getHeight
+--- [Inside Playdate: playdate.graphics.font:getHeight](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getHeight)
 ---@return integer
 function playdate.graphics.font:getHeight() end
 
 --- Returns the pixel width of the text when rendered with this font.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getTextWidth
+--- [Inside Playdate: playdate.graphics.font:getTextWidth](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getTextWidth)
 ---@param text string
 ---@return integer
 function playdate.graphics.font:getTextWidth(text) end
@@ -7215,7 +7215,7 @@ function playdate.graphics.font:getTextWidth(text) end
 ---
 --- Equivalent to `playdate->graphics->setTextTracking()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setTracking
+--- [Inside Playdate: playdate.graphics.font:setTracking](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setTracking)
 ---@param pixels integer
 ---@return nil
 function playdate.graphics.font:setTracking(pixels) end
@@ -7224,7 +7224,7 @@ function playdate.graphics.font:setTracking(pixels) end
 ---
 --- Equivalent to `playdate->graphics->getTextTracking()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getTracking
+--- [Inside Playdate: playdate.graphics.font:getTracking](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getTracking)
 ---@return integer
 function playdate.graphics.font:getTracking() end
 
@@ -7232,21 +7232,21 @@ function playdate.graphics.font:getTracking() end
 ---
 --- Equivalent to `playdate->graphics->setTextLeading()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setLeading
+--- [Inside Playdate: playdate.graphics.font:setLeading](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.setLeading)
 ---@param pixels integer
 ---@return nil
 function playdate.graphics.font:setLeading(pixels) end
 
 --- Returns the leading (spacing between lines) of this font, in pixels.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getLeading
+--- [Inside Playdate: playdate.graphics.font:getLeading](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getLeading)
 ---@return integer
 function playdate.graphics.font:getLeading() end
 
 --- Returns the `playdate.graphics.image` containing the requested glyph. *character* can either be
 --- a string or a unicode codepoint number.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getGlyph
+--- [Inside Playdate: playdate.graphics.font:getGlyph](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.getGlyph)
 ---@param character string
 ---@return _Image
 function playdate.graphics.font:getGlyph(character) end
@@ -7295,7 +7295,7 @@ function playdate.graphics.font:getGlyph(character) end
 ---
 --- Equivalent to `playdate->graphics->drawText()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawText
+--- [Inside Playdate: playdate.graphics.drawText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawText)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7314,7 +7314,7 @@ function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) e
 ---
 --- For more information about localization and strings files, see the Localization section.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedText
+--- [Inside Playdate: playdate.graphics.drawLocalizedText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedText)
 ---@param key string
 ---@param x integer
 ---@param y integer
@@ -7333,7 +7333,7 @@ function playdate.graphics.drawLocalizedText(key, x, y, language, leadingAdjustm
 ---
 --- For more information about localization and strings files, see the Localization section.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLocalizedText
+--- [Inside Playdate: playdate.graphics.getLocalizedText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLocalizedText)
 ---@param key string
 ---@param language? (integer|string)
 ---@return string
@@ -7346,7 +7346,7 @@ function playdate.graphics.getLocalizedText(key, language) end
 --- provided, fonts from *fontFamily* will be used for calculating the size of *str* instead of the
 --- currently set font.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSize
+--- [Inside Playdate: playdate.graphics.getTextSize](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSize)
 ---@param str string
 ---@param fontFamily? table<integer, _Font>
 ---@param leadingAdjustment? integer
@@ -7364,7 +7364,7 @@ function playdate.graphics.getTextSize(str, fontFamily, leadingAdjustment) end
 ---
 --- To draw unstyled text using a single font, see playdate.graphics.font:drawTextAligned()
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextAligned
+--- [Inside Playdate: playdate.graphics.drawTextAligned](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextAligned)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7397,7 +7397,7 @@ function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustm
 ---
 --- `*textWasTruncated*` indicates if the text was truncated to fit within the specified rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect
+--- [Inside Playdate: playdate.graphics.drawTextInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7434,7 +7434,7 @@ function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdju
 ---
 --- `*textWasTruncated*` indicates if the text was truncated to fit within the specified rect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect
+--- [Inside Playdate: playdate.graphics.drawTextInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawTextInRect)
 ---@param text string
 ---@param rect _Rect
 ---@param leadingAdjustment? integer
@@ -7448,7 +7448,7 @@ function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncat
 ---
 --- Same as drawTextAligned() except localized text is drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextAligned
+--- [Inside Playdate: playdate.graphics.drawLocalizedTextAligned](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextAligned)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7462,7 +7462,7 @@ function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, langu
 ---
 --- Same as drawTextInRect() except localized text is drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect
+--- [Inside Playdate: playdate.graphics.drawLocalizedTextInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect)
 ---@param text string
 ---@param x integer
 ---@param y integer
@@ -7480,7 +7480,7 @@ function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, le
 ---
 --- Same as drawTextInRect() except localized text is drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect
+--- [Inside Playdate: playdate.graphics.drawLocalizedTextInRect](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedTextInRect)
 ---@param text string
 ---@param rect _Rect
 ---@param leadingAdjustment? integer
@@ -7499,7 +7499,7 @@ function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment
 --- `*font*`, if provided, will cause the text size to be calculated without bold or italic styling
 --- using the specified font.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSizeForMaxWidth
+--- [Inside Playdate: playdate.graphics.getTextSizeForMaxWidth](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getTextSizeForMaxWidth)
 ---@param text string
 ---@param maxWidth integer
 ---@param leadingAdjustment? integer
@@ -7532,7 +7532,7 @@ function playdate.graphics.getTextSizeForMaxWidth(text, maxWidth, leadingAdjustm
 --- `*textWasTruncated*` indicates if the text was truncated to fit within the specified width and
 --- height.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.imageWithText
+--- [Inside Playdate: playdate.graphics.imageWithText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.imageWithText)
 ---@param text string
 ---@param maxWidth integer
 ---@param maxHeight integer
@@ -7548,21 +7548,21 @@ function playdate.graphics.imageWithText(text, maxWidth, maxHeight, backgroundCo
 --- Returns a playdate.graphics.video object from the pdv file at *path*. If the file at *path*
 --- can’t be opened, the function returns nil.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-graphics.video.new
+--- [Inside Playdate: playdate.graphics.video.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.video.new)
 ---@param path string
 ---@return _Video
 function playdate.graphics.video.new(path) end
 
 --- Returns the width and height of the video as multiple vlaues (*width*, *height*).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getSize
+--- [Inside Playdate: playdate.graphics.video:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getSize)
 ---@return integer x
 ---@return integer y
 function playdate.graphics.video:getSize() end
 
 --- Returns the number of frames in the video.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getFrameCount
+--- [Inside Playdate: playdate.graphics.video:getFrameCount](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getFrameCount)
 ---@return integer
 function playdate.graphics.video:getFrameCount() end
 
@@ -7570,33 +7570,33 @@ function playdate.graphics.video:getFrameCount() end
 --- keeping, it is not used internally—​the game code is responsible for figuring out which frame to
 --- show when.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getFrameRate
+--- [Inside Playdate: playdate.graphics.video:getFrameRate](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getFrameRate)
 ---@return number
 function playdate.graphics.video:getFrameRate() end
 
 --- Sets the given image to the video render context. Future `video:renderFrame()` calls will draw
 --- into this image.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.setContext
+--- [Inside Playdate: playdate.graphics.video:setContext](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.setContext)
 ---@param image _Image
 ---@return nil
 function playdate.graphics.video:setContext(image) end
 
 --- Returns the image into which the video will be rendered, creating it if needed.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getContext
+--- [Inside Playdate: playdate.graphics.video:getContext](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getContext)
 ---@return _Image
 function playdate.graphics.video:getContext() end
 
 --- Sets the display framebuffer as the video’s render context.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.useScreenContext
+--- [Inside Playdate: playdate.graphics.video:useScreenContext](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.useScreenContext)
 ---@return nil
 function playdate.graphics.video:useScreenContext() end
 
 --- Draws the given frame into the video’s render context.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.renderFrame
+--- [Inside Playdate: playdate.graphics.video:renderFrame](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.renderFrame)
 ---@param number integer
 ---@return nil
 function playdate.graphics.video:renderFrame(number) end
@@ -7605,7 +7605,7 @@ function playdate.graphics.video:renderFrame(number) end
 ---
 --- Equivalent to `playdate->json->decode()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.decode
+--- [Inside Playdate: json.decode](https://sdk.play.date/Inside%20Playdate.html#f-json.decode)
 ---@param str string
 ---@return table
 function json.decode(str) end
@@ -7613,7 +7613,7 @@ function json.decode(str) end
 --- Reads the given playdate.file.file object or the file at the given `path` and converts it to a
 --- Lua table.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.decodeFile
+--- [Inside Playdate: json.decodeFile](https://sdk.play.date/Inside%20Playdate.html#f-json.decodeFile)
 ---@param file _File
 ---@return table
 function json.decodeFile(file) end
@@ -7621,14 +7621,14 @@ function json.decodeFile(file) end
 --- Reads the given playdate.file.file object or the file at the given `path` and converts it to a
 --- Lua table.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.decodeFile
+--- [Inside Playdate: json.decodeFile](https://sdk.play.date/Inside%20Playdate.html#f-json.decodeFile)
 ---@param path string
 ---@return table
 function json.decodeFile(path) end
 
 --- Returns a string containing the JSON representation of the passed-in Lua table.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.encode
+--- [Inside Playdate: json.encode](https://sdk.play.date/Inside%20Playdate.html#f-json.encode)
 ---@param table table
 ---@return string
 function json.encode(table) end
@@ -7636,7 +7636,7 @@ function json.encode(table) end
 --- Returns a string containing the JSON representation of a Lua table, with human-readable
 --- formatting.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.encodePretty
+--- [Inside Playdate: json.encodePretty](https://sdk.play.date/Inside%20Playdate.html#f-json.encodePretty)
 ---@param table table
 ---@return string
 function json.encodePretty(table) end
@@ -7647,7 +7647,7 @@ function json.encodePretty(table) end
 ---
 --- For a very simple way to serialize a table to a file, see playdate.datastore.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.encodeToFile
+--- [Inside Playdate: json.encodeToFile](https://sdk.play.date/Inside%20Playdate.html#f-json.encodeToFile)
 ---@param file _File
 ---@param pretty boolean
 ---@param table table
@@ -7660,7 +7660,7 @@ function json.encodeToFile(file, pretty, table) end
 ---
 --- For a very simple way to serialize a table to a file, see playdate.datastore.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-json.encodeToFile
+--- [Inside Playdate: json.encodeToFile](https://sdk.play.date/Inside%20Playdate.html#f-json.encodeToFile)
 ---@param path string
 ---@param pretty? boolean
 ---@param table? table
@@ -7671,14 +7671,14 @@ function json.encodeToFile(path, pretty, table) end
 ---
 --- *text*, if provided, will be used to set the initial text value of the keyboard.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.show
+--- [Inside Playdate: playdate.keyboard.show](https://sdk.play.date/Inside%20Playdate.html#f-keyboard.show)
 ---@param text? string
 ---@return nil
 function playdate.keyboard.show(text) end
 
 --- Hides the keyboard.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-keyboard.hide
+--- [Inside Playdate: playdate.keyboard.hide](https://sdk.play.date/Inside%20Playdate.html#m-keyboard.hide)
 ---@return nil
 function playdate.keyboard.hide() end
 
@@ -7690,38 +7690,38 @@ function playdate.keyboard.hide() end
 --- *playdate.keyboard.kCapitalizationSentences* the selection will automatically move to the upper
 --- case column after a period and a space have been entered.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.setCapitalizationBehavior
+--- [Inside Playdate: playdate.keyboard.setCapitalizationBehavior](https://sdk.play.date/Inside%20Playdate.html#f-keyboard.setCapitalizationBehavior)
 ---@param behavior integer
 ---@return nil
 function playdate.keyboard.setCapitalizationBehavior(behavior) end
 
 --- Returns the current x location of the left edge of the keyboard.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.left
+--- [Inside Playdate: playdate.keyboard.left](https://sdk.play.date/Inside%20Playdate.html#f-keyboard.left)
 ---@return nil
 function playdate.keyboard.left() end
 
 --- Returns the pixel width of the keyboard.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.width
+--- [Inside Playdate: playdate.keyboard.width](https://sdk.play.date/Inside%20Playdate.html#f-keyboard.width)
 ---@return nil
 function playdate.keyboard.width() end
 
 --- Returns true if the keyboard is currently being shown.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-keyboard.isVisible
+--- [Inside Playdate: playdate.keyboard.isVisible](https://sdk.play.date/Inside%20Playdate.html#f-keyboard.isVisible)
 ---@return nil
 function playdate.keyboard.isVisible() end
 
 --- If set, this function will be called when the keyboard is finished the opening animation.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardDidShowCallback
+--- [Inside Playdate: playdate.keyboard.keyboardDidShowCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardDidShowCallback)
 ---@return nil
 function playdate.keyboard.keyboardDidShowCallback() end
 
 --- If set, this function will be called when the keyboard has finished the hide animation.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardDidHideCallback
+--- [Inside Playdate: playdate.keyboard.keyboardDidHideCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardDidHideCallback)
 ---@return nil
 function playdate.keyboard.keyboardDidHideCallback() end
 
@@ -7729,20 +7729,20 @@ function playdate.keyboard.keyboardDidHideCallback() end
 --- will be passed to the callback, `true` if the user selected "OK" close the keyboard, `false`
 --- otherwise.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardWillHideCallback
+--- [Inside Playdate: playdate.keyboard.keyboardWillHideCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardWillHideCallback)
 ---@return nil
 function playdate.keyboard.keyboardWillHideCallback() end
 
 --- If set, this function is called as the keyboard animates open or closed. Provided as a way to
 --- sync animations with the keyboard movement.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardAnimatingCallback
+--- [Inside Playdate: playdate.keyboard.keyboardAnimatingCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardAnimatingCallback)
 ---@return nil
 function playdate.keyboard.keyboardAnimatingCallback() end
 
 --- If set, this function will be called every time a character is entered or deleted.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyboard.textChangedCallback
+--- [Inside Playdate: playdate.keyboard.textChangedCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.textChangedCallback)
 ---@param ok boolean
 ---@return nil
 function playdate.keyboard.textChangedCallback(ok) end
@@ -7752,7 +7752,7 @@ function playdate.keyboard.textChangedCallback(ok) end
 ---
 --- You must import *CoreLibs/math* to use this function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-math.lerp
+--- [Inside Playdate: playdate.math.lerp](https://sdk.play.date/Inside%20Playdate.html#f-math.lerp)
 ---@param min number
 ---@param max number
 ---@param t number
@@ -7767,7 +7767,7 @@ function playdate.math.lerp(min, max, t) end
 --- `coordinates`, if supplied, should be a table containing tables of x, y values, indexed by node
 --- IDs. For example, `{{10, 10}, {50, 30}, {20, 100}, {100, 120}, {160, 130}}`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new
+--- [Inside Playdate: playdate.pathfinder.graph.new](https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new)
 ---@param nodeCount? integer
 ---@param coordinates? integer[][]
 ---@return _PathFinderGraph
@@ -7787,7 +7787,7 @@ function playdate.pathfinder.graph.new(nodeCount, coordinates) end
 --- a 0 to indicate nodes that should be connected to their neighbors and nodes that should not have
 --- any connections added. If not provided, all nodes will be connected to their neighbors.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new2DGrid
+--- [Inside Playdate: playdate.pathfinder.graph.new2DGrid](https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new2DGrid)
 ---@param width integer
 ---@param height integer
 ---@param allowDiagonals? boolean
@@ -7805,7 +7805,7 @@ function playdate.pathfinder.graph.new2DGrid(width, height, allowDiagonals, incl
 --- * addReciprocalConnections: If true, connections will also be added in the reverse direction for
 --- each node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNode
+--- [Inside Playdate: playdate.pathfinder.graph:addNewNode](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNode)
 ---@param id integer
 ---@param x? integer
 ---@param y? integer
@@ -7821,7 +7821,7 @@ function playdate.pathfinder.graph:addNewNode(id, x, y, connectedNodes, weights,
 --- This method is useful to improve performance if many nodes need to be allocated at once rather
 --- than one at a time, for example when creating a new graph.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNodes
+--- [Inside Playdate: playdate.pathfinder.graph:addNewNodes](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNodes)
 ---@param count integer
 ---@return nil
 function playdate.pathfinder.graph:addNewNodes(count) end
@@ -7835,7 +7835,7 @@ function playdate.pathfinder.graph:addNewNodes(count) end
 --- * addReciprocalConnections: If true, connections will also be added in the reverse direction for
 --- each connection added.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNode
+--- [Inside Playdate: playdate.pathfinder.graph:addNode](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNode)
 ---@param node _PathFinderNode
 ---@param connectedNodes? _PathFinderNode[]
 ---@param weights? number[]
@@ -7845,20 +7845,20 @@ function playdate.pathfinder.graph:addNode(node, connectedNodes, weights, addRec
 
 --- Adds an array of already-existing nodes to the graph.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNodes
+--- [Inside Playdate: playdate.pathfinder.graph:addNodes](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNodes)
 ---@param nodes _PathFinderNode[]
 ---@return nil
 function playdate.pathfinder.graph:addNodes(nodes) end
 
 --- Returns an array containing all nodes in the graph.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.allNodes
+--- [Inside Playdate: playdate.pathfinder.graph:allNodes](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.allNodes)
 ---@return _PathFinderNode[]
 function playdate.pathfinder.graph:allNodes() end
 
 --- Removes node from the graph. Also removes all connections to and from the node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNode
+--- [Inside Playdate: playdate.pathfinder.graph:removeNode](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNode)
 ---@param node _PathFinderNode
 ---@return nil
 function playdate.pathfinder.graph:removeNode(node) end
@@ -7866,7 +7866,7 @@ function playdate.pathfinder.graph:removeNode(node) end
 --- Returns the first node found with coordinates matching *x, y*, after removing it from the graph
 --- and removing all connections to and from the node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNodeWithXY
+--- [Inside Playdate: playdate.pathfinder.graph:removeNodeWithXY](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNodeWithXY)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -7875,14 +7875,14 @@ function playdate.pathfinder.graph:removeNodeWithXY(x, y) end
 --- Returns the first node found with a matching *id*, after removing it from the graph and removing
 --- all connections to and from the node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNodeWithID
+--- [Inside Playdate: playdate.pathfinder.graph:removeNodeWithID](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeNodeWithID)
 ---@param id integer
 ---@return nil
 function playdate.pathfinder.graph:removeNodeWithID(id) end
 
 --- Returns the first node found in the graph with a matching *id*, or nil if no such node is found.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithID
+--- [Inside Playdate: playdate.pathfinder.graph:nodeWithID](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithID)
 ---@param id integer
 ---@return _PathFinderNode?
 function playdate.pathfinder.graph:nodeWithID(id) end
@@ -7890,7 +7890,7 @@ function playdate.pathfinder.graph:nodeWithID(id) end
 --- Returns the first node found in the graph with matching *x* and *y* values, or nil if no such
 --- node is found.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithXY
+--- [Inside Playdate: playdate.pathfinder.graph:nodeWithXY](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.nodeWithXY)
 ---@param x integer
 ---@param y integer
 ---@return _PathFinderNode?
@@ -7903,7 +7903,7 @@ function playdate.pathfinder.graph:nodeWithXY(x, y) end
 --- a weight of 10, and a connection to node ID 3 with a weight of 12, and so on for the other
 --- entries.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addConnections
+--- [Inside Playdate: playdate.pathfinder.graph:addConnections](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addConnections)
 ---@param connections integer[][]
 ---@return nil
 function playdate.pathfinder.graph:addConnections(connections) end
@@ -7913,7 +7913,7 @@ function playdate.pathfinder.graph:addConnections(connections) end
 --- longer, lighter-weighted path will be chosen over a shorter heavier path, if available. If
 --- `addReciprocalConnection` is true, the reverse connection will also be added.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addConnectionToNodeWithID
+--- [Inside Playdate: playdate.pathfinder.graph:addConnectionToNodeWithID](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addConnectionToNodeWithID)
 ---@param fromNodeID integer
 ---@param toNodeID integer
 ---@param weight number
@@ -7923,7 +7923,7 @@ function playdate.pathfinder.graph:addConnectionToNodeWithID(fromNodeID, toNodeI
 
 --- Removes all connections from all nodes in the graph.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeAllConnections
+--- [Inside Playdate: playdate.pathfinder.graph:removeAllConnections](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeAllConnections)
 ---@return nil
 function playdate.pathfinder.graph:removeAllConnections() end
 
@@ -7933,7 +7933,7 @@ function playdate.pathfinder.graph:removeAllConnections() end
 --- removed. False by default. Please note: this can signficantly increase the time this function
 --- takes as it requires a full search of the graph - O(1) vs O(n)).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeAllConnectionsFromNodeWithID
+--- [Inside Playdate: playdate.pathfinder.graph:removeAllConnectionsFromNodeWithID](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.removeAllConnectionsFromNodeWithID)
 ---@param id integer
 ---@param removeIncoming? boolean
 ---@return nil
@@ -7948,7 +7948,7 @@ function playdate.pathfinder.graph:removeAllConnectionsFromNodeWithID(id, remove
 --- connections between adjacent nodes and  the goal node, which can be entirely disconnected from
 --- the rest of the graph.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.findPath
+--- [Inside Playdate: playdate.pathfinder.graph:findPath](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.findPath)
 ---@param startNode _PathFinderNode
 ---@param goalNode _PathFinderNode
 ---@param heuristicFunction? fun(startNode: _PathFinderNode, goalNode: _PathFinderNode): integer
@@ -7959,7 +7959,7 @@ function playdate.pathfinder.graph:findPath(startNode, goalNode, heuristicFuncti
 --- Works the same as findPath, but looks up nodes to find a path between using startNodeID and
 --- goalNodeID and returns a list of nodeIDs rather than the nodes themselves.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.findPathWithIDs
+--- [Inside Playdate: playdate.pathfinder.graph:findPathWithIDs](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.findPathWithIDs)
 ---@param startNodeID integer
 ---@param goalNodeID integer
 ---@param heuristicFunction? fun(startNode: _PathFinderNode, goalNode: _PathFinderNode): integer
@@ -7969,7 +7969,7 @@ function playdate.pathfinder.graph:findPathWithIDs(startNodeID, goalNodeID, heur
 
 --- Sets the matching node’s `x` and `y` values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.setXYForNodeWithID
+--- [Inside Playdate: playdate.pathfinder.graph:setXYForNodeWithID](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.setXYForNodeWithID)
 ---@param id integer
 ---@param x integer
 ---@param y integer
@@ -7983,7 +7983,7 @@ function playdate.pathfinder.graph:setXYForNodeWithID(id, x, y) end
 --- * addReciprocalConnection: If true, a second connection will be created with the same weight in
 --- the opposite direction.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnection
+--- [Inside Playdate: playdate.pathfinder.node:addConnection](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnection)
 ---@param node _PathFinderNode
 ---@param weight number
 ---@param addReciprocalConnection boolean
@@ -7997,7 +7997,7 @@ function playdate.pathfinder.node:addConnection(node, weight, addReciprocalConne
 --- * addReciprocalConnections: If true, connections will also be added in the reverse direction for
 --- each node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnections
+--- [Inside Playdate: playdate.pathfinder.node:addConnections](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnections)
 ---@param nodes _PathFinderNode[]
 ---@param weights number[]
 ---@param addReciprocalConnections boolean
@@ -8010,7 +8010,7 @@ function playdate.pathfinder.node:addConnections(nodes, weights, addReciprocalCo
 --- * addReciprocalConnections: If true, a connection will also be added in the reverse direction,
 --- from the node at x, y to the caller.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnectionToNodeWithXY
+--- [Inside Playdate: playdate.pathfinder.node:addConnectionToNodeWithXY](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnectionToNodeWithXY)
 ---@param x integer
 ---@param y integer
 ---@param weight number
@@ -8020,14 +8020,14 @@ function playdate.pathfinder.node:addConnectionToNodeWithXY(x, y, weight, addRec
 
 --- Returns an array of nodes that have been added as connections to this node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.connectedNodes
+--- [Inside Playdate: playdate.pathfinder.node:connectedNodes](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.connectedNodes)
 ---@return _PathFinderNode[]
 function playdate.pathfinder.node:connectedNodes() end
 
 --- Removes a connection to node, if it exists. If *removeReciprocal* is true the reverse connection
 --- will also be removed, if it exists.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.removeConnection
+--- [Inside Playdate: playdate.pathfinder.node:removeConnection](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.removeConnection)
 ---@param node _PathFinderNode
 ---@param removeReciprocal? boolean
 ---@return nil
@@ -8039,14 +8039,14 @@ function playdate.pathfinder.node:removeConnection(node, removeReciprocal) end
 --- removed. False by default. Please note: this can signficantly increase the time this function
 --- takes as it requires a full search of the graph - O(1) vs O(n)).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.removeAllConnections
+--- [Inside Playdate: playdate.pathfinder.node:removeAllConnections](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.removeAllConnections)
 ---@param removeIncoming? boolean
 ---@return nil
 function playdate.pathfinder.node:removeAllConnections(removeIncoming) end
 
 --- Sets the *x* and *y* values for the node.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.setXY
+--- [Inside Playdate: playdate.pathfinder.node:setXY](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.setXY)
 ---@param x integer
 ---@param y integer
 ---@return nil
@@ -8058,19 +8058,19 @@ function playdate.pathfinder.node:setXY(x, y) end
 --- * USB: There is a powered USB cable connected
 --- * screws: There is 5V being applied to the corner screws (via the dock, for example)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getPowerStatus
+--- [Inside Playdate: playdate.getPowerStatus](https://sdk.play.date/Inside%20Playdate.html#f-getPowerStatus)
 ---@return _PowerStatus
 function playdate.getPowerStatus() end
 
 --- Returns a value from 0-100 denoting the current level of battery charge. 0 = empty; 100 = full.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getBatteryPercentage
+--- [Inside Playdate: playdate.getBatteryPercentage](https://sdk.play.date/Inside%20Playdate.html#f-getBatteryPercentage)
 ---@return integer
 function playdate.getBatteryPercentage() end
 
 --- Returns the battery’s current voltage level.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-getBatteryVoltage
+--- [Inside Playdate: playdate.getBatteryVoltage](https://sdk.play.date/Inside%20Playdate.html#f-getBatteryVoltage)
 ---@return number
 function playdate.getBatteryVoltage() end
 
@@ -8082,7 +8082,7 @@ function playdate.getBatteryVoltage() end
 --- Any directories in your path must already exist on your development computer in order for the
 --- file to be written.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-simulator.writeToFile
+--- [Inside Playdate: playdate.simulator.writeToFile](https://sdk.play.date/Inside%20Playdate.html#f-simulator.writeToFile)
 ---@param image _Image
 ---@param path string
 ---@return nil
@@ -8090,26 +8090,26 @@ function playdate.simulator.writeToFile(image, path) end
 
 --- Quits the Playdate Simulator app.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-simulator.exit
+--- [Inside Playdate: playdate.simulator.exit](https://sdk.play.date/Inside%20Playdate.html#f-simulator.exit)
 ---@return nil
 function playdate.simulator.exit() end
 
 --- Returns the contents of the URL *url* as a string.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-simulator.getURL
+--- [Inside Playdate: playdate.simulator.getURL](https://sdk.play.date/Inside%20Playdate.html#f-simulator.getURL)
 ---@param url string
 ---@return string
 function playdate.simulator.getURL(url) end
 
 --- Clears the simulator console.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-clearConsole
+--- [Inside Playdate: playdate.clearConsole](https://sdk.play.date/Inside%20Playdate.html#f-clearConsole)
 ---@return nil
 function playdate.clearConsole() end
 
 --- Sets the color of the playdate.debugDraw() overlay image. Values are in the range 0-1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setDebugDrawColor
+--- [Inside Playdate: playdate.setDebugDrawColor](https://sdk.play.date/Inside%20Playdate.html#f-setDebugDrawColor)
 ---@param r number
 ---@param g number
 ---@param b number
@@ -8130,7 +8130,7 @@ function playdate.setDebugDrawColor(r, g, b, a) end
 --- * If key is an alphabetic character, the value will always be lowercase, even if the user
 --- deliberately typed an uppercase character.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyPressed
+--- [Inside Playdate: playdate.keyPressed](https://sdk.play.date/Inside%20Playdate.html#c-keyPressed)
 ---@param key string
 ---@return nil
 function playdate.keyPressed(key) end
@@ -8138,7 +8138,7 @@ function playdate.keyPressed(key) end
 --- Lets you act on keyboard key releases when running in the Simulator ONLY. These can be useful
 --- for adding debugging functions that can be enabled via your keyboard.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-keyReleased
+--- [Inside Playdate: playdate.keyReleased](https://sdk.play.date/Inside%20Playdate.html#c-keyReleased)
 ---@param key string
 ---@return nil
 function playdate.keyReleased(key) end
@@ -8149,28 +8149,28 @@ function playdate.keyReleased(key) end
 ---
 --- White pixels are drawn in the debugDrawColor. Black pixels are transparent.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-debugDraw
+--- [Inside Playdate: playdate.debugDraw](https://sdk.play.date/Inside%20Playdate.html#c-debugDraw)
 ---@return nil
 function playdate.debugDraw() end
 
 --- Returns the sample rate of the audio system (44100). The sample rate is determined by the
 --- hardware, and is not currently mutable.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.getSampleRate
+--- [Inside Playdate: playdate.sound.getSampleRate](https://sdk.play.date/Inside%20Playdate.html#f-sound.getSampleRate)
 ---@return integer
 function playdate.sound.getSampleRate() end
 
 --- Returns a new playdate.sound.sampleplayer object, with the sound data loaded in memory. If the
 --- sample can’t be loaded, the function returns nil and a second value containing the error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.sampleplayer.new
+--- [Inside Playdate: playdate.sound.sampleplayer.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.sampleplayer.new)
 ---@param path string
 ---@return _SamplePlayer
 function playdate.sound.sampleplayer.new(path) end
 
 --- Returns a new playdate.sound.sampleplayer object for playing the given sample.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.sampleplayer.new-1
+--- [Inside Playdate: playdate.sound.sampleplayer.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.sampleplayer.new-1)
 ---@param sample _Sample
 ---@return _SamplePlayer
 function playdate.sound.sampleplayer.new(sample) end
@@ -8178,7 +8178,7 @@ function playdate.sound.sampleplayer.new(sample) end
 --- Returns a new playdate.sound.sampleplayer with the same sample, volume, and rate as the given
 --- sampleplayer.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.copy
+--- [Inside Playdate: playdate.sound.sampleplayer:copy](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.copy)
 ---@return _SamplePlayer
 function playdate.sound.sampleplayer:copy() end
 
@@ -8187,7 +8187,7 @@ function playdate.sound.sampleplayer:copy() end
 --- If *rate* is set, the sample will be played at the given rate instead of the rate previous set
 --- with playdate.sound.sampleplayer.setRate().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.play
+--- [Inside Playdate: playdate.sound.sampleplayer:play](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.play)
 ---@param repeatCount? integer
 ---@param rate? integer
 ---@return nil
@@ -8208,7 +8208,7 @@ function playdate.sound.sampleplayer:play(repeatCount, rate) end
 --- The function returns true if the sample was successfully added to the sound channel, otherwise
 --- false (i.e., if the channel is full).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.playAt
+--- [Inside Playdate: playdate.sound.sampleplayer:playAt](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.playAt)
 ---@param when number
 ---@param vol? number
 ---@param rightvol? number
@@ -8221,7 +8221,7 @@ function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 --- the default volume (that is, it wasn’t triggered by `playAt()` with a volume given) it also
 --- changes the volume of the playing sample.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setVolume
+--- [Inside Playdate: playdate.sound.sampleplayer:setVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setVolume)
 ---@param left number
 ---@param right? number
 ---@return nil
@@ -8230,7 +8230,7 @@ function playdate.sound.sampleplayer:setVolume(left, right) end
 --- Returns the playback volume for the sampleplayer, a single value for mono sources or a pair of
 --- values (left, right) for stereo sources.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getVolume
+--- [Inside Playdate: playdate.sound.sampleplayer:getVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getVolume)
 ---@return number left_or_mono
 ---@return number? right
 function playdate.sound.sampleplayer:getVolume() end
@@ -8238,7 +8238,7 @@ function playdate.sound.sampleplayer:getVolume() end
 --- Sets a function to be called every time the sample loops. The sample object is passed to this
 --- function as the first argument, and the optional *arg* argument is passed as the second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setLoopCallback
+--- [Inside Playdate: playdate.sound.sampleplayer:setLoopCallback](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setLoopCallback)
 ---@param callback function
 ---@param arg? any
 ---@return nil
@@ -8247,7 +8247,7 @@ function playdate.sound.sampleplayer:setLoopCallback(callback, arg) end
 --- Sets the range of the sample to play. *start* and *end* are frame offsets from the beginning of
 --- the sample.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setPlayRange
+--- [Inside Playdate: playdate.sound.sampleplayer:setPlayRange](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setPlayRange)
 ---@param start integer
 ---@param _end integer
 ---@return nil
@@ -8255,27 +8255,27 @@ function playdate.sound.sampleplayer:setPlayRange(start, _end) end
 
 --- Pauses or resumes playback.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setPaused
+--- [Inside Playdate: playdate.sound.sampleplayer:setPaused](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setPaused)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.sampleplayer:setPaused(flag) end
 
 --- Returns a boolean indicating whether the sample is playing.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.isPlaying
+--- [Inside Playdate: playdate.sound.sampleplayer:isPlaying](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.isPlaying)
 ---@return boolean
 function playdate.sound.sampleplayer:isPlaying() end
 
 --- Stops playing the sample.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.stop
+--- [Inside Playdate: playdate.sound.sampleplayer:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.stop)
 ---@return nil
 function playdate.sound.sampleplayer:stop() end
 
 --- Sets a function to be called when playback has completed. The sample object is passed to this
 --- function as the first argument, and the optional *arg* argument is passed as the second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setFinishCallback
+--- [Inside Playdate: playdate.sound.sampleplayer:setFinishCallback](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setFinishCallback)
 ---@param func function
 ---@param arg? any
 ---@return nil
@@ -8283,21 +8283,21 @@ function playdate.sound.sampleplayer:setFinishCallback(func, arg) end
 
 --- Sets the sample to be played.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setSample
+--- [Inside Playdate: playdate.sound.sampleplayer:setSample](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setSample)
 ---@param sample _Sample
 ---@return nil
 function playdate.sound.sampleplayer:setSample(sample) end
 
 --- Gets the sample to be played.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getSample
+--- [Inside Playdate: playdate.sound.sampleplayer:getSample](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getSample)
 ---@return _Sample
 function playdate.sound.sampleplayer:getSample() end
 
 --- Returns the length of the sampleplayer’s sample, in seconds. Length is not scaled by playback
 --- rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getLength
+--- [Inside Playdate: playdate.sound.sampleplayer:getLength](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getLength)
 ---@return number
 function playdate.sound.sampleplayer:getLength() end
 
@@ -8305,35 +8305,35 @@ function playdate.sound.sampleplayer:getLength() end
 --- octave, etc. Sampleplayers can also play samples backwards, by setting a negative rate; note,
 --- however, this does not work with ADPCM-encoded files.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRate
+--- [Inside Playdate: playdate.sound.sampleplayer:setRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRate)
 ---@param rate integer
 ---@return nil
 function playdate.sound.sampleplayer:setRate(rate) end
 
 --- Returns the playback rate for the sample.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getRate
+--- [Inside Playdate: playdate.sound.sampleplayer:getRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getRate)
 ---@return number
 function playdate.sound.sampleplayer:getRate() end
 
 --- Sets the signal to use as a rate modulator, added to the rate set with
 --- playdate.sound.sampleplayer:setRate().  Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRateMod
+--- [Inside Playdate: playdate.sound.sampleplayer:setRateMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRateMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.sampleplayer:setRateMod(signal) end
 
 --- Sets the current offset of the sampleplayer, in seconds. This value is not adjusted for rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setOffset
+--- [Inside Playdate: playdate.sound.sampleplayer:setOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setOffset)
 ---@param seconds number
 ---@return nil
 function playdate.sound.sampleplayer:setOffset(seconds) end
 
 --- Returns the current offset of the sampleplayer, in seconds. This value is not adjusted for rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getOffset
+--- [Inside Playdate: playdate.sound.sampleplayer:getOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.getOffset)
 ---@return number
 function playdate.sound.sampleplayer:getOffset() end
 
@@ -8344,7 +8344,7 @@ function playdate.sound.sampleplayer:getOffset() end
 --- value reduces the latency of a playdate.sound.fileplayer:setOffset() call, but increases the
 --- chance of a buffer underrun.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.fileplayer.new-empty
+--- [Inside Playdate: playdate.sound.fileplayer.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.fileplayer.new-empty)
 ---@param buffersize? number
 ---@return _FilePlayer
 function playdate.sound.fileplayer.new(buffersize) end
@@ -8357,7 +8357,7 @@ function playdate.sound.fileplayer.new(buffersize) end
 --- value reduces the latency of a playdate.sound.fileplayer:setOffset() call, but increases the
 --- chance of a buffer underrun.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.fileplayer.new
+--- [Inside Playdate: playdate.sound.fileplayer.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.fileplayer.new)
 ---@param path string
 ---@param buffersize? number
 ---@return _FilePlayer
@@ -8367,7 +8367,7 @@ function playdate.sound.fileplayer.new(path, buffersize) end
 --- must not be playing when this function is called. The fileplayer’s play offset is reset to the
 --- beginning of the file, and its loop range is cleared.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.load
+--- [Inside Playdate: playdate.sound.fileplayer:load](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.load)
 ---@param path string
 ---@return nil
 function playdate.sound.fileplayer:load(path) end
@@ -8383,7 +8383,7 @@ function playdate.sound.fileplayer:load(path) end
 --- The function returns true if the file was successfully opened and the fileplayer added to the
 --- sound channel, otherwise false and a string describing the error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.play
+--- [Inside Playdate: playdate.sound.fileplayer:play](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.play)
 ---@param repeatCount? integer
 ---@return boolean success
 ---@return string? err
@@ -8391,32 +8391,32 @@ function playdate.sound.fileplayer:play(repeatCount) end
 
 --- Stops playing the file, resets the playback offset to zero, and calls the finish callback.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.stop
+--- [Inside Playdate: playdate.sound.fileplayer:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.stop)
 ---@return nil
 function playdate.sound.fileplayer:stop() end
 
 --- Stops playing the file. A subsequent play() call resumes playback from where it was paused.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.pause
+--- [Inside Playdate: playdate.sound.fileplayer:pause](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.pause)
 ---@return nil
 function playdate.sound.fileplayer:pause() end
 
 --- Returns a boolean indicating whether the fileplayer is playing.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.isPlaying
+--- [Inside Playdate: playdate.sound.fileplayer:isPlaying](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.isPlaying)
 ---@return boolean
 function playdate.sound.fileplayer:isPlaying() end
 
 --- Returns the length, in seconds, of the audio file.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getLength
+--- [Inside Playdate: playdate.sound.fileplayer:getLength](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getLength)
 ---@return number
 function playdate.sound.fileplayer:getLength() end
 
 --- Sets a function to be called when playback has completed. The fileplayer is passed as the first
 --- argument to *func*. The optional argument *arg* is passed as the second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setFinishCallback
+--- [Inside Playdate: playdate.sound.fileplayer:setFinishCallback](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setFinishCallback)
 ---@param func fun(self: _FilePlayer, arg?: any)
 ---@param arg? any
 ---@return nil
@@ -8425,7 +8425,7 @@ function playdate.sound.fileplayer:setFinishCallback(func, arg) end
 --- Returns the fileplayer’s underrun flag, indicating that the player ran out of data. This can be
 --- checked in the finish callback function to check for an underrun error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.didUnderrun
+--- [Inside Playdate: playdate.sound.fileplayer:didUnderrun](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.didUnderrun)
 ---@return boolean
 function playdate.sound.fileplayer:didUnderrun() end
 
@@ -8433,7 +8433,7 @@ function playdate.sound.fileplayer:didUnderrun() end
 --- to *false* tells the fileplayer to restart playback (after an audible stutter) as soon as data
 --- is available.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setStopOnUnderrun
+--- [Inside Playdate: playdate.sound.fileplayer:setStopOnUnderrun](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setStopOnUnderrun)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.fileplayer:setStopOnUnderrun(flag) end
@@ -8455,7 +8455,7 @@ function playdate.sound.fileplayer:setStopOnUnderrun(flag) end
 --- The fileplayer:play([repeatCount]) call needs to be invoked with a *repeatCount* value of 0
 --- (infinite looping), or 2 or greater in order for the looping action to happen.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopRange
+--- [Inside Playdate: playdate.sound.fileplayer:setLoopRange](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopRange)
 ---@param start number
 ---@param _end number
 ---@param loopCallback? fun(arg?: any): nil
@@ -8469,7 +8469,7 @@ function playdate.sound.fileplayer:setLoopRange(start, _end, loopCallback, arg) 
 --- The fileplayer:play([repeatCount]) call needs to be invoked with a *repeatCount* value of 0
 --- (infinite looping), or 2 or greater in order for the loop callback to be invoked.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopCallback
+--- [Inside Playdate: playdate.sound.fileplayer:setLoopCallback](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setLoopCallback)
 ---@param callback fun(self: _FilePlayer, arg?: any)
 ---@param arg? any
 ---@return nil
@@ -8480,7 +8480,7 @@ function playdate.sound.fileplayer:setLoopCallback(callback, arg) end
 --- source file has been set. On success, the function returns *true*; otherwise it returns *false*
 --- and a string describing the error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setBufferSize
+--- [Inside Playdate: playdate.sound.fileplayer:setBufferSize](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setBufferSize)
 ---@param seconds number
 ---@return nil
 function playdate.sound.fileplayer:setBufferSize(seconds) end
@@ -8488,21 +8488,21 @@ function playdate.sound.fileplayer:setBufferSize(seconds) end
 --- Sets the playback rate for the file. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an
 --- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRate
+--- [Inside Playdate: playdate.sound.fileplayer:setRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRate)
 ---@param rate integer
 ---@return nil
 function playdate.sound.fileplayer:setRate(rate) end
 
 --- Returns the playback rate for the file. as set with `setRate()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getRate
+--- [Inside Playdate: playdate.sound.fileplayer:getRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getRate)
 ---@return number
 function playdate.sound.fileplayer:getRate() end
 
 --- Sets the signal to use as a rate modulator, added to the rate set with
 --- playdate.sound.fileplayer:setRate().  Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRateMod
+--- [Inside Playdate: playdate.sound.fileplayer:setRateMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRateMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.fileplayer:setRateMod(signal) end
@@ -8514,7 +8514,7 @@ function playdate.sound.fileplayer:setRateMod(signal) end
 --- the volume fade has completed. The fileplayer object is passed as the first argument to the
 --- callback, and the optional *arg* argument is passed as the second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setVolume
+--- [Inside Playdate: playdate.sound.fileplayer:setVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setVolume)
 ---@param left number
 ---@param right? number
 ---@param fadeSeconds? number
@@ -8526,21 +8526,21 @@ function playdate.sound.fileplayer:setVolume(left, right, fadeSeconds, fadeCallb
 --- Returns the current volume for the fileplayer, a single value for mono sources or a pair of
 --- values (left, right) for stereo sources.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getVolume
+--- [Inside Playdate: playdate.sound.fileplayer:getVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getVolume)
 ---@return number left_or_mono
 ---@return number? right
 function playdate.sound.fileplayer:getVolume() end
 
 --- Sets the current offset of the fileplayer, in seconds. This value is not adjusted for rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setOffset
+--- [Inside Playdate: playdate.sound.fileplayer:setOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setOffset)
 ---@param seconds number
 ---@return nil
 function playdate.sound.fileplayer:setOffset(seconds) end
 
 --- Returns the current offset of the fileplayer, in seconds. This value is not adjusted for rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getOffset
+--- [Inside Playdate: playdate.sound.fileplayer:getOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.getOffset)
 ---@return number
 function playdate.sound.fileplayer:getOffset() end
 
@@ -8554,7 +8554,7 @@ function playdate.sound.fileplayer:getOffset() end
 --- with playdate.sound.sample:load(), this allows you to swap in a different sample without re-
 --- allocating the buffer, which could lead to memory fragmentation.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.sample.new
+--- [Inside Playdate: playdate.sound.sample.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.sample.new)
 ---@param path string
 ---@return _Sample
 function playdate.sound.sample.new(path) end
@@ -8562,7 +8562,7 @@ function playdate.sound.sample.new(path) end
 --- Returns a new subsample containing a subrange of the given sample. Offset values are in frames,
 --- not bytes.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSubsample
+--- [Inside Playdate: playdate.sound.sample:getSubsample](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSubsample)
 ---@param startOffset integer
 ---@param endOffset integer
 ---@return _Sample
@@ -8571,7 +8571,7 @@ function playdate.sound.sample:getSubsample(startOffset, endOffset) end
 --- Loads the sound data from the file at *path* into an existing sample buffer. If there is no file
 --- at *path*, the function returns nil.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.load
+--- [Inside Playdate: playdate.sound.sample:load](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.load)
 ---@param path string
 ---@return boolean
 function playdate.sound.sample:load(path) end
@@ -8581,14 +8581,14 @@ function playdate.sound.sample:load(path) end
 --- is necessary if you want to use the sample in a synth or play the file backwards. Returns `true`
 --- if successful, or `false` and an error message as a second return value if decompression failed.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.decompress
+--- [Inside Playdate: playdate.sound.sample:decompress](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.decompress)
 ---@return boolean success
 ---@return string err?
 function playdate.sound.sample:decompress() end
 
 --- Returns the sample rate as an integer, such as 44100 or 22050.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSampleRate
+--- [Inside Playdate: playdate.sound.sample:getSampleRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getSampleRate)
 ---@return integer
 function playdate.sound.sample:getSampleRate() end
 
@@ -8599,7 +8599,7 @@ function playdate.sound.sample:getSampleRate() end
 --- * playdate.sound.kFormat16bitMono
 --- * playdate.sound.kFormat16bitStereo
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getFormat
+--- [Inside Playdate: playdate.sound.sample:getFormat](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getFormat)
 ---@return integer
 function playdate.sound.sample:getFormat() end
 
@@ -8607,7 +8607,7 @@ function playdate.sound.sample:getFormat() end
 --- buffer. Both values are measured in seconds. For a sample loaded from disk, these will be the
 --- same; for a sample used for recording, the available data may be less than the allocated size.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getLength
+--- [Inside Playdate: playdate.sound.sample:getLength](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getLength)
 ---@return number sample_seconds
 ---@return number buffer_size_seconds
 function playdate.sound.sample:getLength() end
@@ -8615,7 +8615,7 @@ function playdate.sound.sample:getLength() end
 --- Convenience function: Creates a new sampleplayer for the sample and passes the function
 --- arguments to its play function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.play
+--- [Inside Playdate: playdate.sound.sample:play](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.play)
 ---@param repeatCount? integer
 ---@param rate? integer
 ---@return nil
@@ -8624,7 +8624,7 @@ function playdate.sound.sample:play(repeatCount, rate) end
 --- Convenience function: Creates a new sampleplayer for the sample and passes the function
 --- arguments to its playAt function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.playAt
+--- [Inside Playdate: playdate.sound.sample:playAt](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.playAt)
 ---@param when number
 ---@param vol? number
 ---@param rightvol? number
@@ -8636,33 +8636,33 @@ function playdate.sound.sample:playAt(when, vol, rightvol, rate) end
 --- format (and be unreadable by the Playdate sound functions), otherwise it will be saved in the
 --- Playdate pda format.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.save
+--- [Inside Playdate: playdate.sound.sample:save](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.save)
 ---@param filename string
 ---@return nil
 function playdate.sound.sample:save(filename) end
 
 --- Returns a new channel object and adds it to the global list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.channel.new
+--- [Inside Playdate: playdate.sound.channel.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.channel.new)
 ---@return _Channel
 function playdate.sound.channel.new() end
 
 --- Removes the channel from the global list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.remove
+--- [Inside Playdate: playdate.sound.channel:remove](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.remove)
 ---@return nil
 function playdate.sound.channel:remove() end
 
 --- Adds an effect to the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addEffect
+--- [Inside Playdate: playdate.sound.channel:addEffect](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addEffect)
 ---@param effect _SoundEffect
 ---@return nil
 function playdate.sound.channel:addEffect(effect) end
 
 --- Removes an effect from the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeEffect
+--- [Inside Playdate: playdate.sound.channel:removeEffect](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeEffect)
 ---@param effect _SoundEffect
 ---@return nil
 function playdate.sound.channel:removeEffect(effect) end
@@ -8670,62 +8670,62 @@ function playdate.sound.channel:removeEffect(effect) end
 --- Adds a source to the channel. If a source is not assigned to a channel, it plays on the default
 --- global channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addSource
+--- [Inside Playdate: playdate.sound.channel:addSource](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.addSource)
 ---@param source _SoundSource
 ---@return nil
 function playdate.sound.channel:addSource(source) end
 
 --- Removes a source from the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeSource
+--- [Inside Playdate: playdate.sound.channel:removeSource](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.removeSource)
 ---@param source _SoundSource
 ---@return nil
 function playdate.sound.channel:removeSource(source) end
 
 --- Sets the volume (0.0 - 1.0) for the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolume
+--- [Inside Playdate: playdate.sound.channel:setVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolume)
 ---@param volume number
 ---@return nil
 function playdate.sound.channel:setVolume(volume) end
 
 --- Gets the volume (0.0 - 1.0) for the channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getVolume
+--- [Inside Playdate: playdate.sound.channel:getVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getVolume)
 ---@return number
 function playdate.sound.channel:getVolume() end
 
 --- Sets the pan parameter for the channel. -1 is left, 0 is center, and 1 is right.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setPan
+--- [Inside Playdate: playdate.sound.channel:setPan](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setPan)
 ---@param pan number
 ---@return number
 function playdate.sound.channel:setPan(pan) end
 
 --- Sets a signal to automate the pan parameter. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setPanMod
+--- [Inside Playdate: playdate.sound.channel:setPanMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setPanMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.channel:setPanMod(signal) end
 
 --- Sets a signal to automate the volume parameter. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolumeMod
+--- [Inside Playdate: playdate.sound.channel:setVolumeMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.setVolumeMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.channel:setVolumeMod(signal) end
 
 --- Returns a list of all sources currently playing.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.playingSources
+--- [Inside Playdate: playdate.sound.playingSources](https://sdk.play.date/Inside%20Playdate.html#f-sound.playingSources)
 ---@return _SoundSource[]
 function playdate.sound.playingSources() end
 
 --- Returns a new synth object to play a waveform or wavetable. See playdate.sound.synth:setWaveform
 --- for `waveform` values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new_w
+--- [Inside Playdate: playdate.sound.synth.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new_w)
 ---@param waveform? integer
 ---@return _Synth
 function playdate.sound.synth.new(waveform) end
@@ -8733,7 +8733,7 @@ function playdate.sound.synth.new(waveform) end
 --- Returns a new synth object to play a Sample. An optional sustain region (measured in samples)
 --- defines a loop to play while the note is on. Sample data must be uncompressed PCM, not ADPCM.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new
+--- [Inside Playdate: playdate.sound.synth.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new)
 ---@param sample _Sample
 ---@param sustainStart? integer
 ---@param sustainEnd? integer
@@ -8742,7 +8742,7 @@ function playdate.sound.synth.new(sample, sustainStart, sustainEnd) end
 
 --- Returns a copy of the given synth.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.copy
+--- [Inside Playdate: playdate.sound.synth:copy](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.copy)
 ---@return _Synth
 function playdate.sound.synth:copy() end
 
@@ -8765,7 +8765,7 @@ function playdate.sound.synth:copy() end
 --- note is waiting to play, it will replace that note. To create a sequence of notes to play over a
 --- period of time, see playdate.sound.sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.playNote
+--- [Inside Playdate: playdate.sound.synth:playNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.playNote)
 ---@param pitch (number|string)
 ---@param volume? number
 ---@param length? number
@@ -8776,7 +8776,7 @@ function playdate.sound.synth:playNote(pitch, volume, length, when) end
 --- Identical to playNote but uses a note name like "C4", or MIDI note number (60=C4, 61=C#4, etc.).
 --- In the latter case, fractional values are allowed.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.playMIDINote
+--- [Inside Playdate: playdate.sound.synth:playMIDINote](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.playMIDINote)
 ---@param note (number|string)
 ---@param volume? number
 ---@param length? number
@@ -8787,25 +8787,25 @@ function playdate.sound.synth:playMIDINote(note, volume, length, when) end
 --- Releases the note, if one is playing. The note will continue to be voiced through the release
 --- section of the synth’s envelope.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.noteOff
+--- [Inside Playdate: playdate.sound.synth:noteOff](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.noteOff)
 ---@return nil
 function playdate.sound.synth:noteOff() end
 
 --- Stops the synth immediately, without playing the release part of the envelope.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.stop
+--- [Inside Playdate: playdate.sound.synth:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.stop)
 ---@return nil
 function playdate.sound.synth:stop() end
 
 --- Returns true if the synth is still playing, including the release phase of the envelope.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.isPlaying
+--- [Inside Playdate: playdate.sound.synth:isPlaying](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.isPlaying)
 ---@return boolean
 function playdate.sound.synth:isPlaying() end
 
 --- Sets the signal to use as the amplitude modulator. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setAmplitudeMod
+--- [Inside Playdate: playdate.sound.synth:setAmplitudeMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setAmplitudeMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.synth:setAmplitudeMod(signal) end
@@ -8813,7 +8813,7 @@ function playdate.sound.synth:setAmplitudeMod(signal) end
 --- Sets the attack time, decay time, sustain level, and release time for the sound envelope, and
 --- optionally the curvature.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setADSR
+--- [Inside Playdate: playdate.sound.synth:setADSR](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setADSR)
 ---@param attack number
 ---@param decay number
 ---@param sustain number
@@ -8824,55 +8824,55 @@ function playdate.sound.synth:setADSR(attack, decay, sustain, release, curvature
 
 --- Sets the attack time, in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setAttack
+--- [Inside Playdate: playdate.sound.synth:setAttack](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setAttack)
 ---@param time number
 ---@return nil
 function playdate.sound.synth:setAttack(time) end
 
 --- Sets the decay time, in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setDecay
+--- [Inside Playdate: playdate.sound.synth:setDecay](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setDecay)
 ---@param time number
 ---@return nil
 function playdate.sound.synth:setDecay(time) end
 
 --- Sets the sustain level, as a proportion of the total level (0.0 to 1.0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setSustain
+--- [Inside Playdate: playdate.sound.synth:setSustain](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setSustain)
 ---@param level number
 ---@return nil
 function playdate.sound.synth:setSustain(level) end
 
 --- Sets the release time, in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setRelease
+--- [Inside Playdate: playdate.sound.synth:setRelease](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setRelease)
 ---@param time number
 ---@return nil
 function playdate.sound.synth:setRelease(time) end
 
 --- Smoothly changes the envelope’s shape from linear (amount=0) to exponential (amount=1).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setEnvelopeCurvature
+--- [Inside Playdate: playdate.sound.synth:setEnvelopeCurvature](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setEnvelopeCurvature)
 ---@param amount number
 ---@return nil
 function playdate.sound.synth:setEnvelopeCurvature(amount) end
 
 --- Returns the synth’s envelope as a playdate.sound.envelope object.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getEnvelope
+--- [Inside Playdate: playdate.sound.synth:getEnvelope](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getEnvelope)
 ---@return _Envelope
 function playdate.sound.synth:getEnvelope() end
 
 --- Sets a function to be called when the synth stops playing.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFinishCallback
+--- [Inside Playdate: playdate.sound.synth:setFinishCallback](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFinishCallback)
 ---@param _function function
 ---@return nil
 function playdate.sound.synth:setFinishCallback(_function) end
 
 --- Sets the signal to use as the frequency modulator. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFrequencyMod
+--- [Inside Playdate: playdate.sound.synth:setFrequencyMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setFrequencyMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.synth:setFrequencyMod(signal) end
@@ -8881,7 +8881,7 @@ function playdate.sound.synth:setFrequencyMod(signal) end
 --- starts while a previous note is still playing, the synth’s envelope remains in the sustain phase
 --- instead of starting a new attack.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setLegato
+--- [Inside Playdate: playdate.sound.synth:setLegato](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setLegato)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.synth:setLegato(flag) end
@@ -8891,7 +8891,7 @@ function playdate.sound.synth:setLegato(flag) end
 ---
 --- Volume values are between 0.0 and 1.0.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setVolume
+--- [Inside Playdate: playdate.sound.synth:setVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setVolume)
 ---@param left number
 ---@param right? number
 ---@return nil
@@ -8902,7 +8902,7 @@ function playdate.sound.synth:setVolume(left, right) end
 ---
 --- Volume values are between 0.0 and 1.0.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getVolume
+--- [Inside Playdate: playdate.sound.synth:getVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.getVolume)
 ---@return number left_or_mono
 ---@return number? right
 function playdate.sound.synth:getVolume() end
@@ -8919,7 +8919,7 @@ function playdate.sound.synth:getVolume() end
 --- * playdate.sound.kWavePODigital
 --- * playdate.sound.kWavePOVosim
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setWaveform
+--- [Inside Playdate: playdate.sound.synth:setWaveform](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setWaveform)
 ---@param waveform integer
 ---@return nil
 function playdate.sound.synth:setWaveform(waveform) end
@@ -8942,7 +8942,7 @@ function playdate.sound.synth:setWaveform(waveform) end
 --- * 3: y position, values are from 0 to the table height
 --- * 4: y position, values are from 0 to 1, parameter is scaled up to table height
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setWavetable
+--- [Inside Playdate: playdate.sound.synth:setWavetable](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setWavetable)
 ---@param sample _Sample
 ---@param samplesize integer
 ---@param xsize integer
@@ -8952,7 +8952,7 @@ function playdate.sound.synth:setWavetable(sample, samplesize, xsize, ysize) end
 --- Sets the parameter at (1-based) position *num* to the given value. Unless otherwise specified,
 --- *value* ranges from 0 to 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setParameter
+--- [Inside Playdate: playdate.sound.synth:setParameter](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setParameter)
 ---@param parameter integer
 ---@param value number
 ---@return nil
@@ -8960,7 +8960,7 @@ function playdate.sound.synth:setParameter(parameter, value) end
 
 --- Sets the signal to modulate the parameter. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setParameterMod
+--- [Inside Playdate: playdate.sound.synth:setParameterMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setParameterMod)
 ---@param parameter integer
 ---@param signal _Signal
 ---@return nil
@@ -8968,7 +8968,7 @@ function playdate.sound.synth:setParameterMod(parameter, signal) end
 
 --- Adds a constant offset to the signal (lfo, envelope, etc.).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.signal.setOffset
+--- [Inside Playdate: playdate.sound.signal:setOffset](https://sdk.play.date/Inside%20Playdate.html#f-sound.signal.setOffset)
 ---@param offset number
 ---@return nil
 function playdate.sound.signal:setOffset(offset) end
@@ -8976,7 +8976,7 @@ function playdate.sound.signal:setOffset(offset) end
 --- Multiplies the signal’s output by the given scale factor. The scale is applied before the
 --- offset.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.signal.setScale
+--- [Inside Playdate: playdate.sound.signal:setScale](https://sdk.play.date/Inside%20Playdate.html#f-sound.signal.setScale)
 ---@param scale integer
 ---@return nil
 function playdate.sound.signal:setScale(scale) end
@@ -8984,7 +8984,7 @@ function playdate.sound.signal:setScale(scale) end
 --- Returns a new LFO object, which can be used to modulate sounds. See playdate.sound.lfo:setType()
 --- for LFO types.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.lfo.new
+--- [Inside Playdate: playdate.sound.lfo.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.lfo.new)
 ---@param type? integer
 ---@return _LFO
 function playdate.sound.lfo.new(type) end
@@ -8998,7 +8998,7 @@ function playdate.sound.lfo.new(type) end
 --- * playdate.sound.kLFOSine
 --- * playdate.sound.kLFOSampleAndHold
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setType
+--- [Inside Playdate: playdate.sound.lfo:setType](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setType)
 ---@param type integer
 ---@return nil
 function playdate.sound.lfo:setType(type) end
@@ -9006,7 +9006,7 @@ function playdate.sound.lfo:setType(type) end
 --- Sets the LFO type to arpeggio, where the given values are in half-steps from the center note.
 --- For example, the sequence (0, 4, 7, 12) plays the notes of a major chord.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setArpeggio
+--- [Inside Playdate: playdate.sound.lfo:setArpeggio](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setArpeggio)
 ---@param note1 number
 ---@param ... number
 ---@return nil
@@ -9014,35 +9014,35 @@ function playdate.sound.lfo:setArpeggio(note1, ...) end
 
 --- Sets the center value of the LFO.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setCenter
+--- [Inside Playdate: playdate.sound.lfo:setCenter](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setCenter)
 ---@param center number
 ---@return nil
 function playdate.sound.lfo:setCenter(center) end
 
 --- Sets the depth of the LFO’s modulation.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDepth
+--- [Inside Playdate: playdate.sound.lfo:setDepth](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDepth)
 ---@param depth number
 ---@return nil
 function playdate.sound.lfo:setDepth(depth) end
 
 --- Sets the rate of the LFO, in cycles per second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRate
+--- [Inside Playdate: playdate.sound.lfo:setRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRate)
 ---@param rate number
 ---@return nil
 function playdate.sound.lfo:setRate(rate) end
 
 --- Sets the current phase of the LFO, from 0 to 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setPhase
+--- [Inside Playdate: playdate.sound.lfo:setPhase](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setPhase)
 ---@param phase number
 ---@return nil
 function playdate.sound.lfo:setPhase(phase) end
 
 --- Sets the initial phase of the LFO, from 0 to 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setStartPhase
+--- [Inside Playdate: playdate.sound.lfo:setStartPhase](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setStartPhase)
 ---@param phase number
 ---@return nil
 function playdate.sound.lfo:setStartPhase(phase) end
@@ -9050,7 +9050,7 @@ function playdate.sound.lfo:setStartPhase(phase) end
 --- If an LFO is marked global, it is continuously updated whether or not it’s attached to any
 --- source.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setGlobal
+--- [Inside Playdate: playdate.sound.lfo:setGlobal](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setGlobal)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.lfo:setGlobal(flag) end
@@ -9058,7 +9058,7 @@ function playdate.sound.lfo:setGlobal(flag) end
 --- If retrigger is on, the LFO’s phase is reset to its initial phase (default 0) when a synth using
 --- the LFO starts playing a note.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRetrigger
+--- [Inside Playdate: playdate.sound.lfo:setRetrigger](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRetrigger)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.lfo:setRetrigger(flag) end
@@ -9066,7 +9066,7 @@ function playdate.sound.lfo:setRetrigger(flag) end
 --- Sets an initial holdoff time for the LFO where the LFO remains at its center value, and a ramp
 --- time where the value increases linearly to its maximum depth. Values are in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDelay
+--- [Inside Playdate: playdate.sound.lfo:setDelay](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDelay)
 ---@param holdoff number
 ---@param ramp number
 ---@return nil
@@ -9074,7 +9074,7 @@ function playdate.sound.lfo:setDelay(holdoff, ramp) end
 
 --- Creates a new envelope with the given (optional) parameters.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.envelope.new
+--- [Inside Playdate: playdate.sound.envelope.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.envelope.new)
 ---@param attack? number
 ---@param decay? number
 ---@param sustain? number
@@ -9084,14 +9084,14 @@ function playdate.sound.envelope.new(attack, decay, sustain, release) end
 
 --- Sets the envelope attack time to *attack*, in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setAttack
+--- [Inside Playdate: playdate.sound.envelope:setAttack](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setAttack)
 ---@param attack number
 ---@return nil
 function playdate.sound.envelope:setAttack(attack) end
 
 --- Sets the envelope decay time to *decay*, in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setDecay
+--- [Inside Playdate: playdate.sound.envelope:setDecay](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setDecay)
 ---@param decay number
 ---@return nil
 function playdate.sound.envelope:setDecay(decay) end
@@ -9101,21 +9101,21 @@ function playdate.sound.envelope:setDecay(decay) end
 --- the envelope, then drops to half its maximum over the decay phase, and remains there while the
 --- envelope is active.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setSustain
+--- [Inside Playdate: playdate.sound.envelope:setSustain](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setSustain)
 ---@param sustain number
 ---@return nil
 function playdate.sound.envelope:setSustain(sustain) end
 
 --- Sets the envelope release time to *release*, in seconds.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRelease
+--- [Inside Playdate: playdate.sound.envelope:setRelease](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRelease)
 ---@param release number
 ---@return nil
 function playdate.sound.envelope:setRelease(release) end
 
 --- Smoothly changes the envelope’s shape from linear (amount=0) to exponential (amount=1).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setCurvature
+--- [Inside Playdate: playdate.sound.envelope:setCurvature](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setCurvature)
 ---@param amount number
 ---@return nil
 function playdate.sound.envelope:setCurvature(amount) end
@@ -9123,7 +9123,7 @@ function playdate.sound.envelope:setCurvature(amount) end
 --- Changes the amount by which note velocity scales output level. At the default value of 1, output
 --- is proportional to velocity; at 0 velocity has no effect on output level.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setVelocitySensitivity
+--- [Inside Playdate: playdate.sound.envelope:setVelocitySensitivity](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setVelocitySensitivity)
 ---@param amount number
 ---@return nil
 function playdate.sound.envelope:setVelocitySensitivity(amount) end
@@ -9134,7 +9134,7 @@ function playdate.sound.envelope:setVelocitySensitivity(amount) end
 --- `end` are either MIDI note numbers or names like "C4". If omitted, the default range is C1 (36)
 --- to C5 (84).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRateScaling
+--- [Inside Playdate: playdate.sound.envelope:setRateScaling](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRateScaling)
 ---@param scaling number
 ---@param start? number
 ---@param _end number
@@ -9144,7 +9144,7 @@ function playdate.sound.envelope:setRateScaling(scaling, start, _end) end
 --- Sets the scale value for the envelope. The transformed envelope has an initial value of *offset*
 --- and a maximum (minimum if *scale* is negative) of *offset* + *scale*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setScale
+--- [Inside Playdate: playdate.sound.envelope:setScale](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setScale)
 ---@param scale integer
 ---@return nil
 function playdate.sound.envelope:setScale(scale) end
@@ -9152,7 +9152,7 @@ function playdate.sound.envelope:setScale(scale) end
 --- Sets the offset value for the envelope. The transformed envelope has an initial value of
 --- *offset* and a maximum (minimum if *scale* is negative) of *offset* + *scale*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setOffset
+--- [Inside Playdate: playdate.sound.envelope:setOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setOffset)
 ---@param offset number
 ---@return nil
 function playdate.sound.envelope:setOffset(offset) end
@@ -9161,7 +9161,7 @@ function playdate.sound.envelope:setOffset(offset) end
 --- envelope is re-triggered before it’s released, it remains in the sustain phase instead of
 --- jumping back to the attack phase.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setLegato
+--- [Inside Playdate: playdate.sound.envelope:setLegato](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setLegato)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.envelope:setLegato(flag) end
@@ -9169,7 +9169,7 @@ function playdate.sound.envelope:setLegato(flag) end
 --- If retrigger is on, the envelope always starts from 0 when a note starts playing, instead of the
 --- current value if it’s active.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRetrigger
+--- [Inside Playdate: playdate.sound.envelope:setRetrigger](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setRetrigger)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.envelope:setRetrigger(flag) end
@@ -9178,7 +9178,7 @@ function playdate.sound.envelope:setRetrigger(flag) end
 --- moves to the release phase after the given time. Otherwise, the envelope is held in the sustain
 --- phase until the trigger function is called again with *velocity* equal to zero.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.trigger
+--- [Inside Playdate: playdate.sound.envelope:trigger](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.trigger)
 ---@param velocity number
 ---@param length? number
 ---@return nil
@@ -9187,42 +9187,42 @@ function playdate.sound.envelope:trigger(velocity, length) end
 --- If an envelope is marked global, it is continuously updated whether or not it’s attached to
 --- any source.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setGlobal
+--- [Inside Playdate: playdate.sound.envelope:setGlobal](https://sdk.play.date/Inside%20Playdate.html#m-sound.envelope.setGlobal)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.envelope:setGlobal(flag) end
 
 --- Adds the given playdate.sound.effect to the default sound channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.addEffect
+--- [Inside Playdate: playdate.sound.addEffect](https://sdk.play.date/Inside%20Playdate.html#f-sound.addEffect)
 ---@param effect _SoundEffect
 ---@return nil
 function playdate.sound.addEffect(effect) end
 
 --- Removes the given effect from the default sound channel.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.removeEffect
+--- [Inside Playdate: playdate.sound.removeEffect](https://sdk.play.date/Inside%20Playdate.html#f-sound.removeEffect)
 ---@param effect _SoundEffect
 ---@return nil
 function playdate.sound.removeEffect(effect) end
 
 --- Creates a new bitcrusher filter.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.bitcrusher.new
+--- [Inside Playdate: playdate.sound.bitcrusher.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.bitcrusher.new)
 ---@return _BitCrusher
 function playdate.sound.bitcrusher.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect
 --- output; 0 leaves the effect out of the mix.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setMix
+--- [Inside Playdate: playdate.sound.bitcrusher:setMix](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setMix)
 ---@param level number
 ---@return nil
 function playdate.sound.bitcrusher:setMix(level) end
 
 --- Sets a signal to modulate the mix level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setMixMod
+--- [Inside Playdate: playdate.sound.bitcrusher:setMixMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setMixMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.bitcrusher:setMixMod(signal) end
@@ -9230,14 +9230,14 @@ function playdate.sound.bitcrusher:setMixMod(signal) end
 --- Sets the amount of crushing to *amt*. Valid values are 0 (no effect) to 1 (quantizing output to
 --- 1-bit).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setAmount
+--- [Inside Playdate: playdate.sound.bitcrusher:setAmount](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setAmount)
 ---@param amt number
 ---@return nil
 function playdate.sound.bitcrusher:setAmount(amt) end
 
 --- Sets a signal to modulate the filter level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setAmountMod
+--- [Inside Playdate: playdate.sound.bitcrusher:setAmountMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setAmountMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.bitcrusher:setAmountMod(signal) end
@@ -9245,84 +9245,84 @@ function playdate.sound.bitcrusher:setAmountMod(signal) end
 --- Sets the number of samples to repeat; 0 is no undersampling, 1 effectively halves the sample
 --- rate.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setUndersampling
+--- [Inside Playdate: playdate.sound.bitcrusher:setUndersampling](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setUndersampling)
 ---@param amt number
 ---@return nil
 function playdate.sound.bitcrusher:setUndersampling(amt) end
 
 --- Sets a signal to modulate the filter level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setUndersamplingMod
+--- [Inside Playdate: playdate.sound.bitcrusher:setUndersamplingMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setUndersamplingMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.bitcrusher:setUndersamplingMod(signal) end
 
 --- Creates a new ring modulator filter.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.ringmod.new
+--- [Inside Playdate: playdate.sound.ringmod.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.ringmod.new)
 ---@return _RingMod
 function playdate.sound.ringmod.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect
 --- output; 0 leaves the effect out of the mix.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setMix
+--- [Inside Playdate: playdate.sound.ringmod:setMix](https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setMix)
 ---@param level number
 ---@return nil
 function playdate.sound.ringmod:setMix(level) end
 
 --- Sets a signal to modulate the mix level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setMixMod
+--- [Inside Playdate: playdate.sound.ringmod:setMixMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setMixMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.ringmod:setMixMod(signal) end
 
 --- Sets the ringmod frequency to *f*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setFrequency
+--- [Inside Playdate: playdate.sound.ringmod:setFrequency](https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setFrequency)
 ---@param f number
 ---@return nil
 function playdate.sound.ringmod:setFrequency(f) end
 
 --- Sets a signal to modulate the ringmod frequency. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setFrequencyMod
+--- [Inside Playdate: playdate.sound.ringmod:setFrequencyMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.ringmod.setFrequencyMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.ringmod:setFrequencyMod(signal) end
 
 --- Returns a new one pole filter.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.onepolefilter.new
+--- [Inside Playdate: playdate.sound.onepolefilter.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.onepolefilter.new)
 ---@return _OnePoleFilter
 function playdate.sound.onepolefilter.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect
 --- output; 0 leaves the effect out of the mix.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setMix
+--- [Inside Playdate: playdate.sound.onepolefilter:setMix](https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setMix)
 ---@param level number
 ---@return nil
 function playdate.sound.onepolefilter:setMix(level) end
 
 --- Sets a signal to modulate the mix level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setMixMod
+--- [Inside Playdate: playdate.sound.onepolefilter:setMixMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setMixMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.onepolefilter:setMixMod(signal) end
 
 --- Sets the filter’s single parameter (cutoff frequency) to *p*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setParameter
+--- [Inside Playdate: playdate.sound.onepolefilter:setParameter](https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setParameter)
 ---@param p number
 ---@return nil
 function playdate.sound.onepolefilter:setParameter(p) end
 
 --- Sets a modulator for the filter’s parameter. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setParameterMod
+--- [Inside Playdate: playdate.sound.onepolefilter:setParameterMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.onepolefilter.setParameterMod)
 ---@param m _Signal
 ---@return nil
 function playdate.sound.onepolefilter:setParameterMod(m) end
@@ -9337,7 +9337,7 @@ function playdate.sound.onepolefilter:setParameterMod(m) end
 --- * playdate.sound.kFilterLowShelf (or "lowshelf" or "loshelf")
 --- * playdate.sound.kFilterHighShelf (or "highshelf" or "hishelf")
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.twopolefilter.new
+--- [Inside Playdate: playdate.sound.twopolefilter.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.twopolefilter.new)
 ---@param type (integer|string)
 ---@return _TwoPoleFilter
 function playdate.sound.twopolefilter.new(type) end
@@ -9345,28 +9345,28 @@ function playdate.sound.twopolefilter.new(type) end
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect
 --- output; 0 leaves the effect out of the mix.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setMix
+--- [Inside Playdate: playdate.sound.twopolefilter:setMix](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setMix)
 ---@param level number
 ---@return nil
 function playdate.sound.twopolefilter:setMix(level) end
 
 --- Sets a signal to modulate the mix level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setMixMod
+--- [Inside Playdate: playdate.sound.twopolefilter:setMixMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setMixMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.twopolefilter:setMixMod(signal) end
 
 --- Sets the center frequency (in Hz) of the filter to *f*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setFrequency
+--- [Inside Playdate: playdate.sound.twopolefilter:setFrequency](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setFrequency)
 ---@param f number
 ---@return nil
 function playdate.sound.twopolefilter:setFrequency(f) end
 
 --- Sets a signal to modulate the filter frequency. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setFrequencyMod
+--- [Inside Playdate: playdate.sound.twopolefilter:setFrequencyMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setFrequencyMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.twopolefilter:setFrequencyMod(signal) end
@@ -9374,91 +9374,91 @@ function playdate.sound.twopolefilter:setFrequencyMod(signal) end
 --- Sets the resonance of the filter to *r*. Valid values are in the range 0-1. This parameter has
 --- no effect on shelf type filters.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonance
+--- [Inside Playdate: playdate.sound.twopolefilter:setResonance](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonance)
 ---@param r _Rect
 ---@return nil
 function playdate.sound.twopolefilter:setResonance(r) end
 
 --- Sets a signal to modulate the filter resonance. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonanceMod
+--- [Inside Playdate: playdate.sound.twopolefilter:setResonanceMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonanceMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.twopolefilter:setResonanceMod(signal) end
 
 --- Sets the gain of the filter to *g*. Gain is only used in PEQ and shelf type filters.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setGain
+--- [Inside Playdate: playdate.sound.twopolefilter:setGain](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setGain)
 ---@param g number
 ---@return nil
 function playdate.sound.twopolefilter:setGain(g) end
 
 --- Sets the type of the filter to *type*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setType
+--- [Inside Playdate: playdate.sound.twopolefilter:setType](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setType)
 ---@param type (integer|string)
 ---@return nil
 function playdate.sound.twopolefilter:setType(type) end
 
 --- Creates a new overdrive effect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.overdrive.new
+--- [Inside Playdate: playdate.sound.overdrive.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.overdrive.new)
 ---@return _OverDrive
 function playdate.sound.overdrive.new() end
 
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect
 --- output; 0 leaves the effect out of the mix.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setMix
+--- [Inside Playdate: playdate.sound.overdrive:setMix](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setMix)
 ---@param level number
 ---@return nil
 function playdate.sound.overdrive:setMix(level) end
 
 --- Sets a signal to modulate the mix level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setMixMod
+--- [Inside Playdate: playdate.sound.overdrive:setMixMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setMixMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.overdrive:setMixMod(signal) end
 
 --- Sets the gain of the filter.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setGain
+--- [Inside Playdate: playdate.sound.overdrive:setGain](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setGain)
 ---@param level number
 ---@return nil
 function playdate.sound.overdrive:setGain(level) end
 
 --- Sets the level where the amplified input clips.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setLimit
+--- [Inside Playdate: playdate.sound.overdrive:setLimit](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setLimit)
 ---@param level number
 ---@return nil
 function playdate.sound.overdrive:setLimit(level) end
 
 --- Sets a signal to modulate the limit level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setLimitMod
+--- [Inside Playdate: playdate.sound.overdrive:setLimitMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setLimitMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.overdrive:setLimitMod(signal) end
 
 --- Adds an offset to the upper and lower limits to create an asymmetric clipping.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setOffset
+--- [Inside Playdate: playdate.sound.overdrive:setOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setOffset)
 ---@param level number
 ---@return nil
 function playdate.sound.overdrive:setOffset(level) end
 
 --- Sets a signal to modulate the offset value. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setOffsetMod
+--- [Inside Playdate: playdate.sound.overdrive:setOffsetMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.overdrive.setOffsetMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.overdrive:setOffsetMod(signal) end
 
 --- Creates a new delay line effect, with the given length (in seconds).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.delayline.new
+--- [Inside Playdate: playdate.sound.delayline.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.delayline.new)
 ---@param length number
 ---@return _DelayLine
 function playdate.sound.delayline.new(length) end
@@ -9467,14 +9467,14 @@ function playdate.sound.delayline.new(length) end
 --- output; 0 leaves the effect out of the mix, which is useful if you’re using taps for varying
 --- delays.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setMix
+--- [Inside Playdate: playdate.sound.delayline:setMix](https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setMix)
 ---@param level number
 ---@return nil
 function playdate.sound.delayline:setMix(level) end
 
 --- Sets a signal to modulate the mix level. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setMixMod
+--- [Inside Playdate: playdate.sound.delayline:setMixMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setMixMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.delayline:setMixMod(signal) end
@@ -9482,21 +9482,21 @@ function playdate.sound.delayline:setMixMod(signal) end
 --- Returns a new playdate.sound.delaylinetap on the delay line, at the given delay (which must be
 --- less than or equal to the delay line’s length).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.addTap
+--- [Inside Playdate: playdate.sound.delayline:addTap](https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.addTap)
 ---@param delay number
 ---@return _DelayLineTap
 function playdate.sound.delayline:addTap(delay) end
 
 --- Sets the feedback level of the delay line.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setFeedback
+--- [Inside Playdate: playdate.sound.delayline:setFeedback](https://sdk.play.date/Inside%20Playdate.html#m-sound.delayline.setFeedback)
 ---@param level number
 ---@return nil
 function playdate.sound.delayline:setFeedback(level) end
 
 --- Sets the position of the tap on the delay line, up to the delay line’s length.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setDelay
+--- [Inside Playdate: playdate.sound.delaylinetap:setDelay](https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setDelay)
 ---@param time number
 ---@return nil
 function playdate.sound.delaylinetap:setDelay(time) end
@@ -9505,28 +9505,28 @@ function playdate.sound.delaylinetap:setDelay(time) end
 --- triangle LFO, but not a square LFO) playback is sped up or slowed down to compress or expand
 --- time. Set to *nil* to clear the modulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setDelayMod
+--- [Inside Playdate: playdate.sound.delaylinetap:setDelayMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setDelayMod)
 ---@param signal? _Signal
 ---@return nil
 function playdate.sound.delaylinetap:setDelayMod(signal) end
 
 --- Sets the tap’s volume.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setVolume
+--- [Inside Playdate: playdate.sound.delaylinetap:setVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setVolume)
 ---@param level number
 ---@return nil
 function playdate.sound.delaylinetap:setVolume(level) end
 
 --- Returns the tap’s volume.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.getVolume
+--- [Inside Playdate: playdate.sound.delaylinetap:getVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.getVolume)
 ---@return number
 function playdate.sound.delaylinetap:getVolume() end
 
 --- If set and the delay line is stereo, the tap outputs the delay line’s left channel to its right
 --- output and vice versa.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setFlipChannels
+--- [Inside Playdate: playdate.sound.delaylinetap:setFlipChannels](https://sdk.play.date/Inside%20Playdate.html#m-sound.delaylinetap.setFlipChannels)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.delaylinetap:setFlipChannels(flag) end
@@ -9534,7 +9534,7 @@ function playdate.sound.delaylinetap:setFlipChannels(flag) end
 --- Creates a new sound sequence. If `midi_path` is given, it attempts to load data from the midi
 --- file into the sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.sequence.new
+--- [Inside Playdate: playdate.sound.sequence.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.sequence.new)
 ---@param midi_path? string
 ---@return _Sequence
 function playdate.sound.sequence.new(midi_path) end
@@ -9543,34 +9543,34 @@ function playdate.sound.sequence.new(midi_path) end
 --- sequence finishes playing or is stopped. The sequence is passed to the callback as its single
 --- argument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.play
+--- [Inside Playdate: playdate.sound.sequence:play](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.play)
 ---@param finishCallback? fun(self: _Sequence): nil
 ---@return nil
 function playdate.sound.sequence:play(finishCallback) end
 
 --- Stops playing the sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.stop
+--- [Inside Playdate: playdate.sound.sequence:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.stop)
 ---@return nil
 function playdate.sound.sequence:stop() end
 
 --- Returns true if the sequence is currently playing.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.isPlaying
+--- [Inside Playdate: playdate.sound.sequence:isPlaying](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.isPlaying)
 ---@return boolean
 function playdate.sound.sequence:isPlaying() end
 
 --- Returns the length of the longest track in the sequence, in steps. See also
 --- playdate.sound.track.getLength().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getLength
+--- [Inside Playdate: playdate.sound.sequence:getLength](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getLength)
 ---@return number
 function playdate.sound.sequence:getLength() end
 
 --- Moves the play position for the sequence to step number `step`. If `play` is set, triggers the
 --- notes at that step.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.goToStep
+--- [Inside Playdate: playdate.sound.sequence:goToStep](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.goToStep)
 ---@param step integer
 ---@param play? boolean
 ---@return nil
@@ -9578,26 +9578,26 @@ function playdate.sound.sequence:goToStep(step, play) end
 
 --- Returns the step number the sequence is currently at.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getCurrentStep
+--- [Inside Playdate: playdate.sound.sequence:getCurrentStep](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getCurrentStep)
 ---@return number
 function playdate.sound.sequence:getCurrentStep() end
 
 --- Sets the tempo of the sequence, in steps per second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setTempo
+--- [Inside Playdate: playdate.sound.sequence:setTempo](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setTempo)
 ---@param stepsPerSecond number
 ---@return nil
 function playdate.sound.sequence:setTempo(stepsPerSecond) end
 
 --- Returns the tempo of the sequence, in steps per second.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTempo
+--- [Inside Playdate: playdate.sound.sequence:getTempo](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTempo)
 ---@return number
 function playdate.sound.sequence:getTempo() end
 
 --- Sets the looping range of the sequence. If *loops* is 0 or unset, the loop repeats endlessly.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops
+--- [Inside Playdate: playdate.sound.sequence:setLoops](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops)
 ---@param startStep integer
 ---@param endStep integer
 ---@param loopCount? integer
@@ -9606,28 +9606,28 @@ function playdate.sound.sequence:setLoops(startStep, endStep, loopCount) end
 
 --- Same as above, with startStep set to 0 and endStep set to `sequence:getLength()`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops-2
+--- [Inside Playdate: playdate.sound.sequence:setLoops](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setLoops-2)
 ---@param loopCount integer
 ---@return nil
 function playdate.sound.sequence:setLoops(loopCount) end
 
 --- Returns the number of tracks in the sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTrackCount
+--- [Inside Playdate: playdate.sound.sequence:getTrackCount](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTrackCount)
 ---@return integer
 function playdate.sound.sequence:getTrackCount() end
 
 --- Adds the given playdate.sound.track to the sequence. If `track` omitted, the function creates
 --- and returns a new track.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.addTrack
+--- [Inside Playdate: playdate.sound.sequence:addTrack](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.addTrack)
 ---@param track? _Track
 ---@return nil
 function playdate.sound.sequence:addTrack(track) end
 
 --- Sets the given playdate.sound.track object at position `n` in the sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setTrackAtIndex
+--- [Inside Playdate: playdate.sound.sequence:setTrackAtIndex](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.setTrackAtIndex)
 ---@param n integer
 ---@param track _Track
 ---@return nil
@@ -9635,20 +9635,20 @@ function playdate.sound.sequence:setTrackAtIndex(n, track) end
 
 --- Returns the playdate.sound.track object at position `n` in the sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTrackAtIndex
+--- [Inside Playdate: playdate.sound.sequence:getTrackAtIndex](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.getTrackAtIndex)
 ---@param n integer
 ---@return _Track
 function playdate.sound.sequence:getTrackAtIndex(n) end
 
 --- Sends an allNotesOff() message to each track’s instrument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.allNotesOff
+--- [Inside Playdate: playdate.sound.sequence:allNotesOff](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.allNotesOff)
 ---@return nil
 function playdate.sound.sequence:allNotesOff() end
 
 --- Creates a new `playdate.sound.track` object.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.track.new
+--- [Inside Playdate: playdate.sound.track.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.track.new)
 ---@return _Track
 function playdate.sound.track.new() end
 
@@ -9660,7 +9660,7 @@ function playdate.sound.track.new() end
 ---
 --- See setNotes() for the ability to add more than one note at a time.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2
+--- [Inside Playdate: playdate.sound.track:addNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2)
 ---@param step integer
 ---@param note (string|integer)
 ---@param length number
@@ -9676,7 +9676,7 @@ function playdate.sound.track:addNote(step, note, length, velocity) end
 ---
 --- See setNotes() for the ability to add more than one note at a time.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2
+--- [Inside Playdate: playdate.sound.track:addNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2)
 ---@param table (_SoundTrackNoteIn|_SoundTrackNote)
 ---@return nil
 function playdate.sound.track:addNote(table) end
@@ -9684,7 +9684,7 @@ function playdate.sound.track:addNote(table) end
 --- Set multiple notes at once, each array element should be a table containing values for the keys
 --- The tables contain values for keys `step`, `note`, `length`, and `velocity`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setNotes
+--- [Inside Playdate: playdate.sound.track:setNotes](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setNotes)
 ---@param list table[]
 ---@return nil
 function playdate.sound.track:setNotes(list) end
@@ -9697,7 +9697,7 @@ function playdate.sound.track:setNotes(list) end
 --- the event tables is always a MIDI note number value, even if the note was added using the string
 --- notation.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotes
+--- [Inside Playdate: playdate.sound.track:getNotes](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotes)
 ---@param step? integer
 ---@param endstep? integer
 ---@return _SoundTrackNote[]
@@ -9705,7 +9705,7 @@ function playdate.sound.track:getNotes(step, endstep) end
 
 --- Removes the note event at *step* playing *note*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.removeNote
+--- [Inside Playdate: playdate.sound.track:removeNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.removeNote)
 ---@param step integer
 ---@param note integer
 ---@return nil
@@ -9713,47 +9713,47 @@ function playdate.sound.track:removeNote(step, note) end
 
 --- Clears all notes from the track.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.clearNotes
+--- [Inside Playdate: playdate.sound.track:clearNotes](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.clearNotes)
 ---@return nil
 function playdate.sound.track:clearNotes() end
 
 --- Returns the length, in steps, of the track—​that is, the step where the last note in the track
 --- ends.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getLength
+--- [Inside Playdate: playdate.sound.track:getLength](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getLength)
 ---@return integer
 function playdate.sound.track:getLength() end
 
 --- Returns the current number of notes active in the track.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotesActive
+--- [Inside Playdate: playdate.sound.track:getNotesActive](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getNotesActive)
 ---@return integer
 function playdate.sound.track:getNotesActive() end
 
 --- Returns the maximum number of notes simultaneously active in the track. (Known bug: this
 --- currently only works for midi files)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getPolyphony
+--- [Inside Playdate: playdate.sound.track:getPolyphony](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getPolyphony)
 ---@return integer
 function playdate.sound.track:getPolyphony() end
 
 --- Sets the playdate.sound.instrument that this track plays. If `inst` is a playdate.sound.synth,
 --- the function creates an instrument for the synth.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setInstrument
+--- [Inside Playdate: playdate.sound.track:setInstrument](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setInstrument)
 ---@param inst (_Instrument|_Synth)
 ---@return nil
 function playdate.sound.track:setInstrument(inst) end
 
 --- Gets the playdate.sound.instrument that this track plays.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getInstrument
+--- [Inside Playdate: playdate.sound.track:getInstrument](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getInstrument)
 ---@return _Instrument
 function playdate.sound.track:getInstrument() end
 
 --- Mutes or unmutes the track.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setMuted
+--- [Inside Playdate: playdate.sound.track:setMuted](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setMuted)
 ---@param flag boolean
 ---@return nil
 function playdate.sound.track:setMuted(flag) end
@@ -9762,21 +9762,21 @@ function playdate.sound.track:setMuted(flag) end
 --- to a modulation input for it to have any audible effect. The input can be anywhere in the sound
 --- engine—​it’s not required to belong to the track in any way.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addControlSignal
+--- [Inside Playdate: playdate.sound.track:addControlSignal](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addControlSignal)
 ---@param s _ControlSignal
 ---@return nil
 function playdate.sound.track:addControlSignal(s) end
 
 --- Returns an array of playdate.sound.controlsignal objects assigned to this track.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getControlSignals
+--- [Inside Playdate: playdate.sound.track:getControlSignals](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.getControlSignals)
 ---@return _ControlSignal[]
 function playdate.sound.track:getControlSignals() end
 
 --- Creates a new `playdate.sound.instrument` object. If `synth` is given, adds it as a voice for
 --- the instrument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.instrument.new
+--- [Inside Playdate: playdate.sound.instrument.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.instrument.new)
 ---@param synth? _Synth
 ---@return _Instrument
 function playdate.sound.instrument.new(synth) end
@@ -9788,7 +9788,7 @@ function playdate.sound.instrument.new(synth) end
 --- and `rangeend` arguments can be MIDI note numbers or note names like "Db3". The final transpose
 --- argument transposes the note played, in half-tone units.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.addVoice
+--- [Inside Playdate: playdate.sound.instrument:addVoice](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.addVoice)
 ---@param v _Synth
 ---@param note? integer
 ---@param rangeend? integer
@@ -9798,7 +9798,7 @@ function playdate.sound.instrument:addVoice(v, note, rangeend, transpose) end
 
 --- Transposes all voices in the instrument. *halfsteps* can be a fractional value.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setTranspose
+--- [Inside Playdate: playdate.sound.instrument:setTranspose](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setTranspose)
 ---@param halfsteps number
 ---@return nil
 function playdate.sound.instrument:setTranspose(halfsteps) end
@@ -9808,7 +9808,7 @@ function playdate.sound.instrument:setTranspose(halfsteps) end
 --- specified, the note stays on until *instrument.noteOff(note)* is called. *when* is the number of
 --- seconds in the future to start playing the note, default is immediately.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.playNote
+--- [Inside Playdate: playdate.sound.instrument:playNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.playNote)
 ---@param frequency string
 ---@param vel? number
 ---@param length? number
@@ -9819,7 +9819,7 @@ function playdate.sound.instrument:playNote(frequency, vel, length, when) end
 --- Identical to `instrument:playNote()` but *note* is a MIDI note number: 60=C4, 61=C#4, etc.
 --- Fractional values are allowed.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.playMIDINote
+--- [Inside Playdate: playdate.sound.instrument:playMIDINote](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.playMIDINote)
 ---@param note number
 ---@param vel? number
 ---@param length? number
@@ -9830,7 +9830,7 @@ function playdate.sound.instrument:playMIDINote(note, vel, length, when) end
 --- Stops the instrument voice playing note *note*. If *when* is given, the note is stopped *when*
 --- seconds in the future, otherwise it’s stopped immediately.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.noteOff
+--- [Inside Playdate: playdate.sound.instrument:noteOff](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.noteOff)
 ---@param note integer
 ---@param when? number
 ---@return nil
@@ -9838,7 +9838,7 @@ function playdate.sound.instrument:noteOff(note, when) end
 
 --- Sends a stop signal to all playing notes.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.allNotesOff
+--- [Inside Playdate: playdate.sound.instrument:allNotesOff](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.allNotesOff)
 ---@return nil
 function playdate.sound.instrument:allNotesOff() end
 
@@ -9847,7 +9847,7 @@ function playdate.sound.instrument:allNotesOff() end
 ---
 --- Volume values are between 0.0 and 1.0.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setVolume
+--- [Inside Playdate: playdate.sound.instrument:setVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setVolume)
 ---@param left number
 ---@param right? number
 ---@return nil
@@ -9858,7 +9858,7 @@ function playdate.sound.instrument:setVolume(left, right) end
 ---
 --- Volume values are between 0.0 and 1.0.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.getVolume
+--- [Inside Playdate: playdate.sound.instrument:getVolume](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.getVolume)
 ---@return number left_or_mono
 ---@return number? right
 function playdate.sound.instrument:getVolume() end
@@ -9866,7 +9866,7 @@ function playdate.sound.instrument:getVolume() end
 --- Creates a new control signal object, for automating effect parameters, channel pan and level,
 --- etc.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.controlsignal.new
+--- [Inside Playdate: playdate.sound.controlsignal.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.controlsignal.new)
 ---@return _ControlSignal
 function playdate.sound.controlsignal.new() end
 
@@ -9874,7 +9874,7 @@ function playdate.sound.controlsignal.new() end
 --- table. Arguments are either the values themselves in the given order, or a table containing
 --- values for `step`, `value`, and optionally `interpolate`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2
+--- [Inside Playdate: playdate.sound.controlsignal:addEvent](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2)
 ---@param step integer
 ---@param value number
 ---@param interpolate? boolean
@@ -9885,21 +9885,21 @@ function playdate.sound.controlsignal:addEvent(step, value, interpolate) end
 --- table. Arguments are either the values themselves in the given order, or a table containing
 --- values for `step`, `value`, and optionally `interpolate`.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2
+--- [Inside Playdate: playdate.sound.controlsignal:addEvent](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2)
 ---@param event table
 ---@return nil
 function playdate.sound.controlsignal:addEvent(event) end
 
 --- Clears all events from the control signal.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.clearEvents
+--- [Inside Playdate: playdate.sound.controlsignal:clearEvents](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.clearEvents)
 ---@return nil
 function playdate.sound.controlsignal:clearEvents() end
 
 --- Sets the midi controller number for the control signal, if that’s something you want to do. The
 --- value has no effect on playback.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.setControllerType
+--- [Inside Playdate: playdate.sound.controlsignal:setControllerType](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.setControllerType)
 ---@param number integer
 ---@return nil
 function playdate.sound.controlsignal:setControllerType(number) end
@@ -9907,7 +9907,7 @@ function playdate.sound.controlsignal:setControllerType(number) end
 --- Control signals in midi files are assigned a controller number, which describes the intent of
 --- the control. This function returns the controller number.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.getControllerType
+--- [Inside Playdate: playdate.sound.controlsignal:getControllerType](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.getControllerType)
 ---@return integer
 function playdate.sound.controlsignal:getControllerType() end
 
@@ -9923,7 +9923,7 @@ function playdate.sound.controlsignal:getControllerType() end
 --- splitter, first call playdate.sound.micinput.startListening() with the required source.
 --- `recordToSample()` returns `true` on success, `false` on error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.recordToSample
+--- [Inside Playdate: playdate.sound.micinput.recordToSample](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.recordToSample)
 ---@param buffer _Sample
 ---@param completionCallback fun(sample: _Sample): nil
 ---@return nil
@@ -9932,7 +9932,7 @@ function playdate.sound.micinput.recordToSample(buffer, completionCallback) end
 --- Stops a sample recording started with recordToSample, if it hasn’t already reached the end of
 --- the buffer. The recording’s completion callback is called immediately.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.stopRecording
+--- [Inside Playdate: playdate.sound.micinput.stopRecording](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.stopRecording)
 ---@return nil
 function playdate.sound.micinput.stopRecording() end
 
@@ -9941,7 +9941,7 @@ function playdate.sound.micinput.stopRecording() end
 --- the headset detection circuit to determine which source to use. The function returns the pair
 --- `true` and a string indicating which source it’s recording from on success, or `false` on error.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.startListening
+--- [Inside Playdate: playdate.sound.micinput.startListening](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.startListening)
 ---@param source? string
 ---@return boolean success
 ---@return string source?
@@ -9949,19 +9949,19 @@ function playdate.sound.micinput.startListening(source) end
 
 --- Stops monitoring the microphone input level.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.stopListening
+--- [Inside Playdate: playdate.sound.micinput.stopListening](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.stopListening)
 ---@return nil
 function playdate.sound.micinput.stopListening() end
 
 --- Returns the current microphone input level, a value from 0.0 (quietest) to 1.0 (loudest).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.getLevel
+--- [Inside Playdate: playdate.sound.micinput.getLevel](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.getLevel)
 ---@return number
 function playdate.sound.micinput.getLevel() end
 
 --- Returns the current microphone input source, either "headset" or "device".
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.getSource
+--- [Inside Playdate: playdate.sound.micinput.getSource](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.getSource)
 ---@return string
 function playdate.sound.micinput.getSource() end
 
@@ -9977,7 +9977,7 @@ function playdate.sound.micinput.getSource() end
 ---
 --- Equivalent to `playdate->sound->getHeadphoneState()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.getHeadphoneState
+--- [Inside Playdate: playdate.sound.getHeadphoneState](https://sdk.play.date/Inside%20Playdate.html#f-sound.getHeadphoneState)
 ---@param changeCallback? fun(headphones: boolean, mic:boolean): nil
 ---@return boolean headphones
 ---@return boolean mic
@@ -9989,7 +9989,7 @@ function playdate.sound.getHeadphoneState(changeCallback) end
 ---
 --- Equivalent to `playdate->sound->setOutputsActive()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.setOutputsActive
+--- [Inside Playdate: playdate.sound.setOutputsActive](https://sdk.play.date/Inside%20Playdate.html#f-sound.setOutputsActive)
 ---@param headphones boolean
 ---@param speaker boolean
 ---@return nil
@@ -10000,47 +10000,47 @@ function playdate.sound.setOutputsActive(headphones, speaker) end
 ---
 --- Equivalent to `playdate->sound->getCurrentTime()` in the C API.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.getCurrentTime
+--- [Inside Playdate: playdate.sound.getCurrentTime](https://sdk.play.date/Inside%20Playdate.html#f-sound.getCurrentTime)
 ---@return number
 function playdate.sound.getCurrentTime() end
 
 --- Resets the audio output device time counter.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-sound.resetTime
+--- [Inside Playdate: playdate.sound.resetTime](https://sdk.play.date/Inside%20Playdate.html#f-sound.resetTime)
 ---@return nil
 function playdate.sound.resetTime() end
 
 --- Generates a random string of uppercase letters
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-string.UUID
+--- [Inside Playdate: playdate.string.UUID](https://sdk.play.date/Inside%20Playdate.html#f-string.UUID)
 ---@param length number
 ---@return string
 function playdate.string.UUID(length) end
 
 --- Returns a string with the whitespace removed from the beginning and ending of *string*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-string.trimWhitespace
+--- [Inside Playdate: playdate.string.trimWhitespace](https://sdk.play.date/Inside%20Playdate.html#f-string.trimWhitespace)
 ---@param str string
 ---@return string
 function playdate.string.trimWhitespace(str) end
 
 --- Returns a string with the whitespace removed from the beginning of *string*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-string.trimLeadingWhitespace
+--- [Inside Playdate: playdate.string.trimLeadingWhitespace](https://sdk.play.date/Inside%20Playdate.html#f-string.trimLeadingWhitespace)
 ---@param str string
 ---@return string
 function playdate.string.trimLeadingWhitespace(str) end
 
 --- Returns a string with the whitespace removed from the ending of *string*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-string.trimTrailingWhitespace
+--- [Inside Playdate: playdate.string.trimTrailingWhitespace](https://sdk.play.date/Inside%20Playdate.html#f-string.trimTrailingWhitespace)
 ---@param str string
 ---@return string
 function playdate.string.trimTrailingWhitespace(str) end
 
 --- This should be called from the main playdate.update() loop to drive the timers.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.updateTimers
+--- [Inside Playdate: playdate.timer.updateTimers](https://sdk.play.date/Inside%20Playdate.html#f-timer.updateTimers)
 ---@return nil
 function playdate.timer.updateTimers() end
 
@@ -10053,7 +10053,7 @@ function playdate.timer.updateTimers() end
 --- By default, timers start upon instantiation. To modify the behavior of a timer, see common timer
 --- methods and properties.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.new
+--- [Inside Playdate: playdate.timer.new](https://sdk.play.date/Inside%20Playdate.html#f-timer.new)
 ---@param duration integer
 ---@param callback function
 ---@param ... any
@@ -10064,7 +10064,7 @@ function playdate.timer.new(duration, callback, ...) end
 --- arguments that will be passed to the callback function when it is called. If arguments are not
 --- provided, the timer itself will be passed to the callback instead.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.performAfterDelay
+--- [Inside Playdate: playdate.timer.performAfterDelay](https://sdk.play.date/Inside%20Playdate.html#f-timer.performAfterDelay)
 ---@param delay integer
 ---@param callback function
 ---@param ... any
@@ -10077,7 +10077,7 @@ function playdate.timer.performAfterDelay(delay, callback, ...) end
 --- By default, timers start upon instantiation. To modify the behavior of a timer, see common timer
 --- methods and properties.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.new2
+--- [Inside Playdate: playdate.timer.new](https://sdk.play.date/Inside%20Playdate.html#f-timer.new2)
 ---@param duration integer
 ---@param startValue? number
 ---@param endValue? number
@@ -10088,7 +10088,7 @@ function playdate.timer.new(duration, startValue, endValue, easingFunction) end
 --- Calls `keyRepeatTimerWithDelay()` below with standard values of *delayAfterInitialFiring* = 300
 --- and *delayAfterSecondFiring* = 100.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimer
+--- [Inside Playdate: playdate.timer.keyRepeatTimer](https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimer)
 ---@param callback function
 ---@param ... any
 ---@return _Timer
@@ -10098,7 +10098,7 @@ function playdate.timer.keyRepeatTimer(callback, ...) end
 --- immediately, then again after *delayAfterInitialFiring* milliseconds, then repeatedly at
 --- *delayAfterSecondFiring* millisecond intervals.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimerWithDelay
+--- [Inside Playdate: playdate.timer.keyRepeatTimerWithDelay](https://sdk.play.date/Inside%20Playdate.html#f-timer.keyRepeatTimerWithDelay)
 ---@param delayAfterInitialFiring integer
 ---@param delayAfterSecondFiring integer
 ---@param callback function
@@ -10109,14 +10109,14 @@ function playdate.timer.keyRepeatTimerWithDelay(delayAfterInitialFiring, delayAf
 --- Pauses a timer. (There is no need to call :start() on a newly-instantiated timer: timers start
 --- automatically.)
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-timer.pause
+--- [Inside Playdate: playdate.timer:pause](https://sdk.play.date/Inside%20Playdate.html#m-timer.pause)
 ---@return nil
 function playdate.timer:pause() end
 
 --- Resumes a previously paused timer. There is no need to call :start() on a newly-instantiated
 --- timer: timers start automatically.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-timer.start
+--- [Inside Playdate: playdate.timer:start](https://sdk.play.date/Inside%20Playdate.html#m-timer.start)
 ---@return nil
 function playdate.timer:start() end
 
@@ -10126,13 +10126,13 @@ function playdate.timer:start() end
 --- Note that timers do not actually get removed until the next invocation of
 --- playdate.timer.updateTimers().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-timer.remove
+--- [Inside Playdate: playdate.timer:remove](https://sdk.play.date/Inside%20Playdate.html#m-timer.remove)
 ---@return nil
 function playdate.timer:remove() end
 
 --- Resets a timer to its initial values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-timer.reset
+--- [Inside Playdate: playdate.timer:reset](https://sdk.play.date/Inside%20Playdate.html#m-timer.reset)
 ---@return nil
 function playdate.timer:reset() end
 
@@ -10140,14 +10140,14 @@ function playdate.timer:reset() end
 ---
 --- Note the "." syntax rather than ":". This is a class method, not an instance method.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-timer.allTimers
+--- [Inside Playdate: playdate.timer.allTimers](https://sdk.play.date/Inside%20Playdate.html#f-timer.allTimers)
 ---@return _Timer[]
 function playdate.timer.allTimers() end
 
 --- A Function of the form *function(timer)* or *function(...)* where "..." corresponds to the
 --- values in the table assigned to *timerEndedArgs*. Called when the timer has completed.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-timer.timerEndedCallback
+--- [Inside Playdate: _Timer:timerEndedCallback](https://sdk.play.date/Inside%20Playdate.html#c-timer.timerEndedCallback)
 ---@param ... any
 ---@return nil
 function _Timer:timerEndedCallback(...) end
@@ -10156,14 +10156,14 @@ function _Timer:timerEndedCallback(...) end
 --- called). If the timer was created with arguments, those will be passed as arguments to the
 --- function provided. Otherwise, the timer is passed as the single argument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-timer.updateCallback
+--- [Inside Playdate: _Timer:updateCallback](https://sdk.play.date/Inside%20Playdate.html#c-timer.updateCallback)
 ---@param ... any
 ---@return nil
 function _Timer:updateCallback(...) end
 
 --- This should be called from the main playdate.update() loop to drive the frame timers.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.updateTimers
+--- [Inside Playdate: playdate.frameTimer.updateTimers](https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.updateTimers)
 ---@return nil
 function playdate.frameTimer.updateTimers() end
 
@@ -10176,7 +10176,7 @@ function playdate.frameTimer.updateTimers() end
 --- By default, frame timers start upon instantiation. To modify the behavior of a frame timer, see
 --- common frame timer methods and properties.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.new
+--- [Inside Playdate: playdate.frameTimer.new](https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.new)
 ---@param duration integer
 ---@param callback function
 ---@param ... any
@@ -10187,7 +10187,7 @@ function playdate.frameTimer.new(duration, callback, ...) end
 --- of arguments that will be passed to the callback function when it is called. If arguments are
 --- not provided, the timer itself will be passed to the callback instead.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.performAfterDelay
+--- [Inside Playdate: playdate.frameTimer.performAfterDelay](https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.performAfterDelay)
 ---@param delay integer
 ---@param callback function
 ---@param ... any
@@ -10200,7 +10200,7 @@ function playdate.frameTimer.performAfterDelay(delay, callback, ...) end
 --- By default, frame timers start upon instantiation. To modify the behavior of a frame timer, see
 --- common frame timer methods and properties.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.new-value
+--- [Inside Playdate: playdate.frameTimer.new](https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.new-value)
 ---@param duration integer
 ---@param startValue? number
 ---@param endValue? number
@@ -10210,27 +10210,27 @@ function playdate.frameTimer.new(duration, startValue, endValue, easingFunction)
 
 --- Pauses a timer.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.pause
+--- [Inside Playdate: playdate.frameTimer:pause](https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.pause)
 ---@return nil
 function playdate.frameTimer:pause() end
 
 --- Resumes a timer. There is no need to call :start() on a newly-instantiated frame timer: frame
 --- timers start automatically.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.start
+--- [Inside Playdate: playdate.frameTimer:start](https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.start)
 ---@return nil
 function playdate.frameTimer:start() end
 
 --- Removes this timer from the list of timers. This happens automatically when a non-repeating
 --- timer reaches it’s end, but you can use this method to dispose of timers manually.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.remove
+--- [Inside Playdate: playdate.frameTimer:remove](https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.remove)
 ---@return nil
 function playdate.frameTimer:remove() end
 
 --- Resets a timer to its initial values.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.reset
+--- [Inside Playdate: playdate.frameTimer:reset](https://sdk.play.date/Inside%20Playdate.html#m-frameTimer.reset)
 ---@return nil
 function playdate.frameTimer:reset() end
 
@@ -10238,14 +10238,14 @@ function playdate.frameTimer:reset() end
 ---
 --- Note the "." syntax rather than ":". This is a class method, not an instance method.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.allTimers
+--- [Inside Playdate: playdate.frameTimer.allTimers](https://sdk.play.date/Inside%20Playdate.html#f-frameTimer.allTimers)
 ---@return _FrameTimer[]
 function playdate.frameTimer.allTimers() end
 
 --- A Function of the form *function(timer)* or *function(...)* where "..." corresponds to the
 --- values in the table assigned to *timerEndedArgs*. Called when the timer has completed.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.timerEndedCallback
+--- [Inside Playdate: _FrameTimer:timerEndedCallback](https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.timerEndedCallback)
 ---@param ... any
 ---@return nil
 function _FrameTimer:timerEndedCallback(...) end
@@ -10254,7 +10254,7 @@ function _FrameTimer:timerEndedCallback(...) end
 --- those will be passed as arguments to the function provided. Otherwise, the timer is passed as
 --- the single argument.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.updateCallback
+--- [Inside Playdate: _FrameTimer:updateCallback](https://sdk.play.date/Inside%20Playdate.html#c-frameTimer.updateCallback)
 ---@param ... any
 ---@return nil
 function _FrameTimer:updateCallback(...) end
@@ -10267,7 +10267,7 @@ function _FrameTimer:updateCallback(...) end
 --- Note that if sprites are being used, this call should usually happen after
 --- playdate.graphics.sprite.update().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.draw
+--- [Inside Playdate: playdate.ui.crankIndicator:draw](https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.draw)
 ---@param xOffset? integer
 ---@param yOffset? integer
 ---@return nil
@@ -10275,7 +10275,7 @@ function playdate.ui.crankIndicator:draw(xOffset, yOffset) end
 
 --- Resets the crank animation to the beginning of its sequence.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.reset
+--- [Inside Playdate: playdate.ui.crankIndicator:resetAnimation](https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.reset)
 ---@return nil
 function playdate.ui.crankIndicator:resetAnimation() end
 
@@ -10284,7 +10284,7 @@ function playdate.ui.crankIndicator:resetAnimation() end
 --- used to manually draw over the indicator image drawn by playdate.ui.crankIndicator:draw() when
 --- you want to stop showing the crank indicator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.getBounds
+--- [Inside Playdate: playdate.ui.crankIndicator:getBounds](https://sdk.play.date/Inside%20Playdate.html#m-ui.crankIndicator.getBounds)
 ---@param xOffset? integer
 ---@param yOffset? integer
 ---@return integer x
@@ -10297,7 +10297,7 @@ function playdate.ui.crankIndicator:getBounds(xOffset, yOffset) end
 --- pixels.) If cells should span the entire width of the grid (as in a list view), pass zero (0)
 --- for *cellWidth*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-ui.gridview.new
+--- [Inside Playdate: playdate.ui.gridview.new](https://sdk.play.date/Inside%20Playdate.html#f-ui.gridview.new)
 ---@param cellWidth integer
 ---@param cellHeight integer
 ---@return _GridView
@@ -10306,7 +10306,7 @@ function playdate.ui.gridview.new(cellWidth, cellHeight) end
 --- Override this method to draw the cells in the gridview. *selected* is a boolean, true if the
 --- cell being drawn is the currently-selected cell.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawCell
+--- [Inside Playdate: playdate.ui.gridview:drawCell](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawCell)
 ---@param section integer
 ---@param row integer
 ---@param column integer
@@ -10321,7 +10321,7 @@ function playdate.ui.gridview:drawCell(section, row, column, selected, x, y, wid
 --- Override this method to draw section headers. This function will only be called if the header
 --- height has been set to a value greater than zero (0).
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawSectionHeader
+--- [Inside Playdate: playdate.ui.gridview:drawSectionHeader](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawSectionHeader)
 ---@param section integer
 ---@param x integer
 ---@param y integer
@@ -10334,7 +10334,7 @@ function playdate.ui.gridview:drawSectionHeader(section, x, y, width, height) en
 --- be called if the horizontal divider height is greater than zero (0) and at least one divider has
 --- been added.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawHorizontalDivider
+--- [Inside Playdate: playdate.ui.gridview:drawHorizontalDivider](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawHorizontalDivider)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -10345,7 +10345,7 @@ function playdate.ui.gridview:drawHorizontalDivider(x, y, width, height) end
 --- Draws the gridview in the specified rect. Ideally this should be called on every
 --- playdate.update() to accommodate scrolling.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawInRect
+--- [Inside Playdate: playdate.ui.gridview:drawInRect](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.drawInRect)
 ---@param x integer
 ---@param y integer
 ---@param width integer
@@ -10356,20 +10356,20 @@ function playdate.ui.gridview:drawInRect(x, y, width, height) end
 --- Sets the number of sections in the grid view. Each section contains at least one row, and row
 --- numbering starts at 1 in each section.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfSections
+--- [Inside Playdate: playdate.ui.gridview:setNumberOfSections](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfSections)
 ---@param num integer
 ---@return nil
 function playdate.ui.gridview:setNumberOfSections(num) end
 
 --- Returns the number of sections in the grid view.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfSections
+--- [Inside Playdate: playdate.ui.gridview:getNumberOfSections](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfSections)
 ---@return integer
 function playdate.ui.gridview:getNumberOfSections() end
 
 --- Sets the number of rows in *section*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfRowsInSection
+--- [Inside Playdate: playdate.ui.gridview:setNumberOfRowsInSection](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfRowsInSection)
 ---@param section integer
 ---@param num integer
 ---@return nil
@@ -10377,28 +10377,28 @@ function playdate.ui.gridview:setNumberOfRowsInSection(section, num) end
 
 --- Returns the number of rows in *section*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfRowsInSection
+--- [Inside Playdate: playdate.ui.gridview:getNumberOfRowsInSection](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfRowsInSection)
 ---@param section integer
 ---@return integer
 function playdate.ui.gridview:getNumberOfRowsInSection(section) end
 
 --- Sets the number of columns in the gridview. 1 by default.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfColumns
+--- [Inside Playdate: playdate.ui.gridview:setNumberOfColumns](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfColumns)
 ---@param num integer
 ---@return nil
 function playdate.ui.gridview:setNumberOfColumns(num) end
 
 --- Returns the number of columns in the gridview. 1 by default.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfColumns
+--- [Inside Playdate: playdate.ui.gridview:getNumberOfColumns](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getNumberOfColumns)
 ---@return integer
 function playdate.ui.gridview:getNumberOfColumns() end
 
 --- Convenience method for list-style gridviews, or for setting the number of rows for multiple
 --- sections at a time. Pass in a list of numbers of rows for sections starting from section 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfRows
+--- [Inside Playdate: playdate.ui.gridview:setNumberOfRows](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setNumberOfRows)
 ---@param ... integer
 ---@return nil
 function playdate.ui.gridview:setNumberOfRows(...) end
@@ -10406,7 +10406,7 @@ function playdate.ui.gridview:setNumberOfRows(...) end
 --- Sets the size of the cells in the gridview. If cells should span the entire width of the grid
 --- (as in a list view), pass zero (0) for *cellWidth*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setCellSize
+--- [Inside Playdate: playdate.ui.gridview:setCellSize](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setCellSize)
 ---@param cellWidth integer
 ---@param cellHeight integer
 ---@return nil
@@ -10414,7 +10414,7 @@ function playdate.ui.gridview:setCellSize(cellWidth, cellHeight) end
 
 --- Sets the amount of padding around cells.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setCellPadding
+--- [Inside Playdate: playdate.ui.gridview:setCellPadding](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setCellPadding)
 ---@param left integer
 ---@param right integer
 ---@param top integer
@@ -10425,7 +10425,7 @@ function playdate.ui.gridview:setCellPadding(left, right, top, bottom) end
 --- Sets the amount of space the content is inset from the edges of the gridview. Useful if a
 --- background image is being used as a border.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setContentInset
+--- [Inside Playdate: playdate.ui.gridview:setContentInset](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setContentInset)
 ---@param left integer
 ---@param right integer
 ---@param top integer
@@ -10439,7 +10439,7 @@ function playdate.ui.gridview:setContentInset(left, right, top, bottom) end
 --- If the grid view is configured with zero width cells (see playdate.ui.gridview:new), *gridWidth*
 --- is required, and should be the same value you would pass to playdate.ui.gridview:drawInRect.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getCellBounds
+--- [Inside Playdate: playdate.ui.gridview:getCellBounds](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getCellBounds)
 ---@param section integer
 ---@param row integer
 ---@param column integer
@@ -10453,20 +10453,20 @@ function playdate.ui.gridview:getCellBounds(section, row, column, gridWidth) end
 --- Sets the height of the section headers. 0 by default, which causes section headers not to be
 --- drawn.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSectionHeaderHeight
+--- [Inside Playdate: playdate.ui.gridview:setSectionHeaderHeight](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSectionHeaderHeight)
 ---@param height integer
 ---@return nil
 function playdate.ui.gridview:setSectionHeaderHeight(height) end
 
 --- Returns the current height of the section headers.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getSectionHeaderHeight
+--- [Inside Playdate: playdate.ui.gridview:getSectionHeaderHeight](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getSectionHeaderHeight)
 ---@return integer
 function playdate.ui.gridview:getSectionHeaderHeight() end
 
 --- Sets the amount of padding around section headers.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSectionHeaderPadding
+--- [Inside Playdate: playdate.ui.gridview:setSectionHeaderPadding](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSectionHeaderPadding)
 ---@param left integer
 ---@param right integer
 ---@param top integer
@@ -10477,21 +10477,21 @@ function playdate.ui.gridview:setSectionHeaderPadding(left, right, top, bottom) 
 --- Sets the height of the horizontal dividers. The default height is half the cell height specified
 --- when creating the grid view.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setHorizontalDividerHeight
+--- [Inside Playdate: playdate.ui.gridview:setHorizontalDividerHeight](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setHorizontalDividerHeight)
 ---@param height integer
 ---@return nil
 function playdate.ui.gridview:setHorizontalDividerHeight(height) end
 
 --- Returns the height of the horizontal dividers.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getHorizontalDividerHeight
+--- [Inside Playdate: playdate.ui.gridview:getHorizontalDividerHeight](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getHorizontalDividerHeight)
 ---@return integer
 function playdate.ui.gridview:getHorizontalDividerHeight() end
 
 --- Causes a horizontal divider to be drawn above the specified row. Drawing can be customized by
 --- overriding  playdate.ui.gridview:drawHorizontalDivider.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.addHorizontalDividerAbove
+--- [Inside Playdate: playdate.ui.gridview:addHorizontalDividerAbove](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.addHorizontalDividerAbove)
 ---@param section integer
 ---@param row integer
 ---@return nil
@@ -10499,13 +10499,13 @@ function playdate.ui.gridview:addHorizontalDividerAbove(section, row) end
 
 --- Removes all horizontal dividers from the grid view.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.removeHorizontalDividers
+--- [Inside Playdate: playdate.ui.gridview:removeHorizontalDividers](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.removeHorizontalDividers)
 ---@return nil
 function playdate.ui.gridview:removeHorizontalDividers() end
 
 --- Controls the duration of scroll animations. 250ms by default.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setScrollDuration
+--- [Inside Playdate: playdate.ui.gridview:setScrollDuration](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setScrollDuration)
 ---@param ms integer
 ---@return nil
 function playdate.ui.gridview:setScrollDuration(ms) end
@@ -10516,7 +10516,7 @@ function playdate.ui.gridview:setScrollDuration(ms) end
 --- to using playdate.ui.gridview.scrollEasingFunction and the value set in
 --- playdate.ui.gridview:setScrollDuration().
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setScrollPosition
+--- [Inside Playdate: playdate.ui.gridview:setScrollPosition](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setScrollPosition)
 ---@param x integer
 ---@param y integer
 ---@param animated? boolean
@@ -10525,14 +10525,14 @@ function playdate.ui.gridview:setScrollPosition(x, y, animated) end
 
 --- Returns the current scroll location as a pair *x*, *y*.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getScrollPosition
+--- [Inside Playdate: playdate.ui.gridview:getScrollPosition](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getScrollPosition)
 ---@return integer x
 ---@return integer y
 function playdate.ui.gridview:getScrollPosition() end
 
 --- Scrolls to the specified cell, just enough so the cell is visible.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollToCell
+--- [Inside Playdate: playdate.ui.gridview:scrollToCell](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollToCell)
 ---@param section integer
 ---@param row integer
 ---@param column integer
@@ -10542,7 +10542,7 @@ function playdate.ui.gridview:scrollToCell(section, row, column, animated) end
 
 --- Scrolls to the specified cell, so the cell is centered in the gridview, if possible.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollCellToCenter
+--- [Inside Playdate: playdate.ui.gridview:scrollCellToCenter](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollCellToCenter)
 ---@param section integer
 ---@param row integer
 ---@param column integer
@@ -10552,7 +10552,7 @@ function playdate.ui.gridview:scrollCellToCenter(section, row, column, animated)
 
 --- Convenience function for list-style gridviews. Scrolls to the specified row in the list.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollToRow
+--- [Inside Playdate: playdate.ui.gridview:scrollToRow](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollToRow)
 ---@param row integer
 ---@param animated? boolean
 ---@return nil
@@ -10560,14 +10560,14 @@ function playdate.ui.gridview:scrollToRow(row, animated) end
 
 --- Scrolls to the top of the gridview.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollToTop
+--- [Inside Playdate: playdate.ui.gridview:scrollToTop](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.scrollToTop)
 ---@param animated? boolean
 ---@return nil
 function playdate.ui.gridview:scrollToTop(animated) end
 
 --- Selects the cell at the given position.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSelection
+--- [Inside Playdate: playdate.ui.gridview:setSelection](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSelection)
 ---@param section integer
 ---@param row integer
 ---@param column integer
@@ -10576,7 +10576,7 @@ function playdate.ui.gridview:setSelection(section, row, column) end
 
 --- Returns the currently-selected cell as *section*, *row*, *column*
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getSelection
+--- [Inside Playdate: playdate.ui.gridview:getSelection](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getSelection)
 ---@return integer section
 ---@return integer row
 ---@return integer column
@@ -10584,14 +10584,14 @@ function playdate.ui.gridview:getSelection() end
 
 --- Convenience method for list-style gridviews. Selects the cell at *row* in section 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSelectedRow
+--- [Inside Playdate: playdate.ui.gridview:setSelectedRow](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.setSelectedRow)
 ---@param row integer
 ---@return nil
 function playdate.ui.gridview:setSelectedRow(row) end
 
 --- Convenience method for list-style gridviews. Returns the selected cell at *row* in section 1.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getSelectedRow
+--- [Inside Playdate: playdate.ui.gridview:getSelectedRow](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.getSelectedRow)
 ---@return integer
 function playdate.ui.gridview:getSelectedRow() end
 
@@ -10601,7 +10601,7 @@ function playdate.ui.gridview:getSelectedRow() end
 --- *scrollToSelection* is true (or not provided), the newly-selected cell will be scrolled to. If
 --- *animate* is true (or not provided), the scroll will be animated.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectNextRow
+--- [Inside Playdate: playdate.ui.gridview:selectNextRow](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectNextRow)
 ---@param wrapSelection boolean
 ---@param scrollToSelection? boolean
 ---@param animate? boolean
@@ -10610,7 +10610,7 @@ function playdate.ui.gridview:selectNextRow(wrapSelection, scrollToSelection, an
 
 --- Identical to `selectNextRow()` but goes the other direction.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectPreviousRow
+--- [Inside Playdate: playdate.ui.gridview:selectPreviousRow](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectPreviousRow)
 ---@param wrapSelection boolean
 ---@param scrollToSelection? boolean
 ---@param animate? boolean
@@ -10626,7 +10626,7 @@ function playdate.ui.gridview:selectPreviousRow(wrapSelection, scrollToSelection
 --- If *scrollToSelection* is true (or not provided), the newly-selected cell will be scrolled to.
 --- If *animate* is true (or not provided), the scroll will be animated.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectNextColumn
+--- [Inside Playdate: playdate.ui.gridview:selectNextColumn](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectNextColumn)
 ---@param wrapSelection boolean
 ---@param scrollToSelection? boolean
 ---@param animate? boolean
@@ -10635,7 +10635,7 @@ function playdate.ui.gridview:selectNextColumn(wrapSelection, scrollToSelection,
 
 --- Identical to `selectNextColumn()` but goes the other direction.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectPreviousColumn
+--- [Inside Playdate: playdate.ui.gridview:selectPreviousColumn](https://sdk.play.date/Inside%20Playdate.html#m-ui.gridview.selectPreviousColumn)
 ---@param wrapSelection boolean
 ---@param scrollToSelection? boolean
 ---@param animate? boolean
@@ -10645,7 +10645,7 @@ function playdate.ui.gridview:selectPreviousColumn(wrapSelection, scrollToSelect
 --- If *flag* is false, automatic garbage collection is disabled and the game should manually
 --- collect garbage with Lua’s `collectgarbage()` function.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setCollectsGarbage
+--- [Inside Playdate: playdate.setCollectsGarbage](https://sdk.play.date/Inside%20Playdate.html#f-setCollectsGarbage)
 ---@param flag boolean
 ---@return nil
 function playdate.setCollectsGarbage(flag) end
@@ -10657,7 +10657,7 @@ function playdate.setCollectsGarbage(flag) end
 --- If your game isn’t generating a lot of garbage, it might be advantageous to set a smaller
 --- minimum GC time, granting more CPU bandwidth to your game.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setMinimumGCTime
+--- [Inside Playdate: playdate.setMinimumGCTime](https://sdk.play.date/Inside%20Playdate.html#f-setMinimumGCTime)
 ---@param ms integer
 ---@return nil
 function playdate.setMinimumGCTime(ms) end
@@ -10675,7 +10675,7 @@ function playdate.setMinimumGCTime(ms) end
 --- The default behavior is a scaling of `(0.0, 1.0)`. If set to `(0.0, 0.0)`, the system will use
 --- all available extra time each frame running GC.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#f-setGCScaling
+--- [Inside Playdate: playdate.setGCScaling](https://sdk.play.date/Inside%20Playdate.html#f-setGCScaling)
 ---@param min number
 ---@param max number
 ---@return nil
@@ -10687,7 +10687,7 @@ function playdate.setGCScaling(min, max) end
 --- Running `!msg {message}` in the simulator Lua console sends the command to the device if one is
 --- connected, otherwise it sends it to the game running in the simulator.
 ---
---- https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived
+--- [Inside Playdate: playdate.serialMessageReceived](https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived)
 ---@param message string
 ---@return nil
 function playdate.serialMessageReceived(message) end

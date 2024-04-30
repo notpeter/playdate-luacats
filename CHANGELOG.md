@@ -8,10 +8,13 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.4.1-luacats2] - 2024-04-30
+
 - Add instructions for NeoVim, Sublime and Zed (in addition to VSCode)
 - Switch suggested config from `.vscode/settings.json` to `.luarc.json`
 - Suppress LuaLS suggesting `os`, `package` and `io` which are absent
   on the playdate. (thanks @thacuber2a03)
+- Make URLs markdown links so they are clickable.
 
 ## [v2.4.1-luacats1] - 2024-03-08
 
@@ -230,6 +233,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.4.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.1-luacats2
 [v2.4.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats3...v2.4.1-luacats1
 [v2.4.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats2...v2.4.0-luacats3
 [v2.4.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats1...v2.4.0-luacats2
