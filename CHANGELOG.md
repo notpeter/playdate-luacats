@@ -8,6 +8,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.4.2-luacats1] - 2024-05-02
+
+- No SDK API changes in 2.4.2.
+- Add return types (nil) to callbacks in the _InputHandler table.
+- Remove incorrect leading `_` on AButton/BButton on _InputHandler table.
+
 ## [v2.4.1-luacats2] - 2024-04-30
 
 - Add instructions for NeoVim, Sublime and Zed (in addition to VSCode)
@@ -233,6 +239,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.4.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.2-luacats1
 [v2.4.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.1-luacats2
 [v2.4.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats3...v2.4.1-luacats1
 [v2.4.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats2...v2.4.0-luacats3
