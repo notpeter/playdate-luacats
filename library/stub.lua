@@ -753,8 +753,8 @@ function table.getsize(table) end
 --- 0 )` instead of `myArray = {}`.
 ---
 --- [Inside Playdate: table.create](https://sdk.play.date/Inside%20Playdate.html#t-table.create)
----@param arrayCount integer
----@param hashCount integer
+---@param arrayCount? integer
+---@param hashCount? integer
 ---@return table
 function table.create(arrayCount, hashCount) end
 

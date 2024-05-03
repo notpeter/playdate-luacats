@@ -8,6 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- table.create parameters are optional and will default to 0.
+
 ## [v2.4.2-luacats1] - 2024-05-02
 
 - No SDK API changes in 2.4.2.
