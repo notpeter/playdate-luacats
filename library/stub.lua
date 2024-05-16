@@ -827,6 +827,15 @@ function playdate.stop() end
 ---@return nil
 function playdate.start() end
 
+--- Reinitializes the Playdate runtime and restarts the currently running game. The optional string
+--- `arg` passed in is available after restart in playdate.argv as if it had been passed in on the
+--- command line when launching the simulator.
+---
+--- [Inside Playdate: playdate.restart](https://sdk.play.date/Inside%20Playdate.html#f-restart)
+---@param arg? string[]
+---@return nil
+function playdate.restart(arg) end
+
 --- Called when the player chooses to exit the game via the System Menu or Menu button.
 ---
 --- [Inside Playdate: playdate.gameWillTerminate](https://sdk.play.date/Inside%20Playdate.html#c-gameWillTerminate)
@@ -2593,7 +2602,11 @@ function playdate.file.file:tell() end
 ---@return string[]
 function playdate.file.listFiles(path, showhidden) end
 
---- Returns true if a file exists at the given path.
+--- Returns true if a file exists at the given path. Unlike the image or sound loading functions,
+--- this function requires *path* to include the file extension since it cannot be inferred from
+--- context. Additionally, note that asset files are compiled into a format easier for Playdate to
+--- use and will have a different extension: `.wav` and `.aiff` audio files are compiled to `.pda`
+--- format, and `.gif` and `.png` files become `.pdi`s.
 ---
 --- [Inside Playdate: playdate.file.exists](https://sdk.play.date/Inside%20Playdate.html#f-file.exists)
 ---@param path string
@@ -5591,11 +5604,11 @@ function playdate.graphics.imagetable:getImage(x, y) end
 ---@return nil
 function playdate.graphics.imagetable:setImage(n, image) end
 
---- Loads a new image from the data at *path* into an already-existing image table, without
+--- Loads a new image table from the data at *path* into an already-existing image table, without
 --- allocating additional memory. The image table at *path* must contain images of the same
 --- dimensions as the previous.
 ---
---- Returns (success, [error]). If the boolean success is false, error is also returned.
+--- Returns `(success, [error])`. If the boolean `success` is false, `error` is also returned.
 ---
 --- [Inside Playdate: playdate.graphics.imagetable:load](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.load)
 ---@param path string
@@ -8546,17 +8559,21 @@ function playdate.sound.fileplayer:getOffset() end
 --- Returns a new playdate.sound.sample object, with the sound data loaded in memory. If the sample
 --- can’t be loaded, the function returns nil and a second value containing the error.
 ---
---- `**playdate.sound.sample.new(seconds, [format])**`
----
+--- [Inside Playdate: playdate.sound.sample.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.sample.new-path)
+---@param path string
+---@return _Sample
+function playdate.sound.sample.new(path) end
+
 --- Returns a new playdate.sound.sample object, with a buffer size of *seconds* in the given format.
 --- If *format* is not specified, it defaults to playdate.sound.kFormat16bitStereo. When used
 --- with playdate.sound.sample:load(), this allows you to swap in a different sample without re-
 --- allocating the buffer, which could lead to memory fragmentation.
 ---
 --- [Inside Playdate: playdate.sound.sample.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.sample.new)
----@param path string
+---@param seconds number
+---@param format? integer
 ---@return _Sample
-function playdate.sound.sample.new(path) end
+function playdate.sound.sample.new(seconds, format) end
 
 --- Returns a new subsample containing a subrange of the given sample. Offset values are in frames,
 --- not bytes.

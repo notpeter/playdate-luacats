@@ -8,7 +8,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
-- table.create parameters are optional and will default to 0.
+## [v2.5.0-luacats1] - 2024-05-16
+
+- Update for Playdate 2.5.0-beta2
+- Add `playdate.restart(arg)` to restart the game with an optional argv string[].
+- Add `playdate.sound.sample.new(seconds, format)`
+- Fix: table.create parameters are optional and will default to 0.
 
 ## [v2.4.2-luacats1] - 2024-05-02
 
@@ -241,6 +246,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.5.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.2-luacats1...v2.5.0-luacats1
 [v2.4.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.2-luacats1
 [v2.4.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.1-luacats2
 [v2.4.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.0-luacats3...v2.4.1-luacats1
