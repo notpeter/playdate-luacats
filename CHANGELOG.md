@@ -8,6 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- No SDK changes in 2.5.0
+
 ## [v2.5.0-luacats1] - 2024-05-16
 
 - Update for Playdate 2.5.0-beta2
