@@ -8,10 +8,21 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
-- No SDK changes in 2.5.0
+## [v2.6.0-luacats1] - 2024-05-16
+
+- Update for Playdate 2.6.0-beta2
+- Add `playdate.sound.signal:getValue()`
+- Add `playdate.sound.synth:clearEnvelope()`
+- Add `playdate.sound.channel:getDryLevelSignal()`
+- Add `playdate.sound.channel:getWetLevelSignal()`
+- Add `playdate.sound.signalvalue` (undocumented)
+- Document `playdate.sound.synth.new` sustainStart/sustainEnd introduced in v2.2.0.
+- Add `playdate.file.kSeekSet`, `playdate.file.kSeekFromCurrent`, `playdate.file.kSeekFromEnd` (undocumented)
+- Add `playdate.server.createMovie` (undocumented)
 
 ## [v2.5.0-luacats1] - 2024-05-16
 
+- No changes between Playdate 2.5.0-beta2 and Playdate SDK 2.5.0 final
 - Update for Playdate 2.5.0-beta2
 - Add `playdate.restart(arg)` to restart the game with an optional argv string[].
 - Add `playdate.sound.sample.new(seconds, format)`
@@ -248,6 +259,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.6.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.5.0-luacats1...v2.6.0-luacats1
 [v2.5.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.2-luacats1...v2.5.0-luacats1
 [v2.4.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.2-luacats1
 [v2.4.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.1-luacats2

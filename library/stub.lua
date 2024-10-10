@@ -38,9 +38,12 @@ playdate.display = {}
 playdate.easingFunctions = {}
 
 ---@class playdate.file
+---@field kSeekSet integer 0
+---@field kSeekFromCurrent integer 1
+---@field kSeekFromEnd integer 2
 ---@field kFileRead integer 3
----@field kFileAppend integer 8
 ---@field kFileWrite integer 4
+---@field kFileAppend integer 8
 playdate.file = {}
 
 ---@class playdate.frameTimer
@@ -54,6 +57,9 @@ playdate.frameTimer = {}
 playdate.geometry = {}
 
 ---@class playdate.graphics
+---@field kAlignLeft integer 0
+---@field kAlignRight integer 1
+---@field kAlignCenter integer 2
 ---@field kColorBlack integer 0
 ---@field kColorWhite integer 1
 ---@field kColorClear integer 2
@@ -78,6 +84,10 @@ playdate.geometry = {}
 ---@field kStrokeCentered integer 0
 ---@field kStrokeInside integer 1
 ---@field kStrokeOutside integer 2
+---@field kWrapClip integer 0
+---@field kWrapCharacter integer 1
+---@field kWrapWord integer 2
+---@field kWrapTruncateEnd integer 3
 playdate.graphics = {}
 
 ---@class playdate.inputHandlers
@@ -290,6 +300,9 @@ playdate.sound.sequence = {}
 
 ---@class playdate.sound.signal
 playdate.sound.signal = {}
+
+---@class playdate.sound.signalvalue
+playdate.sound.signalvalue = {}
 
 ---@class playdate.sound.source
 playdate.sound.source = {}
@@ -603,6 +616,9 @@ local _ServerStatus = {}
 ---@class _Signal : playdate.sound.signal
 local _Signal = {}
 
+---@class _SignalValue : playdate.sound.signalvalue
+local _SignalValue = {}
+
 ---@class _Size : playdate.geometry.size
 ---@field width number
 ---@field height number
@@ -674,6 +690,7 @@ local _Synth = {}
 ---@field commit string
 ---@field pdxcompatversion integer
 ---@field pdxversion integer
+---@field sdk string
 local _SystemInfo = {}
 
 ---@class _SystemStats
@@ -6188,6 +6205,9 @@ function playdate.graphics.sprite:setTilemap(tilemap) end
 --- `setAnimator` assigns an playdate.graphics.animator to the sprite, which will cause the sprite
 --- to automatically update its position each frame while the animator is active.
 ---
+--- *animator* should be a playdate.graphics.animator created using playdate.geometry.points for its
+--- start and end values.
+---
 --- *movesWithCollisions*, if provided and true will cause the sprite to move with collisions. A
 --- collision rect must be set on the sprite prior to passing true for this argument.
 ---
@@ -7174,14 +7194,32 @@ function playdate.graphics.getFontTracking() end
 ---@return _Font
 function playdate.graphics.getSystemFont(variant) end
 
---- Draws a string at the specified x, y coordinate using this particular font instance. (Compare to
---- playdate.graphics.drawText(text, x, y), which draws the string with whatever the "current font",
---- as defined by playdate.graphics.setFont(font)).
+--- Draws a string at the specified *x, y* coordinate using this particular font instance. (Compare
+--- to playdate.graphics.drawText(text, x, y), which draws the string with whatever the "current
+--- font" is, as defined by playdate.graphics.setFont(font)).
 ---
---- The optional *leadingAdjustment* may be used to modify the spacing between lines of text. Pass
---- nil to use the default leading for the font.
+--- If *width* and *height* are specified, drawing is constrained to the rectangle
+--- `(x,y,width,height)`, using the given `wrapMode` and `alignment` if provided. Alternatively, a
+--- `playdate.geometry.rect` object can be passed instead of `x,y,width,height`. Valid values for
+--- *wrapMode* are
 ---
---- Returns `*width*`, `*height*`, indicating the size in pixels of the drawn text.
+--- * playdate.graphics.kWrapClip
+--- * playdate.graphics.kWrapTruncateEnd
+--- * playdate.graphics.kWrapCharacter
+--- * playdate.graphics.kWrapWord
+---
+--- and values for *alignment* are
+---
+--- * playdate.graphics.kAlignLeft
+--- * playdate.graphics.kAlignCenter
+--- * playdate.graphics.kAlignRight
+---
+--- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
+--- `playdate.graphics.kAlignLeft`.
+---
+--- The optional *leadingAdjustment* may be used to modify the spacing between lines of text.
+---
+--- The function returns two numbers indicating the width and height of the drawn text.
 ---
 --- `font:drawText()` does not support inline styles like bold and italics. Instead use
 --- playdate.graphics.drawText().
@@ -7190,9 +7228,52 @@ function playdate.graphics.getSystemFont(variant) end
 ---@param text string
 ---@param x integer
 ---@param y integer
+---@param width integer
+---@param height integer
 ---@param leadingAdjustment? integer
+---@param wrapMode? integer
+---@param alignment? integer
 ---@return nil
-function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
+function playdate.graphics.font:drawText(text, x, y, width, height, leadingAdjustment, wrapMode, alignment) end
+
+--- Draws a string at the specified *x, y* coordinate using this particular font instance. (Compare
+--- to playdate.graphics.drawText(text, x, y), which draws the string with whatever the "current
+--- font" is, as defined by playdate.graphics.setFont(font)).
+---
+--- If *width* and *height* are specified, drawing is constrained to the rectangle
+--- `(x,y,width,height)`, using the given `wrapMode` and `alignment` if provided. Alternatively, a
+--- `playdate.geometry.rect` object can be passed instead of `x,y,width,height`. Valid values for
+--- *wrapMode* are
+---
+--- * playdate.graphics.kWrapClip
+--- * playdate.graphics.kWrapTruncateEnd
+--- * playdate.graphics.kWrapCharacter
+--- * playdate.graphics.kWrapWord
+---
+--- and values for *alignment* are
+---
+--- * playdate.graphics.kAlignLeft
+--- * playdate.graphics.kAlignCenter
+--- * playdate.graphics.kAlignRight
+---
+--- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
+--- `playdate.graphics.kAlignLeft`.
+---
+--- The optional *leadingAdjustment* may be used to modify the spacing between lines of text.
+---
+--- The function returns two numbers indicating the width and height of the drawn text.
+---
+--- `font:drawText()` does not support inline styles like bold and italics. Instead use
+--- playdate.graphics.drawText().
+---
+--- [Inside Playdate: playdate.graphics.font:drawText](https://sdk.play.date/Inside%20Playdate.html#m-graphics.font.drawText)
+---@param text string
+---@param rect _Rect
+---@param leadingAdjustment? integer
+---@param wrapMode? integer
+---@param alignment? integer
+---@return nil
+function playdate.graphics.font:drawText(text, rect, leadingAdjustment, wrapMode, alignment) end
 
 --- You must import *CoreLibs/graphics* to use this function.
 ---
@@ -7263,7 +7344,24 @@ function playdate.graphics.font:getLeading() end
 ---@return _Image
 function playdate.graphics.font:getGlyph(character) end
 
---- Draws the text using the current font and font advance at location (*x*, *y*).
+--- Draws the text using the current font and font advance at location (*x*, *y*). If *width* and
+--- *height* are specified, drawing is constrained to the rectangle `(x,y,width,height)`, using the
+--- given *wrapMode* and *alignment*, if provided. Alternatively, a `playdate.geometry.rect` object
+--- can be passed instead of `x,y,width,height`. Valid values for *wrapMode* are
+---
+--- * playdate.graphics.kWrapClip
+--- * playdate.graphics.kWrapTruncateEnd
+--- * playdate.graphics.kWrapCharacter
+--- * playdate.graphics.kWrapWord
+---
+--- and values for *alignment* are
+---
+--- * playdate.graphics.kAlignLeft
+--- * playdate.graphics.kAlignCenter
+--- * playdate.graphics.kAlignRight
+---
+--- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
+--- `playdate.graphics.kAlignLeft`.
 ---
 --- If *fontFamily* is provided, the text is draw using the given fonts instead of the
 --- currently set font. *fontFamily* should be a table of fonts using keys as specified in
@@ -7272,7 +7370,7 @@ function playdate.graphics.font:getGlyph(character) end
 --- The optional *leadingAdjustment* may be used to modify the spacing between lines of text. Pass
 --- nil to use the default leading for the font.
 ---
---- Returns `*width*`, `*height*`, indicating the size in pixels of the drawn text.
+--- Returns two numbers indicating the width and height of the drawn text.
 ---
 --- **Styling text**
 ---
@@ -7311,10 +7409,85 @@ function playdate.graphics.font:getGlyph(character) end
 ---@param text string
 ---@param x integer
 ---@param y integer
+---@param width integer
+---@param height integer
 ---@param fontFamily? table<integer, _Font>
 ---@param leadingAdjustment? integer
+---@param wrapMode? integer
+---@param alignment? integer
 ---@return nil
-function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) end
+function playdate.graphics.drawText(text, x, y, width, height, fontFamily, leadingAdjustment, wrapMode, alignment) end
+
+--- Draws the text using the current font and font advance at location (*x*, *y*). If *width* and
+--- *height* are specified, drawing is constrained to the rectangle `(x,y,width,height)`, using the
+--- given *wrapMode* and *alignment*, if provided. Alternatively, a `playdate.geometry.rect` object
+--- can be passed instead of `x,y,width,height`. Valid values for *wrapMode* are
+---
+--- * playdate.graphics.kWrapClip
+--- * playdate.graphics.kWrapTruncateEnd
+--- * playdate.graphics.kWrapCharacter
+--- * playdate.graphics.kWrapWord
+---
+--- and values for *alignment* are
+---
+--- * playdate.graphics.kAlignLeft
+--- * playdate.graphics.kAlignCenter
+--- * playdate.graphics.kAlignRight
+---
+--- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
+--- `playdate.graphics.kAlignLeft`.
+---
+--- If *fontFamily* is provided, the text is draw using the given fonts instead of the
+--- currently set font. *fontFamily* should be a table of fonts using keys as specified in
+--- setFontFamily(fontFamily).
+---
+--- The optional *leadingAdjustment* may be used to modify the spacing between lines of text. Pass
+--- nil to use the default leading for the font.
+---
+--- Returns two numbers indicating the width and height of the drawn text.
+---
+--- **Styling text**
+---
+--- To draw bold text, surround the bold portion of text with asterisks. To draw italic text,
+--- surround the italic portion of text with underscores. For example:
+---
+--- `playdate.graphics.drawText("normal *bold* _italic_", x, y)`
+---
+--- which will output: "normal **bold** *italic*". Bold and italic font variations must be set using
+--- setFont() with the appropriate variant argument, otherwise the default Playdate fonts will be
+--- used.
+---
+--- **Escaping styling characters**
+---
+--- To draw an asterisk or underscore, use a double-asterisk or double-underscore. Styles may not be
+--- nested, but double-characters can be used inside of a styled portion of text.
+---
+--- For a complete set of characters allowed in *text*, see playdate.graphics.font. In addition, the
+--- newline character `\n` is allowed and works as expected.
+---
+--- **Avoiding styling**
+---
+--- Use playdate.graphics.font:drawText(), which doesn’t support formatted text.
+---
+--- **Inverting text color**
+---
+--- To draw white-on-black text (assuming the font you are using is
+--- defined in the standard black-on-transparent manner), first call
+--- playdate.graphics.setImageDrawMode(playdate.graphics.kDrawModeFillWhite), followed by the
+--- appropriate drawText() call. setImageDrawMode() affects how text is rendered because characters
+--- are technically images.
+---
+--- Equivalent to `playdate->graphics->drawText()` in the C API.
+---
+--- [Inside Playdate: playdate.graphics.drawText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawText)
+---@param text string
+---@param rect _Rect
+---@param fontFamily? table<integer, _Font>
+---@param leadingAdjustment? integer
+---@param wrapMode? integer
+---@param alignment? integer
+---@return nil
+function playdate.graphics.drawText(text, rect, fontFamily, leadingAdjustment, wrapMode, alignment) end
 
 --- Draws the text found by doing a lookup of *key* in the .strings file corresponding to the
 --- current system language, or *language*, if specified.
@@ -7324,16 +7497,42 @@ function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) e
 --- * playdate.graphics.font.kLanguageEnglish
 --- * playdate.graphics.font.kLanguageJapanese
 ---
+--- Other arguments work the same as in `drawText()`.
+---
 --- For more information about localization and strings files, see the Localization section.
 ---
 --- [Inside Playdate: playdate.graphics.drawLocalizedText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedText)
 ---@param key string
 ---@param x integer
 ---@param y integer
+---@param width integer
+---@param height integer
+---@param language? (integer|string)
+---@param leadingAdjustment? integer
+---@param wrapMode? integer
+---@param alignment? integer
+---@return nil
+function playdate.graphics.drawLocalizedText(key, x, y, width, height, language, leadingAdjustment, wrapMode, alignment) end
+
+--- Draws the text found by doing a lookup of *key* in the .strings file corresponding to the
+--- current system language, or *language*, if specified.
+---
+--- The optional *language* argument can be one of the strings "en", "jp", or one of the constants:
+---
+--- * playdate.graphics.font.kLanguageEnglish
+--- * playdate.graphics.font.kLanguageJapanese
+---
+--- Other arguments work the same as in `drawText()`.
+---
+--- For more information about localization and strings files, see the Localization section.
+---
+--- [Inside Playdate: playdate.graphics.drawLocalizedText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawLocalizedText)
+---@param key string
+---@param rect _Rect
 ---@param language? (integer|string)
 ---@param leadingAdjustment? integer
 ---@return nil
-function playdate.graphics.drawLocalizedText(key, x, y, language, leadingAdjustment) end
+function playdate.graphics.drawLocalizedText(key, rect, language, leadingAdjustment) end
 
 --- Returns a string found by doing a lookup of *key* in the .strings file corresponding to the
 --- current system language, or *language*, if specified.
@@ -8732,6 +8931,18 @@ function playdate.sound.channel:setPanMod(signal) end
 ---@return nil
 function playdate.sound.channel:setVolumeMod(signal) end
 
+--- Returns a signal that follows the volume of the channel before effects are applied.
+---
+--- [Inside Playdate: playdate.sound.channel:getDryLevelSignal](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getDryLevelSignal)
+---@return _Signal
+function playdate.sound.channel:getDryLevelSignal() end
+
+--- Returns a signal that follows the volume of the channel after effects are applied.
+---
+--- [Inside Playdate: playdate.sound.channel:getWetLevelSignal](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getWetLevelSignal)
+---@return _Signal
+function playdate.sound.channel:getWetLevelSignal() end
+
 --- Returns a list of all sources currently playing.
 ---
 --- [Inside Playdate: playdate.sound.playingSources](https://sdk.play.date/Inside%20Playdate.html#f-sound.playingSources)
@@ -8746,8 +8957,13 @@ function playdate.sound.playingSources() end
 ---@return _Synth
 function playdate.sound.synth.new(waveform) end
 
---- Returns a new synth object to play a Sample. An optional sustain region (measured in samples)
---- defines a loop to play while the note is on. Sample data must be uncompressed PCM, not ADPCM.
+--- Returns a new synth object to play a Sample. Sample data must be uncompressed PCM, not ADPCM.
+--- An optional sustain region (measured in sample frames) defines a loop to play while the note is
+--- active. When the note ends, if an envelope has been set on the synth and the sustain range goes
+--- to the end of the sample (i.e. there’s no release section of the sample after the sustain range)
+--- then the sustain section continues looping during the envelope release; otherwise it plays
+--- through the end of the sample and stops. As a convenience, if `sustainStart` is greater than
+--- zero and `sustainEnd` isn’t given, it will be set to the length of the sample.
 ---
 --- [Inside Playdate: playdate.sound.synth.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.synth.new)
 ---@param sample _Sample
@@ -8865,6 +9081,12 @@ function playdate.sound.synth:setSustain(level) end
 ---@param time number
 ---@return nil
 function playdate.sound.synth:setRelease(time) end
+
+--- Clears the synth’s envelope settings.
+---
+--- [Inside Playdate: playdate.sound.synth:clearEnvelope](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.clearEnvelope)
+---@return nil
+function playdate.sound.synth:clearEnvelope() end
 
 --- Smoothly changes the envelope’s shape from linear (amount=0) to exponential (amount=1).
 ---
@@ -8997,6 +9219,12 @@ function playdate.sound.signal:setOffset(offset) end
 ---@return nil
 function playdate.sound.signal:setScale(scale) end
 
+--- Returns the current output value of the signal.
+---
+--- [Inside Playdate: playdate.sound.signal:getValue](https://sdk.play.date/Inside%20Playdate.html#f-sound.signal.getValue)
+---@return number
+function playdate.sound.signal:getValue() end
+
 --- Returns a new LFO object, which can be used to modulate sounds. See playdate.sound.lfo:setType()
 --- for LFO types.
 ---
@@ -9087,6 +9315,12 @@ function playdate.sound.lfo:setRetrigger(flag) end
 ---@param ramp number
 ---@return nil
 function playdate.sound.lfo:setDelay(holdoff, ramp) end
+
+--- Returns the current signal value of the LFO.
+---
+--- [Inside Playdate: playdate.sound.lfo:getValue](https://sdk.play.date/Inside%20Playdate.html#f-sound.lfo.getValue)
+---@return number
+function playdate.sound.lfo:getValue() end
 
 --- Creates a new envelope with the given (optional) parameters.
 ---
@@ -9207,6 +9441,12 @@ function playdate.sound.envelope:trigger(velocity, length) end
 ---@param flag boolean
 ---@return nil
 function playdate.sound.envelope:setGlobal(flag) end
+
+--- Returns the current signal value of the envelope.
+---
+--- [Inside Playdate: playdate.sound.envelope:getValue](https://sdk.play.date/Inside%20Playdate.html#f-sound.envelope.getValue)
+---@return number
+function playdate.sound.envelope:getValue() end
 
 --- Adds the given playdate.sound.effect to the default sound channel.
 ---
@@ -9812,6 +10052,22 @@ function playdate.sound.instrument.new(synth) end
 ---@return nil
 function playdate.sound.instrument:addVoice(v, note, rangeend, transpose) end
 
+--- Sets the pitch bend to be applied to the voices in the instrument, as a fraction of the full
+--- range.
+---
+--- [Inside Playdate: playdate.sound.instrument:setPitchBend](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setPitchBend)
+---@param amount number
+---@return nil
+function playdate.sound.instrument:setPitchBend(amount) end
+
+--- Sets the pitch bend range for the voices in the instrument. The default range is 12, for a full
+--- octave.
+---
+--- [Inside Playdate: playdate.sound.instrument:setPitchBendRange](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setPitchBendRange)
+---@param halfsteps number
+---@return nil
+function playdate.sound.instrument:setPitchBendRange(halfsteps) end
+
 --- Transposes all voices in the instrument. *halfsteps* can be a fractional value.
 ---
 --- [Inside Playdate: playdate.sound.instrument:setTranspose](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.setTranspose)
@@ -9926,6 +10182,12 @@ function playdate.sound.controlsignal:setControllerType(number) end
 --- [Inside Playdate: playdate.sound.controlsignal:getControllerType](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.getControllerType)
 ---@return integer
 function playdate.sound.controlsignal:getControllerType() end
+
+--- Returns the current output value of the control signal.
+---
+--- [Inside Playdate: playdate.sound.controlsignal:getValue](https://sdk.play.date/Inside%20Playdate.html#f-sound.controlsignal.getValue)
+---@return number
+function playdate.sound.controlsignal:getValue() end
 
 --- `buffer` should be a Sample created with the following code, with *secondsToRecord* replaced by
 --- a number specifying the record duration:
@@ -10658,6 +10920,17 @@ function playdate.ui.gridview:selectNextColumn(wrapSelection, scrollToSelection,
 ---@return nil
 function playdate.ui.gridview:selectPreviousColumn(wrapSelection, scrollToSelection, animate) end
 
+--- Called when a `msg {text}` command is received on the serial port. The text following the
+--- command is passed to the function as the string *message*.
+---
+--- Running `!msg {message}` in the simulator Lua console sends the command to the device if one is
+--- connected, otherwise it sends it to the game running in the simulator.
+---
+--- [Inside Playdate: playdate.serialMessageReceived](https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived)
+---@param message string
+---@return nil
+function playdate.serialMessageReceived(message) end
+
 --- If *flag* is false, automatic garbage collection is disabled and the game should manually
 --- collect garbage with Lua’s `collectgarbage()` function.
 ---
@@ -10697,17 +10970,6 @@ function playdate.setMinimumGCTime(ms) end
 ---@return nil
 function playdate.setGCScaling(min, max) end
 
---- Called when a `msg {text}` command is received on the serial port. The text following the
---- command is passed to the function as the string *message*.
----
---- Running `!msg {message}` in the simulator Lua console sends the command to the device if one is
---- connected, otherwise it sends it to the game running in the simulator.
----
---- [Inside Playdate: playdate.serialMessageReceived](https://sdk.play.date/Inside%20Playdate.html#c-serialMessageReceived)
----@param message string
----@return nil
-function playdate.serialMessageReceived(message) end
-
 ---@param ClassName string
 ---@param properties? table
 ---@param namespace? table
@@ -10732,6 +10994,22 @@ function Object:tableDump(indent, _table) end
 ---@return string
 function _Timer:__tostring() end
 
+---@param key string
+---@param x integer
+---@param y integer
+---@param language? (integer|string)
+---@param leadingAdjustment? integer
+---@return nil
+function playdate.graphics.drawLocalizedText(key, x, y, language, leadingAdjustment) end
+
+---@param text string
+---@param x integer
+---@param y integer
+---@param fontFamily? table<integer, _Font>
+---@param leadingAdjustment? integer
+---@return nil
+function playdate.graphics.drawText(text, x, y, fontFamily, leadingAdjustment) end
+
 ---@param stringToEncode string
 ---@param desiredEdgeDimension integer
 ---@return _Image image?
@@ -10743,6 +11021,13 @@ function playdate.graphics.generateQRCodeSync(stringToEncode, desiredEdgeDimensi
 ---@param y? integer
 ---@return nil
 function playdate.graphics.setPattern(image, x, y) end
+
+---@param text string
+---@param x integer
+---@param y integer
+---@param leadingAdjustment? integer
+---@return nil
+function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
 
 ---@param bool1 boolean
 ---@param bool2 boolean
@@ -10784,6 +11069,10 @@ function playdate.scoreboards.getScoreboards(callback) end
 ---@return nil
 function playdate.scoreboards.getScores(boardID, callback) end
 
+---@param something string
+---@return nil
+function playdate.server.createMovie(something) end
+
 ---@param something any
 ---@param callback fun(status: _ServerStatus, result: table): nil
 ---@return nil
@@ -10806,6 +11095,9 @@ function playdate.server.uploadImage(image, something) end
 ---@param url string
 ---@return nil
 function playdate.simulator.openURL(url) end
+
+---@return number
+function playdate.sound.signalvalue:getValue() end
 
 ---@deprecated since 2.1.0-beta1
 ---@return nil
