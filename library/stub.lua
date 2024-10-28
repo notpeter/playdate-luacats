@@ -57,9 +57,9 @@ playdate.frameTimer = {}
 playdate.geometry = {}
 
 ---@class playdate.graphics
----@field kAlignLeft integer 0
----@field kAlignRight integer 1
----@field kAlignCenter integer 2
+---@field kAlignLeft integer 33554432
+---@field kAlignRight integer 33554434
+---@field kAlignCenter integer 33554433
 ---@field kColorBlack integer 0
 ---@field kColorWhite integer 1
 ---@field kColorClear integer 2
@@ -84,10 +84,9 @@ playdate.geometry = {}
 ---@field kStrokeCentered integer 0
 ---@field kStrokeInside integer 1
 ---@field kStrokeOutside integer 2
----@field kWrapClip integer 0
----@field kWrapCharacter integer 1
----@field kWrapWord integer 2
----@field kWrapTruncateEnd integer 3
+---@field kWrapClip integer 16777216
+---@field kWrapCharacter integer 16777217
+---@field kWrapWord integer 16777218
 playdate.graphics = {}
 
 ---@class playdate.inputHandlers
@@ -2589,8 +2588,7 @@ function playdate.file.file:read(numberOfBytes) end
 --- Equivalent to `playdate->file->seek()` in the C API.
 ---
 --- [Inside Playdate: playdate.file.file:seek](https://sdk.play.date/Inside%20Playdate.html#m-file.seek)
----@param offset integer
----@return nil
+---@param offset any
 function playdate.file.file:seek(offset) end
 
 --- Returns the current byte offset of the read/write position in the file.
@@ -10993,6 +10991,11 @@ function Object:tableDump(indent, _table) end
 
 ---@return string
 function _Timer:__tostring() end
+
+---@param offset integer
+---@param whence integer
+---@return nil
+function playdate.file.file:seek(offset, whence) end
 
 ---@param key string
 ---@param x integer

@@ -8,9 +8,17 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
-## [v2.6.0-luacats1] - 2024-05-16
+## [v2.6.0-luacats2] - 2024-10-27
+
+- Refinements for  Playdate 2.6.0-beta2
+- Remove `kWrapTruncateEnd` (not present)
+- Add `whence` to `playdate.file.file:seek(offset, whence)`
+- Correct high bits in new constants (`playdate.graphics.kAlign*` and `playdate.graphics.kWrap*`)
+
+## [v2.6.0-luacats1] - 2024-10-10
 
 - Update for Playdate 2.6.0-beta2
+- Add `playdate.graphics.kAlignLeft`, `playdate.graphics.kAlignCenter`, `playdate.graphics.kAlignRight`
 - Add `playdate.sound.signal:getValue()`
 - Add `playdate.sound.synth:clearEnvelope()`
 - Add `playdate.sound.channel:getDryLevelSignal()`
@@ -259,6 +267,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.6.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats1...v2.6.0-luacats2
 [v2.6.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.5.0-luacats1...v2.6.0-luacats1
 [v2.5.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.2-luacats1...v2.5.0-luacats1
 [v2.4.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.2-luacats1
