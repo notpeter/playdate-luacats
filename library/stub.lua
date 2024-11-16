@@ -2583,13 +2583,21 @@ function playdate.file.file:readline() end
 ---@return string? err
 function playdate.file.file:read(numberOfBytes) end
 
---- Sets the file read/write position to the given byte offset.
+--- Sets the file read/write position to the given byte offset. `whence`, if given is one of the
+--- following:
+---
+--- * playdate.file.kSeekSet: offset is an absolute offset from the start of the file
+--- * playdate.file.kSeekFromCurrent: offset is relative to the current position
+--- * playdate.file.kSeekFromEnd: offset is an offset from the end of the file (negative values are
+--- before the end, positive are past the end)
 ---
 --- Equivalent to `playdate->file->seek()` in the C API.
 ---
 --- [Inside Playdate: playdate.file.file:seek](https://sdk.play.date/Inside%20Playdate.html#m-file.seek)
----@param offset any
-function playdate.file.file:seek(offset) end
+---@param offset integer
+---@param whence integer
+---@return nil
+function playdate.file.file:seek(offset, whence) end
 
 --- Returns the current byte offset of the read/write position in the file.
 ---
@@ -4751,6 +4759,13 @@ function playdate.graphics.fillEllipseInRect(rect, startAngle, endAngle) end
 ---@return nil
 function playdate.graphics.drawPolygon(p) end
 
+--- Draw the polygon specified by the given sequence of x,y coordinates, including an edge between
+--- the last vertex and the first. The Lua function `table.unpack()` can be used to turn an array
+--- into function arguments.
+---
+--- Line width is specified by setLineWidth().
+---
+--- [Inside Playdate: playdate.graphics.drawPolygon](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPolygon-list)
 ---@param x1 integer
 ---@param y1 integer
 ---@param x2 integer
@@ -4773,6 +4788,10 @@ function playdate.graphics.drawPolygon(x1, y1, x2, y2, ...) end
 ---@return nil
 function playdate.graphics.fillPolygon(x1, y1, x2, y2, ...) end
 
+--- Fills the polygon specified by the playdate.geometry.polygon *p* with the currently selected
+--- color or pattern. The function throws an error if the polygon is not closed.
+---
+--- [Inside Playdate: playdate.graphics.fillPolygon](https://sdk.play.date/Inside%20Playdate.html#f-graphics.fillPolygon-p)
 ---@param p _Polygon
 ---@return nil
 function playdate.graphics.fillPolygon(p) end
@@ -5073,6 +5092,10 @@ function playdate.graphics.setStencilImage(image, tile) end
 ---@return nil
 function playdate.graphics.setStencilPattern(pattern) end
 
+--- Sets a pattern to use for stenciled drawing, as an alternative to creating an image, drawing a
+--- pattern into the image, then using that in `setStencilImage()`.
+---
+--- [Inside Playdate: playdate.graphics.setStencilPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setStencilPattern-rows)
 ---@param row1 integer
 ---@param row2 integer
 ---@param row3 integer
@@ -7202,7 +7225,6 @@ function playdate.graphics.getSystemFont(variant) end
 --- *wrapMode* are
 ---
 --- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapTruncateEnd
 --- * playdate.graphics.kWrapCharacter
 --- * playdate.graphics.kWrapWord
 ---
@@ -7244,7 +7266,6 @@ function playdate.graphics.font:drawText(text, x, y, width, height, leadingAdjus
 --- *wrapMode* are
 ---
 --- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapTruncateEnd
 --- * playdate.graphics.kWrapCharacter
 --- * playdate.graphics.kWrapWord
 ---
@@ -7348,7 +7369,6 @@ function playdate.graphics.font:getGlyph(character) end
 --- can be passed instead of `x,y,width,height`. Valid values for *wrapMode* are
 ---
 --- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapTruncateEnd
 --- * playdate.graphics.kWrapCharacter
 --- * playdate.graphics.kWrapWord
 ---
@@ -7422,7 +7442,6 @@ function playdate.graphics.drawText(text, x, y, width, height, fontFamily, leadi
 --- can be passed instead of `x,y,width,height`. Valid values for *wrapMode* are
 ---
 --- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapTruncateEnd
 --- * playdate.graphics.kWrapCharacter
 --- * playdate.graphics.kWrapWord
 ---
@@ -10991,11 +11010,6 @@ function Object:tableDump(indent, _table) end
 
 ---@return string
 function _Timer:__tostring() end
-
----@param offset integer
----@param whence integer
----@return nil
-function playdate.file.file:seek(offset, whence) end
 
 ---@param key string
 ---@param x integer
