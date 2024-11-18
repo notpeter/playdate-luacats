@@ -8,6 +8,13 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.6.1-luacats1] - 2024-11-18
+
+- Add docs: playdate.file.seek
+- Add docs: playdate.graphics.drawPolygon(p)
+- Add docs: playdate.graphics.fillPolygon(p)
+- Remove: playdate.graphics.kWrapTruncateEnd
+
 ## [v2.6.0-luacats2] - 2024-10-27
 
 - Refinements for  Playdate 2.6.0-beta2
@@ -267,7 +274,8 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
-[v2.6.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats1...v2.6.0-luacats2
+[v2.6.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats2...v2.6.1-luacats1
+[v2.6.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats1...v2.6.0-luacats2
 [v2.6.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.5.0-luacats1...v2.6.0-luacats1
 [v2.5.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.2-luacats1...v2.5.0-luacats1
 [v2.4.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.4.1-luacats1...v2.4.2-luacats1
