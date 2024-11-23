@@ -10,7 +10,19 @@
         "os": "disable",
         "package": "disable"
     },
-    "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
+    "runtime.nonstandardSymbol": [
+        "+=",
+        "-=",
+        "*=",
+        "/=",
+        "//=",
+        "%=",
+        "<<=",
+        ">>=",
+        "&=",
+        "|=",
+        "^="
+    ],
     "runtime.version": "Lua 5.4",
     "workspace.library": ["./"]
 }
