@@ -8,6 +8,14 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+...
+
+## [v2.7.0-luacats1] - 2025-02-10
+
+- Update for Playdate 2.7.0-beta2
+- Add docs: playdate.network.http
+- Add docs: playdate.network.tcp
+
 ## [v2.6.1-luacats1] - 2024-11-18
 
 - Add docs: playdate.file.seek
@@ -274,6 +282,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.1-luacats1...v2.7.0-luacats1
 [v2.6.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats2...v2.6.1-luacats1
 [v2.6.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats1...v2.6.0-luacats2
 [v2.6.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.5.0-luacats1...v2.6.0-luacats1

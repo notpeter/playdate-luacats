@@ -105,6 +105,12 @@ playdate.math = {}
 ---@class playdate.menu
 playdate.menu = {}
 
+---@class playdate.network
+---@field kStatusNotConnected integer 0
+---@field kStatusConnected integer 1
+---@field kStatusNotAvailable integer 2
+playdate.network = {}
+
 ---@class playdate.pathfinder
 playdate.pathfinder = {}
 
@@ -239,6 +245,12 @@ playdate.math.logic = {}
 
 ---@class playdate.menu.item
 playdate.menu.item = {}
+
+---@class playdate.network.http
+playdate.network.http = {}
+
+---@class playdate.network.tcp
+playdate.network.tcp = {}
 
 ---@class playdate.pathfinder.graph
 playdate.pathfinder.graph = {}
@@ -509,6 +521,12 @@ local _Metadata = {}
 ---@field minute integer
 ---@field second integer
 local _ModTime = {}
+
+---@class _NetworkHttp : playdate.network.http
+local _NetworkHttp = {}
+
+---@class _NetworkTcp : playdate.network.tcp
+local _NetworkTcp = {}
 
 ---@class _NewClass
 ---@field className string
@@ -7986,6 +8004,176 @@ function playdate.keyboard.textChangedCallback(ok) end
 ---@param t number
 ---@return number
 function playdate.math.lerp(min, max, t) end
+
+--- [Inside Playdate: playdate.network.getStatus](https://sdk.play.date/Inside%20Playdate.html#f-network.getStatus)
+---@return integer
+function playdate.network.getStatus() end
+
+--- [Inside Playdate: playdate.network.http.new](https://sdk.play.date/Inside%20Playdate.html#f-network.http.new)
+---@param server string
+---@param port? integer
+---@param usessl? boolean
+---@param reason? string
+---@return _NetworkHttp?
+function playdate.network.http.new(server, port, usessl, reason) end
+
+--- [Inside Playdate: playdate.network.http.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-network.http.requestAccess)
+---@param server? string
+---@param port? integer
+---@param usessl? boolean
+---@param reason? string
+---@return boolean
+function playdate.network.http.requestAccess(server, port, usessl, reason) end
+
+--- [Inside Playdate: playdate.network.http:close](https://sdk.play.date/Inside%20Playdate.html#m-network.http.close)
+---@return nil
+function playdate.network.http:close() end
+
+--- [Inside Playdate: playdate.network.http:setKeepAlive](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setKeepAlive)
+---@param flag boolean
+---@return nil
+function playdate.network.http:setKeepAlive(flag) end
+
+--- [Inside Playdate: playdate.network.http:setByteRange](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setByteRange)
+---@param from integer
+---@param to integer
+---@return nil
+function playdate.network.http:setByteRange(from, to) end
+
+--- [Inside Playdate: playdate.network.http:setConnectTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setConnectTimeout)
+---@param seconds integer
+---@return nil
+function playdate.network.http:setConnectTimeout(seconds) end
+
+--- [Inside Playdate: playdate.network.http:get](https://sdk.play.date/Inside%20Playdate.html#m-network.http.get)
+---@param path string
+---@param headers? table<string, string>
+---@return boolean success
+---@return string error?
+function playdate.network.http:get(path, headers) end
+
+--- [Inside Playdate: playdate.network.http:post](https://sdk.play.date/Inside%20Playdate.html#m-network.http.post)
+---@param path string
+---@param headers? table<string, string>
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.http:post(path, headers, data) end
+
+--- [Inside Playdate: playdate.network.http:getError](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getError)
+---@return string?
+function playdate.network.http:getError() end
+
+--- [Inside Playdate: playdate.network.http:getProgress](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getProgress)
+---@return integer bytesRead
+---@return integer totalBytes
+function playdate.network.http:getProgress() end
+
+--- [Inside Playdate: playdate.network.http:getBytesAvailable](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getBytesAvailable)
+---@return integer
+function playdate.network.http:getBytesAvailable() end
+
+--- [Inside Playdate: playdate.network.http:setReadTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setReadTimeout)
+---@param ms integer
+---@return nil
+function playdate.network.http:setReadTimeout(ms) end
+
+--- [Inside Playdate: playdate.network.http:setReadBufferSize](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setReadBufferSize)
+---@param bytes integer
+---@return nil
+function playdate.network.http:setReadBufferSize(bytes) end
+
+--- [Inside Playdate: playdate.network.http:read](https://sdk.play.date/Inside%20Playdate.html#m-network.http.read)
+---@param length integer
+---@return string
+function playdate.network.http:read(length) end
+
+--- [Inside Playdate: playdate.network.http:getResponseStatus](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getResponseStatus)
+---@return integer
+function playdate.network.http:getResponseStatus() end
+
+--- [Inside Playdate: playdate.network.http:setRequestCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setRequestCallback)
+---@param _function function
+---@return nil
+function playdate.network.http:setRequestCallback(_function) end
+
+--- [Inside Playdate: playdate.network.http:setHeadersReadCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setHeadersReadCallback)
+---@param _function function
+---@return nil
+function playdate.network.http:setHeadersReadCallback(_function) end
+
+--- [Inside Playdate: playdate.network.http:setRequestCompleteCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setRequestCompleteCallback)
+---@param _function function
+---@return nil
+function playdate.network.http:setRequestCompleteCallback(_function) end
+
+--- [Inside Playdate: playdate.network.http:setConnectionClosedCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setConnectionClosedCallback)
+---@param _function function
+---@return nil
+function playdate.network.http:setConnectionClosedCallback(_function) end
+
+--- [Inside Playdate: playdate.network.tcp.new](https://sdk.play.date/Inside%20Playdate.html#f-network.tcp.new)
+---@param server string
+---@param port? integer
+---@param usessl? boolean
+---@param reason? string
+---@return _NetworkTcp?
+function playdate.network.tcp.new(server, port, usessl, reason) end
+
+--- [Inside Playdate: playdate.network.tcp.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-network.tcp.requestAccess)
+---@param server? string
+---@param port? integer
+---@param reason? string
+---@return boolean
+function playdate.network.tcp.requestAccess(server, port, reason) end
+
+--- [Inside Playdate: playdate.network.tcp:setConnectTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setConnectTimeout)
+---@param seconds integer
+---@return nil
+function playdate.network.tcp:setConnectTimeout(seconds) end
+
+--- [Inside Playdate: playdate.network.tcp:open](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.open)
+---@param connectCallback fun(connected: boolean, error?: string)
+---@return nil
+function playdate.network.tcp:open(connectCallback) end
+
+--- [Inside Playdate: playdate.network.tcp:close](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.close)
+---@return nil
+function playdate.network.tcp:close() end
+
+--- [Inside Playdate: playdate.network.tcp:getBytesAvailable](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.getBytesAvailable)
+---@return integer
+function playdate.network.tcp:getBytesAvailable() end
+
+--- [Inside Playdate: playdate.network.tcp:setReadTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setReadTimeout)
+---@param ms integer
+---@return nil
+function playdate.network.tcp:setReadTimeout(ms) end
+
+--- [Inside Playdate: playdate.network.tcp:setReadBufferSize](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setReadBufferSize)
+---@param bytes integer
+---@return nil
+function playdate.network.tcp:setReadBufferSize(bytes) end
+
+--- [Inside Playdate: playdate.network.tcp:read](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.read)
+---@param length integer
+---@return string
+function playdate.network.tcp:read(length) end
+
+--- [Inside Playdate: playdate.network.tcp:write](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.write)
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.tcp:write(data) end
+
+--- [Inside Playdate: playdate.network.tcp:getError](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.getError)
+---@return string?
+function playdate.network.tcp:getError() end
+
+--- [Inside Playdate: playdate.network.tcp:setConnectionClosedCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setConnectionClosedCallback)
+---@param _function function
+---@return nil
+function playdate.network.tcp:setConnectionClosedCallback(_function) end
 
 --- Returns a new empty playdate.pathfinder.graph object.
 ---
