@@ -8,7 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
-...
+- ...
+- Remove `playdate.server.*` - Was never documented and no longer present in SDK
 
 ## [v2.7.0-luacats1] - 2025-02-10
 

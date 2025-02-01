@@ -117,9 +117,6 @@ playdate.pathfinder = {}
 ---@class playdate.scoreboards
 playdate.scoreboards = {}
 
----@class playdate.server
-playdate.server = {}
-
 ---@class playdate.simulator
 playdate.simulator = {}
 
@@ -11273,29 +11270,6 @@ function playdate.scoreboards.getScoreboards(callback) end
 ---@param callback fun(status: _ServerStatus, result: _ScoreBoardScoresResult): nil
 ---@return nil
 function playdate.scoreboards.getScores(boardID, callback) end
-
----@param something string
----@return nil
-function playdate.server.createMovie(something) end
-
----@param something any
----@param callback fun(status: _ServerStatus, result: table): nil
----@return nil
-function playdate.server.getAvatar(something, callback) end
-
----@param image _Image
----@return nil
-function playdate.server.setAvatar(image) end
-
----@param something1 string
----@param something2 string
----@return nil
-function playdate.server.uploadFile(something1, something2) end
-
----@param image _Image
----@param something string
----@return nil
-function playdate.server.uploadImage(image, something) end
 
 ---@param url string
 ---@return nil
