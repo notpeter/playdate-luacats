@@ -10,6 +10,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 - ...
 
+## [v2.7.0-luacats3] - 2025-02-24
+
+- Update for PlaydateSDK 2.7.0-beta5
+- Add playdate.network.http:getResponseHeaders()
+- playdate.graphics.animation.loop.new updated
+
 ## [v2.7.0-luacats2] - 2025-02-24
 
 - Update for PlaydateSDK 2.7.0-beta4
@@ -288,6 +294,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats2...v2.7.0-luacats3
 [v2.7.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats1...v2.7.0-luacats2
 [v2.7.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.1-luacats1...v2.7.0-luacats1
 [v2.6.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats2...v2.6.1-luacats1

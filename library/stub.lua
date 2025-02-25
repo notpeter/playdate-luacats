@@ -5238,7 +5238,7 @@ function playdate.graphics.unlockFocus() end
 
 --- Creates a new animation object.
 ---
---- * imageTable should be a playdate.graphics.imagetable, or nil.
+--- * imageTable must be a playdate.graphics.imagetable.
 ---
 --- The following properties can be read or set directly, and have these defaults:
 ---
@@ -5252,7 +5252,7 @@ function playdate.graphics.unlockFocus() end
 ---
 --- [Inside Playdate: playdate.graphics.animation.loop.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new)
 ---@param delay? number
----@param imageTable? _ImageTable
+---@param imageTable _ImageTable
 ---@param shouldLoop? boolean
 ---@return _AnimationLoop
 function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
@@ -8143,6 +8143,13 @@ function playdate.network.http:read(length) end
 --- [Inside Playdate: playdate.network.http:getResponseStatus](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getResponseStatus)
 ---@return integer
 function playdate.network.http:getResponseStatus() end
+
+--- Returns a table containing the key/value pairs in the HTTP response headers, or nil if no
+--- headers were received.
+---
+--- [Inside Playdate: playdate.network.http:getResponseHeaders](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getResponseHeaders)
+---@return table<string, string>?
+function playdate.network.http:getResponseHeaders() end
 
 --- Sets a function to be called when response data is available.
 ---
