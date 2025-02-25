@@ -8006,6 +8006,13 @@ function playdate.math.lerp(min, max, t) end
 ---@return integer
 function playdate.network.getStatus() end
 
+--- Returns a `playdate.network.http` object for connecting to the given server. The default port is
+--- 443 if `usessl` is true, otherwise 80; the default value for `usessl` is false. If the user has
+--- not yet given permission for the device to connect to the server, the game is paused while the
+--- system asks the user to allow or deny network access for the provided `reason`, if one is given.
+--- Since the system uses a coroutine `yield()` to show the dialog to request access (if not already
+--- given), it cannot be called at load time or from an input handler or other system callback.
+---
 --- [Inside Playdate: playdate.network.http.new](https://sdk.play.date/Inside%20Playdate.html#f-network.http.new)
 ---@param server string
 ---@param port? integer
@@ -8014,6 +8021,14 @@ function playdate.network.getStatus() end
 ---@return _NetworkHttp?
 function playdate.network.http.new(server, port, usessl, reason) end
 
+--- `playdate.network.http.new()` will automatically request access if needed (and note that `new()`
+--- only creates an object for connecting, doesn’t open the connection until `get()` or `post()` is
+--- called) but if you want to present the access dialog ahead of time you can use this function.
+--- Notably, this lets you request access to all HTTP servers by leaving the `server` field empty,
+--- or all subdomains of a domain by passing in the parent. Note that this function uses a coroutine
+--- `yield()` to pause the runtime while the permission dialog is up, so it can’t be called
+--- immediately at startup, must be called from a `playdate.update()` context
+---
 --- [Inside Playdate: playdate.network.http.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-network.http.requestAccess)
 ---@param server? string
 ---@param port? integer
@@ -8022,26 +8037,40 @@ function playdate.network.http.new(server, port, usessl, reason) end
 ---@return boolean
 function playdate.network.http.requestAccess(server, port, usessl, reason) end
 
+--- Closes the HTTP connection. The connection may be used again for another request.
+---
 --- [Inside Playdate: playdate.network.http:close](https://sdk.play.date/Inside%20Playdate.html#m-network.http.close)
 ---@return nil
 function playdate.network.http:close() end
 
+--- If `flag` is true, this causes the HTTP request to include a *Connection: keep-alive* header.
+---
 --- [Inside Playdate: playdate.network.http:setKeepAlive](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setKeepAlive)
 ---@param flag boolean
 ---@return nil
 function playdate.network.http:setKeepAlive(flag) end
 
+--- Adds a `Range: bytes` header to the HTTP request.
+---
 --- [Inside Playdate: playdate.network.http:setByteRange](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setByteRange)
 ---@param from integer
 ---@param to integer
 ---@return nil
 function playdate.network.http:setByteRange(from, to) end
 
+--- Sets the length of time (in seconds) to wait for the connection to the server to be made.
+---
 --- [Inside Playdate: playdate.network.http:setConnectTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setConnectTimeout)
 ---@param seconds integer
 ---@return nil
 function playdate.network.http:setConnectTimeout(seconds) end
 
+--- Opens the connection to the server if it’s not already open (e.g. from a previous request with
+--- the given path and additional *headers* if specified.
+---
+--- If the request is successfully queued, the function returns `true`. On error, the function
+--- returns `false` and a string indicating the error.
+---
 --- [Inside Playdate: playdate.network.http:get](https://sdk.play.date/Inside%20Playdate.html#m-network.http.get)
 ---@param path string
 ---@param headers? table<string, string>
@@ -8049,6 +8078,13 @@ function playdate.network.http:setConnectTimeout(seconds) end
 ---@return string error?
 function playdate.network.http:get(path, headers) end
 
+--- Opens the connection to the server if it’s not already open (e.g. from a previous request
+--- with keep-alive enabled) and sends a POST request with the given path, additional *headers* if
+--- specified, and the provided *data*.
+---
+--- If the request is successfully queued, the function returns `true`. On error, the function
+--- returns `false` and a string indicating the error.
+---
 --- [Inside Playdate: playdate.network.http:post](https://sdk.play.date/Inside%20Playdate.html#m-network.http.post)
 ---@param path string
 ---@param headers? table<string, string>
@@ -8057,58 +8093,96 @@ function playdate.network.http:get(path, headers) end
 ---@return string error?
 function playdate.network.http:post(path, headers, data) end
 
+--- Returns a text description of the last error on the connection, or nil if no error occurred.
+---
 --- [Inside Playdate: playdate.network.http:getError](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getError)
 ---@return string?
 function playdate.network.http:getError() end
 
+--- Returns two values: the number of bytes already read from the connection and the total bytes the
+--- server plans to send.
+---
 --- [Inside Playdate: playdate.network.http:getProgress](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getProgress)
 ---@return integer bytesRead
 ---@return integer totalBytes
 function playdate.network.http:getProgress() end
 
+--- Returns the number of bytes currently available for reading from the connection.
+---
 --- [Inside Playdate: playdate.network.http:getBytesAvailable](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getBytesAvailable)
 ---@return integer
 function playdate.network.http:getBytesAvailable() end
 
+--- Sets the length of time, in seconds, `playdate.network.http:read()` will wait for incoming data
+--- before returning. The default value is one second.
+---
 --- [Inside Playdate: playdate.network.http:setReadTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setReadTimeout)
----@param ms integer
+---@param seconds number
 ---@return nil
-function playdate.network.http:setReadTimeout(ms) end
+function playdate.network.http:setReadTimeout(seconds) end
 
+--- Sets the size of the connection’s read buffer.
+---
 --- [Inside Playdate: playdate.network.http:setReadBufferSize](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setReadBufferSize)
 ---@param bytes integer
 ---@return nil
 function playdate.network.http:setReadBufferSize(bytes) end
 
+--- On success, returns up to `length` bytes (maximum 64KB) from the connection. If `length` is more
+--- than the number of bytes available the function will wait for more data up to the length of time
+--- set by `setReadTimeout()` (default one second).
+---
 --- [Inside Playdate: playdate.network.http:read](https://sdk.play.date/Inside%20Playdate.html#m-network.http.read)
 ---@param length integer
 ---@return string
 function playdate.network.http:read(length) end
 
+--- Returns the HTTP status response code, if the request response headers have been received and
+--- parsed.
+---
 --- [Inside Playdate: playdate.network.http:getResponseStatus](https://sdk.play.date/Inside%20Playdate.html#m-network.http.getResponseStatus)
 ---@return integer
 function playdate.network.http:getResponseStatus() end
 
+--- Sets a function to be called when response data is available.
+---
 --- [Inside Playdate: playdate.network.http:setRequestCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setRequestCallback)
 ---@param _function function
 ---@return nil
 function playdate.network.http:setRequestCallback(_function) end
 
+--- Sets a function to be called after the connection has parsed the headers from the server
+--- response. At this point, `getResponseStatus()` and `getProgress()` can be used to query
+--- the status and size of the response, and `get()`/`post()` can queue another request if
+--- `connection:setKeepAlive(true)` was set.
+---
 --- [Inside Playdate: playdate.network.http:setHeadersReadCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setHeadersReadCallback)
 ---@param _function function
 ---@return nil
 function playdate.network.http:setHeadersReadCallback(_function) end
 
+--- Sets a function to be called when all data for the request has been received (if the response
+--- contained a Content-Length header and the size is known) or the request times out.
+---
 --- [Inside Playdate: playdate.network.http:setRequestCompleteCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setRequestCompleteCallback)
 ---@param _function function
 ---@return nil
 function playdate.network.http:setRequestCompleteCallback(_function) end
 
+--- Sets a function to be called when the server has closed the connection.
+---
 --- [Inside Playdate: playdate.network.http:setConnectionClosedCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.http.setConnectionClosedCallback)
 ---@param _function function
 ---@return nil
 function playdate.network.http:setConnectionClosedCallback(_function) end
 
+--- Returns a `playdate.network.tcp` object for connecting to the given server. The default value
+--- for `usessl` is false. If the user has not yet given permission for the device to connect to
+--- the server, the game is paused while the system asks the user to allow or deny network access
+--- for the provided `reason`, if one is given. Since the system uses a coroutine `yield()` to show
+--- the dialog to request access (if not already given), it cannot be called at load time or from an
+--- input handler or other system callback.
+---
 --- [Inside Playdate: playdate.network.tcp.new](https://sdk.play.date/Inside%20Playdate.html#f-network.tcp.new)
 ---@param server string
 ---@param port? integer
@@ -8117,6 +8191,15 @@ function playdate.network.http:setConnectionClosedCallback(_function) end
 ---@return _NetworkTcp?
 function playdate.network.tcp.new(server, port, usessl, reason) end
 
+--- `playdate.network.tcp.new()` will automatically request access if needed (and note that `new()`
+--- only creates an object for connecting, doesn’t open the connection until `open()` is called) but
+--- if you want to present the access dialog ahead of time you can use this function. Notably, this
+--- lets you request access to all servers by leaving the `server` field empty, or all subdomains
+--- of a domain by passing in the parent. Access to all ports on a given server can be requested by
+--- leaving `port` empty. Note that this function uses a coroutine `yield()` to pause the runtime
+--- while the permission dialog is up, so it can’t be called immediately at startup, must be called
+--- from a `playdate.update()` context
+---
 --- [Inside Playdate: playdate.network.tcp.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-network.tcp.requestAccess)
 ---@param server? string
 ---@param port? integer
@@ -8124,49 +8207,83 @@ function playdate.network.tcp.new(server, port, usessl, reason) end
 ---@return boolean
 function playdate.network.tcp.requestAccess(server, port, reason) end
 
+--- Sets the length of time (in seconds) to wait for the connection to the server to be made.
+---
 --- [Inside Playdate: playdate.network.tcp:setConnectTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setConnectTimeout)
 ---@param seconds integer
 ---@return nil
 function playdate.network.tcp:setConnectTimeout(seconds) end
 
+--- Attempts to open the TCP connection. `connectCallback` is a function to be called when the
+--- connection either succeeds or fails. The function is called with a boolean indicating whether
+--- the connection was successful, and an error string if the connection failed.
+---
+--- ```
+--- connection:open(function tcpConnectCallback(connected, err)
+---         if connected then print("connected!") else print("connection failed: "..err) end
+--- end)
+--- ```
 --- [Inside Playdate: playdate.network.tcp:open](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.open)
 ---@param connectCallback fun(connected: boolean, error?: string)
 ---@return nil
 function playdate.network.tcp:open(connectCallback) end
 
+--- Closes the connection. `open()` may be called again after this to reopen the connection to the
+--- server.
+---
 --- [Inside Playdate: playdate.network.tcp:close](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.close)
 ---@return nil
 function playdate.network.tcp:close() end
 
+--- Returns the number of bytes currently available in the connection’s read buffer for reading from
+--- the connection.
+---
 --- [Inside Playdate: playdate.network.tcp:getBytesAvailable](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.getBytesAvailable)
 ---@return integer
 function playdate.network.tcp:getBytesAvailable() end
 
+--- Sets the length of time, in seconds, `playdate.network.tcp:read()` will wait for incoming data
+--- before returning. The default value is one second.
+---
 --- [Inside Playdate: playdate.network.tcp:setReadTimeout](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setReadTimeout)
----@param ms integer
+---@param seconds number
 ---@return nil
-function playdate.network.tcp:setReadTimeout(ms) end
+function playdate.network.tcp:setReadTimeout(seconds) end
 
+--- Sets the size of the connection’s read buffer.
+---
 --- [Inside Playdate: playdate.network.tcp:setReadBufferSize](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setReadBufferSize)
 ---@param bytes integer
 ---@return nil
 function playdate.network.tcp:setReadBufferSize(bytes) end
 
+--- On success, returns up to `length` bytes (maximum 64KB) from the connection as well as the
+--- number of bytes that were read. If `length` is more than the number of bytes available the
+--- function will wait for more data up to the length of time set by `setReadTimeout()` (default
+--- one second).
+---
 --- [Inside Playdate: playdate.network.tcp:read](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.read)
 ---@param length integer
 ---@return string
 function playdate.network.tcp:read(length) end
 
+--- Attempts to write the given data to the connection. On success, returns `true`; on failure,
+--- returns `false` and a string describing the error.
+---
 --- [Inside Playdate: playdate.network.tcp:write](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.write)
 ---@param data string
 ---@return boolean success
 ---@return string error?
 function playdate.network.tcp:write(data) end
 
+--- Returns a text description of the last error on the connection, or nil if no error occurred.
+---
 --- [Inside Playdate: playdate.network.tcp:getError](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.getError)
 ---@return string?
 function playdate.network.tcp:getError() end
 
+--- Sets a function to be called when the server has closed the connection.
+---
 --- [Inside Playdate: playdate.network.tcp:setConnectionClosedCallback](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.setConnectionClosedCallback)
 ---@param _function function
 ---@return nil
