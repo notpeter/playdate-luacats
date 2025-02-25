@@ -9,6 +9,11 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 ## Unreleased
 
 - ...
+
+## [v2.7.0-luacats2] - 2025-02-24
+
+- Update for PlaydateSDK 2.7.0-beta4
+- playdate.network.{tcp,http}:setReadTimeout uses seconds, not ms
 - Remove `playdate.server.*` - Was never documented and no longer present in SDK
 
 ## [v2.7.0-luacats1] - 2025-02-10
@@ -26,14 +31,14 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## [v2.6.0-luacats2] - 2024-10-27
 
-- Refinements for  Playdate 2.6.0-beta2
+- Refinements for PlaydateSDK 2.6.0-beta2
 - Remove `kWrapTruncateEnd` (not present)
 - Add `whence` to `playdate.file.file:seek(offset, whence)`
 - Correct high bits in new constants (`playdate.graphics.kAlign*` and `playdate.graphics.kWrap*`)
 
 ## [v2.6.0-luacats1] - 2024-10-10
 
-- Update for Playdate 2.6.0-beta2
+- Update for PlaydateSDK 2.6.0-beta2
 - Add `playdate.graphics.kAlignLeft`, `playdate.graphics.kAlignCenter`, `playdate.graphics.kAlignRight`
 - Add `playdate.sound.signal:getValue()`
 - Add `playdate.sound.synth:clearEnvelope()`
@@ -46,7 +51,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## [v2.5.0-luacats1] - 2024-05-16
 
-- No changes between Playdate 2.5.0-beta2 and Playdate SDK 2.5.0 final
+- No changes between PlaydateSDK 2.5.0-beta2 and Playdate SDK 2.5.0 final
 - Update for Playdate 2.5.0-beta2
 - Add `playdate.restart(arg)` to restart the game with an optional argv string[].
 - Add `playdate.sound.sample.new(seconds, format)`
@@ -55,8 +60,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 ## [v2.4.2-luacats1] - 2024-05-02
 
 - No SDK API changes in 2.4.2.
-- Add return types (nil) to callbacks in the _InputHandler table.
-- Remove incorrect leading `_` on AButton/BButton on _InputHandler table.
+- Add return types (nil) to callbacks in the \_InputHandler table.
+- Remove incorrect leading `_` on AButton/BButton on \_InputHandler table.
 
 ## [v2.4.1-luacats2] - 2024-04-30
 
@@ -283,6 +288,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats1...v2.7.0-luacats2
 [v2.7.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.1-luacats1...v2.7.0-luacats1
 [v2.6.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats2...v2.6.1-luacats1
 [v2.6.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.6.0-luacats1...v2.6.0-luacats2
