@@ -908,6 +908,18 @@ function playdate.gameWillPause() end
 ---@return nil
 function playdate.gameWillResume() end
 
+--- Called when the device is connected to Mirror.
+---
+--- [Inside Playdate: playdate.streamStarted](https://sdk.play.date/Inside%20Playdate.html#c-streamStarted)
+---@return nil
+function playdate.streamStarted() end
+
+--- Called when the device is disconnected from Mirror.
+---
+--- [Inside Playdate: playdate.streamEnded](https://sdk.play.date/Inside%20Playdate.html#c-streamEnded)
+---@return nil
+function playdate.streamEnded() end
+
 --- Returns a `playdate.menu` object. Use this to add your custom menu items.
 ---
 --- [Inside Playdate: playdate.getSystemMenu](https://sdk.play.date/Inside%20Playdate.html#f-menu.getSystemMenu)
@@ -1490,6 +1502,19 @@ function playdate.timeFromEpoch(seconds, milliseconds) end
 ---@param milliseconds integer
 ---@return _DateTime
 function playdate.GMTTimeFromEpoch(seconds, milliseconds) end
+
+--- Queries the Playdate server for the current time, in seconds elapsed since midnight (hour 0),
+--- January 1 2000 UTC. This provides games with a reliable clock source, since the internal clock
+--- can be set by the user. The function is asynchronous, returning the server time to a callback
+--- function passed in. The callback function is given two arguments: the time (as a string, to
+--- avoid 32-bit rollover) if the query was successful, otherwise nil and an error string.
+---
+--- `playdate.getServerTime(function(time, error)     if time ~= nil then print("server time:
+--- "..time)     else print("server error: "..error)     end end)`
+---
+--- [Inside Playdate: playdate.getServerTime](https://sdk.play.date/Inside%20Playdate.html#f-getServerTime)
+---@param callback fun(time: string, error?: string)
+function playdate.getServerTime(callback) end
 
 --- Returns true if the user has set the 24-Hour Time preference in the Settings program.
 ---
@@ -7844,6 +7869,12 @@ function playdate.graphics.video:useScreenContext() end
 ---@return nil
 function playdate.graphics.video:renderFrame(number) end
 
+--- Returns the frame number of the currently displayed frame.
+---
+--- [Inside Playdate: playdate.graphics.video:getCurrentFrame](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.getCurrentFrame)
+---@return integer
+function playdate.graphics.video:getCurrentFrame() end
+
 --- Takes the JSON encoded string and converts it to a Lua table.
 ---
 --- Equivalent to `playdate->json->decode()` in the C API.
@@ -8001,6 +8032,18 @@ function playdate.keyboard.textChangedCallback(ok) end
 ---@param t number
 ---@return number
 function playdate.math.lerp(min, max, t) end
+
+--- Playdate will connect to the configured access point automatically as needed and turn off the
+--- wifi radio after a 30 second idle timeout. This function allows a game to start connecting to
+--- the access point sooner, since that can take upwards of 10 seconds, or turn off wifi as soon as
+--- it’s no longer needed instead of waiting 30 seconds. If `flag` is true, a callback function can
+--- be provided to check for an error connecting to the access point; the argument passed to the
+--- callback is a string describing the error, or nil if no error occurred.
+---
+--- [Inside Playdate: playdate.network.setEnabled](https://sdk.play.date/Inside%20Playdate.html#f-network.setEnabled)
+---@param flag? boolean
+---@param callback? fun(error?: string)
+function playdate.network.setEnabled(flag, callback) end
 
 --- [Inside Playdate: playdate.network.getStatus](https://sdk.play.date/Inside%20Playdate.html#f-network.getStatus)
 ---@return integer
