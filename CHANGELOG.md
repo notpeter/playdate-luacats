@@ -10,6 +10,14 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 - ...
 
+## [v2.7.0-luacats4] - 2025-02-22
+
+- Update for PlaydateSDK 2.7.0-beta8
+- Add playdate.{mirrorStarted,mirrorEnded}
+- Add playdate.getServerTime
+- Add playdate.graphics.video:getCurrentFrame
+- Add playdate.network.setEnabled
+
 ## [v2.7.0-luacats3] - 2025-02-24
 
 - Update for PlaydateSDK 2.7.0-beta5
@@ -294,6 +302,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.0-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats3...v2.7.0-luacats4
 [v2.7.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats2...v2.7.0-luacats3
 [v2.7.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats1...v2.7.0-luacats2
 [v2.7.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.6.1-luacats1...v2.7.0-luacats1

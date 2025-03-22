@@ -910,15 +910,15 @@ function playdate.gameWillResume() end
 
 --- Called when the device is connected to Mirror.
 ---
---- [Inside Playdate: playdate.streamStarted](https://sdk.play.date/Inside%20Playdate.html#c-streamStarted)
+--- [Inside Playdate: playdate.mirrorStarted](https://sdk.play.date/Inside%20Playdate.html#c-mirrorStarted)
 ---@return nil
-function playdate.streamStarted() end
+function playdate.mirrorStarted() end
 
 --- Called when the device is disconnected from Mirror.
 ---
---- [Inside Playdate: playdate.streamEnded](https://sdk.play.date/Inside%20Playdate.html#c-streamEnded)
+--- [Inside Playdate: playdate.mirrorEnded](https://sdk.play.date/Inside%20Playdate.html#c-mirrorEnded)
 ---@return nil
-function playdate.streamEnded() end
+function playdate.mirrorEnded() end
 
 --- Returns a `playdate.menu` object. Use this to add your custom menu items.
 ---
@@ -8109,7 +8109,9 @@ function playdate.network.http:setByteRange(from, to) end
 function playdate.network.http:setConnectTimeout(seconds) end
 
 --- Opens the connection to the server if it’s not already open (e.g. from a previous request with
---- the given path and additional *headers* if specified.
+--- the given path and additional *headers* if specified. The *headers* argument can either be a
+--- string containing all of the headers to send (with newlines between individual headers), an
+--- array of strings, or a table of key/value pairs.
 ---
 --- If the request is successfully queued, the function returns `true`. On error, the function
 --- returns `false` and a string indicating the error.
@@ -8123,7 +8125,9 @@ function playdate.network.http:get(path, headers) end
 
 --- Opens the connection to the server if it’s not already open (e.g. from a previous request
 --- with keep-alive enabled) and sends a POST request with the given path, additional *headers* if
---- specified, and the provided *data*.
+--- specified, and the provided *data*. The *headers* argument can either be a string containing
+--- all of the headers to send (with newlines between individual headers), an array of strings, or a
+--- table of key/value pairs.
 ---
 --- If the request is successfully queued, the function returns `true`. On error, the function
 --- returns `false` and a string indicating the error.
