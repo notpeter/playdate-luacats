@@ -5724,6 +5724,16 @@ function playdate.graphics.imagetable:drawImage(n, x, y, flip) end
 ---@return _Image?
 function playdate.graphics.imagetable:__index(n) end
 
+--- Equivalent to imagetable:getLength()
+---
+--- In Lua, you can get the length of a string or table using the length operator. For
+--- a `playdate.graphics.imagetable` called `myImageTable`, both `#myImageTable` and
+--- `myImageTable:getLength()` would return the same result.
+---
+--- [Inside Playdate: playdate.graphics.imagetable:__len](https://sdk.play.date/Inside%20Playdate.html#m-graphics.imagetable.__len)
+---@return integer
+function playdate.graphics.imagetable:__len() end
+
 --- Creates a new tilemap object.
 ---
 --- [Inside Playdate: playdate.graphics.tilemap.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.tilemap.new)
