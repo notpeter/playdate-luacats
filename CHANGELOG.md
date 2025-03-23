@@ -9,6 +9,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 ## Unreleased
 
 - ...
+- Remove `_Menu` (it never existed) and fix `playdate.menu:removeMenuItem`
 - Add #playdate.graphics.imagetable (`playdate.graphics.imagetable:__len`)
 
 ## [v2.7.0-luacats4] - 2025-02-22
