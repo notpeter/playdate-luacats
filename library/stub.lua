@@ -920,7 +920,7 @@ function playdate.mirrorEnded() end
 --- Returns a `playdate.menu` object. Use this to add your custom menu items.
 ---
 --- [Inside Playdate: playdate.getSystemMenu](https://sdk.play.date/Inside%20Playdate.html#f-menu.getSystemMenu)
----@return _Menu
+---@return playdate.menu
 function playdate.getSystemMenu() end
 
 --- *title* will be the title displayed by the menu item.
@@ -1813,8 +1813,8 @@ function playdate.display.getOffset() end
 --- Equivalent to `playdate->display->setFlipped()` in the C API.
 ---
 --- [Inside Playdate: playdate.display.setFlipped](https://sdk.play.date/Inside%20Playdate.html#f-display.setFlipped)
----@param x integer
----@param y integer
+---@param x boolean
+---@param y boolean
 ---@return nil
 function playdate.display.setFlipped(x, y) end
 
@@ -8780,7 +8780,7 @@ function playdate.sound.sampleplayer:copy() end
 ---
 --- [Inside Playdate: playdate.sound.sampleplayer:play](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.play)
 ---@param repeatCount? integer
----@param rate? integer
+---@param rate? number
 ---@return nil
 function playdate.sound.sampleplayer:play(repeatCount, rate) end
 
@@ -8803,7 +8803,7 @@ function playdate.sound.sampleplayer:play(repeatCount, rate) end
 ---@param when number
 ---@param vol? number
 ---@param rightvol? number
----@param rate? integer
+---@param rate? number
 ---@return nil
 function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 
@@ -8897,7 +8897,7 @@ function playdate.sound.sampleplayer:getLength() end
 --- however, this does not work with ADPCM-encoded files.
 ---
 --- [Inside Playdate: playdate.sound.sampleplayer:setRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setRate)
----@param rate integer
+---@param rate number
 ---@return nil
 function playdate.sound.sampleplayer:setRate(rate) end
 
@@ -9080,7 +9080,7 @@ function playdate.sound.fileplayer:setBufferSize(seconds) end
 --- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
 --- [Inside Playdate: playdate.sound.fileplayer:setRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setRate)
----@param rate integer
+---@param rate number
 ---@return nil
 function playdate.sound.fileplayer:setRate(rate) end
 
@@ -9212,7 +9212,7 @@ function playdate.sound.sample:getLength() end
 ---
 --- [Inside Playdate: playdate.sound.sample:play](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.play)
 ---@param repeatCount? integer
----@param rate? integer
+---@param rate? number
 ---@return nil
 function playdate.sound.sample:play(repeatCount, rate) end
 
@@ -9223,7 +9223,7 @@ function playdate.sound.sample:play(repeatCount, rate) end
 ---@param when number
 ---@param vol? number
 ---@param rightvol? number
----@param rate? integer
+---@param rate? number
 ---@return nil
 function playdate.sound.sample:playAt(when, vol, rightvol, rate) end
 

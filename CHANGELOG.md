@@ -9,8 +9,15 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 ## Unreleased
 
 - ...
+
+## [v2.7.0-luacats5] - 2025-04-01
+
+- Fix various audio rate parameter to use float instead of integer
+- Fix `playdate.display.setFlipped` to use boolean instead of integer
 - Remove `_Menu` (it never existed) and fix `playdate.menu:removeMenuItem`
 - Add #playdate.graphics.imagetable (`playdate.graphics.imagetable:__len`)
+
+Thanks [@ncocchiaro](https://github.com/ncocchiaro) for [notpeter/playdate-docdef#9](https://github.com/notpeter/playdate-docdef/pull/9)!
 
 ## [v2.7.0-luacats4] - 2025-02-22
 
@@ -304,6 +311,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.0-luacats5]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats4...v2.7.0-luacats5
 [v2.7.0-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats3...v2.7.0-luacats4
 [v2.7.0-luacats3]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats2...v2.7.0-luacats3
 [v2.7.0-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats1...v2.7.0-luacats2
