@@ -1,28 +1,14 @@
 {
-    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "diagnostics.globals": ["import"],
-    "format.defaultConfig": {
-        "indent_style": "space",
-        "indent_size": "4"
-    },
-    "runtime.builtin": {
-        "io": "disable",
-        "os": "disable",
-        "package": "disable"
-    },
-    "runtime.nonstandardSymbol": [
-        "+=",
-        "-=",
-        "*=",
-        "/=",
-        "//=",
-        "%=",
-        "<<=",
-        ">>=",
-        "&=",
-        "|=",
-        "^="
-    ],
-    "runtime.version": "Lua 5.4",
-    "workspace.library": ["./"]
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "diagnostics.globals": ["import"],
+  "format.enable": true,
+  "format.defaultConfig": {
+    "indent_style": "space",
+    "indent_size": "4"
+  },
+  "runtime.builtin": { "io": "disable", "os": "disable", "package": "disable" },
+  "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
+  "runtime.version": "Lua 5.4",
+  "workspace.preloadFileSize": 1000,
+  "workspace.library": ["./"]
 }

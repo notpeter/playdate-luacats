@@ -30,41 +30,38 @@ cd ~/code/
 git clone https://github.com/notpeter/playdate-luacats
 ```
 
-2. Add the following to `.luarc.json` in your workspace and
-   edit `workspace.library` to reflect where you cloned playdate-luacats
+2. Add the following to `.luarc.json` in your workspace and edit `workspace.library` to reflect where you cloned playdate-luacats.
 
-```
+```json
 {
-    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "diagnostics.globals": ["import"],
-    "diagnostics.severity": {
-        "duplicate-set-field": "Hint"
-    },
-    "format.defaultConfig": {
-        "indent_style": "space",
-        "indent_size": "4"
-    },
-    "runtime.builtin": {
-        "io": "disable",
-        "os": "disable",
-        "package": "disable"
-    },
-    "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
-    "runtime.version": "Lua 5.4",
-    "workspace.library": [
-        "/Users/peter/code/playdate-luacats"
-    ]
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "diagnostics.globals": ["import"],
+  "diagnostics.severity": { "duplicate-set-field": "Hint" },
+  "format.defaultConfig": { "indent_style": "space", "indent_size": "4" },
+  "runtime.builtin": { "io": "disable", "os": "disable", "package": "disable" },
+  "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
+  "runtime.version": "Lua 5.4",
+  "workspace.preloadFileSize": 1000,
+  "workspace.library": ["/Users/peter/code/playdate-luacats"]
 }
+```
+
+You can use a relative path, e.g. `../playdate-luacats`, for `workspace.library` if your project and playdate-luacats have the same parent directory.
+
+Savvy developers may alternatively use git submodules inside each project:
+
+```sh
+git submodule add https://github.com/notpeter/playdate-luacats.git library/playdate-luacats
 ```
 
 3. Enable LuaLS (Lua Language Server) support for your editor:
 
-| Editor  | Instructions                                    | Link                                                                           |
-| ------- | ----------------------------------------------- | ------------------------------------------------------------------------------ |
-| VSCode  | cmd+shift+p "install extensions", "sumneko.lua" | [sumneko.lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) |
-| NeoVim  | `require'lspconfig'.lua_ls.setup{}` in config   | [LuaLS NeoVim Install](https://luals.github.io/#neovim-install)                |
-| Sublime | cmd\_+shift+p "install package", "LSP-lua"      | [LSP-Lua Package](https://github.com/sublimelsp/LSP-lua/)                      |
-| Zed     | n/a (LuaLS is built in)                         |                                                                                |
+| Editor  | Instructions                                  | Link                                                                           |
+| ------- | --------------------------------------------- | ------------------------------------------------------------------------------ |
+| VSCode  | cmd+shift+x "sumneko.lua"                     | [sumneko.lua](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) |
+| NeoVim  | `require'lspconfig'.lua_ls.setup{}` in config | [LuaLS NeoVim Install](https://luals.github.io/#neovim-install)                |
+| Sublime | cmd\_+shift+p "install package", "LSP-lua"    | [LSP-Lua Package](https://github.com/sublimelsp/LSP-lua/)                      |
+| Zed     | cmd+shift-x "lua"                             | [Zed Lua Documentation](http://zed.dev/docs/languages/lua)                     |
 
 4. Close and re-open your editor; wait 5-10 seconds for LuaLS to initialize.
 
@@ -73,7 +70,7 @@ git clone https://github.com/notpeter/playdate-luacats
 ## Alternative Usage
 
 If you would like a minimal set of API definitions that does not include
-the English function annotations from Playdate SDK docs,
+the English documentation from Playdate SDK docs,
 you can use this minimal [stub.lua](https://github.com/notpeter/playdate-docdef/blob/main/stub.lua) from
 the [notpeter/playdate-docdef repo](https://github.com/notpeter/playdate-docdef/) instead of the
 fully annotated [stub.lua](library/stub.lua) in this repo.
@@ -272,6 +269,7 @@ This was created by Peter Tripp, but much of the credit goes to
 You can also follow me on socials:
 
 - [@notpeter on Twitter](https://twitter.com/notpeter/)
+- [@notpeter on BlueSky](https://bsky.app/profile/notpeter.bsky.social)
 - [@notpeter@hachyderm.io on Mastadon](https://hachyderm.io/@notpeter)
 - [@notnotpeter on Twitch](https://twitch.tv/notnotpeter)
 - [@notnotpeter on Discord](https://discord.com/users/notnotpeter)
@@ -280,7 +278,5 @@ You can also follow me on socials:
 ## Meta notes
 
 - As of 2023-08-05 None of the other [LuaCATS Definitions](https://github.com/LuaCATS)
-  have any tags at all, so we're ahead of the curve.
+  have any git tags at all, so we're ahead of the curve.
   Over engineering is definitely on-brand for this project.
-- As of 2023-08-05 [Google q=luacats1](https://www.google.com/search?q=luacats1)
-  yields zero results.
