@@ -8130,14 +8130,24 @@ function playdate.network.http:setConnectTimeout(seconds) end
 ---@return string error?
 function playdate.network.http:get(path, headers) end
 
---- Opens the connection to the server if it’s not already open (e.g. from a previous request
---- with keep-alive enabled) and sends a POST request with the given path, additional *headers* if
+--- Opens the connection to the server if it’s not already open (e.g. from a previous request with
+--- keep-alive enabled) and sends the given request with the given path, additional *headers* if
 --- specified, and the provided *data*. The *headers* argument can either be a string containing
 --- all of the headers to send (with newlines between individual headers), an array of strings, or a
---- table of key/value pairs.
+--- table of key/value pairs. If there is only one argument after *path* it is assumed to be *data*.
 ---
 --- If the request is successfully queued, the function returns `true`. On error, the function
 --- returns `false` and a string indicating the error.
+---
+--- [Inside Playdate: playdate.network.http:post](https://sdk.play.date/Inside%20Playdate.html#m-network.http.query)
+---@param path string
+---@param headers? table<string, string>
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.http:post(path, headers, data) end
+
+--- Equivalent to calling `playdate.network.http:query()` with *method* equal to `POST`.
 ---
 --- [Inside Playdate: playdate.network.http:post](https://sdk.play.date/Inside%20Playdate.html#m-network.http.post)
 ---@param path string
@@ -11428,6 +11438,12 @@ function playdate.math.logic.nxor(bool1, bool2) end
 ---@param bool2 boolean
 ---@return boolean
 function playdate.math.logic.xor(bool1, bool2) end
+
+---@param path string
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.http:post(path, data) end
 
 ---@param boardName string
 ---@param value integer
