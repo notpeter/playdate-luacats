@@ -306,7 +306,7 @@ playdate.sound.sampleplayer = {}
 ---@class playdate.sound.sequence
 playdate.sound.sequence = {}
 
----@class playdate.sound.signal
+---@class playdate.sound.signal : playdate.sound.signalvalue
 playdate.sound.signal = {}
 
 ---@class playdate.sound.signalvalue
@@ -627,9 +627,6 @@ local _ServerStatus = {}
 ---@class _Signal : playdate.sound.signal
 local _Signal = {}
 
----@class _SignalValue : playdate.sound.signalvalue
-local _SignalValue = {}
-
 ---@class _Size : playdate.geometry.size
 ---@field width number
 ---@field height number
@@ -644,7 +641,7 @@ local _SoundControlEvent = {}
 ---@class _SoundEffect : playdate.sound.effect
 local _SoundEffect = {}
 
----@class _SoundSource
+---@class _SoundSource : playdate.sound.source
 local _SoundSource = {}
 
 ---@class _SoundTrackNote
