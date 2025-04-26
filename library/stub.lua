@@ -321,9 +321,6 @@ playdate.sound.synth = {}
 ---@class playdate.sound.track
 playdate.sound.track = {}
 
----@class playdate.sound.track
-playdate.sound.track = {}
-
 ---@class playdate.sound.twopolefilter : _SoundEffect
 playdate.sound.twopolefilter = {}
 
