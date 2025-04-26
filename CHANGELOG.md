@@ -12,6 +12,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## [v2.7.0-luacats6] - 2025-04-13
 
+- No changes in PlaydateSDK 2.7.1 or 2.7.0
 - Update for PlaydateSDK 2.7.0-beta11
 - Add `workspace.preloadFileSize` value of 1000 to suggested .luarc.json.  The default is 500KB and we now exceed that (`v2.7.0-luacats1` was 500024 bytes).
 
