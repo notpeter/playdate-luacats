@@ -10,6 +10,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 - Remove duplicated `playdate.sound.track`
 - Add playdate.network.http:query (missing from docs)
+- Fixed playdate.graphics.sprite:setStencilPattern
 
 ## [v2.7.0-luacats6] - 2025-04-13
 
