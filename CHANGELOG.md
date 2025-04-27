@@ -9,6 +9,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 ## Unreleased
 
 - Remove duplicated `playdate.sound.track`
+- Add playdate.network.http:query (missing from docs)
 
 ## [v2.7.0-luacats6] - 2025-04-13
 

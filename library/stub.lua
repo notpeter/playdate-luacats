@@ -8133,13 +8133,14 @@ function playdate.network.http:get(path, headers) end
 --- If the request is successfully queued, the function returns `true`. On error, the function
 --- returns `false` and a string indicating the error.
 ---
---- [Inside Playdate: playdate.network.http:post](https://sdk.play.date/Inside%20Playdate.html#m-network.http.query)
+--- [Inside Playdate: playdate.network.http:query](https://sdk.play.date/Inside%20Playdate.html#m-network.http.query)
+---@param method string
 ---@param path string
 ---@param headers? table<string, string>
----@param data string
+---@param data? string
 ---@return boolean success
 ---@return string error?
-function playdate.network.http:post(path, headers, data) end
+function playdate.network.http:query(method, path, headers, data) end
 
 --- Equivalent to calling `playdate.network.http:query()` with *method* equal to `POST`.
 ---
@@ -11438,6 +11439,13 @@ function playdate.math.logic.xor(bool1, bool2) end
 ---@return boolean success
 ---@return string error?
 function playdate.network.http:post(path, data) end
+
+---@param method string
+---@param path string
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.http:query(method, path, data) end
 
 ---@param boardName string
 ---@param value integer
