@@ -10625,7 +10625,7 @@ function playdate.sound.twopolefilter:setMixMod(signal) end
 --- no effect on shelf type filters.
 ---
 --- [Inside Playdate: playdate.sound.twopolefilter:setResonance](https://sdk.play.date/Inside%20Playdate.html#m-sound.twopolefilter.setResonance)
----@param r _Rect
+---@param r number
 ---@return nil
 function playdate.sound.twopolefilter:setResonance(r) end
 
