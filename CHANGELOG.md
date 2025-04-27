@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.7.1-luacats1] - 2025-04-27
+
+- Add `--deprecated` to `playdate.graphics.clearStencilImage`
 - Remove duplicated `playdate.sound.track`
 - Add playdate.network.http:query (missing from docs)
 - Fixed playdate.graphics.sprite:setStencilPattern
@@ -319,6 +322,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats6...v2.7.1-luacats1
 [v2.7.0-luacats6]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats5...v2.7.0-luacats6
 [v2.7.0-luacats5]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats4...v2.7.0-luacats5
 [v2.7.0-luacats4]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats3...v2.7.0-luacats4
