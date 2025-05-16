@@ -8535,8 +8535,9 @@ function playdate.readAccelerometer() end
 function playdate.resetElapsedTime() end
 
 --- Reinitializes the Playdate runtime and restarts the currently running game. The optional string
---- `arg` passed in is available after restart in playdate.argv as if it had been passed in on the
---- command line when launching the simulator.
+--- `arg` passed in is available after restart in playdate.argv as if it had been passed in on
+--- the command line when launching the simulator. The argv string will be split on spaces - quote
+--- substrings to prevent splitting.
 ---
 --- [Inside Playdate: playdate.restart](https://sdk.play.date/Inside%20Playdate.html#f-restart)
 ---@param arg? string[]

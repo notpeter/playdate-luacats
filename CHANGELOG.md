@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Update for PlaydateSDK v2.7.3-beta2.
+- Update docstring noting argv quoting / space splitting
+
 ## [v2.7.1.luacats2] - 2025-04-27
 
 - Fix `playdate.sound.twopolefilter:setResonance(r)` (thanks @niccowang)
