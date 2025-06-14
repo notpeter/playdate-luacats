@@ -3695,7 +3695,8 @@ function playdate.graphics.animation.blinker:update() end
 
 --- Creates a new animation object.
 ---
---- * imageTable must be a playdate.graphics.imagetable.
+--- * imageTable must be a playdate.graphics.imagetable or an array-style table of
+--- playdate.graphics.images.
 ---
 --- The following properties can be read or set directly, and have these defaults:
 ---

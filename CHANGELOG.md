@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.7.4-luacats1] - 2025-06-14
+
+- Update for PlaydateSDK v2.7.4
 - Update for PlaydateSDK v2.7.3-beta2.
 - Update docstring noting argv quoting / space splitting
 
@@ -329,6 +332,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.4-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.1-luacats2...v2.7.4-luacats1
 [v2.7.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.7.1-luacats1...v2.7.1-luacats2
 [v2.7.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats6...v2.7.1-luacats1
 [v2.7.0-luacats6]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats5...v2.7.0-luacats6
