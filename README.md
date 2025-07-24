@@ -1,6 +1,6 @@
 # LuaCATS for Panic PlaydateSDK
 
-<img width="359" alt="AI Generated Image of cat holding a game controller" src="https://github.com/notpeter/playdate-luacats/assets/145113/4be26c10-42b2-4139-a926-31fffcf97f59">
+<img width="429" alt="playdate-LuaCATS logo" src="https://github.com/user-attachments/assets/cd94b9b4-b65a-4033-9bd8-179660fad527" />
 
 ## Unofficial Definitions for the Panic Playdate Lua SDK.
 
