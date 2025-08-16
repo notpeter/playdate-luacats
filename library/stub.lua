@@ -3700,7 +3700,7 @@ function playdate.graphics.animation.blinker:update() end
 ---
 --- The following properties can be read or set directly, and have these defaults:
 ---
---- * delay : the value of delay, if passed, or 100ms (the delay before moving to the next frame)
+--- * interval : the value of interval, if passed, or 100ms (the elapsed time before advancing to the next imageTable frame)
 --- * startFrame : 1 (the value the object resets to when the loop completes)
 --- * endFrame : the number of images in imageTable if passed, or 1 (the last frame value in the loop)
 --- * frame : 1 (the current frame counter)
@@ -3709,11 +3709,11 @@ function playdate.graphics.animation.blinker:update() end
 --- * paused : false (paused loops don’t change their frame value)
 ---
 --- [Inside Playdate: playdate.graphics.animation.loop.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new)
----@param delay? number
+---@param interval? number
 ---@param imageTable _ImageTable
 ---@param shouldLoop? boolean
 ---@return _AnimationLoop
-function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
+function playdate.graphics.animation.loop.new(interval, imageTable, shouldLoop) end
 
 --- Draw’s the loop’s current image at *x*, *y*.
 ---
@@ -5492,6 +5492,12 @@ function playdate.graphics.image:setMaskImage(maskImage) end
 function playdate.graphics.image:transformedImage(xform) end
 
 --- Returns an image created by applying a VCR pause effect to the calling image.
+---
+--- To add a VCR effect to a single image, call this function once on the source image; the function
+--- will return a distorted version of the source image. To add a VCR effect to a series of frames /
+--- video, call this function on every frame and display each returned image. (This function uses
+--- an internal random number to determine the appearance of the effect on each frame, so the effect
+--- will vary from frame to frame in a way that makes it appear like "live" paused video.)
 ---
 --- [Inside Playdate: playdate.graphics.image:vcrPauseFilterImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.vcrPauseFilterImage)
 ---@return _Image
@@ -7899,6 +7905,11 @@ function playdate.mirrorEnded() end
 
 --- Called when the device is connected to Mirror.
 ---
+--- In rare situations, Mirror may have trouble keeping up with games running at a high framerate
+--- (> 40 fps). If you find this consistently happens to your game, you can optionally use these
+--- callbacks to lower the amount of computation or drawing you do so as to give more time to
+--- Playdate OS on each frame, improving your user’s experience while playing your game via Mirror.
+---
 --- [Inside Playdate: playdate.mirrorStarted](https://sdk.play.date/Inside%20Playdate.html#c-mirrorStarted)
 ---@return nil
 function playdate.mirrorStarted() end
@@ -9297,9 +9308,9 @@ function playdate.sound.fileplayer:setRate(rate) end
 ---@return nil
 function playdate.sound.fileplayer:setRateMod(signal) end
 
---- By default, the fileplayer stops playback if it can’t provide data fast enough. Setting the flag
---- to *false* tells the fileplayer to restart playback (after an audible stutter) as soon as data
---- is available.
+--- By default, if the fileplayer runs out of data it does not stop playback but instead restarts
+--- (after an audible stutter) as soon as data becomes available. Setting the flag to *true* changes
+--- this behavior so that it stops playback and calls the fileplayer’s finish callback, if set.
 ---
 --- [Inside Playdate: playdate.sound.fileplayer:setStopOnUnderrun](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setStopOnUnderrun)
 ---@param flag boolean
@@ -10420,7 +10431,7 @@ function playdate.sound.synth:setWaveform(waveform) end
 --- `ysize` gives the number of cells in the y direction.
 ---
 --- The synth’s "position" in the wavetable is set manually with setParameter() or automated with
---- setParameterModulator(). In some cases it’s easier to use a parameter that matches the waveform
+--- setParameterMod(). In some cases it’s easier to use a parameter that matches the waveform
 --- position in the table, in others (notably when using envelopes and lfos) it’s more convenient to
 --- use a 0-1 scale, so there’s some redundancy here. Parameters are
 ---
