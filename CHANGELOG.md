@@ -8,6 +8,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v2.7.6-luacats1] - 2025-08-17
+
+- Update for PlaydateSDK v2.7.5
+- Update for PlaydateSDK v2.7.6
+- First parameter toplaydate.graphics.animation.loop.new renamed from `delay` to `interval`
+
 ## [v2.7.4-luacats1] - 2025-06-14
 
 - Update for PlaydateSDK v2.7.4
@@ -332,6 +338,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v2.7.6-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.4-luacats1...v2.7.6-luacats1
 [v2.7.4-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.1-luacats2...v2.7.4-luacats1
 [v2.7.1-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v2.7.1-luacats1...v2.7.1-luacats2
 [v2.7.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.0-luacats6...v2.7.1-luacats1
