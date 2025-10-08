@@ -7417,7 +7417,7 @@ function playdate.graphics.sprite:updatesEnabled() end
 ---@return _TileMap
 function playdate.graphics.tilemap.new() end
 
---- Draws the tile map at screen coordinate (*x*, *y*).
+--- Draws the tilemap at screen coordinate (*x*, *y*).
 ---
 --- *sourceRect*, if specified, will cause only the part of the tilemap within sourceRect
 --- to be drawn. *sourceRect* should be relative to the tilemap’s bounds and can be a
@@ -7430,7 +7430,7 @@ function playdate.graphics.tilemap.new() end
 ---@return nil
 function playdate.graphics.tilemap:draw(x, y, sourceRect) end
 
---- Draws the tilemap ignoring the currently-set `drawOffset`.
+--- Draws the tilemap ignoring the currently set `drawOffset`.
 ---
 --- [Inside Playdate: playdate.graphics.tilemap:drawIgnoringOffset](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.drawIgnoringOffset)
 ---@param x integer
@@ -7468,12 +7468,16 @@ function playdate.graphics.tilemap:getCollisionRects(emptyIDs) end
 --- Returns the size of the tilemap in pixels; that is, the size of the image multiplied by the
 --- number of rows and columns in the map. Returns multiple values (*width*, *height*).
 ---
+--- The tilemap size in pixels is determined by the tile size of the imagetable it is referencing,
+--- and the width of the tilemap set via :setTiles() or :setSize(). It is not otherwise
+--- configurable.
+---
 --- [Inside Playdate: playdate.graphics.tilemap:getPixelSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getPixelSize)
 ---@return integer width
 ---@return integer height
 function playdate.graphics.tilemap:getPixelSize() end
 
---- Returns the size of the tile map, in tiles, as a pair, (*width*, *height*).
+--- Returns the size of the tilemap, in tiles, as a pair, (*width*, *height*).
 ---
 --- [Inside Playdate: playdate.graphics.tilemap:getSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getSize)
 ---@return integer width
@@ -7492,7 +7496,10 @@ function playdate.graphics.tilemap:getSize() end
 ---@return number?
 function playdate.graphics.tilemap:getTileAtPosition(x, y) end
 
---- Returns multiple values (*width*, *height*), the pixel width and height of an individual tile.
+--- Returns two values (*width*, *height*), the pixel width and height of an individual tile.
+---
+--- These values are determined by the tile size of the associated imagetable and are not otherwise
+--- configurable.
 ---
 --- [Inside Playdate: playdate.graphics.tilemap:getTileSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTileSize)
 ---@return integer width
@@ -7504,7 +7511,7 @@ function playdate.graphics.tilemap:getTileSize() end
 --- --- *data* is a flat, one-dimensional array-like table containing index values to the tilemap’s
 --- imagetable.
 --- ---
---- ---  *width* is the width of the tile map, in number of tiles.
+--- ---  *width* is the width of the tilemap, in number of tiles.
 ---
 --- [Inside Playdate: playdate.graphics.tilemap:getTiles](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.getTiles)
 ---@return integer[] data
@@ -7520,6 +7527,8 @@ function playdate.graphics.tilemap:setImageTable(table) end
 
 --- Sets the tilemap’s width and height, in number of tiles.
 ---
+--- The tilemap’s width can also be configured in a call to :setTiles().
+---
 --- [Inside Playdate: playdate.graphics.tilemap:setSize](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setSize)
 ---@param width integer
 ---@param height integer
@@ -7528,6 +7537,9 @@ function playdate.graphics.tilemap:setSize(width, height) end
 
 --- Sets the index of the tile at tilemap position (*x*, *y*). *index* is the (1-based) index of the
 --- image in the tilemap’s playdate.graphics.imagetable.
+---
+--- This function is especially useful for making small adjustments to existing tilemaps&nbsp;—
+--- &nbsp;say, if the state of a tile changes during gameplay.
 ---
 --- Tilemaps and imagetables, like Lua arrays, are 1-based, not 0-based.
 --- `tilemap:setTileAtPosition(1, 1, 2)` will set the index of the tile in the top-leftmost position
@@ -7542,6 +7554,9 @@ function playdate.graphics.tilemap:setTileAtPosition(x, y, index) end
 
 --- Sets the tilemap’s width to *width*, then populates the tilemap with *data*, which should be a
 --- flat, one-dimensional array-like table containing index values to the tilemap’s imagetable.
+---
+--- This function is especially useful for configuring a large number of tiles at once — say when
+--- first loading a game level.
 ---
 --- [Inside Playdate: playdate.graphics.tilemap:setTiles](https://sdk.play.date/Inside%20Playdate.html#m-graphics.tilemap.setTiles)
 ---@param data integer[]
