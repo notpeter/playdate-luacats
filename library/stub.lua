@@ -6042,8 +6042,10 @@ function playdate.graphics.setScreenClipRect(rect) end
 ---@return nil
 function playdate.graphics.setScreenClipRect(x, y, width, height) end
 
---- Sets the current stencil to the given image. If *tile* is set, the the stencil will be tiled; in
---- this case, the image width must be a multiple of 32 pixels.
+--- Sets the current stencil to the given image. While the stencil is active, drawing functions will
+--- only draw pixels where the stencil is white and nothing is drawn where the stencil is black. If
+--- *tile* is set, the the stencil will be tiled; in this case, the image width must be a multiple
+--- of 32 pixels.
 ---
 --- Equivalent to `playdate->graphics->setStencilImage()` in the C API.
 ---
@@ -7262,9 +7264,11 @@ function playdate.graphics.sprite:setScale(scale, yScale) end
 ---@return nil
 function playdate.graphics.sprite:setSize(width, height) end
 
---- Specifies a stencil image to be set on the frame buffer before the sprite is drawn. If *tile*
---- is set, the the stencil will be tiled; in this case, the image width must be a multiple of 32
---- pixels.
+--- Specifies a stencil image to be set before the sprite is drawn. As with
+--- playdate.graphics.setStencilImage(), the sprite pixels will be drawn where the stencil is white
+--- and nothing drawn where the stencil is black. Note that the stencil is attached to the frame
+--- buffer (i.e., the screen), not the sprite—it does not move along with the sprite. If *tile* is
+--- set, the stencil will be tiled; in this case, the image width must be a multiple of 32 pixels.
 ---
 --- [Inside Playdate: playdate.graphics.sprite:setStencilImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setStencilImage)
 ---@param stencil _Image
