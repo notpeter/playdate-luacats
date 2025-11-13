@@ -8,6 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Fixed return for addWallSprites (thanks [Franchovy](https://github.com/Franchovy))
+
 ## [v3.0.1-luacats1] - 2025-11-06
 
 - Update for PlaydateSDK v3.0.1
