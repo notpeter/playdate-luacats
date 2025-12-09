@@ -8685,7 +8685,7 @@ function playdate.setGCScaling(min, max) end
 --- To remove a previously-set menu image, pass `nil` for the *image* argument.
 ---
 --- [Inside Playdate: playdate.setMenuImage](https://sdk.play.date/Inside%20Playdate.html#f-setMenuImage)
----@param image _Image
+---@param image _Image?
 ---@param xOffset? integer
 ---@return nil
 function playdate.setMenuImage(image, xOffset) end
@@ -10085,7 +10085,7 @@ function playdate.sound.sequence.new(midi_path) end
 ---
 --- [Inside Playdate: playdate.sound.sequence:addTrack](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.addTrack)
 ---@param track? _Track
----@return nil
+---@return _Track?
 function playdate.sound.sequence:addTrack(track) end
 
 --- Sends an allNotesOff() message to each track’s instrument.
