@@ -8,6 +8,12 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v3.0.2-luacats1] - 2025-12-12
+
+- Update for PlaydateSDK v3.0.2
+- Fixed `playdate.keyboard.textChangedCallback()` (removed `ok` parameter)
+- Fixed `playdate.getServerTime(time, error)` (change `time` to `time?`)
+- Added `:setOffset` and `:setScale` to `playdate.sound.controlsignal`, `playdate.sound.lfo` and `playdate.sound.signalvalue`
 - Fixed return for addWallSprites (thanks [Franchovy](https://github.com/Franchovy))
 
 ## [v3.0.1-luacats1] - 2025-11-06
@@ -348,6 +354,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v3.0.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.1-luacats1...v3.0.2-luacats1
 [v3.0.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.6-luacats1...v3.0.1-luacats1
 [v3.0.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.0-luacats1...v3.0.0-luacats1
 [v2.7.6-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.4-luacats1...v2.7.6-luacats1
