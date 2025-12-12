@@ -3566,7 +3566,7 @@ function playdate.getSecondsSinceEpoch() end
 --- "..time)     else print("server error: "..error)     end end)`
 ---
 --- [Inside Playdate: playdate.getServerTime](https://sdk.play.date/Inside%20Playdate.html#f-getServerTime)
----@param callback fun(time: string, error?: string)
+---@param callback fun(time?: string, error?: string)
 function playdate.getServerTime(callback) end
 
 --- Returns a table containing percentages of time spent in each system task over the last interval,
@@ -7760,9 +7760,8 @@ function playdate.keyboard.show(text) end
 --- If set, this function will be called every time a character is entered or deleted.
 ---
 --- [Inside Playdate: playdate.keyboard.textChangedCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.textChangedCallback)
----@param ok boolean
 ---@return nil
-function playdate.keyboard.textChangedCallback(ok) end
+function playdate.keyboard.textChangedCallback() end
 
 --- Returns the pixel width of the keyboard.
 ---
@@ -8567,8 +8566,8 @@ function playdate.resetElapsedTime() end
 
 --- Reinitializes the Playdate runtime and restarts the currently running game. The optional string
 --- `arg` passed in is available after restart in playdate.argv as if it had been passed in on
---- the command line when launching the simulator. The argv string will be split on spaces - quote
---- substrings to prevent splitting.
+--- the command line when launching the simulator. The `arg` string will be split on spaces, but
+--- respecting quotes, when added to the argv list.
 ---
 --- [Inside Playdate: playdate.restart](https://sdk.play.date/Inside%20Playdate.html#f-restart)
 ---@param arg? string[]
@@ -8905,7 +8904,9 @@ function playdate.sound.controlsignal.new() end
 
 --- `addEvent` is a simpler way of adding events one at a time than setting the entire *events*
 --- table. Arguments are either the values themselves in the given order, or a table containing
---- values for `step`, `value`, and optionally `interpolate`.
+--- values for `step`, `value`, and optionally `interpolate`. If `interpolate` is set, the signal’s
+--- output value is linearly interpolated from `value` at step `step` to the next event’s value at
+--- its given step.
 ---
 --- [Inside Playdate: playdate.sound.controlsignal:addEvent](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2)
 ---@param event table
@@ -8914,7 +8915,9 @@ function playdate.sound.controlsignal:addEvent(event) end
 
 --- `addEvent` is a simpler way of adding events one at a time than setting the entire *events*
 --- table. Arguments are either the values themselves in the given order, or a table containing
---- values for `step`, `value`, and optionally `interpolate`.
+--- values for `step`, `value`, and optionally `interpolate`. If `interpolate` is set, the signal’s
+--- output value is linearly interpolated from `value` at step `step` to the next event’s value at
+--- its given step.
 ---
 --- [Inside Playdate: playdate.sound.controlsignal:addEvent](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.addEvent2)
 ---@param step integer
@@ -8949,6 +8952,20 @@ function playdate.sound.controlsignal:getValue() end
 ---@param number integer
 ---@return nil
 function playdate.sound.controlsignal:setControllerType(number) end
+
+--- Sets the offset value for the control signal.
+---
+--- [Inside Playdate: playdate.sound.controlsignal:setOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.setOffset)
+---@param offset number
+---@return nil
+function playdate.sound.controlsignal:setOffset(offset) end
+
+--- Sets the scale value for the control signal.
+---
+--- [Inside Playdate: playdate.sound.controlsignal:setScale](https://sdk.play.date/Inside%20Playdate.html#m-sound.controlsignal.setScale)
+---@param scale number
+---@return nil
+function playdate.sound.controlsignal:setScale(scale) end
 
 --- Creates a new delay line effect, with the given length (in seconds).
 ---
@@ -11498,8 +11515,24 @@ function playdate.scoreboards.getScores(boardID, callback) end
 ---@return nil
 function playdate.simulator.openURL(url) end
 
+---@param offset number
+---@return nil
+function playdate.sound.lfo:setOffset(offset) end
+
+---@param scale number
+---@return nil
+function playdate.sound.lfo:setScale(scale) end
+
 ---@return number
 function playdate.sound.signalvalue:getValue() end
+
+---@param offset number
+---@return nil
+function playdate.sound.signalvalue:setOffset(offset) end
+
+---@param scale number
+---@return nil
+function playdate.sound.signalvalue:setScale(scale) end
 
 ---@deprecated since 2.1.0-beta1
 ---@return nil
