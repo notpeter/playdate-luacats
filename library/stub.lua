@@ -3436,7 +3436,8 @@ function playdate.getButtonState() end
 --- local change, acceleratedChange = playdate.getCrankChange()
 --- ```
 --- [Inside Playdate: playdate.getCrankChange](https://sdk.play.date/Inside%20Playdate.html#f-getCrankChange)
----@return number
+---@return number change
+---@return number acceleratedChange
 function playdate.getCrankChange() end
 
 --- Returns the absolute position of the crank (in degrees). Zero is pointing straight up parallel
