@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Improved scraper / LuaCATS in [playdate-docdef](https://github.com/notpeter/playdate-docdef). Migrated from Pest.rs to nom. Nearly identical output.
+- Improved formatting (e.g. preserve italics in lists
+
 ## [v3.0.2-luacats1] - 2025-12-12
 
 - Update for PlaydateSDK v3.0.2
