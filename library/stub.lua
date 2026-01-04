@@ -914,12 +914,12 @@ function playdate.apiVersion() end
 ---
 --- *button* should be one of the constants:
 ---
---- * playdate.kButtonA
---- * playdate.kButtonB
---- * playdate.kButtonUp
---- * playdate.kButtonDown
---- * playdate.kButtonLeft
---- * playdate.kButtonRight
+--- * *playdate.kButtonA*
+--- * *playdate.kButtonB*
+--- * *playdate.kButtonUp*
+--- * *playdate.kButtonDown*
+--- * *playdate.kButtonLeft*
+--- * *playdate.kButtonRight*
 ---
 --- Or one of the strings "a", "b", "up", "down", "left", "right".
 ---
@@ -1284,13 +1284,13 @@ function playdate.downButtonUp() end
 ---@return nil
 function playdate.drawFPS(x, y) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1301,13 +1301,13 @@ function playdate.drawFPS(x, y) end
 ---@return number
 function playdate.easingFunctions.inBack(t, b, c, d, s) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1317,13 +1317,13 @@ function playdate.easingFunctions.inBack(t, b, c, d, s) end
 ---@return number
 function playdate.easingFunctions.inBounce(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1333,13 +1333,13 @@ function playdate.easingFunctions.inBounce(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inCirc(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1349,13 +1349,13 @@ function playdate.easingFunctions.inCirc(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inCubic(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1367,13 +1367,13 @@ function playdate.easingFunctions.inCubic(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inElastic(t, b, c, d, a, p) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1383,13 +1383,13 @@ function playdate.easingFunctions.inElastic(t, b, c, d, a, p) end
 ---@return number
 function playdate.easingFunctions.inExpo(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1400,13 +1400,13 @@ function playdate.easingFunctions.inExpo(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutBack(t, b, c, d, s) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1416,13 +1416,13 @@ function playdate.easingFunctions.inOutBack(t, b, c, d, s) end
 ---@return number
 function playdate.easingFunctions.inOutBounce(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1432,13 +1432,13 @@ function playdate.easingFunctions.inOutBounce(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutCirc(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1448,13 +1448,13 @@ function playdate.easingFunctions.inOutCirc(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutCubic(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1466,13 +1466,13 @@ function playdate.easingFunctions.inOutCubic(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutElastic(t, b, c, d, a, p) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1482,13 +1482,13 @@ function playdate.easingFunctions.inOutElastic(t, b, c, d, a, p) end
 ---@return number
 function playdate.easingFunctions.inOutExpo(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1498,13 +1498,13 @@ function playdate.easingFunctions.inOutExpo(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutQuad(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1514,13 +1514,13 @@ function playdate.easingFunctions.inOutQuad(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutQuart(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1530,13 +1530,13 @@ function playdate.easingFunctions.inOutQuart(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutQuint(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inOutSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1546,13 +1546,13 @@ function playdate.easingFunctions.inOutQuint(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inOutSine(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1562,13 +1562,13 @@ function playdate.easingFunctions.inOutSine(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inQuad(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1578,13 +1578,13 @@ function playdate.easingFunctions.inQuad(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inQuart(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1594,13 +1594,13 @@ function playdate.easingFunctions.inQuart(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inQuint(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.inSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1610,13 +1610,13 @@ function playdate.easingFunctions.inQuint(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.inSine(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.linear](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1626,13 +1626,13 @@ function playdate.easingFunctions.inSine(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.linear(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1643,13 +1643,13 @@ function playdate.easingFunctions.linear(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outBack(t, b, c, d, s) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1659,13 +1659,13 @@ function playdate.easingFunctions.outBack(t, b, c, d, s) end
 ---@return number
 function playdate.easingFunctions.outBounce(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1675,13 +1675,13 @@ function playdate.easingFunctions.outBounce(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outCirc(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1691,13 +1691,13 @@ function playdate.easingFunctions.outCirc(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outCubic(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1709,13 +1709,13 @@ function playdate.easingFunctions.outCubic(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outElastic(t, b, c, d, a, p) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1725,13 +1725,13 @@ function playdate.easingFunctions.outElastic(t, b, c, d, a, p) end
 ---@return number
 function playdate.easingFunctions.outExpo(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInBack](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1742,13 +1742,13 @@ function playdate.easingFunctions.outExpo(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInBack(t, b, c, d, s) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInBounce](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1758,13 +1758,13 @@ function playdate.easingFunctions.outInBack(t, b, c, d, s) end
 ---@return number
 function playdate.easingFunctions.outInBounce(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInCirc](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1774,13 +1774,13 @@ function playdate.easingFunctions.outInBounce(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInCirc(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInCubic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1790,13 +1790,13 @@ function playdate.easingFunctions.outInCirc(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInCubic(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInElastic](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1808,13 +1808,13 @@ function playdate.easingFunctions.outInCubic(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInElastic(t, b, c, d, a, p) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInExpo](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1824,13 +1824,13 @@ function playdate.easingFunctions.outInElastic(t, b, c, d, a, p) end
 ---@return number
 function playdate.easingFunctions.outInExpo(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1840,13 +1840,13 @@ function playdate.easingFunctions.outInExpo(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInQuad(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1856,13 +1856,13 @@ function playdate.easingFunctions.outInQuad(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInQuart(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1872,13 +1872,13 @@ function playdate.easingFunctions.outInQuart(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInQuint(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outInSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1888,13 +1888,13 @@ function playdate.easingFunctions.outInQuint(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outInSine(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outQuad](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1904,13 +1904,13 @@ function playdate.easingFunctions.outInSine(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outQuad(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outQuart](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1920,13 +1920,13 @@ function playdate.easingFunctions.outQuad(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outQuart(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outQuint](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -1936,13 +1936,13 @@ function playdate.easingFunctions.outQuart(t, b, c, d) end
 ---@return number
 function playdate.easingFunctions.outQuint(t, b, c, d) end
 
---- * t is elapsed time
---- * b is the beginning value
---- * c is the change (or end value - start value)
---- * d is the duration
---- * a - amplitude
---- * p - period parameter
---- * s - amount of "overshoot"
+--- * *t* is elapsed time
+--- * *b* is the beginning value
+--- * *c* is the change (or end value - start value)
+--- * *d* is the duration
+--- * *a* - amplitude
+--- * *p* - period parameter
+--- * *s* - amount of "overshoot"
 ---
 --- [Inside Playdate: playdate.easingFunctions.outSine](https://sdk.play.date/Inside%20Playdate.html#f-easingFunctions)
 ---@param t number
@@ -2033,10 +2033,10 @@ function playdate.file.file:readline() end
 --- Sets the file read/write position to the given byte offset. `whence`, if given is one of the
 --- following:
 ---
---- * playdate.file.kSeekSet: offset is an absolute offset from the start of the file
---- * playdate.file.kSeekFromCurrent: offset is relative to the current position
---- * playdate.file.kSeekFromEnd: offset is an offset from the end of the file (negative values are
---- before the end, positive are past the end)
+--- * **playdate.file.kSeekSet**: `offset` is an absolute offset from the start of the file
+--- * **playdate.file.kSeekFromCurrent**: `offset` is relative to the current position
+--- * **playdate.file.kSeekFromEnd**: `offset` is an offset from the end of the file (negative
+--- values are before the end, positive are past the end)
 ---
 --- Equivalent to `playdate->file->seek()` in the C API.
 ---
@@ -2129,12 +2129,12 @@ function playdate.file.mkdir(path) end
 
 --- Returns the modification date/time of the file at the given path, as a table with keys:
 ---
---- * year: 4-digit year (until 10,000 AD)
---- * month: month of the year, where 1 is January and 12 is December
---- * day: day of the month, 1 - 31
---- * hour: 0 - 23
---- * minute: 0 - 59
---- * second: 0 - 59 (or 60 on a leap second)
+--- * *year*: 4-digit year (until 10,000 AD)
+--- * *month*: month of the year, where 1 is January and 12 is December
+--- * *day*: day of the month, 1 - 31
+--- * *hour*: 0 - 23
+--- * *minute*: 0 - 59
+--- * *second*: 0 - 59 (or 60 on a leap second)
 ---
 --- [Inside Playdate: playdate.file.modtime](https://sdk.play.date/Inside%20Playdate.html#f-file.modtime)
 ---@param path string
@@ -2144,10 +2144,10 @@ function playdate.file.modtime(path) end
 --- Returns a playdate.file.file corresponding to the opened file. *mode* should be one of the
 --- following:
 ---
---- * playdate.file.kFileRead: the file is opened for reading; the system first looks in the /Data/{bundleid} folder for the given file, then in the game’s pdx folder if it isn’t found
---- * playdate.file.kFileWrite: the file is created if it doesn’t exist, truncated to zero length if it does, then opened for writing
---- * playdate.file.kFileAppend: the file is created if it doesn’t exist, opened for writing, with
---- new data written to the end of the file
+--- * **playdate.file.kFileRead**: the file is opened for reading; the system first looks in the /Data/{bundleid} folder for the given file, then in the game’s pdx folder if it isn’t found
+--- * **playdate.file.kFileWrite**: the file is created if it doesn’t exist, truncated to zero length if it does, then opened for writing
+--- * **playdate.file.kFileAppend**: the file is created if it doesn’t exist, opened for writing,
+--- with new data written to the end of the file
 ---
 --- If *mode* is not specified, the default is *playdate.file.kFileRead*.
 ---
@@ -3115,10 +3115,10 @@ function playdate.geometry.rect:copy() end
 ---
 --- *flip* should be one of the following constants:
 ---
---- * playdate.geometry.kUnflipped
---- * playdate.geometry.kFlippedX
---- * playdate.geometry.kFlippedY
---- * playdate.geometry.kFlippedXY
+--- * *playdate.geometry.kUnflipped*
+--- * *playdate.geometry.kFlippedX*
+--- * *playdate.geometry.kFlippedY*
+--- * *playdate.geometry.kFlippedXY*
 ---
 --- [Inside Playdate: playdate.geometry.rect:flipRelativeToRect](https://sdk.play.date/Inside%20Playdate.html#m-geometry.rect.flipRelativeToRect)
 ---@param r2 _Rect
@@ -3528,9 +3528,9 @@ function playdate.getGMTTime() end
 
 --- Returns a table holding booleans with the following keys:
 ---
---- * charging: The battery is actively being charged
---- * USB: There is a powered USB cable connected
---- * screws: There is 5V being applied to the corner screws (via the dock, for example)
+--- * *charging*: The battery is actively being charged
+--- * *USB*: There is a powered USB cable connected
+--- * *screws*: There is 5V being applied to the corner screws (via the dock, for example)
 ---
 --- [Inside Playdate: playdate.getPowerStatus](https://sdk.play.date/Inside%20Playdate.html#f-getPowerStatus)
 ---@return _PowerStatus
@@ -3562,9 +3562,13 @@ function playdate.getSecondsSinceEpoch() end
 --- function passed in. The callback function is given two arguments: the time (as a string, to
 --- avoid 32-bit rollover) if the query was successful, otherwise nil and an error string.
 ---
---- `playdate.getServerTime(function(time, error)     if time ~= nil then print("server time:
---- "..time)     else print("server error: "..error)     end end)`
----
+--- ```
+--- playdate.getServerTime(function(time, error)
+---     if time ~= nil then print("server time: "..time)
+---     else print("server error: "..error)
+---     end
+--- end)
+--- ```
 --- [Inside Playdate: playdate.getServerTime](https://sdk.play.date/Inside%20Playdate.html#f-getServerTime)
 ---@param callback fun(time?: string, error?: string)
 function playdate.getServerTime(callback) end
@@ -3572,14 +3576,14 @@ function playdate.getServerTime(callback) end
 --- Returns a table containing percentages of time spent in each system task over the last interval,
 --- if more than zero. Possible keys are
 ---
---- * kernel
---- * serial
---- * game
---- * GC
---- * wifi
---- * audio
---- * trace
---- * idle
+--- * `kernel`
+--- * `serial`
+--- * `game`
+--- * `GC`
+--- * `wifi`
+--- * `audio`
+--- * `trace`
+--- * `idle`
 ---
 --- `playdate.getStats()` only functions on a Playdate device. In the Simulator, this function
 --- returns `nil`.
@@ -3603,14 +3607,14 @@ function playdate.getSystemMenu() end
 
 --- Returns a table with values for the local time, accessible via the following keys:
 ---
---- * year: 4-digit year (until 10,000 AD)
---- * month: month of the year, where 1 is January and 12 is December
---- * day: day of the month, 1 - 31
---- * weekday: day of the week, where 1 is Monday and 7 is Sunday
---- * hour: 0 - 23
---- * minute: 0 - 59
---- * second: 0 - 59 (or 60 on a leap second)
---- * millisecond: 0 - 999
+--- * *year*: 4-digit year (until 10,000 AD)
+--- * *month*: month of the year, where 1 is January and 12 is December
+--- * *day*: day of the month, 1 - 31
+--- * *weekday*: day of the week, where 1 is Monday and 7 is Sunday
+--- * *hour*: 0 - 23
+--- * *minute*: 0 - 59
+--- * *second*: 0 - 59 (or 60 on a leap second)
+--- * *millisecond*: 0 - 999
 ---
 --- [Inside Playdate: playdate.getTime](https://sdk.play.date/Inside%20Playdate.html#f-getTime)
 ---@return _DateTime
@@ -3619,19 +3623,19 @@ function playdate.getTime() end
 --- Creates a new blinker object. Check the object’s `on` property to determine whether the blinker
 --- is on (`true`) or off (`false`). The default properties are:
 ---
---- * onDuration: 200 (the number of milliseconds the blinker is "on")
---- * offDuration: 200 (the number of milliseconds the blinker is "off")
---- * loop: false (should the blinker restart after completing)
---- * cycles: 6 (the number of changes the blinker goes through before it’s complete)
---- * default: true (the state the blinker will start in. Note: if default is true, blinker.on will
---- return true when the blinker is in its onDuration phase. If default is false, blinker.on will
---- return false when the blinker is in its onDuration phase.)
+--- * *onDuration*: 200 (the number of milliseconds the blinker is "on")
+--- * *offDuration*: 200 (the number of milliseconds the blinker is "off")
+--- * *loop*: false (should the blinker restart after completing)
+--- * *cycles*: 6 (the number of changes the blinker goes through before it’s complete)
+--- * *default*: true (the state the blinker will start in. **Note:** if default is `true`,
+--- `blinker.on` will return `true` when the blinker is in its *onDuration* phase. If default is
+--- `false`, `blinker.on` will return `false` when the blinker is in its *onDuration* phase.)
 ---
 --- Other informative properties:
 ---
---- * counter: Read this property to see which cycle the blinker is on (counts from n down to zero)
---- * on: Read this property to determine the current state of the blinker. The blinker always starts in the state specified by the default property.
---- * running: Read this property to see if the blinker is actively running
+--- * *counter*: Read this property to see which cycle the blinker is on (counts from *n* down to zero)
+--- * *on*: Read this property to determine the current state of the blinker. The blinker always starts in the state specified by the `default` property.
+--- * *running*: Read this property to see if the blinker is actively running
 ---
 --- [Inside Playdate: playdate.graphics.animation.blinker.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.blinker.new)
 ---@param onDuration? integer
@@ -3695,18 +3699,18 @@ function playdate.graphics.animation.blinker:update() end
 
 --- Creates a new animation object.
 ---
---- * imageTable must be a playdate.graphics.imagetable or an array-style table of
---- playdate.graphics.images.
+--- * ***imageTable*** must be a `playdate.graphics.imagetable` or an array-style table of
+--- `playdate.graphics.images`.
 ---
 --- The following properties can be read or set directly, and have these defaults:
 ---
---- * interval : the value of interval, if passed, or 100ms (the elapsed time before advancing to the next imageTable frame)
---- * startFrame : 1 (the value the object resets to when the loop completes)
---- * endFrame : the number of images in imageTable if passed, or 1 (the last frame value in the loop)
---- * frame : 1 (the current frame counter)
---- * step : 1 (the value by which frame increments)
---- * shouldLoop : the value of shouldLoop, if passed, or true. (whether the object loops when it completes)
---- * paused : false (paused loops don’t change their frame value)
+--- * ***interval*** : the value of *interval*, if passed, or 100ms (the elapsed time before advancing to the next imageTable frame)
+--- * ***startFrame*** : 1 (the value the object resets to when the loop completes)
+--- * ***endFrame*** : the number of images in *imageTable* if passed, or 1 (the last frame value in the loop)
+--- * ***frame*** : 1 (the current frame counter)
+--- * ***step*** : 1 (the value by which frame increments)
+--- * ***shouldLoop*** : the value of *shouldLoop*, if passed, or true. (whether the object loops when it completes)
+--- * ***paused*** : false (paused loops don’t change their frame value)
 ---
 --- [Inside Playdate: playdate.graphics.animation.loop.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new)
 ---@param interval? number
@@ -4096,8 +4100,8 @@ function playdate.graphics.drawLine(x1, y1, x2, y2) end
 ---
 --- The optional *language* argument can be one of the strings "en", "jp", or one of the constants:
 ---
---- * playdate.graphics.font.kLanguageEnglish
---- * playdate.graphics.font.kLanguageJapanese
+--- * *playdate.graphics.font.kLanguageEnglish*
+--- * *playdate.graphics.font.kLanguageJapanese*
 ---
 --- Other arguments work the same as in `drawText()`.
 ---
@@ -4116,8 +4120,8 @@ function playdate.graphics.drawLocalizedText(key, rect, language, leadingAdjustm
 ---
 --- The optional *language* argument can be one of the strings "en", "jp", or one of the constants:
 ---
---- * playdate.graphics.font.kLanguageEnglish
---- * playdate.graphics.font.kLanguageJapanese
+--- * *playdate.graphics.font.kLanguageEnglish*
+--- * *playdate.graphics.font.kLanguageJapanese*
 ---
 --- Other arguments work the same as in `drawText()`.
 ---
@@ -4274,10 +4278,10 @@ function playdate.graphics.drawRoundRect(x, y, w, h, radius) end
 ---
 --- Draws an approximation of a sine wave between the points *startX, startY* and *endX, endY*.
 ---
---- * startAmplitude: The number of pixels above and below the line from startX, startY and endX, endY the peaks and valleys of the wave will be drawn at the start of the wave.
---- * endAmplitude: The number of pixels above and below the line from startX, startY and endX, endY the peaks and valleys of the wave will be drawn at the end of the wave.
---- * period: The distance between peaks, in pixels.
---- * phaseShift: If provided, specifies the wave’s offset, in pixels.
+--- * *startAmplitude*: The number of pixels above and below the line from *startX, startY* and *endX, endY* the peaks and valleys of the wave will be drawn at the start of the wave.
+--- * *endAmplitude*: The number of pixels above and below the line from *startX, startY* and *endX, endY* the peaks and valleys of the wave will be drawn at the end of the wave.
+--- * *period*: The distance between peaks, in pixels.
+--- * *phaseShift*: If provided, specifies the wave’s offset, in pixels.
 ---
 --- [Inside Playdate: playdate.graphics.drawSineWave](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawSineWave)
 ---@param startX integer
@@ -4296,15 +4300,15 @@ function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitu
 --- given *wrapMode* and *alignment*, if provided. Alternatively, a `playdate.geometry.rect` object
 --- can be passed instead of `x,y,width,height`. Valid values for *wrapMode* are
 ---
---- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapCharacter
---- * playdate.graphics.kWrapWord
+--- * *playdate.graphics.kWrapClip*
+--- * *playdate.graphics.kWrapCharacter*
+--- * *playdate.graphics.kWrapWord*
 ---
 --- and values for *alignment* are
 ---
---- * playdate.graphics.kAlignLeft
---- * playdate.graphics.kAlignCenter
---- * playdate.graphics.kAlignRight
+--- * *playdate.graphics.kAlignLeft*
+--- * *playdate.graphics.kAlignCenter*
+--- * *playdate.graphics.kAlignRight*
 ---
 --- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
 --- `playdate.graphics.kAlignLeft`.
@@ -4323,8 +4327,9 @@ function playdate.graphics.drawSineWave(startX, startY, endX, endY, startAmplitu
 --- To draw bold text, surround the bold portion of text with asterisks. To draw italic text,
 --- surround the italic portion of text with underscores. For example:
 ---
---- `playdate.graphics.drawText("normal *bold* _italic_", x, y)`
----
+--- ```
+--- playdate.graphics.drawText("normal *bold* _italic_", x, y)
+--- ```
 --- which will output: "normal **bold** *italic*". Bold and italic font variations must be set using
 --- setFont() with the appropriate variant argument, otherwise the default Playdate fonts will be
 --- used.
@@ -4366,15 +4371,15 @@ function playdate.graphics.drawText(text, rect, fontFamily, leadingAdjustment, w
 --- given *wrapMode* and *alignment*, if provided. Alternatively, a `playdate.geometry.rect` object
 --- can be passed instead of `x,y,width,height`. Valid values for *wrapMode* are
 ---
---- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapCharacter
---- * playdate.graphics.kWrapWord
+--- * *playdate.graphics.kWrapClip*
+--- * *playdate.graphics.kWrapCharacter*
+--- * *playdate.graphics.kWrapWord*
 ---
 --- and values for *alignment* are
 ---
---- * playdate.graphics.kAlignLeft
---- * playdate.graphics.kAlignCenter
---- * playdate.graphics.kAlignRight
+--- * *playdate.graphics.kAlignLeft*
+--- * *playdate.graphics.kAlignCenter*
+--- * *playdate.graphics.kAlignRight*
 ---
 --- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
 --- `playdate.graphics.kAlignLeft`.
@@ -4393,8 +4398,9 @@ function playdate.graphics.drawText(text, rect, fontFamily, leadingAdjustment, w
 --- To draw bold text, surround the bold portion of text with asterisks. To draw italic text,
 --- surround the italic portion of text with underscores. For example:
 ---
---- `playdate.graphics.drawText("normal *bold* _italic_", x, y)`
----
+--- ```
+--- playdate.graphics.drawText("normal *bold* _italic_", x, y)
+--- ```
 --- which will output: "normal **bold** *italic*". Bold and italic font variations must be set using
 --- setFont() with the appropriate variant argument, otherwise the default Playdate fonts will be
 --- used.
@@ -4698,10 +4704,13 @@ function playdate.graphics.font.new(path) end
 --- Returns a font family table from the font files specified in *fontPaths*. *fontPaths* should be
 --- a table with the following format:
 ---
---- `local fontPaths = {  [playdate.graphics.font.kVariantNormal] = "path/to/
---- normalFont",     [playdate.graphics.font.kVariantBold] = "path/to/boldFont",
---- [playdate.graphics.font.kVariantItalic] = "path/to/italicFont" }`
----
+--- ```
+--- local fontPaths = {
+---  [playdate.graphics.font.kVariantNormal] = "path/to/normalFont",
+---     [playdate.graphics.font.kVariantBold] = "path/to/boldFont",
+---     [playdate.graphics.font.kVariantItalic] = "path/to/italicFont"
+--- }
+--- ```
 --- The table returned is of the same format with font objects in place of the paths, and is
 --- appropriate to pass to the functions setFontFamily() and getTextSize().
 ---
@@ -4719,15 +4728,15 @@ function playdate.graphics.font.newFamily(fontPaths) end
 --- `playdate.geometry.rect` object can be passed instead of `x,y,width,height`. Valid values for
 --- *wrapMode* are
 ---
---- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapCharacter
---- * playdate.graphics.kWrapWord
+--- * *playdate.graphics.kWrapClip*
+--- * *playdate.graphics.kWrapCharacter*
+--- * *playdate.graphics.kWrapWord*
 ---
 --- and values for *alignment* are
 ---
---- * playdate.graphics.kAlignLeft
---- * playdate.graphics.kAlignCenter
---- * playdate.graphics.kAlignRight
+--- * *playdate.graphics.kAlignLeft*
+--- * *playdate.graphics.kAlignCenter*
+--- * *playdate.graphics.kAlignRight*
 ---
 --- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
 --- `playdate.graphics.kAlignLeft`.
@@ -4757,15 +4766,15 @@ function playdate.graphics.font:drawText(text, rect, leadingAdjustment, wrapMode
 --- `playdate.geometry.rect` object can be passed instead of `x,y,width,height`. Valid values for
 --- *wrapMode* are
 ---
---- * playdate.graphics.kWrapClip
---- * playdate.graphics.kWrapCharacter
---- * playdate.graphics.kWrapWord
+--- * *playdate.graphics.kWrapClip*
+--- * *playdate.graphics.kWrapCharacter*
+--- * *playdate.graphics.kWrapWord*
 ---
 --- and values for *alignment* are
 ---
---- * playdate.graphics.kAlignLeft
---- * playdate.graphics.kAlignCenter
---- * playdate.graphics.kAlignRight
+--- * *playdate.graphics.kAlignLeft*
+--- * *playdate.graphics.kAlignCenter*
+--- * *playdate.graphics.kAlignRight*
 ---
 --- The default wrap mode is `playdate.graphics.kWrapWord` and the default alignment is
 --- `playdate.graphics.kAlignLeft`.
@@ -4963,8 +4972,8 @@ function playdate.graphics.getLineWidth() end
 ---
 --- The optional *language* argument can be one of the strings "en", "jp", or one of the constants:
 ---
---- * playdate.graphics.font.kLanguageEnglish
---- * playdate.graphics.font.kLanguageJapanese
+--- * *playdate.graphics.font.kLanguageEnglish*
+--- * *playdate.graphics.font.kLanguageJapanese*
 ---
 --- For more information about localization and strings files, see the Localization section.
 ---
@@ -4994,9 +5003,9 @@ function playdate.graphics.getStrokeLocation() end
 ---
 --- *variant* should be one of the strings "normal", "bold", or "italic", or one of the constants:
 ---
---- * playdate.graphics.font.kVariantNormal
---- * playdate.graphics.font.kVariantBold
---- * playdate.graphics.font.kVariantItalic
+--- * *playdate.graphics.font.kVariantNormal*
+--- * *playdate.graphics.font.kVariantBold*
+--- * *playdate.graphics.font.kVariantItalic*
 ---
 --- [Inside Playdate: playdate.graphics.getSystemFont](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getSystemFont)
 ---@param variant? (integer|string)
@@ -5078,10 +5087,10 @@ function playdate.graphics.image:addMask(opaque) end
 
 --- Returns an image that is a blend between the caller and *image*.
 ---
---- * image: the playdate.graphics.image to be blended with the caller.
---- * alpha: The alpha value assigned to the caller. image will have an alpha of (1 - alpha).
---- * ditherType: The caller and image are blended into a greyscale image and dithered with one of
---- the dithering algorithms listed in playdate.graphics.image:blurredImage()
+--- * *image*: the playdate.graphics.image to be blended with the caller.
+--- * *alpha*: The alpha value assigned to the caller. *image* will have an alpha of (1 - *alpha*).
+--- * *ditherType*: The caller and *image* are blended into a greyscale image and dithered with one
+--- of the dithering algorithms listed in `playdate.graphics.image:blurredImage()`
 ---
 --- [Inside Playdate: playdate.graphics.image:blendWithImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.blendWithImage)
 ---@param image _Image
@@ -5092,33 +5101,27 @@ function playdate.graphics.image:blendWithImage(image, alpha, ditherType) end
 
 --- Returns a blurred copy of the caller.
 ---
---- * radius: A bigger radius means a more blurred result. Processing time is independent of the radius.
---- * numPasses: A box blur is used to blur the image. The more passes, the more closely the blur approximates a gaussian blur. However, higher values will take more time to process.
---- * ditherType: The original image is blurred into a greyscale image then dithered back to 1-bit using one of the following dithering algorithms:     playdate.graphics.image.kDitherTypeNone    playdate.graphics.image.kDitherTypeDiagonalLine    playdate.graphics.image.kDitherTypeVerticalLine    playdate.graphics.image.kDitherTypeHorizontalLine    playdate.graphics.image.kDitherTypeScreen    playdate.graphics.image.kDitherTypeBayer2x2    playdate.graphics.image.kDitherTypeBayer4x4    playdate.graphics.image.kDitherTypeBayer8x8    playdate.graphics.image.kDitherTypeFloydSteinberg    playdate.graphics.image.kDitherTypeBurkes    playdate.graphics.image.kDitherTypeAtkinson
---- * playdate.graphics.image.kDitherTypeNone
---- * playdate.graphics.image.kDitherTypeDiagonalLine
---- * playdate.graphics.image.kDitherTypeVerticalLine
---- * playdate.graphics.image.kDitherTypeHorizontalLine
---- * playdate.graphics.image.kDitherTypeScreen
---- * playdate.graphics.image.kDitherTypeBayer2x2
---- * playdate.graphics.image.kDitherTypeBayer4x4
---- * playdate.graphics.image.kDitherTypeBayer8x8
---- * playdate.graphics.image.kDitherTypeFloydSteinberg
---- * playdate.graphics.image.kDitherTypeBurkes
---- * playdate.graphics.image.kDitherTypeAtkinson
---- * padEdges: Boolean indicating whether the edges of the images should be padded to accommodate the blur radius. Defaults to false.
---- * xPhase, yPhase: optional; integer values that affect the appearance of playdate.graphics.image.kDitherTypeDiagonalLine,  playdate.graphics.image.kDitherTypeVerticalLine, playdate.graphics.image.kDitherTypeHorizontalLine,  playdate.graphics.image.kDitherTypeScreen, playdate.graphics.image.kDitherTypeBayer2x2, playdate.graphics.image.kDitherTypeBayer4x4, and playdate.graphics.image.kDitherTypeBayer8x8.
---- * playdate.graphics.image.kDitherTypeNone
---- * playdate.graphics.image.kDitherTypeDiagonalLine
---- * playdate.graphics.image.kDitherTypeVerticalLine
---- * playdate.graphics.image.kDitherTypeHorizontalLine
---- * playdate.graphics.image.kDitherTypeScreen
---- * playdate.graphics.image.kDitherTypeBayer2x2
---- * playdate.graphics.image.kDitherTypeBayer4x4
---- * playdate.graphics.image.kDitherTypeBayer8x8
---- * playdate.graphics.image.kDitherTypeFloydSteinberg
---- * playdate.graphics.image.kDitherTypeBurkes
---- * playdate.graphics.image.kDitherTypeAtkinson
+--- * *radius*: A bigger radius means a more blurred result. Processing time is independent of the radius.
+--- * *numPasses*: A box blur is used to blur the image. The more passes, the more closely the blur approximates a gaussian blur. However, higher values will take more time to process.
+--- * *ditherType*: The original image is blurred into a greyscale image then dithered back to 1-bit using one of the following dithering algorithms:
+---   * *playdate.graphics.image.kDitherTypeNone*
+---   * *playdate.graphics.image.kDitherTypeDiagonalLine*
+---   * *playdate.graphics.image.kDitherTypeVerticalLine*
+---   * *playdate.graphics.image.kDitherTypeHorizontalLine*
+---   * *playdate.graphics.image.kDitherTypeScreen*
+---   * *playdate.graphics.image.kDitherTypeBayer2x2*
+---   * *playdate.graphics.image.kDitherTypeBayer4x4*
+---   * *playdate.graphics.image.kDitherTypeBayer8x8*
+---   * *playdate.graphics.image.kDitherTypeFloydSteinberg*
+---   * *playdate.graphics.image.kDitherTypeBurkes*
+---   * *playdate.graphics.image.kDitherTypeAtkinson*
+--- * *padEdges*: Boolean indicating whether the edges of the images should be padded to accommodate the blur radius. Defaults to false.
+--- * *xPhase*, *yPhase*: optional; integer values that affect the
+--- appearance of *playdate.graphics.image.kDitherTypeDiagonalLine*,
+--- *playdate.graphics.image.kDitherTypeVerticalLine*,
+--- *playdate.graphics.image.kDitherTypeHorizontalLine*,
+--- *playdate.graphics.image.kDitherTypeScreen*, *playdate.graphics.image.kDitherTypeBayer2x2*,
+--- *playdate.graphics.image.kDitherTypeBayer4x4*, and *playdate.graphics.image.kDitherTypeBayer8x8*.
 ---
 --- [Inside Playdate: playdate.graphics.image:blurredImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.blurredImage)
 ---@param radius number
@@ -5160,10 +5163,10 @@ function playdate.graphics.image:copy() end
 ---
 --- The optional *flip* argument can be one of the following:
 ---
---- * playdate.graphics.kImageUnflipped: the image is drawn normally
---- * playdate.graphics.kImageFlippedX: the image is flipped left to right
---- * playdate.graphics.kImageFlippedY: the image is flipped top to bottom
---- * playdate.graphics.kImageFlippedXY: the image if flipped both ways; i.e., rotated 180 degrees
+--- * *playdate.graphics.kImageUnflipped*: the image is drawn normally
+--- * *playdate.graphics.kImageFlippedX*: the image is flipped left to right
+--- * *playdate.graphics.kImageFlippedY*: the image is flipped top to bottom
+--- * *playdate.graphics.kImageFlippedXY*: the image if flipped both ways; i.e., rotated 180 degrees
 ---
 --- Alternately, one of the strings "flipX", "flipY", or "flipXY" can be used for the *flip*
 --- argument.
@@ -5184,10 +5187,10 @@ function playdate.graphics.image:draw(p, flip, sourceRect) end
 ---
 --- The optional *flip* argument can be one of the following:
 ---
---- * playdate.graphics.kImageUnflipped: the image is drawn normally
---- * playdate.graphics.kImageFlippedX: the image is flipped left to right
---- * playdate.graphics.kImageFlippedY: the image is flipped top to bottom
---- * playdate.graphics.kImageFlippedXY: the image if flipped both ways; i.e., rotated 180 degrees
+--- * *playdate.graphics.kImageUnflipped*: the image is drawn normally
+--- * *playdate.graphics.kImageFlippedX*: the image is flipped left to right
+--- * *playdate.graphics.kImageFlippedY*: the image is flipped top to bottom
+--- * *playdate.graphics.kImageFlippedXY*: the image if flipped both ways; i.e., rotated 180 degrees
 ---
 --- Alternately, one of the strings "flipX", "flipY", or "flipXY" can be used for the *flip*
 --- argument.
@@ -5224,15 +5227,16 @@ function playdate.graphics.image:drawAnchored(x, y, ax, ay, flip) end
 
 --- Draws a blurred version of the image at (*x*, *y*).
 ---
---- * radius: A bigger radius means a more blurred result. Processing time is independent of the radius.
---- * numPasses: A box blur is used to blur the image. The more passes, the more closely the blur approximates a gaussian blur. However, higher values will take more time to process.
---- * ditherType: The algorithm to use when blurring the image, must be one of the values listed in playdate.graphics.image:blurredImage()
---- * flip: optional; see playdate.graphics.image:draw() for valid values.
---- * xPhase, yPhase: optional; integer values that affect the appearance of
---- playdate.graphics.image.kDitherTypeDiagonalLine,  playdate.graphics.image.kDitherTypeVerticalLine,
---- playdate.graphics.image.kDitherTypeHorizontalLine,  playdate.graphics.image.kDitherTypeScreen,
---- playdate.graphics.image.kDitherTypeBayer2x2, playdate.graphics.image.kDitherTypeBayer4x4, and
---- playdate.graphics.image.kDitherTypeBayer8x8.
+--- * *radius*: A bigger radius means a more blurred result. Processing time is independent of the radius.
+--- * *numPasses*: A box blur is used to blur the image. The more passes, the more closely the blur approximates a gaussian blur. However, higher values will take more time to process.
+--- * *ditherType*: The algorithm to use when blurring the image, must be one of the values listed in `playdate.graphics.image:blurredImage()`
+--- * *flip*: optional; see `playdate.graphics.image:draw()` for valid values.
+--- * *xPhase*, *yPhase*: optional; integer values that affect the
+--- appearance of *playdate.graphics.image.kDitherTypeDiagonalLine*,
+--- *playdate.graphics.image.kDitherTypeVerticalLine*,
+--- *playdate.graphics.image.kDitherTypeHorizontalLine*,
+--- *playdate.graphics.image.kDitherTypeScreen*, *playdate.graphics.image.kDitherTypeBayer2x2*,
+--- *playdate.graphics.image.kDitherTypeBayer4x4*, and *playdate.graphics.image.kDitherTypeBayer8x8*.
 ---
 --- [Inside Playdate: playdate.graphics.image:drawBlurred](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawBlurred)
 ---@param x integer
@@ -5261,9 +5265,9 @@ function playdate.graphics.image:drawCentered(x, y, flip) end
 
 --- Draws a partially transparent image with its upper-left corner at location (*x*, *y*)
 ---
---- * alpha: The alpha value used to draw the image, with 1 being fully opaque, and 0 being completely transparent.
---- * ditherType: The caller is faded using one of the dithering algorithms listed in
---- playdate.graphics.image:blurredImage()
+--- * *alpha*: The alpha value used to draw the image, with 1 being fully opaque, and 0 being completely transparent.
+--- * *ditherType*: The caller is faded using one of the dithering algorithms listed in
+--- `playdate.graphics.image:blurredImage()`
 ---
 --- [Inside Playdate: playdate.graphics.image:drawFaded](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawFaded)
 ---@param x integer
@@ -5305,14 +5309,16 @@ function playdate.graphics.image:drawRotated(x, y, angle, scale, yscale) end
 --- Draws the image as if it’s mapped onto a tilted plane, transforming the target coordinates to
 --- image coordinates using an affine transform:
 ---
---- `x' = dxx * x + dyx * y + dx y' = dxy * x + dyy * y + dy`
----
---- * x, y, width, height: The rectangle to fill
---- * centerx, centery: The point in the above rectangle [in (0,1)x(0,1) coordinates] for the center of the transform
---- * dxx, dyx, dxy, dyy, dx, dy: Defines an affine transform from geometry coordinates to image coordinates
---- * z: The distance from the viewer to the target plane — lower z means more exaggerated perspective
---- * tiltAngle: The tilt of the target plane about the x axis, in degrees
---- * tile: A boolean, indicating whether the image is tiled on the target plane
+--- ```
+--- x' = dxx * x + dyx * y + dx
+--- y' = dxy * x + dyy * y + dy
+--- ```
+--- * *x, y, width, height*: The rectangle to fill
+--- * *centerx, centery*: The point in the above rectangle [in (0,1)x(0,1) coordinates] for the center of the transform
+--- * *dxx, dyx, dxy, dyy, dx, dy*: Defines an affine transform from geometry coordinates to image coordinates
+--- * *z*: The distance from the viewer to the target plane — lower z means more exaggerated perspective
+--- * *tiltAngle*: The tilt of the target plane about the x axis, in degrees
+--- * *tile*: A boolean, indicating whether the image is tiled on the target plane
 ---
 --- The *Mode7Driver* demo in the */Examples* folder of the SDK demonstrates the usage of this
 --- function.
@@ -5379,9 +5385,9 @@ function playdate.graphics.image:drawWithTransform(xform, x, y) end
 
 --- Returns a faded version of the caller.
 ---
---- * alpha: The alpha value assigned to the caller, in the range 0.0 - 1.0. If an image mask already exists it is multiplied by alpha.
---- * ditherType: The caller is faded into a greyscale image and dithered with one of the dithering
---- algorithms listed in playdate.graphics.image:blurredImage()
+--- * *alpha*: The alpha value assigned to the caller, in the range 0.0 - 1.0. If an image mask already exists it is multiplied by *alpha*.
+--- * *ditherType*: The caller is faded into a greyscale image and dithered with one of the
+--- dithering algorithms listed in playdate.graphics.image:blurredImage()
 ---
 --- [Inside Playdate: playdate.graphics.image:fadedImage](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.fadedImage)
 ---@param alpha number
@@ -5792,9 +5798,9 @@ function playdate.graphics.pushContext(image) end
 ---
 --- *color* should be one of the constants:
 ---
---- * playdate.graphics.kColorBlack
---- * playdate.graphics.kColorWhite
---- * playdate.graphics.kColorClear
+--- * *playdate.graphics.kColorBlack*
+--- * *playdate.graphics.kColorWhite*
+--- * *playdate.graphics.kColorClear*
 ---
 --- Use *kColorClear* if you intend to draw behind sprites.
 ---
@@ -5836,10 +5842,10 @@ function playdate.graphics.setClipRect(x, y, width, height) end
 ---
 --- *color* should be one of the constants:
 ---
---- * playdate.graphics.kColorBlack
---- * playdate.graphics.kColorWhite
---- * playdate.graphics.kColorClear
---- * playdate.graphics.kColorXOR
+--- * *playdate.graphics.kColorBlack*
+--- * *playdate.graphics.kColorWhite*
+--- * *playdate.graphics.kColorClear*
+--- * *playdate.graphics.kColorXOR*
 ---
 --- This color applies to drawing primitive shapes such as lines and rectangles, not bitmap images.
 ---
@@ -5900,9 +5906,9 @@ function playdate.graphics.setDrawOffset(x, y) end
 ---
 --- *variant* should be one of the strings "normal", "bold", or "italic", or one of the constants:
 ---
---- * playdate.graphics.font.kVariantNormal
---- * playdate.graphics.font.kVariantBold
---- * playdate.graphics.font.kVariantItalic
+--- * *playdate.graphics.font.kVariantNormal*
+--- * *playdate.graphics.font.kVariantBold*
+--- * *playdate.graphics.font.kVariantItalic*
 ---
 --- If no variant is specified, *kFontVariantNormal* is used.
 ---
@@ -5916,10 +5922,13 @@ function playdate.graphics.setFont(font, variant) end
 
 --- Sets multiple font variants at once. `fontFamily` should be a table using the following format:
 ---
---- `local fontFamily = {  [playdate.graphics.font.kVariantNormal] = normal_font,
---- [playdate.graphics.font.kVariantBold] = bold_font,     [playdate.graphics.font.kVariantItalic] =
---- italic_font }`
----
+--- ```
+--- local fontFamily = {
+---  [playdate.graphics.font.kVariantNormal] = normal_font,
+---     [playdate.graphics.font.kVariantBold] = bold_font,
+---     [playdate.graphics.font.kVariantItalic] = italic_font
+--- }
+--- ```
 --- All fonts and font variants need not be present in the table.
 ---
 --- [Inside Playdate: playdate.graphics.setFontFamily](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setFontFamily)
@@ -5945,14 +5954,14 @@ function playdate.graphics.setFontTracking(pixels) end
 --- The available options for *mode* (demonstrated by drawing a two-color background image first,
 --- setting the specified draw mode, then drawing the Crankin' character on top) are:
 ---
---- * playdate.graphics.kDrawModeCopy: Images are drawn exactly as they are (black pixels are drawn black and white pixels are drawn white)
---- * playdate.graphics.kDrawModeWhiteTransparent: Any white portions of an image are drawn transparent (black pixels are drawn black and white pixels are drawn transparent)
---- * playdate.graphics.kDrawModeBlackTransparent: Any black portions of an image are drawn transparent (black pixels are drawn transparent and white pixels are drawn white)
---- * playdate.graphics.kDrawModeFillWhite: All non-transparent pixels are drawn white (black pixels are drawn white and white pixels are drawn white)
---- * playdate.graphics.kDrawModeFillBlack: All non-transparent pixels are drawn black (black pixels are drawn black and white pixels are drawn black)
---- * playdate.graphics.kDrawModeXOR: Pixels are drawn inverted on white backgrounds, creating an effect where any white pixels in the original image will always be visible, regardless of the background color, and any black pixels will appear transparent (on a white background, black pixels are drawn white and white pixels are drawn black)
---- * playdate.graphics.kDrawModeNXOR: Pixels are drawn inverted on black backgrounds, creating an effect where any black pixels in the original image will always be visible, regardless of the background color, and any white pixels will appear transparent (on a black background, black pixels are drawn white and white pixels are drawn black)
---- * playdate.graphics.kDrawModeInverted: Pixels are drawn inverted (black pixels are drawn white
+--- * *playdate.graphics.kDrawModeCopy*: Images are drawn exactly as they are (black pixels are drawn black and white pixels are drawn white)
+--- * *playdate.graphics.kDrawModeWhiteTransparent*: Any white portions of an image are drawn transparent (black pixels are drawn black and white pixels are drawn transparent)
+--- * *playdate.graphics.kDrawModeBlackTransparent*: Any black portions of an image are drawn transparent (black pixels are drawn transparent and white pixels are drawn white)
+--- * *playdate.graphics.kDrawModeFillWhite*: All non-transparent pixels are drawn white (black pixels are drawn white and white pixels are drawn white)
+--- * *playdate.graphics.kDrawModeFillBlack*: All non-transparent pixels are drawn black (black pixels are drawn black and white pixels are drawn black)
+--- * *playdate.graphics.kDrawModeXOR*: Pixels are drawn inverted on white backgrounds, creating an effect where any white pixels in the original image will always be visible, regardless of the background color, and any black pixels will appear transparent (on a white background, black pixels are drawn white and white pixels are drawn black)
+--- * *playdate.graphics.kDrawModeNXOR*: Pixels are drawn inverted on black backgrounds, creating an effect where any black pixels in the original image will always be visible, regardless of the background color, and any white pixels will appear transparent (on a black background, black pixels are drawn white and white pixels are drawn black)
+--- * *playdate.graphics.kDrawModeInverted*: Pixels are drawn inverted (black pixels are drawn white
 --- and white pixels are drawn black)
 ---
 --- Instead of the above-specified constants, you can also use one of the following strings: "copy",
@@ -5969,9 +5978,9 @@ function playdate.graphics.setImageDrawMode(mode) end
 ---
 --- *style* should be one of these constants:
 ---
---- * playdate.graphics.kLineCapStyleButt
---- * playdate.graphics.kLineCapStyleRound
---- * playdate.graphics.kLineCapStyleSquare
+--- * *playdate.graphics.kLineCapStyleButt*
+--- * *playdate.graphics.kLineCapStyleRound*
+--- * *playdate.graphics.kLineCapStyleSquare*
 ---
 --- Equivalent to `playdate->graphics->setLineCapStyle()` in the C API.
 ---
@@ -6009,8 +6018,8 @@ function playdate.graphics.setPattern(pattern) end
 
 --- Sets the winding rule for filling polygons, one of:
 ---
---- * playdate.graphics.kPolygonFillNonZero
---- * playdate.graphics.kPolygonFillEvenOdd
+--- * *playdate.graphics.kPolygonFillNonZero*
+--- * *playdate.graphics.kPolygonFillEvenOdd*
 ---
 --- See https://en.wikipedia.org/wiki/Nonzero-rule for an explanation of the winding rule.
 ---
@@ -6092,9 +6101,9 @@ function playdate.graphics.setStencilPattern(row1, row2, row3, row4, row5, row6,
 ---
 --- *location* is one of these constants:
 ---
---- * playdate.graphics.kStrokeCentered
---- * playdate.graphics.kStrokeOutside
---- * playdate.graphics.kStrokeInside
+--- * *playdate.graphics.kStrokeCentered*
+--- * *playdate.graphics.kStrokeOutside*
+--- * *playdate.graphics.kStrokeInside*
 ---
 --- This value is saved and restored when pushing and popping the graphics context.
 ---
@@ -6241,12 +6250,12 @@ function playdate.graphics.sprite.performOnAllSprites(f) end
 ---
 --- Each *collisionInfo* table contains:
 ---
---- * sprite: the sprite being intersected by the segment.
---- * entryPoint: a point representing the coordinates of the first intersection between sprite and the line segment.
---- * exitPoint: a point representing  the coordinates of the second intersection between sprite and the line segment.
---- * ti1 & ti2: numbers between 0 and 1 which indicate how far from the starting point of the
---- line segment the collision happened; t1 for the entry point, t2 for the exit point. This can be
---- useful for things like having a laser cause more damage if the impact is close.
+--- * *sprite*: the sprite being intersected by the segment.
+--- * *entryPoint*: a `point` representing the coordinates of the first intersection between `sprite` and the line segment.
+--- * *exitPoint*: a `point` representing  the coordinates of the second intersection between `sprite` and the line segment.
+--- * *ti1* &amp; *ti2*: numbers between 0 and 1 which indicate how far from the starting point of
+--- the line segment the collision happened; t1 for the entry point, t2 for the exit point. This can
+--- be useful for things like having a laser cause more damage if the impact is close.
 ---
 --- [Inside Playdate: playdate.graphics.sprite.querySpriteInfoAlongLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine)
 ---@param lineSegment _LineSegment
@@ -6260,12 +6269,12 @@ function playdate.graphics.sprite.querySpriteInfoAlongLine(lineSegment) end
 ---
 --- Each *collisionInfo* table contains:
 ---
---- * sprite: the sprite being intersected by the segment.
---- * entryPoint: a point representing the coordinates of the first intersection between sprite and the line segment.
---- * exitPoint: a point representing  the coordinates of the second intersection between sprite and the line segment.
---- * ti1 & ti2: numbers between 0 and 1 which indicate how far from the starting point of the
---- line segment the collision happened; t1 for the entry point, t2 for the exit point. This can be
---- useful for things like having a laser cause more damage if the impact is close.
+--- * *sprite*: the sprite being intersected by the segment.
+--- * *entryPoint*: a `point` representing the coordinates of the first intersection between `sprite` and the line segment.
+--- * *exitPoint*: a `point` representing  the coordinates of the second intersection between `sprite` and the line segment.
+--- * *ti1* &amp; *ti2*: numbers between 0 and 1 which indicate how far from the starting point of
+--- the line segment the collision happened; t1 for the entry point, t2 for the exit point. This can
+--- be useful for things like having a laser cause more damage if the impact is close.
 ---
 --- [Inside Playdate: playdate.graphics.sprite.querySpriteInfoAlongLine](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.querySpriteInfoAlongLine)
 ---@param x1 integer
@@ -6515,11 +6524,11 @@ function playdate.graphics.sprite:clearStencil() end
 --- happen when a collision with *other* occurs. This callback should return one of the following
 --- four values:
 ---
---- * playdate.graphics.sprite.kCollisionTypeSlide: Use for collisions that should slide over other objects, like Super Mario does over a platform or the ground.
---- * playdate.graphics.sprite.kCollisionTypeFreeze: Use for collisions where the sprite should stop moving as soon as it collides with other, such as an arrow hitting a wall.
---- * playdate.graphics.sprite.kCollisionTypeOverlap: Use for collisions in which you want to know about the collision but it should not impact the movement of the sprite, such as when collecting a coin.
---- * playdate.graphics.sprite.kCollisionTypeBounce: Use when the sprite should move away from
---- other, like the ball in Pong or Arkanoid.
+--- * *playdate.graphics.sprite.kCollisionTypeSlide*: Use for collisions that should slide over other objects, like Super Mario does over a platform or the ground.
+--- * *playdate.graphics.sprite.kCollisionTypeFreeze*: Use for collisions where the sprite should stop moving as soon as it collides with *other*, such as an arrow hitting a wall.
+--- * *playdate.graphics.sprite.kCollisionTypeOverlap*: Use for collisions in which you want to know about the collision but it should not impact the movement of the sprite, such as when collecting a coin.
+--- * *playdate.graphics.sprite.kCollisionTypeBounce*: Use when the sprite should move away from
+--- *other*, like the ball in Pong or Arkanoid.
 ---
 --- The strings "slide", "freeze", "overlap", and "bounce" can be used instead of the constants.
 ---
@@ -7644,10 +7653,10 @@ function playdate.inputHandlers.pop() end
 
 --- Pushes a new input handler onto the stack.
 ---
---- * handler: A table containing one or more custom input functions.
---- * masksPreviousHandlers: If true, input functions not defined in handler will not be called.
+--- * *handler:* A table containing one or more custom input functions.
+--- * *masksPreviousHandlers:* If true, input functions not defined in *handler* will not be called.
 --- If missing or false, the previously-pushed input handler tables will be searched for input
---- functions missing from handler, cascading down to the default playdate table.
+--- functions missing from *handler*, cascading down to the default `playdate` table.
 ---
 --- [Inside Playdate: playdate.inputHandlers.push](https://sdk.play.date/Inside%20Playdate.html#f-inputHandlers.push)
 ---@param handler _InputHandler
@@ -7674,7 +7683,7 @@ function playdate.isCrankDocked() end
 ---
 --- * The key in question needs to have a textual representation or these functions will not be called. For instance, alphanumeric keys will call these functions; keyboard directional arrows will not.
 --- * If the keypress in question is already in use by the Simulator for another purpose (say, to control the d-pad or A/B buttons), these functions will not be called.
---- * If key is an alphabetic character, the value will always be lowercase, even if the user
+--- * If *key* is an alphabetic character, the value will always be lowercase, even if the user
 --- deliberately typed an uppercase character.
 ---
 --- [Inside Playdate: playdate.keyPressed](https://sdk.play.date/Inside%20Playdate.html#c-keyPressed)
@@ -8274,12 +8283,12 @@ function playdate.pathfinder.graph.new(nodeCount, coordinates) end
 --- tends to produce nicer paths than using uniform weights. Nodes have their indexes set from 1 to
 --- *width* * *height*, and have their *x, y* values set appropriately for the node’s position.
 ---
---- * width: The width of the grid to be created.
---- * height: The height of the grid to be created.
---- * allowDiagonals: If true, diagonal connections will also be created.
---- * includedNodes: A one-dimensional array of length width * height. Each entry should be a 1 or
---- a 0 to indicate nodes that should be connected to their neighbors and nodes that should not have
---- any connections added. If not provided, all nodes will be connected to their neighbors.
+--- * *width*: The width of the grid to be created.
+--- * *height*: The height of the grid to be created.
+--- * *allowDiagonals*: If true, diagonal connections will also be created.
+--- * *includedNodes*: A one-dimensional array of length *width* * *height*. Each entry should be a
+--- 1 or a 0 to indicate nodes that should be connected to their neighbors and nodes that should not
+--- have any connections added. If not provided, all nodes will be connected to their neighbors.
 ---
 --- [Inside Playdate: playdate.pathfinder.graph.new2DGrid](https://sdk.play.date/Inside%20Playdate.html#f-pathfinder.graph.new2DGrid)
 ---@param width integer
@@ -8316,13 +8325,13 @@ function playdate.pathfinder.graph:addConnections(connections) end
 
 --- Creates a new playdate.pathfinder.node and adds it to the graph.
 ---
---- * id: id value for the new node.
---- * x: Optional x value for the node.
---- * y: Optional y value for the node.
---- * connectedNodes: Array of existing nodes to create connections to from the new node.
---- * weights: Array of weights for the new connections. Array must be the same length as connectedNodes. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
---- * addReciprocalConnections: If true, connections will also be added in the reverse direction for
---- each node.
+--- * *id*: id value for the new node.
+--- * *x*: Optional x value for the node.
+--- * *y*: Optional y value for the node.
+--- * *connectedNodes*: Array of existing nodes to create connections to from the new node.
+--- * *weights*: Array of weights for the new connections. Array must be the same length as *connectedNodes*. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
+--- * *addReciprocalConnections*: If true, connections will also be added in the reverse direction
+--- for each node.
 ---
 --- [Inside Playdate: playdate.pathfinder.graph:addNewNode](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNewNode)
 ---@param id integer
@@ -8348,11 +8357,11 @@ function playdate.pathfinder.graph:addNewNodes(count) end
 --- Adds an already-existing node to the graph. The node must have originally belonged to the same
 --- graph.
 ---
---- * node: Node to be added to the graph.
---- * connectedNodes: Array of existing nodes to create connections to from the new node.
---- * weights: Array of weights for the new connections. Array must be the same length as connectedNodes. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
---- * addReciprocalConnections: If true, connections will also be added in the reverse direction for
---- each connection added.
+--- * *node*: Node to be added to the graph.
+--- * *connectedNodes*: Array of existing nodes to create connections to from the new node.
+--- * *weights*: Array of weights for the new connections. Array must be the same length as *connectedNodes*. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
+--- * *addReciprocalConnections*: If true, connections will also be added in the reverse direction
+--- for each connection added.
 ---
 --- [Inside Playdate: playdate.pathfinder.graph:addNode](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.graph.addNode)
 ---@param node _PathFinderNode
@@ -8378,9 +8387,9 @@ function playdate.pathfinder.graph:allNodes() end
 --- Returns an array of nodes representing the path from *startNode* to *goalNode*, or *nil* if no
 --- path can be found.
 ---
---- * heuristicFunction: If provided, this function should be of the form function(startNode, goalNode) and should return an integer value estimate or underestimate of the distance from startNode to goalNode. If not provided, a manhattan distance function will be used to calculate the estimate. This requires that the x, y values of the nodes in the graph have been set properly.
---- * findPathToGoalAdjacentNodes: If true, a path will be found to any node adjacent to the
---- goal node, based on the x, y values of those nodes and the goal node. This does not rely on
+--- * *heuristicFunction*: If provided, this function should be of the form *function(startNode, goalNode)* and should return an integer value estimate or underestimate of the distance from *startNode* to *goalNode*. If not provided, a manhattan distance function will be used to calculate the estimate. This requires that the *x, y* values of the nodes in the graph have been set properly.
+--- * *findPathToGoalAdjacentNodes*: If true, a path will be found to any node adjacent to the
+--- goal node, based on the *x, y* values of those nodes and the goal node. This does not rely on
 --- connections between adjacent nodes and  the goal node, which can be entirely disconnected from
 --- the rest of the graph.
 ---
@@ -8472,10 +8481,10 @@ function playdate.pathfinder.graph:setXYForNodeWithID(id, x, y) end
 
 --- Adds a new connection between nodes.
 ---
---- * node: The node the new connection will point to.
---- * weight: Weight for the new connection. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
---- * addReciprocalConnection: If true, a second connection will be created with the same weight in
---- the opposite direction.
+--- * *node*: The node the new connection will point to.
+--- * *weight*: Weight for the new connection. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
+--- * *addReciprocalConnection*: If true, a second connection will be created with the same weight
+--- in the opposite direction.
 ---
 --- [Inside Playdate: playdate.pathfinder.node:addConnection](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnection)
 ---@param node _PathFinderNode
@@ -8486,8 +8495,8 @@ function playdate.pathfinder.node:addConnection(node, weight, addReciprocalConne
 
 --- Adds a connection to the first node found with matching *x* and *y* values, if it exists.
 ---
---- * weight: The weight for the new connection. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
---- * addReciprocalConnections: If true, a connection will also be added in the reverse direction,
+--- * *weight*: The weight for the new connection. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
+--- * *addReciprocalConnections*: If true, a connection will also be added in the reverse direction,
 --- from the node at x, y to the caller.
 ---
 --- [Inside Playdate: playdate.pathfinder.node:addConnectionToNodeWithXY](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnectionToNodeWithXY)
@@ -8500,10 +8509,10 @@ function playdate.pathfinder.node:addConnectionToNodeWithXY(x, y, weight, addRec
 
 --- Adds a new connection to each node in the nodes array.
 ---
---- * nodes: An array of nodes which the new connections will point to.
---- * weights: An array of weights for the new connections. Must be of the same length as the nodes array. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
---- * addReciprocalConnections: If true, connections will also be added in the reverse direction for
---- each node.
+--- * *nodes*: An array of nodes which the new connections will point to.
+--- * *weights*: An array of weights for the new connections. Must be of the same length as the nodes array. Weights affect the path the A* algorithm will solve for. A longer, lighter-weighted path will be chosen over a shorter heavier path, if available.
+--- * *addReciprocalConnections*: If true, connections will also be added in the reverse direction
+--- for each node.
 ---
 --- [Inside Playdate: playdate.pathfinder.node:addConnections](https://sdk.play.date/Inside%20Playdate.html#m-pathfinder.node.addConnections)
 ---@param nodes _PathFinderNode[]
@@ -9600,12 +9609,12 @@ function playdate.sound.lfo:setStartPhase(phase) end
 
 --- Sets the waveform of the LFO. Valid values are
 ---
---- * playdate.sound.kLFOSquare
---- * playdate.sound.kLFOSawtoothUp
---- * playdate.sound.kLFOSawtoothDown
---- * playdate.sound.kLFOTriangle
---- * playdate.sound.kLFOSine
---- * playdate.sound.kLFOSampleAndHold
+--- * *playdate.sound.kLFOSquare*
+--- * *playdate.sound.kLFOSawtoothUp*
+--- * *playdate.sound.kLFOSawtoothDown*
+--- * *playdate.sound.kLFOTriangle*
+--- * *playdate.sound.kLFOSine*
+--- * *playdate.sound.kLFOSampleAndHold*
 ---
 --- [Inside Playdate: playdate.sound.lfo:setType](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setType)
 ---@param type integer
@@ -9842,10 +9851,10 @@ function playdate.sound.sample:decompress() end
 
 --- Returns the format of the sample, one of
 ---
---- * playdate.sound.kFormat8bitMono
---- * playdate.sound.kFormat8bitStereo
---- * playdate.sound.kFormat16bitMono
---- * playdate.sound.kFormat16bitStereo
+--- * *playdate.sound.kFormat8bitMono*
+--- * *playdate.sound.kFormat8bitStereo*
+--- * *playdate.sound.kFormat16bitMono*
+--- * *playdate.sound.kFormat16bitStereo*
 ---
 --- [Inside Playdate: playdate.sound.sample:getFormat](https://sdk.play.date/Inside%20Playdate.html#m-sound.sample.getFormat)
 ---@return integer
@@ -10314,12 +10323,12 @@ function playdate.sound.synth:playMIDINote(note, volume, length, when) end
 
 --- Plays a note with the current waveform or sample.
 ---
---- * pitch: the pitch value is in Hertz. If a sample is playing, pitch=261.63 (C4) plays at normal speed    in either function, a string like Db3 can be used instead of a number
---- * in either function, a string like Db3 can be used instead of a number
---- * volume: 0 to 1, defaults to 1
---- * length: in seconds. If omitted, note will play until you call noteOff()
---- * when: seconds since the sound engine started (see playdate.sound.getCurrentTime). Defaults to the current time.
---- * in either function, a string like Db3 can be used instead of a number
+--- * *pitch*: the pitch value is in Hertz. If a sample is playing, pitch=261.63 (C4) plays at normal speed
+---   * in either function, a string like `Db3` can be used instead of a number
+--- * *volume*: 0 to 1, defaults to 1
+--- * *length*: in seconds. If omitted, note will play until you call noteOff()
+--- * *when*: seconds since the sound engine started (see playdate.sound.getCurrentTime). Defaults
+--- to the current time.
 ---
 --- The function returns true if the synth was successfully added to the sound channel, otherwise
 --- false (i.e., if the channel is full).
@@ -10447,14 +10456,14 @@ function playdate.sound.synth:setVolume(left, right) end
 --- Sets the waveform or Sample the synth plays. If a sample is given, its data must be uncompressed
 --- PCM, not ADPCM. Otherwise *waveform* should be one of the following constants:
 ---
---- * playdate.sound.kWaveSine
---- * playdate.sound.kWaveSquare
---- * playdate.sound.kWaveSawtooth
---- * playdate.sound.kWaveTriangle
---- * playdate.sound.kWaveNoise
---- * playdate.sound.kWavePOPhase
---- * playdate.sound.kWavePODigital
---- * playdate.sound.kWavePOVosim
+--- * *playdate.sound.kWaveSine*
+--- * *playdate.sound.kWaveSquare*
+--- * *playdate.sound.kWaveSawtooth*
+--- * *playdate.sound.kWaveTriangle*
+--- * *playdate.sound.kWaveNoise*
+--- * *playdate.sound.kWavePOPhase*
+--- * *playdate.sound.kWavePODigital*
+--- * *playdate.sound.kWavePOVosim*
 ---
 --- [Inside Playdate: playdate.sound.synth:setWaveform](https://sdk.play.date/Inside%20Playdate.html#m-sound.synth.setWaveform)
 ---@param waveform integer
@@ -10621,13 +10630,13 @@ function playdate.sound.track:setNotes(list) end
 
 --- Creates a new two pole IIR filter of the given *type*:
 ---
---- * playdate.sound.kFilterLowPass (or the string "lowpass" or "lopass")
---- * playdate.sound.kFilterHighPass (or "highpass" or "hipass")
---- * playdate.sound.kFilterBandPass (or "bandpass")
---- * playdate.sound.kFilterNotch (or "notch")
---- * playdate.sound.kFilterPEQ (or "peq")
---- * playdate.sound.kFilterLowShelf (or "lowshelf" or "loshelf")
---- * playdate.sound.kFilterHighShelf (or "highshelf" or "hishelf")
+--- * *playdate.sound.kFilterLowPass* (or the string "lowpass" or "lopass")
+--- * *playdate.sound.kFilterHighPass* (or "highpass" or "hipass")
+--- * *playdate.sound.kFilterBandPass* (or "bandpass")
+--- * *playdate.sound.kFilterNotch* (or "notch")
+--- * *playdate.sound.kFilterPEQ* (or "peq")
+--- * *playdate.sound.kFilterLowShelf* (or "lowshelf" or "loshelf")
+--- * *playdate.sound.kFilterHighShelf* (or "highshelf" or "hishelf")
 ---
 --- [Inside Playdate: playdate.sound.twopolefilter.new](https://sdk.play.date/Inside%20Playdate.html#f-sound.twopolefilter.new)
 ---@param type (integer|string)
