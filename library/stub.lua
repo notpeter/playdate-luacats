@@ -5103,31 +5103,18 @@ function playdate.graphics.image:blendWithImage(image, alpha, ditherType) end
 ---
 --- * *radius*: A bigger radius means a more blurred result. Processing time is independent of the radius.
 --- * *numPasses*: A box blur is used to blur the image. The more passes, the more closely the blur approximates a gaussian blur. However, higher values will take more time to process.
---- * *ditherType*: The original image is blurred into a greyscale image then dithered back to 1-bit
---- using one of the following dithering algorithms:
----
+--- * *ditherType*: The original image is blurred into a greyscale image then dithered back to 1-bit using one of the following dithering algorithms:
 ---   * *playdate.graphics.image.kDitherTypeNone*
----
 ---   * *playdate.graphics.image.kDitherTypeDiagonalLine*
----
 ---   * *playdate.graphics.image.kDitherTypeVerticalLine*
----
 ---   * *playdate.graphics.image.kDitherTypeHorizontalLine*
----
 ---   * *playdate.graphics.image.kDitherTypeScreen*
----
 ---   * *playdate.graphics.image.kDitherTypeBayer2x2*
----
 ---   * *playdate.graphics.image.kDitherTypeBayer4x4*
----
 ---   * *playdate.graphics.image.kDitherTypeBayer8x8*
----
 ---   * *playdate.graphics.image.kDitherTypeFloydSteinberg*
----
 ---   * *playdate.graphics.image.kDitherTypeBurkes*
----
 ---   * *playdate.graphics.image.kDitherTypeAtkinson*
----
 --- * *padEdges*: Boolean indicating whether the edges of the images should be padded to accommodate the blur radius. Defaults to false.
 --- * *xPhase*, *yPhase*: optional; integer values that affect the
 --- appearance of *playdate.graphics.image.kDitherTypeDiagonalLine*,
@@ -10336,11 +10323,8 @@ function playdate.sound.synth:playMIDINote(note, volume, length, when) end
 
 --- Plays a note with the current waveform or sample.
 ---
---- * *pitch*: the pitch value is in Hertz. If a sample is playing, pitch=261.63 (C4) plays at
---- normal speed
----
+--- * *pitch*: the pitch value is in Hertz. If a sample is playing, pitch=261.63 (C4) plays at normal speed
 ---   * in either function, a string like `Db3` can be used instead of a number
----
 --- * *volume*: 0 to 1, defaults to 1
 --- * *length*: in seconds. If omitted, note will play until you call noteOff()
 --- * *when*: seconds since the sound engine started (see playdate.sound.getCurrentTime). Defaults
