@@ -8,6 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v3.0.2-luacats2] - 2026-01-04
+
 - Improved scraper / parser in [playdate-docdef](https://github.com/notpeter/playdate-docdef). Nearly identical output. (see [notpeter/playdate-docdef#12](https://github.com/notpeter/playdate-docdef/pull/12)).
 - Improved formatting (e.g. preserve italics in lists
 
@@ -357,6 +359,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v3.0.2-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v3.0.2-luacats1...v3.0.2-luacats2
 [v3.0.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.1-luacats1...v3.0.2-luacats1
 [v3.0.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.6-luacats1...v3.0.1-luacats1
 [v3.0.0-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.0-luacats1...v3.0.0-luacats1
