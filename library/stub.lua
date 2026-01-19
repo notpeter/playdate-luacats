@@ -4166,7 +4166,9 @@ function playdate.graphics.drawLocalizedTextAligned(text, x, y, alignment, langu
 ---@param alignment? integer
 ---@param font? _Font
 ---@param language? (integer|string)
----@return nil
+---@return number width
+---@return number height
+---@return boolean textWasTruncated
 function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font, language) end
 
 --- You must import *CoreLibs/graphics* to use these functions.
@@ -4184,7 +4186,9 @@ function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment
 ---@param alignment? integer
 ---@param font? playdate.graphics.font
 ---@param language? (integer|string)
----@return nil
+---@return number width
+---@return number height
+---@return boolean textWasTruncated
 function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font, language) end
 
 --- Draw a single pixel in the current color at (*x*, *y*).
@@ -4490,7 +4494,9 @@ function playdate.graphics.drawTextAligned(text, x, y, alignment, leadingAdjustm
 ---@param truncationString? string
 ---@param alignment? integer
 ---@param font? _Font
----@return nil
+---@return number width
+---@return number height
+---@return boolean textWasTruncated
 function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncationString, alignment, font) end
 
 --- You must import *CoreLibs/graphics* to use these functions.
@@ -4527,7 +4533,9 @@ function playdate.graphics.drawTextInRect(text, rect, leadingAdjustment, truncat
 ---@param truncationString? string
 ---@param alignment? integer
 ---@param font? playdate.graphics.font
----@return nil
+---@return number width
+---@return number height
+---@return boolean textWasTruncated
 function playdate.graphics.drawTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font) end
 
 --- Draws a triangle with vertices (*x1*, *y1*), (*x2*, *y2*), and (*x3*, *y3*).
@@ -8693,7 +8701,7 @@ function playdate.setGCScaling(min, max) end
 --- To remove a previously-set menu image, pass `nil` for the *image* argument.
 ---
 --- [Inside Playdate: playdate.setMenuImage](https://sdk.play.date/Inside%20Playdate.html#f-setMenuImage)
----@param image _Image
+---@param image _Image?
 ---@param xOffset? integer
 ---@return nil
 function playdate.setMenuImage(image, xOffset) end
@@ -10111,7 +10119,7 @@ function playdate.sound.sequence.new(midi_path) end
 ---
 --- [Inside Playdate: playdate.sound.sequence:addTrack](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.addTrack)
 ---@param track? _Track
----@return nil
+---@return _Track?
 function playdate.sound.sequence:addTrack(track) end
 
 --- Sends an allNotesOff() message to each track’s instrument.
