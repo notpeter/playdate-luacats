@@ -10020,7 +10020,7 @@ function playdate.sound.sampleplayer:playAt(when, vol, rightvol, rate) end
 --- function as the first argument, and the optional *arg* argument is passed as the second.
 ---
 --- [Inside Playdate: playdate.sound.sampleplayer:setFinishCallback](https://sdk.play.date/Inside%20Playdate.html#m-sound.sampleplayer.setFinishCallback)
----@param func function
+---@param func? function
 ---@param arg? any
 ---@return nil
 function playdate.sound.sampleplayer:setFinishCallback(func, arg) end

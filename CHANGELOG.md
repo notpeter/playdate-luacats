@@ -8,6 +8,8 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Support unsetting `playdate.sound.sampleplayer:setFinishCallback` callback
+
 ## [v3.0.2-luacats2] - 2026-01-04
 
 - Improved scraper / parser in [playdate-docdef](https://github.com/notpeter/playdate-docdef). Nearly identical output. (see [notpeter/playdate-docdef#12](https://github.com/notpeter/playdate-docdef/pull/12)).
