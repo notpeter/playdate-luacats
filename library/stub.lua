@@ -8579,7 +8579,7 @@ function playdate.resetElapsedTime() end
 --- respecting quotes, when added to the argv list.
 ---
 --- [Inside Playdate: playdate.restart](https://sdk.play.date/Inside%20Playdate.html#f-restart)
----@param arg? string[]
+---@param arg? string
 ---@return nil
 function playdate.restart(arg) end
 
