@@ -11,6 +11,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 - Support unsetting `playdate.sound.sampleplayer:setFinishCallback` callback
 - Fixed `playdate.restart(arg)`; takes string not string[]
 - Add secondary return `acceleratedChange` to `playdate.getCrankChange` (thanks [SquidGodDev](https://github.com/squidGodDev)).
+- Add return types for `playdate.graphics.drawLocalizedTextInRect` and `playdate.graphics.drawTextInRect` (thanks [Franchovy](https://github.com/Franchovy))
+- Add optional `image` for `playdate.setMenuImage(image, xOffset)` to clear the menu image (thanks [Franchovy](https://github.com/Franchovy))
+- Add potential `_Track` return from `playdate.sound.sequence:addTrack` (thanks [Franchovy](https://github.com/Franchovy))
 
 ## [v3.0.2-luacats2] - 2026-01-04
 
