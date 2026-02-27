@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v3.0.3-luacats1] - 2026-02-27
+
+- Updated for PlaydateSDK 3.0.3 (no changes)
 - Support unsetting `playdate.sound.sampleplayer:setFinishCallback` callback
 - Fixed `playdate.restart(arg)`; takes string not string[]
 - Add secondary return `acceleratedChange` to `playdate.getCrankChange` (thanks [SquidGodDev](https://github.com/squidGodDev)).
@@ -366,6 +369,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v3.0.3-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.2-luacats2...v3.0.3-luacats1
 [v3.0.2-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v3.0.2-luacats1...v3.0.2-luacats2
 [v3.0.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.1-luacats1...v3.0.2-luacats1
 [v3.0.1-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v2.7.6-luacats1...v3.0.1-luacats1
