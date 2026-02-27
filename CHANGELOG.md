@@ -10,6 +10,7 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 - Support unsetting `playdate.sound.sampleplayer:setFinishCallback` callback
 - Fixed `playdate.restart(arg)`; takes string not string[]
+- Add secondary return `acceleratedChange` to `playdate.getCrankChange` (thanks [SquidGodDev](https://github.com/squidGodDev)).
 
 ## [v3.0.2-luacats2] - 2026-01-04
 
