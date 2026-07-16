@@ -8,9 +8,32 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Fix `playdate.graphics.drawPixel(x, y)` overload
+- Fix `playdate.graphics.setPattern(image, x, y)` overload
+- Improved `playdate.graphics.sprite.setBackgroundDrawingCallback()`
+- Fix for incorrect `playdate.network.http:{post,query}` signatures leaking through
+- Add parameter to `keyboardWillHideCallback(okButtonPressed)`
+
 ## [v3.1.0-luacats1] - 2026-07-16
 
 - Update for PlaydateSDK 3.1.0
+- Add `playdate.kLanguageEnglish`, `playdate.kLanguageJapanese`
+- Add `playdate.exitToLauncher()`, `playdate.getLocalizedText()`, and `playdate.getSystemVolume()`
+- Deprecate `playdate.graphics.getLocalizedText()` in favor of `playdate.getLocalizedText()`
+- Rename the first `playdate.graphics.animation.loop.new()` parameter from `interval` to `delay`
+- Add optional `flip` support to `playdate.graphics.image:drawFaded()`
+- Add pattern phase offsets to `playdate.graphics.setPattern(pattern, x, y)`
+- Add `playdate.graphics.sprite:markDirty`
+- Allow `playdate.graphics.sprite.setBackgroundDrawingCallback(nil)` to remove the background callback
+- Add `playdate.network.https.new()`
+- Add `playdate.network.tcp:getSentBytesPending()`
+- Add bitcrusher depth, downsampling, exponential mode, and modulation controls
+- Add `playdate.sound.channel:getOutputAsSource()` and `playdate.sound.fileplayer:setPaused()`
+- Add distinct single-note and note-range overloads for `playdate.sound.instrument:addVoice()`
+- Add `playdate.sound.instrument:isPlaying()` and `stop()`, and support scheduled `allNotesOff()`
+- Add `playdate.sound.lfo:setRandomSeed()`
+- Add microphone permission support for `playdate.sound.micinput.requestAccess()` and `recordToSample()`
+- Add scheduled stopping to `playdate.sound.sequence:stop()`
 
 ## [v3.0.3-luacats1] - 2026-02-27
 

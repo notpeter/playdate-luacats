@@ -6455,8 +6455,12 @@ function playdate.graphics.sprite.setAlwaysRedraw(flag) end
 --- source code.
 ---
 --- [Inside Playdate: playdate.graphics.sprite.setBackgroundDrawingCallback](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback)
----@param drawCallback? fun(x: integer, y: integer, width: integer, height: integer): nil
----@return _Sprite?
+---@param drawCallback fun(x: integer, y: integer, width: integer, height: integer): nil
+---@return _Sprite
+function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
+
+---@param drawCallback nil
+---@return nil
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 
 --- Sets the clip rect for sprites in the given z-index range.
@@ -7825,8 +7829,9 @@ function playdate.keyboard.keyboardDidShowCallback() end
 --- otherwise.
 ---
 --- [Inside Playdate: playdate.keyboard.keyboardWillHideCallback](https://sdk.play.date/Inside%20Playdate.html#c-keyboard.keyboardWillHideCallback)
+---@param okButtonPressed boolean
 ---@return nil
-function playdate.keyboard.keyboardWillHideCallback() end
+function playdate.keyboard.keyboardWillHideCallback(okButtonPressed) end
 
 --- Returns the current x location of the left edge of the keyboard.
 ---
@@ -8126,6 +8131,12 @@ function playdate.network.http:getResponseStatus() end
 ---
 --- [Inside Playdate: playdate.network.http:post](https://sdk.play.date/Inside%20Playdate.html#m-network.http.post)
 ---@param path string
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.http:post(path, data) end
+
+---@param path string
 ---@param headers? table<string, string>
 ---@param data string
 ---@return boolean success
@@ -8142,6 +8153,13 @@ function playdate.network.http:post(path, headers, data) end
 --- returns `false` and a string indicating the error.
 ---
 --- [Inside Playdate: playdate.network.http:query](https://sdk.play.date/Inside%20Playdate.html#m-network.http.query)
+---@param method string
+---@param path string
+---@param data string
+---@return boolean success
+---@return string error?
+function playdate.network.http:query(method, path, data) end
+
 ---@param method string
 ---@param path string
 ---@param headers? table<string, string>
@@ -10335,8 +10353,11 @@ function playdate.sound.sequence.new(midi_path) end
 --- and returns a new track.
 ---
 --- [Inside Playdate: playdate.sound.sequence:addTrack](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.addTrack)
----@param track? _Track
----@return _Track?
+---@return _Track
+function playdate.sound.sequence:addTrack() end
+
+---@param track _Track
+---@return nil
 function playdate.sound.sequence:addTrack(track) end
 
 --- Sends an allNotesOff() message to each track’s instrument.
@@ -10435,7 +10456,9 @@ function playdate.sound.sequence:setTrackAtIndex(n, track) end
 --- Stops playing the sequence.
 ---
 --- [Inside Playdate: playdate.sound.sequence:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.stop)
-function playdate.sound.sequence:stop() end
+---@param when? number
+---@return nil
+function playdate.sound.sequence:stop(when) end
 
 --- Forces sound to be played on the headphones or on the speaker, regardless of whether headphones
 --- are plugged in or not. (With the caveat that it is not actually possible to play on the
@@ -11705,19 +11728,6 @@ function playdate.math.logic.nxor(bool1, bool2) end
 ---@return boolean
 function playdate.math.logic.xor(bool1, bool2) end
 
----@param path string
----@param data string
----@return boolean success
----@return string error?
-function playdate.network.http:post(path, data) end
-
----@param method string
----@param path string
----@param data string
----@return boolean success
----@return string error?
-function playdate.network.http:query(method, path, data) end
-
 ---@param boardName string
 ---@param value integer
 ---@param callback fun(status: _ServerStatus, result: _ScoreBoardAddResult): nil
@@ -11749,10 +11759,6 @@ function playdate.sound.lfo:setOffset(offset) end
 ---@param scale number
 ---@return nil
 function playdate.sound.lfo:setScale(scale) end
-
----@param when? number
----@return nil
-function playdate.sound.sequence:stop(when) end
 
 ---@return number
 function playdate.sound.signalvalue:getValue() end
