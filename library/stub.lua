@@ -4227,11 +4227,13 @@ function playdate.graphics.drawLocalizedTextInRect(text, rect, leadingAdjustment
 ---@return boolean textWasTruncated
 function playdate.graphics.drawLocalizedTextInRect(text, x, y, width, height, leadingAdjustment, truncationString, alignment, font, language) end
 
---- Draw a single pixel in the current color at (*x*, *y*).
----
---- `**playdate.graphics.drawPixel(p)**`
----
 --- Draw a single pixel in the current color at playdate.geometry.point *p*.
+---
+--- [Inside Playdate: playdate.graphics.drawPixel](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPixel)
+---@param p any
+function playdate.graphics.drawPixel(p) end
+
+--- Draw a single pixel in the current color at (*x*, *y*).
 ---
 --- [Inside Playdate: playdate.graphics.drawPixel](https://sdk.play.date/Inside%20Playdate.html#f-graphics.drawPixel)
 ---@param x integer
@@ -6050,6 +6052,16 @@ function playdate.graphics.setLineCapStyle(style) end
 ---@return nil
 function playdate.graphics.setLineWidth(width) end
 
+--- Uses the given playdate.graphics.image to set the 8 x 8 pattern used for drawing. The optional
+--- *x*, *y* offset (default 0, 0) indicates the top left corner of the 8 x 8 pattern.
+---
+--- [Inside Playdate: playdate.graphics.setPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPattern)
+---@param image _Image
+---@param x? integer
+---@param y? integer
+---@return nil
+function playdate.graphics.setPattern(image, x, y) end
+
 --- Sets the 8x8 pattern used for drawing. The *pattern* argument is an array of 8 numbers
 --- describing the bitmap for each row; for example, *{ 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa,
 --- 0x55 }* specifies a checkerboard pattern. An additional 8 numbers can be specified for an alpha
@@ -6057,11 +6069,6 @@ function playdate.graphics.setLineWidth(width) end
 ---
 --- To "un-set" a pattern, call `setColor()`. `setColor()` and `setPattern()` / `setDitherPattern()`
 --- are mutually exclusive. Setting a pattern will overwrite a color, and vice versa.
----
---- `**playdate.graphics.setPattern(image, [x, y])**`
----
---- Uses the given playdate.graphics.image to set the 8 x 8 pattern used for drawing. The optional
---- *x*, *y* offset (default 0, 0) indicates the top left corner of the 8 x 8 pattern.
 ---
 --- [Inside Playdate: playdate.graphics.setPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPattern)
 ---@param pattern integer[]
@@ -11677,12 +11684,6 @@ function playdate.graphics.font:drawText(text, x, y, leadingAdjustment) end
 ---@return _Image image?
 ---@return string err?
 function playdate.graphics.generateQRCodeSync(stringToEncode, desiredEdgeDimension) end
-
----@param image _Image
----@param x? integer
----@param y? integer
----@return nil
-function playdate.graphics.setPattern(image, x, y) end
 
 ---@param bool1 boolean
 ---@param bool2 boolean
