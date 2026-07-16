@@ -8,6 +8,10 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+## [v3.1.0-luacats1] - 2026-07-16
+
+- Update for PlaydateSDK 3.1.0
+
 ## [v3.0.3-luacats1] - 2026-02-27
 
 - Updated for PlaydateSDK 3.0.3 (no changes)
@@ -369,6 +373,7 @@ to `-luacats1` whenever Panic makes a new PlaydateSDK release.
 
 ##
 
+[v3.0.3-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.3-luacats1...v3.1.0-luacats1
 [v3.0.3-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.2-luacats2...v3.0.3-luacats1
 [v3.0.2-luacats2]: https://github.com/notpeter/playdate-luacats/compare/v3.0.2-luacats1...v3.0.2-luacats2
 [v3.0.2-luacats1]: https://github.com/notpeter/playdate-luacats/compare/v3.0.1-luacats1...v3.0.2-luacats1
