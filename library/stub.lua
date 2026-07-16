@@ -442,6 +442,8 @@ local _Video = {}
 ---@field kButtonDown integer 8
 ---@field kButtonB integer 16
 ---@field kButtonA integer 32
+---@field kLanguageEnglish integer 0
+---@field kLanguageJapanese integer 1
 ---@field metadata _Metadata
 ---@field systeminfo _SystemInfo
 playdate = {}
@@ -617,6 +619,9 @@ playdate.network = {}
 
 ---@class playdate.network.http
 playdate.network.http = {}
+
+---@class playdate.network.https
+playdate.network.https = {}
 
 ---@class playdate.network.tcp
 playdate.network.tcp = {}
@@ -1177,7 +1182,8 @@ function playdate.display.setFlipped(x, y) end
 ---@return nil
 function playdate.display.setInverted(flag) end
 
---- Adds a mosaic effect to the display. Valid *x* and *y* values are between 0 and 3, inclusive.
+--- Adds a mosaic effect to the display. Valid *x* and *y* values are between 0 and 3, inclusive. If
+--- *y* is not given, it is set to *x*.
 ---
 --- Equivalent to `playdate->display->setMosaic()` in the C API.
 ---
@@ -1973,6 +1979,13 @@ function playdate.epochFromGMTTime(time) end
 ---@return integer seconds
 ---@return integer milliseconds
 function playdate.epochFromTime(time) end
+
+--- Calls the game’s `playdate.gameWillTerminate()` event handler, if set, then returns to the
+--- Launcher.
+---
+--- [Inside Playdate: playdate.exitToLauncher](https://sdk.play.date/Inside%20Playdate.html#f-exitToLauncher)
+---@return nil
+function playdate.exitToLauncher() end
 
 --- Deletes the file at the given path. Returns true if successful, else false.
 ---
@@ -3527,6 +3540,19 @@ function playdate.getFlipped() end
 ---@return _DateTime
 function playdate.getGMTTime() end
 
+--- Returns a string found by doing a lookup of *key* in the .strings file corresponding to the
+--- current system language, or *language*, if specified. If no string is found the input text is
+--- returned and a note about the missing string is printed on the console.
+---
+--- The optional *language* argument can be one of the strings `en` or `jp`, or one of the constants
+--- returned by `playdate.getSystemLanguage()` above.
+---
+--- [Inside Playdate: playdate.getLocalizedText](https://sdk.play.date/Inside%20Playdate.html#f-getLocalizedText)
+---@param key string
+---@param language (integer|string)
+---@return string
+function playdate.getLocalizedText(key, language) end
+
 --- Returns a table holding booleans with the following keys:
 ---
 --- * *charging*: The battery is actively being charged
@@ -3593,8 +3619,10 @@ function playdate.getServerTime(callback) end
 ---@return _SystemStats
 function playdate.getStats() end
 
---- Returns the current language of the system, which will be one of the constants
---- *playdate.graphics.font.kLanguageEnglish* or *playdate.graphics.font.kLanguageJapanese*.
+--- Returns the current language of the system selected in system setup or in Settings, one of:
+---
+--- * *playdate.kLanguageEnglish*
+--- * *playdate.kLanguageJapanese*
 ---
 --- [Inside Playdate: playdate.getSystemLanguage](https://sdk.play.date/Inside%20Playdate.html#f-getSystemLanguage)
 ---@return integer
@@ -3605,6 +3633,13 @@ function playdate.getSystemLanguage() end
 --- [Inside Playdate: playdate.getSystemMenu](https://sdk.play.date/Inside%20Playdate.html#f-menu.getSystemMenu)
 ---@return playdate.menu
 function playdate.getSystemMenu() end
+
+--- Returns the system volume as set via the menu volume control. In particular, games can check if
+--- this is equal to zero and skip a delay waiting for inaudible audio to finish playing.
+---
+--- [Inside Playdate: playdate.getSystemVolume](https://sdk.play.date/Inside%20Playdate.html#f-getSystemVolume)
+---@return number
+function playdate.getSystemVolume() end
 
 --- Returns a table with values for the local time, accessible via the following keys:
 ---
@@ -3705,7 +3740,7 @@ function playdate.graphics.animation.blinker:update() end
 ---
 --- The following properties can be read or set directly, and have these defaults:
 ---
---- * ***interval*** : the value of *interval*, if passed, or 100ms (the elapsed time before advancing to the next imageTable frame)
+--- * ***delay*** : the value of *delay*, or 100ms if nil (the delay in milliseconds before advancing to the next imageTable frame)
 --- * ***startFrame*** : 1 (the value the object resets to when the loop completes)
 --- * ***endFrame*** : the number of images in *imageTable* if passed, or 1 (the last frame value in the loop)
 --- * ***frame*** : 1 (the current frame counter)
@@ -3714,11 +3749,11 @@ function playdate.graphics.animation.blinker:update() end
 --- * ***paused*** : false (paused loops don’t change their frame value)
 ---
 --- [Inside Playdate: playdate.graphics.animation.loop.new](https://sdk.play.date/Inside%20Playdate.html#f-graphics.animation.loop.new)
----@param interval? number
+---@param delay? number
 ---@param imageTable _ImageTable
 ---@param shouldLoop? boolean
 ---@return _AnimationLoop
-function playdate.graphics.animation.loop.new(interval, imageTable, shouldLoop) end
+function playdate.graphics.animation.loop.new(delay, imageTable, shouldLoop) end
 
 --- Draw’s the loop’s current image at *x*, *y*.
 ---
@@ -4101,8 +4136,8 @@ function playdate.graphics.drawLine(x1, y1, x2, y2) end
 ---
 --- The optional *language* argument can be one of the strings "en", "jp", or one of the constants:
 ---
---- * *playdate.graphics.font.kLanguageEnglish*
---- * *playdate.graphics.font.kLanguageJapanese*
+--- * *playdate.kLanguageEnglish*
+--- * *playdate.kLanguageJapanese*
 ---
 --- Other arguments work the same as in `drawText()`.
 ---
@@ -4121,8 +4156,8 @@ function playdate.graphics.drawLocalizedText(key, rect, language, leadingAdjustm
 ---
 --- The optional *language* argument can be one of the strings "en", "jp", or one of the constants:
 ---
---- * *playdate.graphics.font.kLanguageEnglish*
---- * *playdate.graphics.font.kLanguageJapanese*
+--- * *playdate.kLanguageEnglish*
+--- * *playdate.kLanguageJapanese*
 ---
 --- Other arguments work the same as in `drawText()`.
 ---
@@ -4976,6 +5011,9 @@ function playdate.graphics.getImageDrawMode() end
 ---@return integer
 function playdate.graphics.getLineWidth() end
 
+---@deprecated since 3.1.0
+--- *Deprecated, playdate.getLocalizedText() is preferred.*
+---
 --- Returns a string found by doing a lookup of *key* in the .strings file corresponding to the
 --- current system language, or *language*, if specified.
 ---
@@ -4985,6 +5023,8 @@ function playdate.graphics.getLineWidth() end
 --- * *playdate.graphics.font.kLanguageJapanese*
 ---
 --- For more information about localization and strings files, see the Localization section.
+---
+--- *Deprecated. See playdate.getLocalizedText()*
 ---
 --- [Inside Playdate: playdate.graphics.getLocalizedText](https://sdk.play.date/Inside%20Playdate.html#f-graphics.getLocalizedText)
 ---@param key string
@@ -5278,13 +5318,16 @@ function playdate.graphics.image:drawCentered(x, y, flip) end
 --- * *ditherType*: The caller is faded using one of the dithering algorithms listed in
 --- `playdate.graphics.image:blurredImage()`
 ---
+--- See playdate.graphics.image:draw() for valid `flip` values.
+---
 --- [Inside Playdate: playdate.graphics.image:drawFaded](https://sdk.play.date/Inside%20Playdate.html#m-graphics.image.drawFaded)
 ---@param x integer
 ---@param y integer
 ---@param alpha number
 ---@param ditherType integer
+---@param flip? (integer|string)
 ---@return nil
-function playdate.graphics.image:drawFaded(x, y, alpha, ditherType) end
+function playdate.graphics.image:drawFaded(x, y, alpha, ditherType, flip) end
 
 --- Draws the image ignoring the currently-set `drawOffset`.
 ---
@@ -6010,7 +6053,7 @@ function playdate.graphics.setLineWidth(width) end
 --- Sets the 8x8 pattern used for drawing. The *pattern* argument is an array of 8 numbers
 --- describing the bitmap for each row; for example, *{ 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa,
 --- 0x55 }* specifies a checkerboard pattern. An additional 8 numbers can be specified for an alpha
---- mask bitmap.
+--- mask bitmap. If given, the pattern is rotated left and up by phase shift (*x*, *y*).
 ---
 --- To "un-set" a pattern, call `setColor()`. `setColor()` and `setPattern()` / `setDitherPattern()`
 --- are mutually exclusive. Setting a pattern will overwrite a color, and vice versa.
@@ -6022,8 +6065,10 @@ function playdate.graphics.setLineWidth(width) end
 ---
 --- [Inside Playdate: playdate.graphics.setPattern](https://sdk.play.date/Inside%20Playdate.html#f-graphics.setPattern)
 ---@param pattern integer[]
+---@param x? integer
+---@param y? integer
 ---@return nil
-function playdate.graphics.setPattern(pattern) end
+function playdate.graphics.setPattern(pattern, x, y) end
 
 --- Sets the winding rule for filling polygons, one of:
 ---
@@ -6388,7 +6433,10 @@ function playdate.graphics.sprite.setAlwaysRedraw(flag) end
 --- *drawCallback* is a routine you specify that implements your background drawing. The callback
 --- should be a function taking the arguments `x, y, width, height`, where *x, y, width, height*
 --- specify the region (in screen coordinates, not world coordinates) of the background region that
---- needs to be updated.
+--- needs to be updated. Pass nil here to remove the background.
+---
+--- This function returns the newly created playdate.graphics.sprite, or nil if *drawCallback* is
+--- nil.
 ---
 --- Some implementation details: `setBackgroundDrawingCallback()` creates a screen-sized sprite
 --- with a z-index set to the lowest possible value so it will draw behind other sprites, and adds
@@ -6396,12 +6444,12 @@ function playdate.graphics.sprite.setAlwaysRedraw(flag) end
 --- ignores the drawOffset, and will not be automatically redrawn when the draw offset changes;
 --- use playdate.graphics.sprite.redrawBackground() if necessary in this case. *drawCallback* will
 --- be called from the newly-created background sprite’s playdate.graphics.sprite:draw() callback
---- function and is where you should do your background drawing. This function returns the newly
---- created playdate.graphics.sprite.
+--- function and is where you should do your background drawing. See `CoreList/sprites.lua` for the
+--- source code.
 ---
 --- [Inside Playdate: playdate.graphics.sprite.setBackgroundDrawingCallback](https://sdk.play.date/Inside%20Playdate.html#f-graphics.sprite.setBackgroundDrawingCallback)
 ---@param drawCallback? fun(x: integer, y: integer, width: integer, height: integer): nil
----@return _Sprite
+---@return _Sprite?
 function playdate.graphics.sprite.setBackgroundDrawingCallback(drawCallback) end
 
 --- Sets the clip rect for sprites in the given z-index range.
@@ -6749,6 +6797,23 @@ function playdate.graphics.sprite:isVisible() end
 ---@return nil
 function playdate.graphics.sprite:markDirty() end
 
+--- Marks the given rect, relative to the sprite’s top left corner, as needing a redraw.
+---
+--- [Inside Playdate: playdate.graphics.sprite:markDirty](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.markDirty-rect)
+---@param rect _Rect
+---@return nil
+function playdate.graphics.sprite:markDirty(rect) end
+
+--- Marks the given rect, relative to the sprite’s top left corner, as needing a redraw.
+---
+--- [Inside Playdate: playdate.graphics.sprite:markDirty](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.markDirty-rect)
+---@param x integer
+---@param y integer
+---@param width integer
+---@param height integer
+---@return nil
+function playdate.graphics.sprite:markDirty(x, y, width, height) end
+
 --- Moves the sprite by *x*, *y* pixels relative to its current position.
 ---
 --- [Inside Playdate: playdate.graphics.sprite:moveBy](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.moveBy)
@@ -7057,6 +7122,13 @@ function playdate.graphics.sprite:setBounds(x, y, width, height) end
 --- width. Default is 0.5, 0.5 (the center of the sprite). This means that when you call :moveTo(x,
 --- y), the center of your sprite will be positioned at *x*, *y*. If you want x and y to represent
 --- the upper left corner of your sprite, specify the center as 0, 0.
+---
+--- Changing your sprite’s `center` values will change your sprite’s onscreen location. (Your
+--- sprite’s `x` and `y` values will remain as they were, but because those now represent a
+--- different location on your sprite, the sprite will be drawn in a different location. You can
+--- see this for yourself by calling `sprite:getBounds()` before and after your `:setCenter()`
+--- call: the first two returned values, representing the upper left corner of your sprite, will
+--- be different.)
 ---
 --- [Inside Playdate: playdate.graphics.sprite:setCenter](https://sdk.play.date/Inside%20Playdate.html#m-graphics.sprite.setCenter)
 ---@param x number
@@ -7633,7 +7705,8 @@ function playdate.graphics.video:getFrameRate() end
 ---@return integer y
 function playdate.graphics.video:getSize() end
 
---- Draws the given frame into the video’s render context.
+--- Draws the given frame into the video’s render context. Note that `renderFrame()` preserves the
+--- context image’s mask layer, if it has one.
 ---
 --- [Inside Playdate: playdate.graphics.video:renderFrame](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.renderFrame)
 ---@param number integer
@@ -7641,7 +7714,8 @@ function playdate.graphics.video:getSize() end
 function playdate.graphics.video:renderFrame(number) end
 
 --- Sets the given image to the video render context. Future `video:renderFrame()` calls will draw
---- into this image.
+--- into this image. Note that `renderFrame()` does not fill in the mask part of the context image,
+--- if it has a mask. In most cases, you’ll want to use a fully opaque image for the context image.
 ---
 --- [Inside Playdate: playdate.graphics.video:setContext](https://sdk.play.date/Inside%20Playdate.html#m-graphics.video.setContext)
 ---@param image _Image
@@ -7959,7 +8033,7 @@ function playdate.network.getStatus() end
 --- not yet given permission for the device to connect to the server, the game is paused while the
 --- system asks the user to allow or deny network access for the provided `reason`, if one is given.
 --- Since the system uses a coroutine `yield()` to show the dialog to request access (if not already
---- given), it cannot be called at load time or from an input handler or other system callback.
+--- given), it cannot be called from an input handler or other system callback.
 ---
 --- [Inside Playdate: playdate.network.http.new](https://sdk.play.date/Inside%20Playdate.html#f-network.http.new)
 ---@param server string
@@ -7969,13 +8043,14 @@ function playdate.network.getStatus() end
 ---@return _NetworkHttp?
 function playdate.network.http.new(server, port, usessl, reason) end
 
---- `playdate.network.http.new()` will automatically request access if needed (and note that `new()`
---- only creates an object for connecting, doesn’t open the connection until `get()` or `post()` is
---- called) but if you want to present the access dialog ahead of time you can use this function.
---- Notably, this lets you request access to all HTTP servers by leaving the `server` field empty,
---- or all subdomains of a domain by passing in the parent. Note that this function uses a coroutine
---- `yield()` to pause the runtime while the permission dialog is up, so it can’t be called
---- immediately at startup, must be called from a `playdate.update()` context
+--- `playdate.network.http.new()` will automatically request access if needed (and note that
+--- `new()` only creates an object for connecting, doesn’t open the connection until `get()` or
+--- `post()` is called) but if you want to present the access dialog ahead of time you can use this
+--- function. Notably, this lets you request access to all HTTP servers by leaving the `server`
+--- field empty, or all subdomains of a domain by passing in the parent. Note that this function
+--- uses a coroutine `yield()` to pause the runtime while the permission dialog is up, so it can’t
+--- be called from a button handler or other system callback, must be called at startup or from the
+--- `playdate.update()` context.
 ---
 --- [Inside Playdate: playdate.network.http.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-network.http.requestAccess)
 ---@param server? string
@@ -8146,6 +8221,16 @@ function playdate.network.http:setRequestCallback(_function) end
 ---@return nil
 function playdate.network.http:setRequestCompleteCallback(_function) end
 
+--- A shortcut to make source code a little easier to read: Returns a `playdate.network.http` object
+--- with the `usessl` flag set to *true*.
+---
+--- [Inside Playdate: playdate.network.https.new](https://sdk.play.date/Inside%20Playdate.html#f-network.https.new)
+---@param server string
+---@param port? integer
+---@param reason? string
+---@return _NetworkHttp?
+function playdate.network.https.new(server, port, reason) end
+
 --- Playdate will connect to the configured access point automatically as needed and turn off the
 --- wifi radio after a 30 second idle timeout. This function allows a game to start connecting to
 --- the access point sooner, since that can take upwards of 10 seconds, or turn off wifi as soon as
@@ -8159,11 +8244,11 @@ function playdate.network.http:setRequestCompleteCallback(_function) end
 function playdate.network.setEnabled(flag, callback) end
 
 --- Returns a `playdate.network.tcp` object for connecting to the given server. The default value
---- for `usessl` is false. If the user has not yet given permission for the device to connect to
---- the server, the game is paused while the system asks the user to allow or deny network access
---- for the provided `reason`, if one is given. Since the system uses a coroutine `yield()` to show
---- the dialog to request access (if not already given), it cannot be called at load time or from an
---- input handler or other system callback.
+--- for `usessl` is false. If the user has not yet given permission for the device to connect to the
+--- server, the game is paused while the system asks the user to allow or deny network access for
+--- the provided `reason`, if one is given. Since the system uses a coroutine `yield()` to show the
+--- dialog to request access (if not already given), it cannot be called from an input handler or
+--- other system callback.
 ---
 --- [Inside Playdate: playdate.network.tcp.new](https://sdk.play.date/Inside%20Playdate.html#f-network.tcp.new)
 ---@param server string
@@ -8179,8 +8264,8 @@ function playdate.network.tcp.new(server, port, usessl, reason) end
 --- lets you request access to all servers by leaving the `server` field empty, or all subdomains
 --- of a domain by passing in the parent. Access to all ports on a given server can be requested by
 --- leaving `port` empty. Note that this function uses a coroutine `yield()` to pause the runtime
---- while the permission dialog is up, so it can’t be called immediately at startup, must be called
---- from a `playdate.update()` context
+--- while the permission dialog is up, so it can’t be called from a button handler or other system
+--- callback, must be called at startup or from the `playdate.update()` context.
 ---
 --- [Inside Playdate: playdate.network.tcp.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-network.tcp.requestAccess)
 ---@param server? string
@@ -8209,12 +8294,18 @@ function playdate.network.tcp:getBytesAvailable() end
 ---@return string?
 function playdate.network.tcp:getError() end
 
+--- Returns the number of bytes passed to the network device but still waiting to be sent.
+---
+--- [Inside Playdate: playdate.network.tcp:getSentBytesPending](https://sdk.play.date/Inside%20Playdate.html#m-network.tcp.getSentBytesPending)
+---@return integer
+function playdate.network.tcp:getSentBytesPending() end
+
 --- Attempts to open the TCP connection. `connectCallback` is a function to be called when the
 --- connection either succeeds or fails. The function is called with a boolean indicating whether
 --- the connection was successful, and an error string if the connection failed.
 ---
 --- ```
---- connection:open(function tcpConnectCallback(connected, err)
+--- connection:open(function(connected, err)
 ---         if connected then print("connected!") else print("connection failed: "..err) end
 --- end)
 --- ```
@@ -8796,6 +8887,45 @@ function playdate.sound.bitcrusher:setAmount(amt) end
 ---@return nil
 function playdate.sound.bitcrusher:setAmountMod(signal) end
 
+--- Sets the amount of amplitude quantizing to *amt*. Valid values are 0 (no effect) to 1
+--- (quantizing output to 1-bit).
+---
+--- [Inside Playdate: playdate.sound.bitcrusher:setDepth](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setDepth)
+---@param amt number
+---@return nil
+function playdate.sound.bitcrusher:setDepth(amt) end
+
+--- Sets a signal to modulate the filter depth. Set to *nil* to clear the modulator.
+---
+--- [Inside Playdate: playdate.sound.bitcrusher:setDepthMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setDepthMod)
+---@param signal _Signal
+---@return nil
+function playdate.sound.bitcrusher:setDepthMod(signal) end
+
+--- Sets the amount of sample rate reduction; 0 is no undersampling, 1 reduces the sample rate so
+--- much the audio stops playing.
+---
+--- [Inside Playdate: playdate.sound.bitcrusher:setDownsampling](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setDownsampling)
+---@param amt number
+---@return nil
+function playdate.sound.bitcrusher:setDownsampling(amt) end
+
+--- Sets a signal to modulate the sample rate reduction. Set to *nil* to clear the modulator.
+---
+--- [Inside Playdate: playdate.sound.bitcrusher:setDownsamplingMod](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setDownsamplingMod)
+---@param signal? _Signal
+---@return nil
+function playdate.sound.bitcrusher:setDownsamplingMod(signal) end
+
+--- When `flag` is false the amplitude quantizing is linear, by simply clearing a fixed number
+--- of low-order bits in each sample. When true, the amount of quantizing is proportional to the
+--- amplitude of the sample so that quieter sounds don’t get completely lost.
+---
+--- [Inside Playdate: playdate.sound.bitcrusher:setExponential](https://sdk.play.date/Inside%20Playdate.html#m-sound.bitcrusher.setExponential)
+---@param flag? boolean
+---@return nil
+function playdate.sound.bitcrusher:setExponential(flag) end
+
 --- Sets the wet/dry mix for the effect. A level of 1 (full wet) replaces the input with the effect
 --- output; 0 leaves the effect out of the mix.
 ---
@@ -8852,6 +8982,13 @@ function playdate.sound.channel:addSource(source) end
 --- [Inside Playdate: playdate.sound.channel:getDryLevelSignal](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getDryLevelSignal)
 ---@return _Signal
 function playdate.sound.channel:getDryLevelSignal() end
+
+--- Returns a source used to route the channel’s output, after all of the channel’s source and
+--- effects are rendered but before channel volume and pan are applied, into another channel.
+---
+--- [Inside Playdate: playdate.sound.channel:getOutputAsSource](https://sdk.play.date/Inside%20Playdate.html#m-sound.channel.getOutputAsSource)
+---@return _SoundSource
+function playdate.sound.channel:getOutputAsSource() end
 
 --- Gets the volume (0.0 - 1.0) for the channel.
 ---
@@ -9346,6 +9483,13 @@ function playdate.sound.fileplayer:setLoopRange(start, _end, loopCallback, arg) 
 ---@return nil
 function playdate.sound.fileplayer:setOffset(seconds) end
 
+--- If *paused* is true, calls `fileplayer:pause()`, otherwise calls `fileplayer:play()`.
+---
+--- [Inside Playdate: playdate.sound.fileplayer:setPaused](https://sdk.play.date/Inside%20Playdate.html#m-sound.fileplayer.setPaused)
+---@param paused boolean
+---@return nil
+function playdate.sound.fileplayer:setPaused(paused) end
+
 --- Sets the playback rate for the file. 1.0 is normal speed, 0.5 is down an octave, 2.0 is up an
 --- octave, etc. Unlike sampleplayers, fileplayers can’t play in reverse (i.e., rate < 0).
 ---
@@ -9435,26 +9579,51 @@ function playdate.sound.getSampleRate() end
 ---@return _Instrument
 function playdate.sound.instrument.new(synth) end
 
---- Adds the given playdate.sound.synth to the instrument. If only the *note* argument is given, the
---- voice is only used for that note, and is transposed to play at normal speed (i.e. rate=1.0 for
---- samples, or C4 for synths). If *rangeend* is given, the voice is assigned to the range *note*
---- to *rangeend*, inclusive, with the first note in the range transposed to rate=1.0/C4. The `note`
---- and `rangeend` arguments can be MIDI note numbers or note names like "Db3". The final transpose
---- argument transposes the note played, in half-tone units.
+--- Adds the given playdate.sound.synth to the instrument’s voice pool. If a `note` argument is
+--- given, the voice is only used for that note, and is played at C4 (i.e. rate=1.0 for samples). If
+--- a range of notes is given, the note at `rangeStart` is played at C4 and notes up to `rangeEnd`
+--- (inclusive) increase by half steps. The `note`, `rangeStart`, and `rangeEnd` arguments can be
+--- MIDI note numbers or note names like "Db3". The final `transpose` argument transposes the notes
+--- played, in half-tone units.
+---
+--- When a note is played on the instrument, it uses the first voice that’s not currently playing;
+--- if no voices are free it uses the voice that’s been off (i.e. released) the longest, and if no
+--- voices are released it uses the voice that’s been playing the longest. See synth:copy() for a
+--- convenient way to add multiple voices to allow for polyphony.
 ---
 --- [Inside Playdate: playdate.sound.instrument:addVoice](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.addVoice)
 ---@param v _Synth
 ---@param note? integer
----@param rangeend? integer
+---@return nil
+function playdate.sound.instrument:addVoice(v, note) end
+
+--- Adds the given playdate.sound.synth to the instrument’s voice pool. If a `note` argument is
+--- given, the voice is only used for that note, and is played at C4 (i.e. rate=1.0 for samples). If
+--- a range of notes is given, the note at `rangeStart` is played at C4 and notes up to `rangeEnd`
+--- (inclusive) increase by half steps. The `note`, `rangeStart`, and `rangeEnd` arguments can be
+--- MIDI note numbers or note names like "Db3". The final `transpose` argument transposes the notes
+--- played, in half-tone units.
+---
+--- When a note is played on the instrument, it uses the first voice that’s not currently playing;
+--- if no voices are free it uses the voice that’s been off (i.e. released) the longest, and if no
+--- voices are released it uses the voice that’s been playing the longest. See synth:copy() for a
+--- convenient way to add multiple voices to allow for polyphony.
+---
+--- [Inside Playdate: playdate.sound.instrument:addVoice](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.addVoice)
+---@param v _Synth
+---@param rangeStart? integer
+---@param rangeEnd? integer
 ---@param transpose? integer
 ---@return nil
-function playdate.sound.instrument:addVoice(v, note, rangeend, transpose) end
+function playdate.sound.instrument:addVoice(v, rangeStart, rangeEnd, transpose) end
 
---- Sends a stop signal to all playing notes.
+--- Sends a stop signal to all playing notes, with an optional trigger time (default is the current
+--- time).
 ---
 --- [Inside Playdate: playdate.sound.instrument:allNotesOff](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.allNotesOff)
+---@param when? number
 ---@return nil
-function playdate.sound.instrument:allNotesOff() end
+function playdate.sound.instrument:allNotesOff(when) end
 
 --- Returns the current volume for the synth, a single value for mono sources or a pair of values
 --- (left, right) for stereo sources.
@@ -9465,6 +9634,12 @@ function playdate.sound.instrument:allNotesOff() end
 ---@return number left_or_mono
 ---@return number? right
 function playdate.sound.instrument:getVolume() end
+
+--- Returns true if any voice in the instrument is currently playing, otherwise false.
+---
+--- [Inside Playdate: playdate.sound.instrument:isPlaying](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.isPlaying)
+---@return boolean
+function playdate.sound.instrument:isPlaying() end
 
 --- Stops the instrument voice playing note *note*. If *when* is given, the note is stopped *when*
 --- seconds in the future, otherwise it’s stopped immediately.
@@ -9533,6 +9708,14 @@ function playdate.sound.instrument:setTranspose(halfsteps) end
 ---@return nil
 function playdate.sound.instrument:setVolume(left, right) end
 
+--- An alias for `playdate.sound.instrument:allNotesOff([when])`, to match the other sound source
+--- types.
+---
+--- [Inside Playdate: playdate.sound.instrument:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.instrument.stop)
+---@param when? number
+---@return nil
+function playdate.sound.instrument:stop(when) end
+
 --- Returns a new LFO object, which can be used to modulate sounds. See playdate.sound.lfo:setType()
 --- for LFO types.
 ---
@@ -9594,6 +9777,15 @@ function playdate.sound.lfo:setGlobal(flag) end
 ---@return nil
 function playdate.sound.lfo:setPhase(phase) end
 
+--- Sets the the LFO’s random number generator seed to `value`, allowing for reproducible sequences
+--- in LFOs that have random elements (currently only kLFOSampleAndHold). The given value will be
+--- truncated to an unsigned 16-bit integer.
+---
+--- [Inside Playdate: playdate.sound.lfo:setRandomSeed](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRandomSeed)
+---@param value integer
+---@return nil
+function playdate.sound.lfo:setRandomSeed(value) end
+
 --- Sets the rate of the LFO, in cycles per second.
 ---
 --- [Inside Playdate: playdate.sound.lfo:setRate](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setRate)
@@ -9654,11 +9846,28 @@ function playdate.sound.micinput.getSource() end
 --- splitter, first call playdate.sound.micinput.startListening() with the required source.
 --- `recordToSample()` returns `true` on success, `false` on error.
 ---
+--- If the system needs to ask the user for permission to listen on the microphone it
+--- will present a dialog, using the optional `purpose` string to explain the reason for
+--- recording. If it’s preferable to show the permission dialog sooner, e.g. game startup, use
+--- playdate.sound.micinput.requestAccess().
+---
 --- [Inside Playdate: playdate.sound.micinput.recordToSample](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.recordToSample)
 ---@param buffer _Sample
 ---@param completionCallback fun(sample: _Sample): nil
+---@param purpose? string
 ---@return nil
-function playdate.sound.micinput.recordToSample(buffer, completionCallback) end
+function playdate.sound.micinput.recordToSample(buffer, completionCallback, purpose) end
+
+--- `playdate.sound.micinput.recordToSample()` will automatically request access if needed but if
+--- you want to present the access dialog ahead of time you can use this function. Note that this
+--- function uses a coroutine `yield()` to pause the runtime while the permission dialog is up, so
+--- it can’t be called immediately at startup or from a button press handler; it must be called from
+--- within the `playdate.update()` context.
+---
+--- [Inside Playdate: playdate.sound.micinput.requestAccess](https://sdk.play.date/Inside%20Playdate.html#f-sound.micinput.requestAccess)
+---@param reason? string
+---@return boolean
+function playdate.sound.micinput.requestAccess(reason) end
 
 --- Starts monitoring the microphone input level. The optional *source* argument of "headset" or
 --- "device" causes the mic input to record from the given source. If no source is given, it uses
@@ -10219,7 +10428,6 @@ function playdate.sound.sequence:setTrackAtIndex(n, track) end
 --- Stops playing the sequence.
 ---
 --- [Inside Playdate: playdate.sound.sequence:stop](https://sdk.play.date/Inside%20Playdate.html#m-sound.sequence.stop)
----@return nil
 function playdate.sound.sequence:stop() end
 
 --- Forces sound to be played on the headphones or on the speaker, regardless of whether headphones
@@ -10533,7 +10741,7 @@ function playdate.sound.track:addControlSignal(s) end
 ---
 --- See setNotes() for the ability to add more than one note at a time.
 ---
---- [Inside Playdate: playdate.sound.track:addNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2)
+--- [Inside Playdate: playdate.sound.track:addNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote)
 ---@param step integer
 ---@param note (string|integer)
 ---@param length number
@@ -10549,7 +10757,7 @@ function playdate.sound.track:addNote(step, note, length, velocity) end
 ---
 --- See setNotes() for the ability to add more than one note at a time.
 ---
---- [Inside Playdate: playdate.sound.track:addNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote2)
+--- [Inside Playdate: playdate.sound.track:addNote](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.addNote)
 ---@param table (_SoundTrackNoteIn|_SoundTrackNote)
 ---@return nil
 function playdate.sound.track:addNote(table) end
@@ -10630,7 +10838,7 @@ function playdate.sound.track:setInstrument(inst) end
 function playdate.sound.track:setMuted(flag) end
 
 --- Set multiple notes at once, each array element should be a table containing values for the keys
---- The tables contain values for keys `step`, `note`, `length`, and `velocity`.
+--- `step`, `note`, `length`, and `velocity`.
 ---
 --- [Inside Playdate: playdate.sound.track:setNotes](https://sdk.play.date/Inside%20Playdate.html#m-sound.track.setNotes)
 ---@param list table[]
@@ -11540,6 +11748,10 @@ function playdate.sound.lfo:setOffset(offset) end
 ---@param scale number
 ---@return nil
 function playdate.sound.lfo:setScale(scale) end
+
+---@param when? number
+---@return nil
+function playdate.sound.sequence:stop(when) end
 
 ---@return number
 function playdate.sound.signalvalue:getValue() end
