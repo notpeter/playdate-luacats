@@ -8,6 +8,9 @@ See also: [Panic Playdate SDK Changelog](https://sdk.play.date/changelog/)
 
 ## Unreleased
 
+- Add scraped documentation for `playdate.sound.lfo:setOffset()` and `playdate.sound.lfo:setScale()`
+- Remove obsolete `playdate.sound.signalvalue:setOffset()` and `playdate.sound.signalvalue:setScale()`
+
 ## [v3.1.0-luacats2] - 2026-07-17
 
 - Add docs scraped from the [ScoreBoard API Docs](https://help.play.date/catalog-developer/scoreboard-api/)

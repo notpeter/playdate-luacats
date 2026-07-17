@@ -9895,6 +9895,13 @@ function playdate.sound.lfo:setDepth(depth) end
 ---@return nil
 function playdate.sound.lfo:setGlobal(flag) end
 
+--- Sets the center value of the LFO.
+---
+--- [Inside Playdate: playdate.sound.lfo:setOffset](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setCenter)
+---@param offset number
+---@return nil
+function playdate.sound.lfo:setOffset(offset) end
+
 --- Sets the current phase of the LFO, from 0 to 1.
 ---
 --- [Inside Playdate: playdate.sound.lfo:setPhase](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setPhase)
@@ -9925,6 +9932,13 @@ function playdate.sound.lfo:setRate(rate) end
 ---@param flag boolean
 ---@return nil
 function playdate.sound.lfo:setRetrigger(flag) end
+
+--- Sets the depth of the LFO’s modulation.
+---
+--- [Inside Playdate: playdate.sound.lfo:setScale](https://sdk.play.date/Inside%20Playdate.html#m-sound.lfo.setDepth)
+---@param scale number
+---@return nil
+function playdate.sound.lfo:setScale(scale) end
 
 --- Sets the initial phase of the LFO, from 0 to 1.
 ---
@@ -11832,24 +11846,8 @@ function playdate.math.logic.xor(bool1, bool2) end
 ---@return nil
 function playdate.simulator.openURL(url) end
 
----@param offset number
----@return nil
-function playdate.sound.lfo:setOffset(offset) end
-
----@param scale number
----@return nil
-function playdate.sound.lfo:setScale(scale) end
-
 ---@return number
 function playdate.sound.signalvalue:getValue() end
-
----@param offset number
----@return nil
-function playdate.sound.signalvalue:setOffset(offset) end
-
----@param scale number
----@return nil
-function playdate.sound.signalvalue:setScale(scale) end
 
 ---@deprecated since 2.1.0-beta1
 ---@return nil
