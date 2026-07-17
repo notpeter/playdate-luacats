@@ -8720,6 +8720,106 @@ function playdate.rightButtonDown() end
 ---@return nil
 function playdate.rightButtonUp() end
 
+--- Adds a new score to the specified board. Invokes the given callback with the resulting rank for
+--- the given value.
+---
+--- If Wi-Fi is not available, the outgoing value will be queued on device and sent to the server on
+--- a later attempt. In the case that it is added to the outgoing queue, the result will not specify
+--- a rank.
+---
+--- ```
+--- {
+--- 	rank = 30,
+--- 	player = "mario",
+--- 	value = 173
+--- }
+--- ```
+--- * boardID: ID of the board.
+--- * value: Integer value to post on the board (positive integers only).
+--- * callback: Callback to invoke with the results.
+---
+--- [Scoreboard API: playdate.scoreboards.addScore](https://help.play.date/catalog-developer/scoreboard-api/#lua-api-reference)
+---@param boardName string
+---@param value integer
+---@param callback fun(status: _ServerStatus, result: _ScoreBoardAddResult): nil
+---@return nil
+function playdate.scoreboards.addScore(boardName, value, callback) end
+
+--- Gets the player’s personal best score. Invokes the given callback with the score.
+---
+--- This will only operate on locally stored scores. In the event that there is no available high
+--- score for this player, the callback will be invoked with `nil`.
+---
+--- ```
+--- {
+--- 	rank = 7,
+--- 	player = "wario",
+--- 	value = 92
+--- }
+--- ```
+--- [Scoreboard API: playdate.scoreboards.getPersonalBest](https://help.play.date/catalog-developer/scoreboard-api/#lua-api-reference)
+---@param boardName string
+---@param callback fun(status?: _ServerStatus, result?: _ScoreBoardAddResult): nil
+---@return nil
+function playdate.scoreboards.getPersonalBest(boardName, callback) end
+
+--- Invokes the given callback with a list of the registered scoreboards. (Note that if you already
+--- know the string ID for the scoreboard you want to query, this call is unnecessary.)
+---
+--- ```
+--- {
+--- 	lastUpdated = 649972900,
+--- 	boards = [
+--- 		{
+--- 			boardID = "highscores",
+--- 			name = "High Scores"
+--- 		},
+--- 		{
+--- 			boardID = "lowscores",
+--- 			name = "Low Scores"
+--- 		}
+--- 	]
+--- }
+--- ```
+--- * callback: Callback to invoke with the results.
+---
+--- [Scoreboard API: playdate.scoreboards.getScoreboards](https://help.play.date/catalog-developer/scoreboard-api/#lua-api-reference)
+---@param callback fun(status: _ServerStatus, result: _ScoreBoardsScoreboardsResult): nil
+---@return nil
+function playdate.scoreboards.getScoreboards(callback) end
+
+--- Invokes the given callback with a list of the top scores on the given board. (Typically ten
+--- scores or fewer.) If the current player is not in the top scores, their highest score is given
+--- as the last result.
+---
+--- Usernames for players are between 3-20 characters.
+---
+--- ```
+--- {
+--- 	lastUpdated = 649972900,
+--- 	scores = [
+--- 		{
+--- 			rank = 1,
+--- 			player = "mario",
+--- 			value = 100
+--- 		},
+--- 		{
+--- 			rank = 2,
+--- 			player = "luigi",
+--- 			value = 20
+--- 		}
+--- 	]
+--- }
+--- ```
+--- * boardID: ID of the board to be queried.
+--- * callback: Callback to be invoked with the results.
+---
+--- [Scoreboard API: playdate.scoreboards.getScores](https://help.play.date/catalog-developer/scoreboard-api/#lua-api-reference)
+---@param boardID string
+---@param callback fun(status: _ServerStatus, result: _ScoreBoardScoresResult): nil
+---@return nil
+function playdate.scoreboards.getScores(boardID, callback) end
+
 --- Called when a `msg {text}` command is received on the serial port. The text following the
 --- command is passed to the function as the string *message*.
 ---
@@ -11727,26 +11827,6 @@ function playdate.math.logic.nxor(bool1, bool2) end
 ---@param bool2 boolean
 ---@return boolean
 function playdate.math.logic.xor(bool1, bool2) end
-
----@param boardName string
----@param value integer
----@param callback fun(status: _ServerStatus, result: _ScoreBoardAddResult): nil
----@return nil
-function playdate.scoreboards.addScore(boardName, value, callback) end
-
----@param boardName string
----@param callback fun(status?: _ServerStatus, result?: _ScoreBoardAddResult): nil
----@return nil
-function playdate.scoreboards.getPersonalBest(boardName, callback) end
-
----@param callback fun(status: _ServerStatus, result: _ScoreBoardsScoreboardsResult): nil
----@return nil
-function playdate.scoreboards.getScoreboards(callback) end
-
----@param boardID string
----@param callback fun(status: _ServerStatus, result: _ScoreBoardScoresResult): nil
----@return nil
-function playdate.scoreboards.getScores(boardID, callback) end
 
 ---@param url string
 ---@return nil
